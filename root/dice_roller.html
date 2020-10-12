@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Roller</title>
+	<script type="text/javascript" src="dice_roller.js"></script>
+
+	<script
+  		src="https://code.jquery.com/jquery-3.5.1.js"
+  		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  		crossorigin="anonymous">
+  	</script>
+
+	<script>
+		window.myFunction = function() {
+			// Get the various needed components
+			let output_box = document.getElementById('output');
+			let emphasis = document.getElementById('emphasis').checked;
+			let explode_on = document.getElementById('explode_on').value;
+			let dice_roll = document.getElementById('dice_roll').value;
+			let dice_keep = document.getElementById('dice_keep').value;
+			output_box.value = output_text(dice_roll, dice_keep, emphasis, explode_on);
+		}
+	</script>
+</head>
+<body>
+
+	<h1>L5R Dice Roller</h1>
+	<p>A Dice Roller for use in our L5R Campaign</p>
+
+	<select id="dice_roll">
+		<option value=1 selected>Roll 1</option>
+		<option value=2>Roll 2</option>
+		<option value=3>Roll 3</option>
+		<option value=4>Roll 4</option>
+		<option value=5>Roll 5</option>
+		<option value=6>Roll 6</option>
+		<option value=7>Roll 7</option>
+		<option value=8>Roll 8</option>
+		<option value=9>Roll 9</option>
+		<option value=10>Roll 10</option>
+	</select>
+
+	<select id="dice_keep">
+		<option value=1 selected>Keep 1</option>
+		<option value=2>Keep 2</option>
+		<option value=3>Keep 3</option>
+		<option value=4>Keep 4</option>
+		<option value=5>Keep 5</option>
+		<option value=6>Keep 6</option>
+		<option value=7>Keep 7</option>
+		<option value=8>Keep 8</option>
+		<option value=9>Keep 9</option>
+		<option value=10>Keep 10</option>
+	</select>
+
+	<br>
+
+	<select id="explode_on">
+		<option value=0>Never Explode</option>
+		<option value=1>Explode on 1</option>
+		<option value=2>Explode on 2</option>
+		<option value=3>Explode on 3</option>
+		<option value=4>Explode on 4</option>
+		<option value=5>Explode on 5</option>
+		<option value=6>Explode on 6</option>
+		<option value=7>Explode on 7</option>
+		<option value=8>Explode on 8</option>
+		<option value=9>Explode on 9</option>
+		<option value=10 selected>Explode on 10</option>
+		<option value=2t>Explode 2 thru 10</option>
+		<option value=3t>Explode 3 thru 10</option>
+		<option value=4t>Explode 4 thru 10</option>
+		<option value=5t>Explode 5 thru 10</option>
+		<option value=6t>Explode 6 thru 10</option>
+		<option value=7t>Explode 7 thru 10</option>
+		<option value=8t>Explode 8 thru 10</option>
+		<option value=9t>Explode 9 thru 10</option>
+	</select>
+
+	<br>
+
+	<input type="checkbox" id="emphasis">
+	<label>Emphasis</label>
+
+	<br>
+
+	<button onclick="myFunction();">Roll</button>
+	
+	<br>
+
+	<textarea id="output" rows=10 cols=60>help</textarea>
+
+</body>
+</html>

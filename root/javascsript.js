@@ -6,3 +6,4 @@ function supports_html5_storage() {
 	}
 }
 
+
