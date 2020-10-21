@@ -42,7 +42,16 @@ const skills = [
 	{name: 'Perform', trait: ['Various'], class: ['High', ' Macro']},
 	{name: 'Weapons', trait: ['Various'], class: ['Bugei', ' Macro']},
 	{name: 'Craft', trait: ['Various'], class: ['Merchant', ' Macro']}
-	]
+];
+
+const default_skills = {
+	'Acting': {trait: ['Awareness'], class: ['High']},
+	'Calligraphy': {trait: ['Intelligence'], class: ['High']},
+	'Courtier': {trait: ['Awareness'], class: ['High']},
+	'Divination': {trait: ['Intelligence'], class: ['High']},
+	'Etiquette': {trait: ['Awareness'], class: ['High']},
+	'Investigation': {trait: ['Perception'], class: ['High']},
+};
 
 const rings = [
     {name: "Air", traits: ["Awareness", "Reflexes"]},
@@ -63,4 +72,10 @@ function get_skill_names() {
 		skill_list.push(skill.name);
 	}
 	return skill_list;
+}
+
+function maxmin(value, min_val, max_val) {
+	var result = Math.max(min_val, Math.min(max_val, value));
+	console.log(value, min_val, max_val, result);
+	return result;
 }
