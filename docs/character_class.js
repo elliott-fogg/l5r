@@ -124,18 +124,6 @@ class Character {
 
     // Button Functions ////////////////////////////////////////////////////////
 
-    default_function() {
-        console.log("Triggered")
-    }
-
-    create_button(btn_type, btn_text) {
-        var btn = document.createElement("input");
-        btn.type = "button";
-        btn.className = btn_type;
-        btn.value = btn_text;
-        return btn;
-    }
-
     append_increment_button(row, attr_type, attr_name, increase) {
         var btn = document.createElement("input");
         btn.type = "button";
@@ -159,43 +147,6 @@ class Character {
 
         row.appendChild(btn);
     }
-
-    // append_trait_increment_button(row, inc_amount, trait_name) {
-    //     var btn_text = (inc_amount == -1) ? '-' : '+';
-    //     var btn = this.create_button("inc_dec_btn", btn_text);
-
-    //     var trait = this.traits[trait_name];
-
-    //     btn.onclick = function() {
-    //         this.traits[trait_name] = maxmin(this.traits[trait_name] + inc_amount, 0, 10);
-    //         console.log(this.traits);
-    //         this.fill_trait_table();
-    //         this.fill_skill_table();
-    //     }.bind(this);
-
-    //     row.appendChild(btn);
-    // }
-
-    // append_skill_increment_button(row, inc_amount, skill_name) {
-    //     var btn;
-    //     if (inc_amount == -1) {
-    //         // Create the Decrease Button
-    //         btn = this.create_button("inc_dec_btn", "-");
-    //         btn.onclick = function() {
-    //             this.decrease_skill(skill_name);
-    //             this.fill_skill_table();
-    //         }.bind(this);
-    //     } else {
-    //         // Create the Increase Button
-    //         btn = this.create_button("inc_dec_btn", "+");
-    //         btn.onclick = function() {
-    //             this.increase_skill(skill_name);
-    //             this.fill_skill_table();
-    //         }.bind(this);
-    //     }
-
-    //     row.appendChild(btn);
-    // }
 
     // Increase / Decrease Skills //////////////////////////////////////////////
 
@@ -245,41 +196,6 @@ class Character {
         this.fill_skill_table();
     }
 
-    // increase_skill(skill_name) {
-    //     // If rank is already at 10, it cannot increase any further.
-    //     if (this.skills[skill_name].rank == 10) {
-    //         alert(`'${skill_name} is already at Rank 10. It cannot go higher.`);
-    //         return;
-    //     }
-
-    //     console.log("Attempting to increase");
-    //     var exp_cost = this.skills[skill_name].rank + 1;
-    //     if (exp_cost > this.experience) {
-    //         alert(`Cannot increase ${skill_name} to rank ${exp_cost} due to insufficient experience points.`);
-    //         return
-    //     }
-
-    //     // At this point, the transaction has been approved.
-    //     this.skills[skill_name].rank += 1;
-    //     this.experience -= exp_cost;
-    //     console.log("Experience:", this.experience);
-    //     this.display_experience();
-    // }
-
-    // decrease_skill(skill_name) {
-    //     // If skill is already at 0, it cannot decrease further.
-    //     if (this.skills[skill_name].rank == 0) {
-    //         alert(`${skill_name} is already at Rank 0. It cannot go lower.`)
-    //         return;
-    //     }
-
-    //     var previous_exp_cost = this.skills[skill_name].rank;
-    //     this.skills[skill_name].rank -= 1;
-    //     this.experience += previous_exp_cost;
-    //     console.log("Experience:", this.experience);
-    //     this.display_experience();
-    // }
-
     modify_trait(trait_name, increase=true) {
         if (increase) { // Increase the trait
 
@@ -296,14 +212,6 @@ class Character {
         this.fill_trait_table();
         this.fill_skill_table();
 
-    }
-
-    increase_trait(trait_name) {
-        console.log("Increasing trait " + trait_name);
-    }
-
-    decrease_trait(trait_name) {
-        console.log("Decreasing trait " + trait_name);
     }
 
     // Populate Tables /////////////////////////////////////////////////////////
