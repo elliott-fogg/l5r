@@ -17,8 +17,16 @@
 
 	<table id="skill_table" class="table"></table>
 
+  	<select id="select_add_skill">
+  		<option>Default</option>
+  		<option value="Something">something</option>
+  		<option value="Something Else">dud</option>
+  	</select>
+
 	<script>
-		create_tables("trait_table", "skill_table");
+		var player = new Character(100);
+		populate_skills(player, 10);
+		player.refresh_display();
 	</script>
 
 </body>
