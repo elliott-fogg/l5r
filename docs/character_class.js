@@ -25,19 +25,6 @@ class Character {
         })
     }
 
-    // bind_add_skill_button() {
-    //     var as_btn = document.getElementById("add_skill_button");
-    //     as_btn.onclick = function() {
-    //         var skill_to_add = document.getElementById("select_add_skill").value;
-    //         if (skill_to_add == "NO_SKILL") {
-    //             console.log("Attempted to add a null skill");
-    //             return;
-    //         }
-
-    //         this.add_skill(skill_to_add);
-    //     }.bind(this);
-    // }
-
     // Adding Skills ///////////////////////////////////////////////////////////
 
     add_skill(skill_name, hold_refresh=false) {
@@ -422,37 +409,6 @@ class Character {
         skill_name_list.forEach(skill_name => {
             this.fill_skill_row(tbdy.insertRow(-1), skill_name);
         })
-
-        // for (skill_name in this.skills) {
-
-        //     var rank0 = (this.skills[skill_name].rank == 0) ? true : false;
-
-        //     let row = tbdy.insertRow(-1);
-    
-        //     this.fill_skill_row(row, skill_name);
-
-            // // Make the skill name a clickable label
-            // let skill_name_cell = row.insertCell(-1);
-            // let skill_label = document.createElement("label");
-            // skill_label.
-            // skill_name_cell.innerHTML = `<label id='lbl_${skill_name}' class='lbl_skill'>` +
-            //     `${skill_name}</label>`;
-
-
-            // let skill_info_array = this.get_skill_info(skill_name);
-            // skill_info_array.forEach(skill_info => {
-            //     let cell = row.insertCell(-1);
-            //     // cell.innerHTML = `<label id='label_${skill_name}'>skill_name</label>`
-            //     if (rank0) {
-            //         cell.innerHTML = `<span style="color:grey">${skill_info}</span>`;
-            //     } else {
-            //         cell.innerHTML = skill_info;
-            //     }
-            // })
-
-            // row.append(this.create_increment_button("skill", skill_name, true));
-            // row.append(this.create_increment_button("skill", skill_name, false));
-        // }
     }
 
     fill_skill_row(row, skill_name) {
