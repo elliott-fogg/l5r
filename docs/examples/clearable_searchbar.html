@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SO question 2803532, with "plain" HTML/CSS/JS</title>
+        <style>
+            span.deleteicon {
+                position: relative;
+            }
+            span.deleteicon span {
+                position: absolute;
+                display: block;
+                top: 5px;
+                right: 0px;
+                width: 16px;
+                height: 16px;
+                background: url('http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=4') 0 -690px;
+                cursor: pointer;
+            }
+            span.deleteicon input {
+                padding-right: 16px;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <span class="deleteicon">
+            <input type="text">
+            <span onclick="var input = this.previousSibling; input.value = ''; input.focus();"></span>
+        </span>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style>
+		.menu {
+			width: 120px;
+			box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+			position: relative;
+			display: none;
+
+			.menu-options {
+				list-style: none;
+		    	padding: 10px 0;
+
+		    	.menu-option {
+		    		font-weight: 500;
+		    		font-size: 14px;
+		    		padding: 10px 40px 10px 20px;
+		    		cursor: pointer;
+
+		    		&:hover {
+		        		background: rgba(0, 0, 0, 0.2);
+		      		}
+		    	}
+			}
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="menu">
+	  <ul class="menu-options">
+	    <li class="menu-option">Back</li>
+	    <li class="menu-option">Reload</li>
+	    <li class="menu-option">Save</li>
+	    <li class="menu-option">Save As</li>
+	    <li class="menu-option">Inspect</li>
+	  </ul>
+	</div>
+	
+	<script>
+
+		const menu = document.querySelector(".menu");
+		let menuVisible = false;
+
+		const toggleMenu = command => {
+		  menu.style.display = command === "show" ? "block" : "none";
+		  menuVisible = !menuVisible;
+		};
+
+		const setPosition = ({ top, left }) => {
+		  menu.style.left = `${left}px`;
+		  menu.style.top = `${top}px`;
+		  toggleMenu("show");
+		};
+
+		window.addEventListener("click", e => {
+		  if(menuVisible)toggleMenu("hide");
+		});
+
+		window.addEventListener("contextmenu", e => {
+		  e.preventDefault();
+		  const origin = {
+		    left: e.pageX,
+		    top: e.pageY
+		  };
+		  setPosition(origin);
+		  return false;
+		});
+		
+	</script>
+
+</body>
+</html>
+
+
+
