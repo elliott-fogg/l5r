@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>L5R Character Page</title>
+
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/dice_roller.css">
 	<link rel="stylesheet" href="css/custom_buttons.css">
 	<link rel="stylesheet" href="css/collapsible_sections.css">
-
 
 	<!-- JS Files -->
 	<script type="text/javascript" src="js/data_accessors.js"></script>
@@ -22,7 +22,7 @@
 
 	<button type="button" class="collapsible">Trait Table</button>
 	<div class="collapsible_content">
-		<div id="roll_options">
+		<div class="stack_left">
 			<select id="dice_to_roll"></select>
 			<select id="dice_to_keep"></select>
 			<br>
@@ -34,9 +34,8 @@
 			<button id="roll_dice_button">Roll!</button>
 		</div>
 
-		<div id="roll_textarea">
+		<div class="stack_left">
 			<p id="dice_roller_output">Dummy_val</p>
-<!-- 			<textarea id="roll_output" rows=10 cols=60>Dice Roller!</textarea> -->
 		</div>
 
 	</div>

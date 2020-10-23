@@ -1,14 +1,7 @@
-#roll_options {
+div.stack_left {
 	float: left;
 	margin-right: 10px;
 	margin-top: 10px;
-/*  	background-color: green;*/
-}
-
-#roll_textarea {
-	float: left;
-	margin-top: 10px;
-/*  	background-color: red;*/
 }
 
 #dice_roller_output {
