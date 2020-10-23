@@ -3,18 +3,7 @@
 <head>
 	<title>L5R Roller</title>
 	<script type="text/javascript" src="js/dice_roller.js"></script>
-	<style>
-		#roll_options {
-			float: left;
-			margin-right: 10px;
-		}
-
-		#roll_textarea {
-			float: left;
-			width: 200px;
-			height: 200px;
-		}
-	</style>
+	<link rel="stylesheet" href="css/dice_roller.css">
 </head>
 <body>
 
@@ -42,13 +31,14 @@
 	</div>
 
 	<div id="roll_textarea">
-		<textarea id="output" rows=10 cols=60>help</textarea>
+		<p id="dice_roller_output">Dummy_val</p>
+<!-- 		<textarea id="output" rows=10 cols=60>help</textarea> -->
 	</div>
 
 	<script>
 		populate_dice_selectors("dice_to_roll", "dice_to_keep", "explode_on",
                                  "emphasis_checkbox", "dice_roll_button",
-                                 "output");
+                                 "dice_roller_output");
 	</script>
 
 </body>
