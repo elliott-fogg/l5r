@@ -1,0 +1,29 @@
+#roll_options {
+	float: left;
+	margin-right: 10px;
+	margin-top: 10px;
+/*  	background-color: green;*/
+}
+
+#roll_textarea {
+	float: left;
+	margin-top: 10px;
+/*  	background-color: red;*/
+}
+
+#dice_roller_output {
+ 	border: 1px solid black;
+ 	margin: 0px;
+  	height: 200px;
+  	width: 300px;
+  	margin-bottom: 10px;
+  	overflow-y: scroll;
+}
+
+span.text_h1 {
+  color: red;
+}
+
+span.text_h2 {
+	color: blue;
+}

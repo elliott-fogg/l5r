@@ -1,0 +1,11 @@
+.inc_dec_btn {
+	color: black;
+	text-align: center;
+	background-color: grey;
+	transition-duration: 0.4s;
+}
+
+.inc_dec_btn:hover {
+  background-color: black;
+  color: white;
+}
