@@ -2,31 +2,70 @@
 <html>
 <head>
 	<title>L5R Character Page</title>
-	<link rel="stylesheet" href="styles.css">
-	<script type="text/javascript" src="data_accessors.js"></script>
-	<script type="text/javascript" src="character_class.js"></script>
+	<link rel="stylesheet" href="_css/styles.css">
+	<script type="text/javascript" src="_js/data_accessors.js"></script>
+	<script type="text/javascript" src="_js/dice_roller.js"></script>
+	<script type="text/javascript" src="_js/character_class.js"></script>
 
 </head>
 <body>
 
 	<h1>L5R Character Page</h1>
 	<p>A character tracker for our L5R campaign</p>
-	<p id="experience_label">placeholder</p>
 
-	<table id="trait_table" class="table"></table>
+	<button type="button" class="collapsible">Trait Table</button>
+	<div class="collapsible_content">
+		<div id="roll_options">
+			<select id="dice_to_roll"></select>
+			<select id="dice_to_keep"></select>
+			<br>
+			<select id="explode_on"></select>
+			<br>
+			<input type="checkbox" id="emphasis_checkbox">
+			<label>Emphasis</label>
+			<br>
+			<button id="roll_dice_button">Roll!</button>
+		</div>
 
-	<table id="skill_table" class="table"></table>
+		<div id="roll_textarea">
+			<p id="dice_roller_output">Dummy_val</p>
+<!-- 			<textarea id="roll_output" rows=10 cols=60>Dice Roller!</textarea> -->
+		</div>
 
-  	<select id="select_add_skill">
-  		<option>Default</option>
-  		<option value="Something">something</option>
-  		<option value="Something Else">dud</option>
-  	</select>
+	</div>
+
+	<button type="button" class="collapsible">Character Page</button>
+	<div class="collapsible_content">
+		<p id="experience_label">placeholder</p>
+		<table id="trait_table" class="table"></table>
+		<table id="skill_table" class="table"></table>
+	  	<select id="select_add_skill"></select>
+	</div>
 
 	<script>
+		populate_dice_selectors("dice_to_roll", "dice_to_keep", 
+                                 "explode_on", "emphasis_checkbox", 
+                                 "roll_dice_button", "dice_roller_output")
 		var player = new Character(100);
 		populate_skills(player, 10);
 		player.refresh_display();
+	</script>
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+		    this.classList.toggle("active");
+		    var content = this.nextElementSibling;
+		    if (content.style.display === "block") {
+		      content.style.display = "none";
+		    } else {
+		      content.style.display = "block";
+		    }
+		  });
+		}
 	</script>
 
 </body>
