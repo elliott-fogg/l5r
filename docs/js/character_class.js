@@ -14,7 +14,7 @@ class Character {
         this.traits = {};
         this.setup_traits();
         this.refresh_display();
-        // this.bind_add_skill_button();
+
     }
 
     setup_traits() {
@@ -108,6 +108,28 @@ class Character {
         this.refresh_display();
     }
 
+    // Dice Rolling ////////////////////////////////////////////////////////////
+
+    roll_skill(skill_name, emphasis_name=null) {
+        let roll_textarea = document.getElementById("roll_output");
+
+        let skill_dice = this.calculate_skill_dice(skill_name);
+        let has_emphasis = (emphasis_name !== null);
+
+        let first_line = `Rolling <span style="color: red">${skill_name}`;
+        if (has_emphasis) {
+            first_line += ` (${emphasis_name})`;
+        }
+        first_line += `</span> (${skill_dice[0]}k${skill_dice[1]})`;
+
+        // roll_textarea.innerHTML = output_text(skill_dice[0], skill_dice[1],
+        //                                   has_emphasis, "10", first_line);
+
+        roll_textarea = "<span style='color:red'>Hello</span>";
+        // NOTE: Will eventually have to add in a way for skill/advantages to modify
+        // the "Explodes on" value which defaults to 10 here.
+    }
+
     // Functions for dealing with displaying skills ////////////////////////////
 
     console_log_skills() {
@@ -189,6 +211,7 @@ class Character {
         btn.value = skill_name;
 
         btn.onclick = function() {
+            this.roll_skill(skill_name);
             console.log("Clicking on skill " + skill_name);
         }.bind(this);
 
@@ -202,6 +225,7 @@ class Character {
         btn.value = emphasis;
 
         btn.onclick = function() {
+            this.roll_skill(skill_name, emphasis);
             console.log("Clicking on emphasis " + emphasis);
         }.bind(this);
 
@@ -359,7 +383,7 @@ class Character {
             let header = table.createTHead();
             let header_row = header.insertRow(0);
 
-            trait_headings.forEach(h => {
+            trait_headings.forEach(h => { // trait_headings is const at T.O.P.
                 let cell = header_row.insertCell();
                 cell.innerHTML = `<b><u>${h}</u></b>`;
             })
@@ -394,7 +418,8 @@ class Character {
         if (table.tHead == null) {
             let header = table.createTHead();
             let header_row = header.insertRow(0);
-            skill_headings.forEach(h => {
+
+            skill_headings.forEach(h => { // skill_headings is const at T.O.P.
                 let cell = header_row.insertCell(-1);
                 cell.innerHTML = `<b><u>${h}</u></b>`;
             })
