@@ -111,21 +111,24 @@ class Character {
     // Dice Rolling ////////////////////////////////////////////////////////////
 
     roll_skill(skill_name, emphasis_name=null) {
-        let roll_textarea = document.getElementById("roll_output");
+        console.log("Rolling " + skill_name + emphasis_name);
+
+        let roll_textarea = document.getElementById("dice_roller_output");
 
         let skill_dice = this.calculate_skill_dice(skill_name);
         let has_emphasis = (emphasis_name !== null);
 
-        let first_line = `Rolling <span style="color: red">${skill_name}`;
+        let first_line = `Rolling <span class="text_h2">${skill_name}`;
+
         if (has_emphasis) {
             first_line += ` (${emphasis_name})`;
         }
-        first_line += `</span> (${skill_dice[0]}k${skill_dice[1]})`;
+        first_line += `</span> (<span class="text_h1">` + 
+            `${skill_dice[0]}k${skill_dice[1]}</span>)`;
 
-        // roll_textarea.innerHTML = output_text(skill_dice[0], skill_dice[1],
-        //                                   has_emphasis, "10", first_line);
-
-        roll_textarea = "<span style='color:red'>Hello</span>";
+        roll_textarea.innerHTML = get_roll_text(skill_dice[0], skill_dice[1], 
+                                                has_emphasis, "10", first_line);
+        
         // NOTE: Will eventually have to add in a way for skill/advantages to modify
         // the "Explodes on" value which defaults to 10 here.
     }
