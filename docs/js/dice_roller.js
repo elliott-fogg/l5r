@@ -11,7 +11,6 @@ function roll_single(explode_on, emphasis) {
 	let explode_range = false;
 
 	// Determine if the roll explodes on a single or multiple values
-	console.log(explode_on);
 	if (explode_on.includes("t")) {
 		explode_range = true;
 		explode_on = parseInt(explode_on.substring(0,1))
@@ -72,7 +71,7 @@ function get_minimum_roll(rolls, dice_keep) {
 
 // Formatting //////////////////////////////////////////////////////////////////
 
-function output_text(roll, keep, em, explode, description) {
+function get_roll_text(roll, keep, em, explode, first_line) {
 	rolls = roll_multiple(roll, explode, em);
 
 	// You cannot keep more dice than you roll, so limit keep to roll.
@@ -81,9 +80,9 @@ function output_text(roll, keep, em, explode, description) {
 		keep = roll;
 	};
 
-	let text_value = description + "<br>";
+	let text_value = first_line + "<br>";
 	text_value += "<br>Dice Rolled: " + String(rolls) + "<br>";
-	text_value += "<br>Maximum roll: "+get_maximum_roll(rolls, keep);
+	text_value += "<br>Maximum roll: <u>"+get_maximum_roll(rolls, keep)+"</u>";
 	text_value += "<br>Minimum roll: "+get_minimum_roll(rolls, keep);
 	return text_value;
 };
@@ -99,12 +98,12 @@ function manual_roll(roll_select_id, keep_select_id, explode_select_id,
 	let em = document.getElementById(emphasis_checkbox_id).checked;
 	let roll_text_output = document.getElementById(output_text_id);
 
-	let first_line = `Rolling ${roll}k${keep}`;
+	let first_line = `Rolling <span class="text_h1">${roll}k${keep}</span>`;
 	if (em) {
 		first_line += " with emphasis";
 	}
 
-	roll_text_output.innerHTML = output_text(roll, keep, em, explode, first_line);
+	roll_text_output.innerHTML = get_roll_text(roll, keep, em, explode, first_line);
 }
 
 // Add options to Dice Select Boxes ////////////////////////////////////////////
