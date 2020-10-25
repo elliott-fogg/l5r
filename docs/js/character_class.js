@@ -254,14 +254,14 @@ class Character {
         }
 
         var selectbox = document.createElement("select");
-        selectbox.id = "emphasis_select";
+        selectbox.className = "add_emphasis_select"
         selectbox.onchange = function() {
             this.add_emphasis(skill_name, selectbox.value);
         }.bind(this);
 
         let default_option = document.createElement("option");
         default_option.value = "DEFAULT";
-        default_option.label = "Add emphasis...";
+        default_option.label = "Add...";
         default_option.style = "display:none";
         default_option.selected = "selected";
         selectbox.appendChild(default_option);

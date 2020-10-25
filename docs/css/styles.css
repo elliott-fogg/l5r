@@ -53,3 +53,7 @@ input.label_button {
 .border_right {
   border-right: 1px solid black;
 }
+
+select.add_emphasis_select {
+  width: 58px;
+}
