@@ -98,7 +98,7 @@ function manual_roll(roll_select_id, keep_select_id, explode_select_id,
 	let em = document.getElementById(emphasis_checkbox_id).checked;
 	let roll_text_output = document.getElementById(output_text_id);
 
-	let first_line = `Rolling <span class="text_h1">${roll}k${keep}</span>`;
+	let first_line = `Rolling <span class="text_h1">${roll}k${keep}</span>:`;
 	if (em) {
 		first_line += " with emphasis";
 	}

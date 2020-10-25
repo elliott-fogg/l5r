@@ -51,13 +51,13 @@ const max_skill_name_length = msnl;
 console.log("MAX SKILL NAME LENGTH: ", max_skill_name_length);
 
 
-const rings = [
-    {name: "Air", traits: ["Awareness", "Reflexes"]},
-    {name: "Earth", traits: ["Stamina", "Willpower"]},
-    {name: "Fire", traits: ["Agility", "Intelligence"]},
-    {name: "Water", traits: ["Perception", "Strength"]},
-    {name: "Void", traits: ["Void"]}
-]
+const rings = {
+    "Air": ["Awareness", "Reflexes"],
+    "Earth": ["Stamina", "Willpower"],
+    "Fire": ["Agility", "Intelligence"],
+    "Water": ["Perception", "Strength"],
+    "Void": ["Void"]
+}
 
 function maxmin(value, min_val, max_val) {
 	var result = Math.max(min_val, Math.min(max_val, value));

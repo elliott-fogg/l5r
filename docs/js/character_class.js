@@ -1,7 +1,8 @@
 // constants ///////////////////////////////////////////////////////////////////
-
+const ring_headings = ["Ring", "Rank"];
+const trait_headings = ["Trait", "Rank"];
 const skill_headings = ["Skill", "Rank", "Trait", "Roll", "Emphasis"];
-const trait_headings = ["Ring", "Trait", "Rank"];
+
 
 class Character {
 
@@ -18,11 +19,11 @@ class Character {
     }
 
     setup_traits() {
-        rings.forEach(ring => {
-            ring.traits.forEach( trait_name => {
+        for (let ring_name in rings) {
+            rings[ring_name].forEach( trait_name => {
                 this.traits[trait_name] = 2;
             })
-        })
+        }
     }
 
     // Adding Skills ///////////////////////////////////////////////////////////
@@ -124,11 +125,11 @@ class Character {
             first_line += ` (${emphasis_name})`;
         }
         first_line += `</span> (<span class="text_h1">` + 
-            `${skill_dice[0]}k${skill_dice[1]}</span>)`;
+            `${skill_dice[0]}k${skill_dice[1]}</span>):`;
 
         roll_textarea.innerHTML = get_roll_text(skill_dice[0], skill_dice[1], 
                                                 has_emphasis, "10", first_line);
-        
+
         // NOTE: Will eventually have to add in a way for skill/advantages to modify
         // the "Explodes on" value which defaults to 10 here.
     }
@@ -174,11 +175,16 @@ class Character {
     }
 
     calculate_ring(ring) {
-        if (ring == "Air") { return this.awareness + this.reflexes; }
-        else if (ring == "Earth") { return this.stamina + this.willpower; }
-        else if (ring == "Fire") { return this.agility + this.intelligence; }
-        else if (ring == "Water") { return this.perception + this.strength; }
-        else if (ring == "Void") { return this.void; }
+        console.log(ring);
+        if (ring == "Air") { return Math.min(this.traits["Awareness"],
+                                             this.traits["Reflexes"]);}
+        if (ring == "Earth") { return Math.min(this.traits["Stamina"],
+                                             this.traits["Willpower"]);}
+        if (ring == "Fire") { return Math.min(this.traits["Agility"],
+                                             this.traits["Intelligence"]);}
+        if (ring == "Water") { return Math.min(this.traits["Perception"],
+                                             this.traits["Strength"]);}
+        if (ring == "Void") { return this.traits["Void"];}
     }
 
     // Button Functions ////////////////////////////////////////////////////////
@@ -386,23 +392,36 @@ class Character {
             let header = table.createTHead();
             let header_row = header.insertRow(0);
 
-            trait_headings.forEach(h => { // trait_headings is const at T.O.P.
-                let cell = header_row.insertCell();
-                cell.innerHTML = `<b><u>${h}</u></b>`;
-            })
+            header_row.insertCell(-1).innerHTML = "<b><u>Ring</u></b>";
+
+            let ringrank_header = header_row.insertCell(-1);
+            ringrank_header.innerHTML = "<b><u>Rank</u></b>";
+            ringrank_header.className = "border_right";
+            console.log("insert")
+
+            header_row.insertCell(-1).innerHTML = "<b><u>Trait</u></b>";
+            header_row.insertCell(-1).innerHTML = "<b><u>Rank</u></b>";
+
         };
 
         let tbdy = (table.tBodies.length == 1) ? table.tBodies[0] : table.createTBody();
         tbdy.innerHTML = ''; // Reset tBody incase we are refilling the table
 
-        rings.forEach( ring => {
+        for (let ring_name in rings) {
             let first = true;
-            ring.traits.forEach( trait_name => {
+            rings[ring_name].forEach( trait_name => {
                 let row = tbdy.insertRow(-1);
                 if (first) {
-                    let ring_type = row.insertCell(0);
-                    ring_type.rowSpan = ring.traits.length;
-                    ring_type.innerHTML = `<b>${ring.name}</b>`;
+
+                    let ring_type = row.insertCell(-1);
+                    ring_type.rowSpan = rings[ring_name].length;
+                    ring_type.innerHTML = `<b>${ring_name}</b>`;
+
+                    let ring_rank = row.insertCell(-1);
+                    ring_rank.rowSpan = rings[ring_name].length;
+                    ring_rank.innerHTML = this.calculate_ring(ring_name);
+                    ring_rank.className = "border_right";
+
                     first = false;
                 };
                 row.insertCell().innerHTML = trait_name;
@@ -411,7 +430,7 @@ class Character {
                 row.appendChild(this.create_increment_button("trait", trait_name, true));
                 row.appendChild(this.create_increment_button("trait", trait_name, false));
             })
-        })
+        }
     }
 
     fill_skill_table(show_all_skills=false) {
