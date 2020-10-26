@@ -7,7 +7,7 @@ const skill_headings = ["Skill", "Rank", "Trait", "Roll", "Emphasis"];
 class Character {
 
     // Constructor Functions
-    constructor(starting_experience) {
+    constructor(starting_experience=40) {
         const self = this;
         this.total_experience = starting_experience;
         this.experience = this.total_experience;
@@ -15,6 +15,7 @@ class Character {
         this.traits = {};
         this.setup_traits();
         this.bind_set_exp_button();
+        this.bind_save_and_load_buttons()
         this.refresh_display();
 
     }
@@ -55,6 +56,12 @@ class Character {
         }.bind(this);
     }
 
+    bind_save_and_load_buttons() {
+        var save_btn = document.getElementById("save_button");
+        save_btn.onclick = function() {this.save_character()}.bind(this);
+        var load_btn = document.getElementById("load_button");
+        load_btn.onclick = function() {this.load_character()}.bind(this);
+    }
     // Adding Skills ///////////////////////////////////////////////////////////
 
     add_skill(skill_name, hold_refresh=false) {
@@ -675,6 +682,41 @@ class Character {
         this.fill_skill_table();
         this.display_experience();
         this.populate_select_skill();
+    }
+
+    // Storing Data in the Browser using HTML5 Storage /////////////////////////
+    check_storage() {
+        if (typeof(localStorage) !== "undefined") {
+            return true;
+        } else {
+            alert("Unfortunately your browser does not support Local Storage." + 
+                "\nYou will be unable to save characters.");
+            return false;
+        }
+    }
+
+    save_character() {
+
+        if (!(this.check_storage)) {return;}
+        console.log("Saving character")
+        var storage_dict = {};
+        storage_dict["traits"] = this.traits;
+        storage_dict["skills"] = this.skills;
+        storage_dict["experience"] = this.experience;
+        storage_dict["total_experience"] = this.total_experience;
+
+        localStorage.setItem("character", JSON.stringify(storage_dict));
+    }
+
+    load_character() {
+        if (!(this.check_storage)) {return;}
+        console.log("Loading character")
+        var storage_dict = JSON.parse(localStorage.getItem("character"));
+        this.skills = storage_dict["skills"];
+        this.traits = storage_dict["traits"];
+        this.experience = storage_dict["experience"];
+        this.total_experience = storage_dict["total_experience"];
+        this.refresh_display();
     }
 
     // End Class

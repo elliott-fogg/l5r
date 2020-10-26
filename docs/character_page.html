@@ -59,6 +59,8 @@
 		<div class="collapsible-content">
 			<p id="experience_label" style="display: inline-block">placeholder</p>
 			<input type="button" value="Reset Total Exp" id="reset_exp">
+			<input type="button" value="Save" id="save_button">
+			<input type="button" value="Load" id="load_button">
 			<br>
 			<div class="stack_left">
 				<p style="text-align: center;"><b>Ring Table</b></p>
@@ -82,7 +84,7 @@
 		populate_dice_selectors("dice_to_roll", "dice_to_keep", 
                                  "explode_on", "emphasis_checkbox", 
                                  "roll_dice_button", "dice_roller_output")
-		var player = new Character(100);
+		var player = new Character();
 	</script>
 
 </body>
