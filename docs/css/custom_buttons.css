@@ -1,11 +1,32 @@
 .inc_dec_btn {
 	color: black;
 	text-align: center;
-	background-color: grey;
+	background-color: #9f2710;
+	color: white;
 	transition-duration: 0.4s;
+	border-radius: 50%;
+	padding: 0px;
+	height: 15px;
+	width: 15px;
+  	-webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
 }
 
 .inc_dec_btn:hover {
   background-color: black;
   color: white;
 }
+
+input.label_button {
+	display: inline-block;
+	font-weight: bold;
+	margin: 2px;
+	background-color: #9E2727;
+	color: white;
+	border-radius: 9px;
+	outline: none;
+	cursor: pointer;
+}
+

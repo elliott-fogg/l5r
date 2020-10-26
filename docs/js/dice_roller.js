@@ -71,39 +71,53 @@ function get_minimum_roll(rolls, dice_keep) {
 
 // Formatting //////////////////////////////////////////////////////////////////
 
-function get_roll_text(roll, keep, em, explode, first_line) {
-	rolls = roll_multiple(roll, explode, em);
+function get_roll_text(roll_title, dice_roll, dice_keep,
+                       has_emphasis=false, explode_on="10") {
 
-	// You cannot keep more dice than you roll, so limit keep to roll.
-	// to dice_roll.
-	if (keep > roll) {
-		keep = roll;
-	};
+	rolls = roll_multiple(dice_roll, explode_on, has_emphasis);
 
-	let text_value = first_line + "<br>";
-	text_value += "<br>Dice Rolled: " + String(rolls) + "<br>";
-	text_value += "<br>Maximum roll: <u>"+get_maximum_roll(rolls, keep)+"</u>";
-	text_value += "<br>Minimum roll: "+get_minimum_roll(rolls, keep);
-	return text_value;
-};
+	// You cannot keep more dice than you roll, so limit dice_keep to dice_roll.
+	if (dice_keep > dice_roll) {dice_keep = dice_roll};
+
+	let max_roll = get_maximum_roll(rolls, dice_keep);
+	let min_roll = get_minimum_roll(rolls, dice_keep);
+
+	// Construct full title of the roll
+	var full_title = `${roll_title} (<span class="text_h1">` +
+		`${dice_roll}k${dice_keep}</span>)`;
+
+	var output = `Rolling ${full_title}:<br>`;
+	output += `<br>Dice Rolled: ${rolls.join(", ")}<br>`;
+	output += `<br>Maximum Roll: <span class="text_h1">${max_roll}</span>`;
+	output += `<br>Minimum Roll: ${min_roll}`;
+
+	var roll_history = document.getElementById("dice_roll_history");
+	let roll_history_text = `${full_title}: ${max_roll}<br>`
+	roll_history.insertAdjacentHTML("afterbegin", roll_history_text)
+
+	return output;
+}
+
+function clear_roll_history() {
+	var roll_history = document.getElementById("dice_roll_history");
+	roll_history.innerHTML = "";
+}
 
 // Manual Rolling //////////////////////////////////////////////////////////////
 
 function manual_roll(roll_select_id, keep_select_id, explode_select_id,
                      emphasis_checkbox_id, output_text_id) {
 
-	let roll = document.getElementById(roll_select_id).value;
-	let keep = document.getElementById(keep_select_id).value;
-	let explode = document.getElementById(explode_select_id).value;
-	let em = document.getElementById(emphasis_checkbox_id).checked;
+	let dice_roll = document.getElementById(roll_select_id).value;
+	let dice_keep = document.getElementById(keep_select_id).value;
+	let explode_on = document.getElementById(explode_select_id).value;
+	let has_emphasis = document.getElementById(emphasis_checkbox_id).checked;
 	let roll_text_output = document.getElementById(output_text_id);
 
-	let first_line = `Rolling <span class="text_h1">${roll}k${keep}</span>:`;
-	if (em) {
-		first_line += " with emphasis";
-	}
+	let roll_title = (has_emphasis) ? "[Emphasis]" : "";
 
-	roll_text_output.innerHTML = get_roll_text(roll, keep, em, explode, first_line);
+	roll_text_output.innerHTML = get_roll_text(roll_title, dice_roll, dice_keep,
+	                                           has_emphasis, explode_on);
 }
 
 // Add options to Dice Select Boxes ////////////////////////////////////////////

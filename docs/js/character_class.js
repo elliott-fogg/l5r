@@ -65,6 +65,7 @@ class Character {
 
     remove_skill(skill_name) {
         // Check rank of the skill. If higher than Rank 1, double check delete.
+        // If skill is only Rank 1, don't ask before removing.
         var skill_rank = this.skills[skill_name].rank;
         if (skill_rank > 1) {
             if (!(confim(`'${skill_name} is Rank ${skill_rank}. Are you sure you want to remove it?`))) {
@@ -73,15 +74,13 @@ class Character {
             }
         }
 
-        // If skill is only Rank 1, don't ask before removing.
-
         // Calculated refund exp for levels
         var exp_refund = 0; 
         for (let i = skill_rank; i > 0; i--) {
             exp_refund += i;
         }
 
-        // Calculate refund exp for emphases
+        // Calculate total emphases refund all at once
         this.skills[skill_name].emphases.forEach(function() {
             console.log("Emphases refund");
             exp_refund += 2;
@@ -103,10 +102,54 @@ class Character {
         // Check that skill doesn't already have emphasis
         if (emphasis_name in this.skills[skill_name].emphases) {
             alert(`Emphasis '${emphasis_name} already in skill '${skill_name}.`);
+            console.log("ERROR: Emphasis somehow added twice!")
+            return
+        }
+
+        // Check that character has enough experience
+        if (this.experience < 2) {
+            alert(`Cannot add '${emphasis_name}' emphasis for ${skill_name} as`+
+                  ` you do not have enough remaining experience (2 required).`)
+            return
         }
 
         this.skills[skill_name].emphases.push(emphasis_name);
+        this.experience -= 2;
         this.refresh_display();
+    }
+
+    remove_emphasis(skill_name, emphasis_name=null) {
+        let emphases = this.skills[skill_name].emphases;
+
+        console.log(emphases);
+
+        if (emphasis_name !== null) {
+            if (!(emphases.includes(emphasis_name))) {
+                // Emphasis is not currently included for this player
+                alert(`Could not remove emphasis ${emphasis_name} for skill` + 
+                      ` ${skill_name} as this character does not have it.`)
+                return;
+            }
+
+            this.skills[skill_name].emphases = emphases.filter(function(e) {
+                return e !== emphasis_name;
+            })
+        }
+
+        else {
+            // Check if there are emphases to remove
+            if (this.skills[skill_name].emphases.length == 0) {
+                alert(`Attempting to remove emphasis from '${skill_name} when `+
+                      `there are none to remove.`)
+                return;
+            }
+            // No emphasis was specified, remove last one in the list
+            emphasis_name = this.skills[skill_name].emphases.pop();
+        }
+
+        this.experience += 2;
+        this.refresh_display();
+        console.log(`Removed emphasis '${emphasis_name}' from '${skill_name}'.`)
     }
 
     // Dice Rolling ////////////////////////////////////////////////////////////
@@ -119,19 +162,32 @@ class Character {
         let skill_dice = this.calculate_skill_dice(skill_name);
         let has_emphasis = (emphasis_name !== null);
 
-        let first_line = `Rolling <span class="text_h2">${skill_name}`;
+        let roll_title = `<span class="text_h2">${skill_name}`;
+        roll_title += (has_emphasis) ? ` [${emphasis_name}]` : "";
+        roll_title += "</span>";
 
-        if (has_emphasis) {
-            first_line += ` (${emphasis_name})`;
-        }
-        first_line += `</span> (<span class="text_h1">` + 
-            `${skill_dice[0]}k${skill_dice[1]}</span>):`;
+        roll_textarea.innerHTML = get_roll_text(roll_title, skill_dice[0],
+                                                skill_dice[1], has_emphasis);
+    }
 
-        roll_textarea.innerHTML = get_roll_text(skill_dice[0], skill_dice[1], 
-                                                has_emphasis, "10", first_line);
+    roll_ring(ring_name) {
+        console.log("Rolling " + ring_name + " ring")
 
-        // NOTE: Will eventually have to add in a way for skill/advantages to modify
-        // the "Explodes on" value which defaults to 10 here.
+        var roll_output = document.getElementById("dice_roller_output");
+        var ring_rank = this.calculate_ring(ring_name);
+        let roll_title = `<span class="text_h2">${ring_name} Ring</span>`;
+
+        roll_output.innerHTML = get_roll_text(roll_title, ring_rank, ring_rank);
+    }
+
+    roll_trait(trait_name) {
+        console.log("Rolling " + trait_name);
+
+        var roll_output = document.getElementById("dice_roller_output");
+        let roll_title = `<span class="text_h2">${trait_name}</span>`;
+        let trait_rank = this.traits[trait_name];
+        roll_output.innerHTML = get_roll_text(roll_title, trait_rank, 
+                                              trait_rank);
     }
 
     // Functions for dealing with displaying skills ////////////////////////////
@@ -175,7 +231,6 @@ class Character {
     }
 
     calculate_ring(ring) {
-        console.log(ring);
         if (ring == "Air") { return Math.min(this.traits["Awareness"],
                                              this.traits["Reflexes"]);}
         if (ring == "Earth") { return Math.min(this.traits["Stamina"],
@@ -241,6 +296,32 @@ class Character {
         return btn;
     }
 
+    create_ring_button(ring_name) {
+        var btn = document.createElement("input");
+        btn.type = "button";
+        btn.className = "label_button";
+        btn.value = ring_name;
+
+        btn.onclick = function() {
+            this.roll_ring(ring_name);
+        }.bind(this);
+
+        return btn;
+    }
+
+    create_trait_button(trait_name) {
+        var btn = document.createElement("input");
+        btn.type = "button";
+        btn.className = "label_button";
+        btn.value = trait_name;
+
+        btn.onclick = function() {
+            this.roll_trait(trait_name);
+        }.bind(this);
+
+        return btn;
+    }
+
     create_add_emphasis_list(skill_name) {
 
         var emphasis_list = default_skills[skill_name].emphases;
@@ -259,9 +340,16 @@ class Character {
             this.add_emphasis(skill_name, selectbox.value);
         }.bind(this);
 
+        // Disabled select if character has reached maximum number of emphases
+        // for this skill
+        let max_emphases = Math.ceil(this.skills[skill_name].rank / 2);
+        if (current_emphases.length >= max_emphases) {
+            selectbox.disabled = true;
+        }
+
         let default_option = document.createElement("option");
         default_option.value = "DEFAULT";
-        default_option.label = "Add...";
+        default_option.label = "+";
         default_option.style = "display:none";
         default_option.selected = "selected";
         selectbox.appendChild(default_option);
@@ -308,6 +396,12 @@ class Character {
                 var exp_refund = this.skills[skill_name].rank;
                 this.skills[skill_name].rank -= 1;
                 this.experience += exp_refund;
+
+                let max_emphases = Math.ceil(this.skills[skill_name].rank / 2);
+                while (this.skills[skill_name].emphases.length > max_emphases) {
+                    this.remove_emphasis(skill_name);
+                }
+
             }
             else {
                 // Remove Skill (Set Rank to 0)
@@ -397,7 +491,6 @@ class Character {
             let ringrank_header = header_row.insertCell(-1);
             ringrank_header.innerHTML = "<b><u>Rank</u></b>";
             ringrank_header.className = "border_right";
-            console.log("insert")
 
             header_row.insertCell(-1).innerHTML = "<b><u>Trait</u></b>";
             header_row.insertCell(-1).innerHTML = "<b><u>Rank</u></b>";
@@ -413,10 +506,12 @@ class Character {
                 let row = tbdy.insertRow(-1);
                 if (first) {
 
+                    // Create Ring Name Button
                     let ring_type = row.insertCell(-1);
                     ring_type.rowSpan = rings[ring_name].length;
-                    ring_type.innerHTML = `<b>${ring_name}</b>`;
+                    ring_type.appendChild(this.create_ring_button(ring_name));
 
+                    // Show Ring rank value
                     let ring_rank = row.insertCell(-1);
                     ring_rank.rowSpan = rings[ring_name].length;
                     ring_rank.innerHTML = this.calculate_ring(ring_name);
@@ -424,11 +519,24 @@ class Character {
 
                     first = false;
                 };
-                row.insertCell().innerHTML = trait_name;
-                row.insertCell().innerHTML = this.traits[trait_name];
 
-                row.appendChild(this.create_increment_button("trait", trait_name, true));
-                row.appendChild(this.create_increment_button("trait", trait_name, false));
+                // Create Trait Name Button
+                row.insertCell(-1).appendChild(this.create_trait_button(
+                                                                trait_name));
+
+                // Create div for Trait Rank value with Incrementer Buttons
+                let trait_rank_cell = row.insertCell(-1);
+                let trait_rank_div = document.createElement("div");
+
+                let trait_rank_text = document.createElement("p");
+                trait_rank_text.className = "rank_value"
+                trait_rank_text.innerHTML = this.traits[trait_name];
+                trait_rank_div.appendChild(trait_rank_text);
+                trait_rank_div.appendChild(this.create_increment_button(
+                                                "trait", trait_name, true));
+                trait_rank_div.appendChild(this.create_increment_button(
+                                                "trait", trait_name, false));
+                trait_rank_cell.appendChild(trait_rank_div);
             })
         }
     }
@@ -459,9 +567,26 @@ class Character {
     }
 
     fill_skill_row(row, skill_name) {
+        // Clickable Skill Name
         row.appendChild(this.create_skill_button(skill_name)); // Clickable Name
-        row.insertCell(-1).innerHTML = this.skills[skill_name].rank;
+
+        // Rank value with incrementer buttons
+        var rank_div = document.createElement("div");
+        var skill_rank = document.createElement("p");
+        skill_rank.className = "rank_value";
+        skill_rank.innerHTML = String(this.skills[skill_name].rank);
+        rank_div.appendChild(skill_rank);
+        // Add Increment Buttons
+        rank_div.appendChild(this.create_increment_button(
+                                    "skill", skill_name, true));
+        rank_div.appendChild(this.create_increment_button(
+                                    "skill", skill_name, false));
+        row.insertCell(-1).appendChild(rank_div);
+
+        // Associated Trait
         row.insertCell(-1).innerHTML = this.skills[skill_name].trait;
+
+        // Text representation of associated dice roll
         row.insertCell(-1).innerHTML = this.display_skill_dice(skill_name);
 
         // Add Emphases
@@ -470,21 +595,12 @@ class Character {
             let btn = this.create_emphasis_button(skill_name, em);
             emphasis_div.appendChild(btn);
         })
-        row.insertCell(-1).appendChild(emphasis_div);
-
-        // Add Increment Buttons
-        var increment_div = document.createElement("div");
-        increment_div.appendChild(this.create_increment_button(
-                                    "skill", skill_name, true));
-        increment_div.appendChild(this.create_increment_button(
-                                    "skill", skill_name, false));
-        row.insertCell(-1).appendChild(increment_div);
-
         // Add Emphasis Select Box
         var emphasis_select = this.create_add_emphasis_list(skill_name);
         if (!(emphasis_select == null)) {
-            row.insertCell(-1).appendChild(emphasis_select);
+            emphasis_div.appendChild(emphasis_select);
         }
+        row.insertCell(-1).appendChild(emphasis_div);
     }
 
     get_skill_info(skill_name) {
@@ -515,7 +631,7 @@ class Character {
 
         var addable_skills = default_skill_names.filter(function(s) {
             return !(s in this.skills);
-        }.bind(this));
+        }.bind(this)).sort();
 
         addable_skills.forEach(skill_name => {
             let option = document.createElement("option");
