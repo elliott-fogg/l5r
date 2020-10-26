@@ -14,6 +14,7 @@ class Character {
         this.skills = {};
         this.traits = {};
         this.setup_traits();
+        this.bind_set_exp_button();
         this.refresh_display();
 
     }
@@ -24,6 +25,34 @@ class Character {
                 this.traits[trait_name] = 2;
             })
         }
+    }
+
+    bind_set_exp_button() {
+        var set_exp_button = document.getElementById("reset_exp");
+        set_exp_button.onclick = function () {
+            let prompt_text = "How much experience should this character have?"
+            var new_exp_str = prompt(prompt_text);
+
+            if (new_exp_str == null) {return;}
+
+            var new_exp = parseInt(new_exp_str);
+
+            if (isNaN(new_exp)) {
+                alert(`'${new_exp_str}' does not format to an integer. Please try again.`);
+                return;
+            }
+
+            let conf_text = `Create a new character with ${new_exp} exp?` +
+            "\n(Please note that this will reset your current character!)" 
+            if (confirm(conf_text)) {
+                this.skills = {};
+                this.traits = {};
+                this.setup_traits();
+                this.total_experience = new_exp;
+                this.experience = this.total_experience;
+                this.refresh_display();
+            }
+        }.bind(this);
     }
 
     // Adding Skills ///////////////////////////////////////////////////////////

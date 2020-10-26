@@ -55,21 +55,26 @@
 	<div class="wrap-collapsible">
 		<input id="character_sheet_collapsible" class="toggle" type="checkbox" checked="">
 		<label for="character_sheet_collapsible" class="lbl-toggle">Character Page</label>
+
 		<div class="collapsible-content">
-			<p id="experience_label">placeholder</p>
+			<p id="experience_label" style="display: inline-block">placeholder</p>
+			<input type="button" value="Reset Total Exp" id="reset_exp">
+			<br>
 			<div class="stack_left">
 				<p style="text-align: center;"><b>Ring Table</b></p>
 				<table id="trait_table" class="table"></table>
 			</div>
+
 			<div class="stack_left" style="margin-left: 100px;">
 				<p style="text-align: center;"><b>Skill Table</b></p>
 				<table id="skill_table" class="table"></table>
-		  		
 		  	</div>
+
 		  	<div class="stack_left">
 		  		<br><br>
 		  		<select id="select_add_skill"></select>
 		  	</div>
+
 		</div>
 	</div>
 
