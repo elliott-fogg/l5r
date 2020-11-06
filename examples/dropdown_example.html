@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+ul#navlist { font-family: sans-serif; }
+
+ul#navlist a
+{
+font-weight: bold;
+text-decoration: none;
+}
+
+ul#navlist, ul#navlist ul, ul#navlist li
+{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+}
+
+/*ul#navlist li { float: left; }*/
+
+ul#navlist li a
+{
+color: #ffffff;
+background-color: #003366;
+padding: 3px;
+border: 1px #ffffff outset;
+}
+
+ul#navlist li a:hover
+{
+color: #ffff00;
+background-color: #003366;
+}
+
+ul#navlist li a:active
+{
+color: #cccccc;
+background-color: #003366;
+border: 1px #ffffff inset;
+}
+
+ul#subnavlist { display: none; }
+ul#subnavlist li { float: none; }
+
+ul#subnavlist li a
+{
+padding: 0px;
+margin: 0px;
+}
+
+ul#navlist li:hover ul#subnavlist
+{
+display: block;
+position: absolute;
+/*position: relative;*/
+transform: translate(100px);
+font-size: 8pt;
+padding-top: 5px;
+}
+
+ul#navlist li:hover ul#subnavlist li a
+{
+display: block;
+width: 10em;
+border: none;
+padding: 2px;
+}
+
+ul#navlist li:hover ul#subnavlist li a:before { content: " >> "; }
+  </style>
+</head>
+<body>
+
+<div id="navcontainer">
+	<ul id="navlist">
+		<li id="active"><a href="#" id="current">Item one</a>
+			<ul id="subnavlist">
+				<li id="subactive"><a href="#" id="subcurrent">Subitem one</a></li>
+				<li><a href="#">Subitem two</a></li>
+				<li><a href="#">Subitem three</a></li>
+				<li><a href="#">Subitem four</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Item two</a></li>
+		<li><a href="#">Item three</a></li>
+		<li><a href="#">Item four</a></li>
+	</ul>
+</div>
+
+	<script>
+
+	</script>
+
+</body>
+</html>
+

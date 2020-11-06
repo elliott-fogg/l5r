@@ -4,7 +4,7 @@ div.stack_left {
 	margin-top: 10px;
 }
 
-#dice_roller_output {
+.dice_roll_output {
  	border: 1px solid black;
  	margin: 0px;
   	height: 200px;
@@ -13,16 +13,21 @@ div.stack_left {
   	overflow-y: auto;
 }
 
-span.text_h1 {
-  color: red;
+span.emphasis_text {
+	text-decoration: underline;
 }
 
-span.text_h2 {
-	color: blue;
+span.raises_text {
+	text-decoration: underline;
+}
+
+span.roll_text {
+	color: red;
 }
 
 #roll_history_header {
 	margin: 10px;
+	margin-top: 20px;
 	width: 300px;
 	height: 20px;
 	top: 50%;
@@ -31,7 +36,7 @@ span.text_h2 {
 /*	background-color: green;*/
 }
 
-#dice_roll_history {
+.dice_roll_history {
 	overflow-y: auto;
 	height: 170px;
 	margin-left: 2px;

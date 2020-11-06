@@ -1,0 +1,11 @@
+label:disabled {
+	color: grey;
+}
+
+select#select_char_family {
+	width: 150px;
+}
+
+select#select_char_school {
+	width: 200px;
+}

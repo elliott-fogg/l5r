@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+    /* Only display dropdown menu when button is active */
+    .dropdown-toggle + .dropdown-menu {
+      display: none;
+    }
+    .dropdown-toggle.active + .dropdown-menu {
+      display: table;
+      margin: none;
+    }
+
+    /* Only display submenu when menu is active */
+    .dropdown-submenu>.dropdown-menu {
+      display: none;
+    }
+    .dropdown-submenu.active>.dropdown-menu {
+      display: inline;
+      position: absolute;
+    }
+
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu.active .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -1px;
+    }
+
+    p.menu-option, p.submenu-option {
+      display: inline;
+      white-space: nowrap;
+    }
+
+    p.menu-option:hover, p.submenu-option:hover{
+      background-color: grey;
+    }
+
+    li.active>p.submenu-option {
+      background-color: lightgrey;
+    }
+
+    li {
+      width: auto;
+      margin: none;
+    }
+
+    div.dropdown>ul {
+      outline: solid grey 1px;
+    }
+
+    ul.dropdown-menu {
+      outline: solid red 1px;
+      margin-left: 1px;
+      padding-left: 2px;
+      width: auto;
+      list-style-type: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="dropdown">
+    <input type="button" class="dropdown-toggle" value="Tutorials">
+    <ul class="dropdown-menu">
+      <li><p class="menu-option">Option 1</p></li>
+      <li><p class="menu-option">Option 2</p></li>
+      <li class="dropdown-submenu"><p class="submenu-option"><b>Option 3</b></p>
+        <ul class="dropdown-menu">
+          <li><p class="menu-option">Option 3.1</p></li>
+          <li><p class="menu-option">Option 3.2</p></li>
+          <li><p class="menu-option">Option 3.3</p></li>
+        </ul>
+      </li>
+      <li><p class="menu-option">Option 4</p></li>
+      <li class="dropdown-submenu"><p class="submenu-option"><b>Option 5</b></p>
+        <ul class="dropdown-menu">
+          <li><p class="menu-option">Option 5.1</p></li>
+          <li class="dropdown-submenu"><p class="submenu-option"><b>Option 5.2</b></p>
+            <ul class="dropdown-menu">
+              <li><p class="menu-option">Option 5.2.1</p></li>
+              <li><p class="menu-option">Option 5.2.2</p></li>
+              <li><p class="menu-option">Option 5.2.3</p></li>
+              <li><p class="menu-option">Option 5.2.4</p></li>
+            </ul>
+          </li>
+          <li><p class="menu-option">Option 5.3</p></li>
+        </ul>
+      </li>
+    </ul>
+  </input>
+</div>
+
+<script>
+  let i;
+  var btns = document.getElementsByClassName("dropdown-toggle");
+  for (i = 0; i < btns.length; i++) {
+    let btn = btns[i];
+    btn.onclick = function() {
+      btn.classList.toggle("active");
+      console.log("clicked");
+    }
+  }
+
+  var sublists = document.getElementsByClassName("dropdown-submenu");
+  for (i = 0; i < sublists.length; i++) {
+    let sublist = sublists[i];
+    sublist.onclick = bind_submenu_onclick;
+  }
+
+  var menu_options = document.getElementsByClassName("menu-option");
+  for (i = 0; i < menu_options.length; i++) {
+    let menu_option = menu_options[i];
+    menu_option.onclick = function(event) {
+      console.log(menu_option.innerHTML);
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
+function bind_submenu_onclick(event) {
+  // Close other sublists in parentElement
+  var sibling_sublists = this.parentElement.getElementsByClassName("dropdown-submenu");
+  console.log(sibling_sublists);
+  for (let sibling of sibling_sublists) {
+    if (sibling !== this) {sibling.classList.remove("active");}
+  }
+  this.classList.toggle("active");
+  console.log("Also clicked");
+  event.stopPropagation();
+  event.preventDefault();
+}
+
+window.addEventListener('click', function(e){   
+  console.log("GLOBAL CLICK")
+});
+</script>
+
+</body>
+</html>

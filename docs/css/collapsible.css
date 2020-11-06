@@ -33,6 +33,9 @@ input[type='checkbox'].toggle {
 	color: #ff3d3d;
 }
 
+/* Include some text before the content of each element with class 'lbl-toggle'.
+	By creating some spaces with a background, we can create a square, which can
+	be manipulated into an arrow. */
 .lbl-toggle::before {
 	content: ' ';
 	display: inline-block;

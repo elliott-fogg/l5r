@@ -3,21 +3,25 @@ const ring_headings = ["Ring", "Rank"];
 const trait_headings = ["Trait", "Rank"];
 const skill_headings = ["Skill", "Rank", "Trait", "Roll", "Emphasis"];
 
-
 class Character {
 
     // Constructor Functions
-    constructor(starting_experience=40) {
+    constructor() {
         const self = this;
-        this.total_experience = starting_experience;
+        this.name = null;
+        this.clan = null;
+        this.family = null;
+        this.school = null;
+        this.total_experience = 40;
         this.experience = this.total_experience;
         this.skills = {};
         this.traits = {};
+
         this.setup_traits();
         this.bind_set_exp_button();
         this.bind_save_and_load_buttons()
+        this.bind_clan_only_checkbox();
         this.refresh_display();
-
     }
 
     setup_traits() {
@@ -27,6 +31,8 @@ class Character {
             })
         }
     }
+
+    // Bind functions to buttons and checkboxes
 
     bind_set_exp_button() {
         var set_exp_button = document.getElementById("reset_exp");
@@ -62,11 +68,23 @@ class Character {
         var load_btn = document.getElementById("load_button");
         load_btn.onclick = function() {this.load_character()}.bind(this);
     }
+
+    bind_clan_only_checkbox() {
+        var co_box = document.getElementById("clan_only_checkbox");
+        co_box.onchange = function() {
+            let clan_name = document.getElementById("select_char_clan").value.split("_")[0];
+            console.log(clan_name);
+            this.refresh_school_select("select_char_school", clan_name, 
+                                        co_box.checked)
+        }.bind(this);
+    }
     // Adding Skills ///////////////////////////////////////////////////////////
 
     add_skill(skill_name, hold_refresh=false) {
+        console.log("HELLO", skill_name)
+        console.log(this);
         // Check if it is a valid skill name
-        if (!(skill_name in default_skills)) {
+        if (!(skill_name in all_skills)) {
             alert(`Skill '${skill_name}' could not be found.`);
             return;
         }
@@ -86,8 +104,8 @@ class Character {
 
         this.skills[skill_name] = {
             rank: 1,
-            trait: default_skills[skill_name].trait,
-            class: default_skills[skill_name].class,
+            trait: all_skills[skill_name].trait,
+            class: all_skills[skill_name].class,
             emphases: []
         };
         this.experience -= 1;
@@ -128,9 +146,9 @@ class Character {
 
     add_emphasis(skill_name, emphasis_name) {
         // Check that emphasis belongs to skill
-        if (!(default_skills[skill_name].emphases.includes(emphasis_name))) {
-            console.log(default_skills[skill_name].emphases)
-            console.log(emphasis_name in default_skills[skill_name].emphases);
+        if (!(all_skills[skill_name].emphases.includes(emphasis_name))) {
+            console.log(all_skills[skill_name].emphases)
+            console.log(emphasis_name in all_skills[skill_name].emphases);
             alert(`Could not find emphasis '${emphasis_name}' in skill '${skill_name}'.`);
             return;
         }
@@ -360,7 +378,7 @@ class Character {
 
     create_add_emphasis_list(skill_name) {
 
-        var emphasis_list = default_skills[skill_name].emphases;
+        var emphasis_list = all_skills[skill_name].emphases;
         var current_emphases = this.skills[skill_name].emphases;
         var missing_emphases = emphasis_list.filter(function(em) {
             return (!(current_emphases.includes(em)));
@@ -505,7 +523,37 @@ class Character {
         this.refresh_display();
     }
 
-    // Display Information /////////////////////////////////////////////////////
+    // Auto-fill Pages /////////////////////////////////////////////////////////
+
+    fill_character_info() {
+        var char_info = [
+            [["Name: ", "PH_NAME"], ["Rank: ", "PH_RANK"]],
+            [["Clan: ", "PH_CLAN"], ["Insight: ", "PH_INSIGHT"]],
+            [["School: ", "PH_SCHOOL"], ["Experience: ", "PH_EXPERIENCE"]]
+        ]
+
+        var info_table = document.createElement("table");
+        for (let row_data of char_info) {
+            let row = info_table.insertRow(-1);
+            for (let cell_data of row_data) {
+                let lbl = document.createElement("label");
+                lbl.innerHTML = cell_data[0];
+                row.insertCell(-1).appendChild(lbl);
+                let value = document.createElement("p");
+                value.innerHTML = cell_data[1];
+                value.className = "display";
+                row.insertCell(-1).appendChild(value);
+            }
+        }
+        document.getElementById("char_info_placeholder").replaceWith(info_table);
+    }
+
+    calculate_rank() {
+        return "RANK_PLACEHOLDER";
+    }
+    calculate_insight() {
+        return "INSIGHT_PLACEHOLDER"
+    }
 
     display_experience() {
         var lbl = document.getElementById("experience_label");
@@ -650,31 +698,174 @@ class Character {
         return display_data;
     }
 
+    // Populate Select Boxes
+
     populate_select_skill() {
         var select_skill = document.getElementById("select_add_skill");
         select_skill.innerHTML = ""; // Reset the options before repopulating
 
-        select_skill.onchange = function() {
-            this.add_skill(select_skill.value);
-        }.bind(this);
-
-        var default_option = document.createElement("option");
-        default_option.value = "NO_SKILL";
-        default_option.label = "Add a skill...";
-        default_option.style = "display:none";
-        default_option.selected = "selected";
-        select_skill.appendChild(default_option);
-
-        var addable_skills = default_skill_names.filter(function(s) {
+        var available_skills = get_skills().filter(function(s) {
             return !(s in this.skills);
         }.bind(this)).sort();
 
-        addable_skills.forEach(skill_name => {
-            let option = document.createElement("option");
-            option.value = skill_name;
-            option.label = skill_name;
-            select_skill.appendChild(option);
-        });
+        var grouped_skills = create_skill_sublists(available_skills);
+        var self = this;
+        var sss = create_dropdown_with_sublists("Add a skill", grouped_skills)
+        var sss_list = sss.getElementsByClassName("menu-option")
+        for (let option of sss_list) {
+            option.onclick = function() {
+                this.add_skill(option.dataset.value);
+            }.bind(this);
+        }
+
+
+        select_skill.replaceWith(sss);
+
+        // select_skill.onchange = function() {
+        //     this.add_skill(select_skill.value);
+        // }.bind(this);
+
+        // var default_option = document.createElement("option");
+        // default_option.value = "NO_SKILL";
+        // default_option.label = "Add a skill...";
+        // default_option.style = "display:none";
+        // default_option.selected = "selected";
+        // select_skill.appendChild(default_option);
+
+        // var addable_skills = all_skill_names.filter(function(s) {
+        //     return !(s in this.skills);
+        // }.bind(this)).sort();
+
+        // addable_skills.forEach(skill_name => {
+        //     let option = document.createElement("option");
+        //     option.value = skill_name;
+        //     option.label = skill_name;
+        //     select_skill.appendChild(option);
+        // });
+    }
+
+    populate_family_select(family_select_id) {
+        var sel = document.getElementById(family_select_id);
+        sel.innerHTML = "";
+
+        sel.onchange = function() {
+            this.set_family(sel.value);
+        }.bind(this);
+
+        // Add default
+        let def_option = document.createElement("option");
+        def_option.value = "";
+        def_option.label = "Select a family...";
+        def_option.selected = "selected";
+        def_option.style = "display:none";
+        sel.appendChild(def_option);
+
+        var families_by_clan = get_clan_families();
+
+        for (let clan of Object.keys(families_by_clan).sort()) {
+            let clan_group = document.createElement("optgroup");
+            clan_group.label = clan;
+            for (let family of families_by_clan[clan].sort()) {
+                let option = document.createElement("option");
+                option.value = clan + "_" + family;
+                option.label = family;
+                clan_group.appendChild(option);
+            }
+
+            // Only add clan if the number of families is > 0
+            if (clan_group.childElementCount > 0) {
+                sel.appendChild(clan_group);
+            }
+        }
+    }
+
+    refresh_school_select () {
+        var sel = document.getElementById("select_char_school");
+        sel.innerHTML = "";
+
+        sel.onchange = function() {
+            this.set_school(sel.value);
+        }.bind(this);
+
+        // Add default
+        let def_option = document.createElement("option");
+        def_option.value = "";
+        def_option.label = "Select a school...";
+        def_option.selected = "selected";
+        def_option.style = "display:none";
+        sel.appendChild(def_option);
+
+        if (this.clan) {
+            var clan_only_schools = document.getElementById("clan_only_checkbox").checked;
+            if (clan_only_schools) {
+                // Only return schools for the characters clan
+                var clan_schools = get_clan_schools(this.clan);
+                for (let school of clan_schools) {
+                    let option = document.createElement("option");
+                    option.value = this.clan + "_" + school;
+                    option.label = school;
+                    sel.appendChild(option);
+                }
+            } else {
+                // Return schools from all clans, grouped, with char clan at top
+                var clan_names = get_clans().sort();
+                if (this.clan) {
+                    clan_names = clan_names.filter(function(e) {
+                                    return e!==this.clan}.bind(this)).sort();
+                }
+                clan_names.unshift(this.clan);
+                console.log(clan_names);
+
+                for (let clan of clan_names) {
+                    var clan_group = document.createElement("optgroup");
+                    clan_group.label = clan;
+                    for (let school of get_clan_schools(clan).sort()) {
+                        let option = document.createElement("option");
+                        option.value = clan + "_" + school;
+                        option.label = school;
+                        clan_group.appendChild(option);
+                    }
+
+                    if (clan_group.childElementCount > 0) {
+                        sel.appendChild(clan_group);
+                    }
+                }
+            }
+
+        } else {
+            // Character has no clan selected. School selection should not be 
+            // possible.
+            console.log("ERROR: School select clicked with no family set.")
+        }
+    }
+
+    set_family(family_name) {
+        console.log("Setting family as " + family_name);
+        document.getElementById("select_char_school").disabled = false;
+        this.clan = family_name.split("_")[0];
+        this.family = family_name;
+        // TODO: Assign starting trait bonuses HERE
+
+        // If clan has no schools, automatically uncheck Clan-Only box.
+        var clan_only_checkbox = document.getElementById("clan_only_checkbox");
+        if (get_clan_schools(this.clan).length == 0) {
+            clan_only_checkbox.checked = false;
+            clan_only_checkbox.disabled = true;
+        } else {
+            clan_only_checkbox.disabled = false;
+        }
+
+        this.refresh_school_select();
+    }
+
+    set_school(school_name) {
+        console.log(school_name);
+        this.school = school_name;
+        console.log(get_school_info(this.school));
+    }
+
+    populate_skill_choices_div() {
+        
     }
 
     refresh_display() {
@@ -724,7 +915,7 @@ class Character {
 
 function populate_skills(player, limit=6) {
     var skills_added = 0;
-    for (let skill_name in default_skills) {
+    for (let skill_name in all_skills) {
         if (skill_name in player.skills){
             continue;
         }

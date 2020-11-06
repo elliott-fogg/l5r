@@ -1,0 +1,42 @@
+nav#navbar input {
+	margin: 5px;
+}
+
+nav#navbar {
+	display: flex;
+	justify-content: center;
+	background-color: #9E2727;
+}
+
+nav#navbar input {
+	background-color: #9E2727;
+	color: yellow;
+	border: none;
+}
+
+nav#navbar input:hover {
+	cursor: pointer;
+	background-color: #BE4747;
+}
+
+nav#navbar input.active {
+	background-color: black;
+}
+
+nav#navbar input:disabled {
+	color: lightgrey;
+}
+
+nav#navbar input:disabled:hover {
+	background-color: grey;
+}
+
+
+div.toplevel-div {
+	border: solid black 1px;
+	display: none;
+}
+
+div.toplevel-div.active {
+	display: block;
+}

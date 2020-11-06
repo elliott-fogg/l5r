@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Character Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/dice_roller.css">
+	<link rel="stylesheet" href="css/custom_buttons.css">
+	<link rel="stylesheet" href="css/collapsible.css">
+	<link rel="stylesheet" href="css/dropdown_sublists.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/info_div.css">
+	<link rel="stylesheet" href="css/character_creation.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="data/default_skills.js"></script>
+	<script type="text/javascript" src="data/default_schools.js"></script>
+	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/navbar.js"></script>
+	<script type="text/javascript" src="js/character_class_info.js"></script>
+	<script type="text/javascript" src="js/character_class_display.js"></script>
+
+</head>
+<body>
+
+	<h1>L5R Character Page</h1>
+	<div id="character_information">
+		<input type="button" value="Create New Character" id="new_char_btn">
+		<input type="button" value="Save Character" id="save_char" disabled>
+		<input type="button" value="Load Character" id="load_char" disabled>
+		<!--
+		Character Info
+			Needs to be an empty div to start with, maybe with just a button
+			that allows the user to create a new character. 
+		-->
+		<div id="character_info_div">
+
+			<div id="create_new_character">
+				<!-- Div for creating a new character -->
+				<div>
+					<input type="text" id="first_name" placeholder="First Name...">
+					<select id="select_char_family">
+						<option style="display:none" value="">Select a family...</option>
+					</select>
+					<select id="select_char_school" disabled>
+						<option style="display:none" value="">Select a school...</option>
+					</select>
+					<label for="clan_only_checkbox" disabled>Clan-only Schools?</label>
+					<input type="checkbox" id="clan_only_checkbox" checked>
+					<div id="skill_choices">
+						<p style="display: inline">Skill Choices:</p>
+						<div id="skill_choice_selects">
+						</div>
+					</div>
+					<input type="button" value="Generate Character" disabled>
+				</div>
+			</div>
+		</div>
+
+		<div id="char_info_div">
+			<p>CHARACTER_INFO_TEXT</p>
+		</div>
+
+	</div>
+
+	<nav id="navbar" style="border: solid black 1px">
+		<input type="button" value="Instructions" id="navbar_instructions"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Dice Roller" id="navbar_dice_roller"
+			class="navbar_button" onclick="click_nav_button(this.id)">
+		<input type="button" value="Character Skills" id="navbar_skills"
+			class="navbar_button" onclick="click_nav_button(this.id)">
+		<input type="button" value="Combat" id="navbar_combat"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Spells" id="navbar_spells"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Add Custom Info" id="navbar_custom"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+	</nav>
+
+	<div id="instructions_div" class="toplevel-div">
+		<div id="instructions_content">
+			<p>INSTRUCTIONS_PLACEHOLDER</p>
+		</div>
+	</div>
+
+	<div id="dice_roller_div" class="toplevel-div">
+		<div id="dice_roller_content">
+			<p>DICE_ROLLER_PLACEHOLDER</p>
+		</div>
+	</div>
+
+	<div id="skills_div" class="toplevel-div">
+		<div id="skills_tables">
+			<p id="experience_label" style="display: inline-block">placeholder</p>
+			<input type="button" value="Reset Total Exp" id="reset_exp">
+			<input type="button" value="Save" id="save_button">
+			<input type="button" value="Load" id="load_button">
+
+			<div style="overflow: hidden">
+				<div style="float: left">
+					<p style="text-align: center;"><b>Ring Table</b></p>
+					<table id="trait_table" class="table"></table>
+				</div>
+
+				<div style="margin-left: 100px; float: left">
+					<p style="text-align: center;"><b>Skill Table</b></p>
+					<table id="skill_table" class="table"></table>
+					<select id="select_add_skill"></select>
+				</div>
+
+				<div style="float: left; height: 100%">
+					<p style="text-align: center;"><b>Roll Output</b></p>
+					<p id="dice_roller_output"></p>
+				</div>
+
+				<div style="float: left">
+					<p style="text-align: center;"><b>Roll History</b></p>
+					<div id="roll_history_header">
+						<p style="display: inline" id="title_with_button">
+							Roll History:</p>
+						<input type="button" value="Clear" style="float: right;"
+							onclick="clear_roll_history()">
+					</div>
+					<p id="dice_roll_history"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="combat_div" class="toplevel-div">
+		<p>COMBAT_PLACEHOLDER</p>
+	</div>
+
+	<div id="spells_div" class="toplevel-div">
+		<p>SPELLS_PLACEHOLDER</p>
+	</div>
+
+	<div id="custom_additions_div" class="toplevel-div">
+		<p>CUSTOM_ADDITIONS_PLACEHOLDER</p>
+	</div>
+
+	<script>
+		create_dice_roller("dice_roller_content");
+		click_nav_button("navbar_dice_roller");
+		var player = new CharacterDisplay();
+
+		var test = get_skill_emphases("Acting");
+		test.push("DUMMY_EMPHASIS");
+		var test2 = get_skill_emphases("Acting");
+		console.log(test, test2);
+
+		var new_btn = document.getElementById("new_char_btn");
+		new_btn.addEventListener("contextmenu", event => {
+			event.preventDefault();
+			console.log("Success");
+		})
+
+		//populate_dice_selectors("dice_to_roll", "dice_to_keep", 
+        //                         "explode_on", "emphasis_checkbox", 
+        //                         "roll_dice_button", "dice_roller_output")
+		
+		// test_starting_skills();
+		// test_starting_attributes();
+		// player.populate_school_select("select_char_school", "Dragon", true);
+		// var s1 = get_skills();
+		// console.log(s1);
+		// var s2 = create_skill_sublists(s1);
+		//console.log(s2);
+		// player.fill_character_info();
+		// player.set_family("Crab_Hida");
+		// player.set_school("Crab_Hida Bushi School");
+	</script>
+
+</body>
+</html>
+
+
+
