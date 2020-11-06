@@ -10,34 +10,12 @@
 	<h1>L5R Dice Roller</h1>
 	<p>A Dice Roller for use in our L5R Campaign</p>
 
-	<div class="stack_left">
-
-		<select id="dice_to_roll"></select>
-		<select id="dice_to_keep"></select>
-
-		<br>
-
-		<select id="explode_on"></select>
-
-		<br>
-
-		<input type="checkbox" id="emphasis_checkbox">
-		<label>Emphasis</label>
-
-		<br>
-
-		<button id="dice_roll_button">Roll</button>
-	
-	</div>
-
-	<div class="stack_left">
-		<p id="dice_roller_output">Dummy_val</p>
+	<div id="dice_roller_content">
+		<p>DICE_ROLLER_PLACEHOLDER</p>
 	</div>
 
 	<script>
-		populate_dice_selectors("dice_to_roll", "dice_to_keep", "explode_on",
-                                 "emphasis_checkbox", "dice_roll_button",
-                                 "dice_roller_output");
+		create_dice_roller("dice_roller_content")
 	</script>
 
 </body>
