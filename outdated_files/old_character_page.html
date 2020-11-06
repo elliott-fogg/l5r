@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Character Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/dice_roller.css">
+	<link rel="stylesheet" href="css/custom_buttons.css">
+	<link rel="stylesheet" href="css/collapsible.css">
+	<link rel="stylesheet" href="css/dropdown_sublists.css">
+	<link rel="stylesheet" href="css/info_display.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="data/default_skills.js"></script>
+	<script type="text/javascript" src="data/default_schools.js"></script>
+	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/character_class.js"></script>
+
+</head>
+<body>
+
+	<h1>L5R Character Page</h1>
+	<div id="character_information">
+		<table>
+			<tr>
+				<td><label>Name: </label></td>
+				<td><p class="display" id="character_name_display">NAME_HERE</p></td>
+				<td><label>Rank: </label></td>
+				<td><p class="display" id="character_rank_display">RANK_HERE</p></td>
+			</tr>
+			<tr>
+				<td>
+					<label>Clan: </label></td><td>
+					<p class="display" id="character_clan_display">CLAN_HERE</p>
+				</td>
+				<td>
+					<label>Insight: </label></td><td>
+					<p class="display" id="character_insight_display">INSIGHT_HERE</p>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					<label>School: </label></td><td>
+					<p class="display" id="character_school_display">SCHOOL_HERE</p>
+				</td>
+				<td>
+					<label>Experience: </label></td><td>
+					<p class="display" id="character_experience_display">EXPERIENCE_HERE</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div>
+		<input type="button" id="new_char_button" value="Create New Character">
+	</div>
+
+	<div id="manual_dice_roller">
+		<div class="wrap-collapsible">
+			<input id="dice_roller_collapsible" class="toggle" type="checkbox">
+			<label for="dice_roller_collapsible" class="lbl-toggle">Dice Roller</label>
+			<div class="collapsible-content">
+				<div class="stack_left">
+					<select id="dice_to_roll" class="red_round_rectangle"></select>
+					<select id="dice_to_keep" class="red_round_rectangle"></select>
+					<br>
+					<select id="explode_on" class="red_round_rectangle"></select>
+					<br>
+					<input type="checkbox" id="emphasis_checkbox">
+					<label>Emphasis</label>
+					<br>
+					<button id="roll_dice_button" class="red_round_rectangle"><b>Roll!</b></button>
+				</div>
+
+				<div class="stack_left">
+					<p id="dice_roller_output1"></p>
+				</div>
+
+				<div class="stack_left">
+					<div id="roll_history_header">
+						<p style="display: inline" id="title_with_button">
+							Roll History:</p>
+						<input type="button" value="Clear" style="float: right;"
+							onclick="clear_roll_history()">
+					</div>
+					<p id="dice_roll_history1"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<select id="select_char_clan">
+			<option style="display:none" value="">Select a family...</option>
+		</select>
+		<select id="select_char_school" disabled>
+			<option style="display:none" value="">Select a school...</option>
+		</select>
+		<label for="clan_only_checkbox">Clan-only Schools?</label>
+		<input type="checkbox" id="clan_only_checkbox" checked>
+		<div id="skill_choices" disabled>
+			<p style="display: inline">Skill Choices:</p>
+		</div>
+		<input type="button" value="Generate Character" disabled>
+	</div>
+
+	<div id="testing"></div>
+
+	<div class="progression">
+		<div class="wrap-collapsible">
+			<input id="character_info_collapsible" class="toggle" type="checkbox" checked>
+			<label for="character_info_collapsible" class="lbl-toggle">Character Info</label>
+			<div class="collapsible-content">
+
+				<label for="forename_input">Forename:</label>
+				<input type="text" id="forename_input" placeholder="Forename">
+
+			</div>
+		</div>
+
+		<div class="wrap-collapsible">
+			<input id="character_sheet_collapsible" class="toggle" type="checkbox" checked>
+			<label for="character_sheet_collapsible" class="lbl-toggle">Character Page</label>
+			<div class="collapsible-content">
+
+				<p id="experience_label" style="display: inline-block">placeholder</p>
+				<input type="button" value="Reset Total Exp" id="reset_exp">
+				<input type="button" value="Save" id="save_button">
+				<input type="button" value="Load" id="load_button">
+				<br>
+				<div class="stack_left">
+					<p style="text-align: center;"><b>Ring Table</b></p>
+					<table id="trait_table" class="table"></table>
+				</div>
+
+				<div class="stack_left" style="margin-left: 100px;">
+					<p style="text-align: center;"><b>Skill Table</b></p>
+					<table id="skill_table" class="table"></table>
+					<select id="select_add_skill"></select>
+			  	</div>
+
+				<div class="stack_left">
+					<p id="dice_roller_output"></p>
+				</div>
+
+				<div class="stack_left">
+					<div id="roll_history_header">
+						<p style="display: inline" id="title_with_button">
+							Roll History:</p>
+						<input type="button" value="Clear" style="float: right;"
+							onclick="clear_roll_history()">
+					</div>
+					<p id="dice_roll_history"></p>
+				</div>
+			  		
+			  	</div>
+
+			  	<div class="stack_left">
+
+			  	</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="custom_info">
+		<div class="wrap-collapsible">
+			<input id="custom_info_collapsible" class="toggle" type="checkbox">
+			<label for="custom_info_collapsible" class="lbl-toggle">Custom Additions</label>
+			<div class="collapsible-content">
+
+				<div class="wrap-collapsible">
+					<input id="custom_skills_collapsible" class="toggle" type="checkbox" checked>
+					<label for="custom_skills_collapsible" class="lbl-toggle">Custom Skills</label>
+					<div class="collapsible-content">
+						<p>Testing paragraph</p>
+					</div>
+				</div>
+
+				<div class="wrap-collapsible">
+					<input id="custom_weapons_collapsibe" class="toggle" type="checkbox" checked>
+					<label for="custom_weapons_collapsibe" class="lbl-toggle">Custom Weapons</label>
+					<div class="collapsible-content">
+						<p>Testing paragraph</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		create_dice_roller("manual_dice_roller")
+		//populate_dice_selectors("dice_to_roll", "dice_to_keep", 
+        //                         "explode_on", "emphasis_checkbox", 
+        //                         "roll_dice_button", "dice_roller_output")
+		var player = new Character();
+		test_starting_skills();
+		test_starting_attributes();
+		player.populate_family_select("select_char_clan");
+		// player.populate_school_select("select_char_school", "Dragon", true);
+		var test_div = document.getElementById("testing");
+		test_div.replaceWith(create_dropdown_with_sublists("Test Dropdown", input_data));
+		var s1 = get_skills();
+		// console.log(s1);
+		var s2 = create_skill_sublists(s1);
+		console.log(s2);
+		window.player = player;
+	</script>
+
+</body>
+</html>
+
+
+
