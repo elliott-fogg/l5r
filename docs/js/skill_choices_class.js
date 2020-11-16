@@ -93,11 +93,23 @@ class Skill_Choices {
         	}
         }
 
-        window.character = new CharacterDisplay(this.given_name, 
+        window.character = new CharacterInfo(this.given_name, 
                                                 this.family_id, 
                                                 this.school_id, 
                                                 this.starting_skills,
-                                                this.starting_traits)
+                                                this.starting_traits);
+
+        // Change displayed header div
+        var new_char_div = document.getElementById("character_creation_div");
+        new_char_div.classList.remove("active");
+        var char_info_div = refresh_character_info(character);
+        char_info_div.classList.add("active");
+
+        // Enable save and load buttons
+        document.getElementById("save_char").disabled = false;
+        document.getElementById("load_char").disabled = false;
+
+        refresh_display(window.character);
 
         console.log("Character generated");
         console.log(window.character);

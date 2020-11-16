@@ -20,8 +20,9 @@
 	<script type="text/javascript" src="js/dice_roller.js"></script>
 	<script type="text/javascript" src="js/navbar.js"></script>
 	<script type="text/javascript" src="js/character_class_info.js"></script>
-	<script type="text/javascript" src="js/character_class_display.js"></script>
+<!-- 	<script type="text/javascript" src="js/character_class_display.js"></script> -->
 	<script type="text/javascript" src="js/skill_choices_class.js"></script>
+	<script type="text/javascript" src="js/display_functions.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 
 </head>
@@ -29,17 +30,17 @@
 
 	<h1>L5R Character Page</h1>
 	<div id="character_information">
-		<input type="button" value="Create New Character" id="new_char_btn">
-		<input type="button" value="Save Character" id="save_char" disabled>
-		<input type="button" value="Load Character" id="load_char">
-		<!--
-		Character Info
-			Needs to be an empty div to start with, maybe with just a button
-			that allows the user to create a new character. 
-		-->
+		<input type="button" value="Create New Character" id="new_char_btn" 
+			onclick="start_character_creation();">
 
+		<input type="button" value="Save Character" id="save_char" disabled
+			onclick="save_character();">
+
+		<input type="button" value="Load Character" id="load_char"
+			onclick="load_character();">
+
+		<!-- Div for creating a new character -->
 		<div id="character_creation_div" class="header_div">
-			<!-- Div for creating a new character -->
 			<div>
 				<p style="display: inline;">Family:</p>
 				<select id="char_creation_family_select">
@@ -66,18 +67,21 @@
 				id="gen_char_btn" disabled>
 		</div>
 
+		<!-- Div for displaying character information (name, family, etc) -->
 		<div id="character_info_container" class="header_div">
 			<div id="character_info_div" style="display: flex;">
 				<p>CHARACTER_INFO_TEXT</p>
 			</div>
 		</div>
 
+		<!-- Div for loading characters -->
 		<div id="character_load_div" class="header_div">
 			<p>LOAD_CHARACTER_HERE</p>
 		</div>
 
 	</div>
 
+	<!-- Navbar -->
 	<nav id="navbar" style="border: solid black 1px">
 		<input type="button" value="Instructions" id="navbar_instructions"
 			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
@@ -93,18 +97,21 @@
 			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
 	</nav>
 
+	<!-- Instructions Div - Just contains text about how to use website -->
 	<div id="instructions_div" class="toplevel-div">
 		<div id="instructions_content">
 			<p>INSTRUCTIONS_PLACEHOLDER</p>
 		</div>
 	</div>
 
+	<!-- Dice Roller Div - Standalone Dice Roller -->
 	<div id="dice_roller_div" class="toplevel-div">
 		<div id="dice_roller_content">
 			<p>DICE_ROLLER_PLACEHOLDER</p>
 		</div>
 	</div>
 
+	<!-- Skills and Traits Div - Add/remove skills, has roll functionality -->
 	<div id="skills_div" class="toplevel-div">
 		<div id="skills_tables">
 			<div style="overflow: hidden">
@@ -142,6 +149,7 @@
 		</div>
 	</div>
 
+	<!-- Combat and Equipment Div - Track equipment, roll attacks -->
 	<div id="combat_div" class="toplevel-div">
 		<p>Initiative</p>
 		<p>Armor</p>
@@ -150,10 +158,12 @@
 		<p>School Skills?</p>
 	</div>
 
+	<!-- Spells Div - Add, roll Spells (nowhere near yet) -->
 	<div id="spells_div" class="toplevel-div">
 		<p>SPELLS_PLACEHOLDER</p>
 	</div>
 
+	<!-- Custom Additions div - Add your own skills, schools, weapons, etc. -->
 	<div id="custom_additions_div" class="toplevel-div">
 		<p>Add Custom Skill</p>
 		<p>Add Custom School</p>

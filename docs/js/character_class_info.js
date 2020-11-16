@@ -370,77 +370,19 @@ class CharacterInfo {
         }
     }
 
+    display_skill_dice(skill_name) {
+        let dice = this.calculate_skill_dice(skill_name);
+        return `${dice[0]}k${dice[1]}`;
+    }
+
     // Save and Load ///////////////////////////////////////////////////////////
 
-    check_storage() {
-        if (typeof(localStorage) !== "undefined") {
-            return true;
-        } else {
-            alert("Unfortunately your browser does not support Local Storage." + 
-                "\nYou will be unable to save characters." + 
-                "\nAn option will be added to export them to file.");
-            return false;
-        }
+    output_as_json() {
+        console.log("OUTPUTTING CHARACTER AS JSON DATA");
     }
 
-    save_character() {
-        if (!(this.check_storage)) {return;}
-
-        var save_name = window.prompt("Enter a name for this save slot:", "");
-
-        if (save_name == "") {
-            console.log("Save cancelled");
-            return;
-        }
-
-        var current_char = {};
-        current_char["traits"] = this.traits;
-        current_char["skills"] = this.skills;
-        current_char["experience"] = this.experience;
-        current_char["total_experience"] = this.total_experience;
-
-        var saved_characters;
-        var saved_string = localStorage.getItem("saved_characters");
-        if (saved_string == null) {
-            saved_characters = {};
-        } else {
-            saved_characters = JSON.parse(saved_string);
-        }
-        saved_characters[save_name] = current_char;
-
-        localStorage.setItem("saved_characters", JSON.stringify(saved_characters));
-        localStorage.setItem("current_character", JSON.stringify(current_char));
-        alert("Character saved!");
-    }
-
-    load_character() {
-        if (!(this.check_storage)) {return;}
-
-        console.log("Loading character");
-
-        var saved_string = localStorage.getItem("saved_characters");
-        if (saved_string == null) {
-            alert("No saved characters could be found in this browser.");
-            return;
-        }
-
-        var save_slot_name = window.prompt("Which character would you like to load?");
-
-        var saved_characters = JSON.parse(saved_string);
-        if (!(save_slot_name in saved_characters)) {
-            alert(`There is no character data for slot ${save_slot_name}.`);
-            return;
-        }
-
-        // Character exists, check formatting and then load
-        var current_char = saved_characters[save_slot_name];
-        this.skills = current_char["skills"];
-        this.traits = current_char["traits"];
-        this.experience = current_char["experience"];
-        this.total_experience = current_char["total_experience"];
-
-        click_nav_button("navbar_skills");
-        this.refresh_display();
+    load_from_json() {
+        console.log("LOADING CHARACTER FROM JSON DATA");
     }
 
     // Debugging ///////////////////////////////////////////////////////////////
