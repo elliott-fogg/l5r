@@ -1,25 +1,36 @@
 class CharacterInfo {
 
 	// Constructors ////////////////////////////////////////////////////////////
-    constructor(starting_experience=40) {
+    constructor(given_name, family_id, school_id, starting_skills, starting_traits) {
         const self = this;
-        this.name = "PLACEHOLDER_NAME";
-        this.family = "PLACEHOLDER_FAMILY";
-        this.school = "PLACEHOLDER_SCHOOL";
-        this.total_experience = starting_experience;
+        this.given_name = given_name;
+        this.family_id = family_id;
+        this.school_id = school_id;
+        this.total_experience = 40;
         this.experience = this.total_experience;
-        this.skills = {};
-        this.starting_skills = {};
-        this.setup_traits();
+        this.starting_skills = starting_skills;
+        this.skills = Object.assign({}, this.starting_skills);
+        this.starting_traits = starting_traits;
+        this.traits = Object.assign({}, this.starting_traits);
     }
 
-    setup_traits() {
-        this.traits = {};
-        for (let ring_name in rings) {
-            rings[ring_name].forEach( trait_name => {
-                this.traits[trait_name] = 2;
-            })
-        }
+    // Accessor for character information //////////////////////////////////////
+    get_display_name() {
+        var family_name = this.family_id.split("_")[1];
+        return family_name + " " + this.given_name[0].toUpperCase() + 
+            this.given_name.substring(1);
+    }
+
+    get_display_school() {
+        return this.school_id.split("_")[1];
+    }
+
+    get_family() {
+        return this.family_id.split("_")[1];
+    }
+
+    get_clan() {
+        return this.family_id.split("_")[0];
     }
 
     // (Add / Remove / Modify) Skills and Traits ///////////////////////////////
@@ -269,45 +280,41 @@ class CharacterInfo {
         this.refresh_display();
     }
 
-    // Set Starting Skills and Traits //////////////////////////////////////////
-
-    set_family(family) {
-        var trait_changes = get_family_traits(family);
-        for (let trait in trait_changes) {
-            this.traits[trait] += trait_changes[trait];
+    add_total_experience(exp_val) {
+        if (exp_val == 0) {
+            // Doing nothing
+            return false;
         }
-        console.log("Family Traits:", trait_changes);
-        this.family = family;
-
-        this.set_char_creation_stage("set_family");
-
-    }
-
-    set_school(school_name) {
-        this.school = school_name;
-        console.log(school_name);
-        var school_info = get_school_info(school_name);
-        // Set starting skills, and other values
-        
-        this.set_char_creation_stage("set_school");
-    }
-
-    set_skill_choice(skill_name) {
-        // Update other skill choices
-        this.set_char_creation_stage("select_skill");
-    }
-
-    // Placeholder Functions for Character Creation ////////////////////////////
-
-    set_char_creation_stage(stage_name) {
-        console.log("SET_CHAR_CREATION_STAGE method not overwritten!", stage_name);
+        else if (exp_val > 0) {
+            // Adding experience
+            this.experience += exp_val;
+            this.total_experience += exp_val;
+            alert(`Added ${exp_val} experience.`);
+            return true;
+        }
+        else {
+            // Removing Experience
+            exp_val = exp_val * -1;
+            if (exp_val > this.experience) {
+                // Not enough experience to remove
+                alert(`Cannot remove ${exp_val} experience as you don't have `+
+                      "enough experience left. Try downgrading or removing "+
+                      "some skills first.");
+                return false;
+            }
+            else {
+                // Successfully removing experience
+                this.experience -= exp_val;
+                this.total_experience -= exp_val;
+                alert(`Removed ${exp_val} experience.`);
+                return true;
+            }
+        }
     }
 
     refresh_display() {
         console.log("REFRESH_DISPLAY method has not been overwritten!");
     }
-
-
 
     // Calculate Output ////////////////////////////////////////////////////////
 
@@ -355,14 +362,11 @@ class CharacterInfo {
     }
 
     calculate_rank() {
-        return "RANK_PLACEHOLDER";
-    }
-
-    clan() {
-        if (this.family == null) {
-            return "PLACEHOLDER_CLAN";
+        var insight = this.calculate_insight();
+        if (insight < 150) {
+            return 1;
         } else {
-            return this.family.split("_")[0];
+            return Math.floor((insight - 100)/25);
         }
     }
 
@@ -373,31 +377,69 @@ class CharacterInfo {
             return true;
         } else {
             alert("Unfortunately your browser does not support Local Storage." + 
-                "\nYou will be unable to save characters.");
+                "\nYou will be unable to save characters." + 
+                "\nAn option will be added to export them to file.");
             return false;
         }
     }
 
     save_character() {
         if (!(this.check_storage)) {return;}
-        console.log("Saving character")
-        var storage_dict = {};
-        storage_dict["traits"] = this.traits;
-        storage_dict["skills"] = this.skills;
-        storage_dict["experience"] = this.experience;
-        storage_dict["total_experience"] = this.total_experience;
 
-        localStorage.setItem("character", JSON.stringify(storage_dict));
+        var save_name = window.prompt("Enter a name for this save slot:", "");
+
+        if (save_name == "") {
+            console.log("Save cancelled");
+            return;
+        }
+
+        var current_char = {};
+        current_char["traits"] = this.traits;
+        current_char["skills"] = this.skills;
+        current_char["experience"] = this.experience;
+        current_char["total_experience"] = this.total_experience;
+
+        var saved_characters;
+        var saved_string = localStorage.getItem("saved_characters");
+        if (saved_string == null) {
+            saved_characters = {};
+        } else {
+            saved_characters = JSON.parse(saved_string);
+        }
+        saved_characters[save_name] = current_char;
+
+        localStorage.setItem("saved_characters", JSON.stringify(saved_characters));
+        localStorage.setItem("current_character", JSON.stringify(current_char));
+        alert("Character saved!");
     }
 
     load_character() {
         if (!(this.check_storage)) {return;}
-        console.log("Loading character")
-        var storage_dict = JSON.parse(localStorage.getItem("character"));
-        this.skills = storage_dict["skills"];
-        this.traits = storage_dict["traits"];
-        this.experience = storage_dict["experience"];
-        this.total_experience = storage_dict["total_experience"];
+
+        console.log("Loading character");
+
+        var saved_string = localStorage.getItem("saved_characters");
+        if (saved_string == null) {
+            alert("No saved characters could be found in this browser.");
+            return;
+        }
+
+        var save_slot_name = window.prompt("Which character would you like to load?");
+
+        var saved_characters = JSON.parse(saved_string);
+        if (!(save_slot_name in saved_characters)) {
+            alert(`There is no character data for slot ${save_slot_name}.`);
+            return;
+        }
+
+        // Character exists, check formatting and then load
+        var current_char = saved_characters[save_slot_name];
+        this.skills = current_char["skills"];
+        this.traits = current_char["traits"];
+        this.experience = current_char["experience"];
+        this.total_experience = current_char["total_experience"];
+
+        click_nav_button("navbar_skills");
         this.refresh_display();
     }
 

@@ -15,18 +15,45 @@ div.info_display_div {
 	flex: 1;
 }
 
-div#create_new_character {
+div.header_div {
 	display: none;
 }
 
-div#create_new_character.active {
+div.header_div.active {
 	display: block;
+	margin: 20px;
 }
 
-div#char_info_div {
-	display: none;
+div.header_div>div {
+	margin: 5px;
 }
+
+div#skill_choice_selects {
+	display: inline-flex;
+}
+
+div#skill_choice_selects div.dropdown {
+	flex: 1;
+}
+
+
 
 div#char_info_div.active {
 	display: flex;
 }
+
+#exp_change_input:valid {
+	color: black;
+}
+
+/*#exp_change_input:valid + #exp_change_btn {
+	color: black;
+}*/
+
+#exp_change_input:invalid {
+	color: red;
+}
+
+/*#exp_change_input:invalid + #exp_change_btn {
+	color: grey;
+}*/

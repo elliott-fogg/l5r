@@ -11,27 +11,39 @@ const clan_info = {
 		"schools": {
 			"Hida Bushi School": {
 				"attribute": "Stamina",
-				"skills": ["Athletics", "Defense", "Heavy Weapons_(Tetsubo)", "Intimidation", "Kenjutsu", "Lore[Shadowlands]"],
+				"skills": ["Athletics", "Defense", "Heavy Weapons_(Tetsubo)", "Intimidation", "Kenjutsu", "Lore: Shadowlands"],
 				"skill_choices": ["Bugei"],
-				"honor": 3.5
+				"honor": 3.5,
+				"money": "3koku",
+				"outfit": [["light_armor", "heavy_armor"], "sturdy_clothing", "daisho", ["choice_heavy_weapon", "choice_polearm"], "traveling_pack"]
 			},
 			"Kuni Shugenja School": {
 				"attribute": "Willpower",
-				"skills": ["Calligraphy_(Cipher)", "Defense", "Lore[Shadowlands]_2", "Lore[Theology]", "Spellcraft"],
-				"skill_choices": ["Weapon"],
-				"honor": 2.5
+				"skills": ["Calligraphy_(Cipher)", "Defense", "Lore: Shadowlands_2", "Lore: Theology", "Spellcraft"],
+				"skill_choices": ["Weapons"],
+				"honor": 2.5,
+				"money": "3koku",
+				"outfit": ["robes", "Wakizashi", "choice_knife", "scroll_satchel", "traveling_pack"],
+				"affinity": "Earth",
+				"deficiency": "Air",
+				"spells": ["Sense", "Commune", "Summon", "choice_Earth_3", "choice_Fire_2", "choice_Water_1"],
+				"technique": "Gaze Into Shadow"
 			},
 			"Yasuki Courtier School": {
 				"attribute": "Perception",
 				"skills": ["Commerce_(Appraisal)", "Courtier", "Defense", "Etiquette", "Intimidation", "Sincerity_(Deceit)"],
 				"skill_choices": ["Merchant"],
-				"honor": 2.5
+				"honor": 2.5,
+				"money": "5koku",
+				"outfit": ["traditional_clothing", "Wakizashi", "choice_knife", "calligraphy_set", "traveling_pack"]
 			},
 			"Hiruma Bushi School": {
 				"attribute": "Willpower",
-				"skills": ["Athletics", "Hunting", "Kenjutsu_(Katana)", "Kyujutsu", "Lore[Shadowlands]", "Stealth"],
+				"skills": ["Athletics", "Hunting", "Kenjutsu_(Katana)", "Kyujutsu", "Lore: Shadowlands", "Stealth"],
 				"skill_choices": ["Any"],
-				"honor": 4.5
+				"honor": 4.5,
+				"money": "3koku",
+				"outfit": [["ashigaru", "light_armor"], "sturdy_clothing", "Daisho", ["choice_bow+choice_arrow_20", "choice_knife"], "traveling_pack"]
 			}
 		}
 	},
@@ -52,13 +64,13 @@ const clan_info = {
 			},
 			"Asahina Shugenja School": {
 				"attribute": "Awareness",
-				"skills": ["Calligraphy_(Cipher)", "Etiquette", "Lore[Theology]", "Meditation", "Spellcraft"],
+				"skills": ["Calligraphy_(Cipher)", "Etiquette", "Lore: Theology", "Meditation", "Spellcraft"],
 				"skill_choices": ["Artisan", "High"],
 				"honor": 6.5
 			},
 			"Doji Courtier School": {
 				"attribute": "Awareness",
-				"skills": ["Calligraphy", "Courtier_(Manipulation)", "Etiquette_(Courtesy)", "Perform[Storytelling]", "Sincerity", "Tea Ceremony"],
+				"skills": ["Calligraphy", "Courtier_(Manipulation)", "Etiquette_(Courtesy)", "Perform: Storytelling", "Sincerity", "Tea Ceremony"],
 				"skill_choices": ["Artisan/Perform"],
 				"honor": 6.5
 			},
@@ -81,13 +93,13 @@ const clan_info = {
 		"schools": {
 			"Mirumoto Bushi School": {
 				"attribute": "Stamina",
-				"skills": ["Defense", "Iaijutsu", "Kenjutsu_(Katana)", "Lore[Shugenja]", "Meditation", "Lore[Theology]"],
+				"skills": ["Defense", "Iaijutsu", "Kenjutsu_(Katana)", "Lore: Shugenja", "Meditation", "Lore: Theology"],
 				"skill_choices": ["Bugei/High"],
 				"honor": 4.5
 			},
 			"Tamori Shugenja School": {
 				"attribute": "Stamina",
-				"skills": ["Athletics", "Calligraphy_(Cipher)", "Defense", "Divination", "Lore[Theology]", "Medicine", "Spellcraft"],
+				"skills": ["Athletics", "Calligraphy_(Cipher)", "Defense", "Divination", "Lore: Theology", "Medicine", "Spellcraft"],
 				"skill_choices": [],
 				"honor": 4.5
 			},
@@ -99,7 +111,7 @@ const clan_info = {
 			},
 			"Togashi Tattooed Order": {
 				"attribute": "Void",
-				"skills": ["Athletics", "Defense", "Craft[Tattooing]", "Jiujutsu", "Meditation"],
+				"skills": ["Athletics", "Defense", "Tattooing", "Jiujutsu", "Meditation"],
 				"skill_choices": ["Lore", "!Low"],
 				"honor": 4.5
 			}
@@ -116,25 +128,25 @@ const clan_info = {
 		"schools": {
 			"Akodo Bushi School": {
 				"attribute": "Perception",
-				"skills": ["Battle_(Mass Combat)", "Defense", "Kenjutsu", "Kyujutsu", "Lore[History]", "Sincerity"],
+				"skills": ["Battle_(Mass Combat)", "Defense", "Kenjutsu", "Kyujutsu", "Lore: History", "Sincerity"],
 				"skill_choices": ["Bugei/High"],
 				"honor": 6.5
 			},
 			"Kitsu Shugenja School": {
 				"attribute": "Perception",
-				"skills": ["Battle", "Calligraphy_(Cipher)", "Etiquette", "Lore[History]", "Lore[Theology]", "Spellcraft"],
+				"skills": ["Battle", "Calligraphy_(Cipher)", "Etiquette", "Lore: History", "Lore: Theology", "Spellcraft"],
 				"skill_choices": ["High/Bugei"],
 				"honor": 6.5
 			},
 			"Ikoma Bard School": {
 				"attribute": "Intelligence",
-				"skills": ["Courtier", "Etiquette", "Lore[History]_(Lion Clan)", "Perform[Storytelling]", "Sincerity_(Honesty)"],
+				"skills": ["Courtier", "Etiquette", "Lore: History_(Lion Clan)", "Perform: Storytelling", "Sincerity_(Honesty)"],
 				"skill_choices": ["High", "Bugei"],
 				"honor": 6.5
 			},
 			"Matsu Berserker School": {
 				"attribute": "Strength",
-				"skills": ["Battle", "Jiujutsu", "Kenjutsu_(Katana)", "Kyujutsu", "Lore[History]"],
+				"skills": ["Battle", "Jiujutsu", "Kenjutsu_(Katana)", "Kyujutsu", "Lore: History"],
 				"skill_choices": ["Bugei", "Bugei"],
 				"honor": 6.5
 			}
@@ -157,7 +169,7 @@ const clan_info = {
 			},
 			"Moshi Shugenja School": {
 				"attribute": "Awareness",
-				"skills": ["Calligraphy_(Cipher)", "Divination", "Lore[Theology]", "Meditation", "Spellcraft"],
+				"skills": ["Calligraphy_(Cipher)", "Divination", "Lore: Theology", "Meditation", "Spellcraft"],
 				"skill_choices": ["High/Bugei", "High/Bugei"],
 				"honor": 4.5
 			},
@@ -186,25 +198,25 @@ const clan_info = {
 		"schools": {
 			"Shiba Bushi School": {
 				"attribute": "Agility",
-				"skills": ["Defense", "Kenjutsu", "Kyujutsu", "Meditation_(Void Recovery)", "Spears", "Lore[Theology]"],
+				"skills": ["Defense", "Kenjutsu", "Kyujutsu", "Meditation_(Void Recovery)", "Spears", "Lore: Theology"],
 				"skill_choices": ["Bugei/High"],
 				"honor": 5.5
 			},
 			"Isawa Shugenja School": {
 				"attribute": "Intelligence",
-				"skills": ["Calligraphy_(Cipher)", "Lore[Theology]", "Medicine", "Meditation", "Spellcraft"],
+				"skills": ["Calligraphy_(Cipher)", "Lore: Theology", "Medicine", "Meditation", "Spellcraft"],
 				"skill_choices": ["Lore", "High"],
 				"honor": 4.5
 			},
 			"Asako Loremaster School": {
 				"attribute": "Intelligence",
-				"skills": ["Courtier", "Etiquette_(Courtesy)", "Lore[History]", "Lore[Theology]_(Fortunes)", "Meditation", "Sincerity"],
+				"skills": ["Courtier", "Etiquette_(Courtesy)", "Lore: History", "Lore: Theology_(Fortunes)", "Meditation", "Sincerity"],
 				"skill_choices": ["Lore"],
 				"honor": 6.5
 			},
 			"Agasha Shugenja School": {
 				"attribute": "Intelligence",
-				"skills": ["Calligraphy_(Cipher)", "Defense", "Etiquette", "Lore[Theology]", "Spellcraft"],
+				"skills": ["Calligraphy_(Cipher)", "Defense", "Etiquette", "Lore: Theology", "Spellcraft"],
 				"skill_choices": ["Craft", "High/Bugei"],
 				"honor": 4.5
 			}
@@ -227,7 +239,7 @@ const clan_info = {
 			},
 			"Soshi Shugenja School": {
 				"attribute": "Awareness",
-				"skills": ["Calligraphy_(Cipher)", "Courtier", "Etiquette", "Lore[Theology]", "Spellcraft", "Stealth"],
+				"skills": ["Calligraphy_(Cipher)", "Courtier", "Etiquette", "Lore: Theology", "Spellcraft", "Stealth"],
 				"skill_choices": ["Any"],
 				"honor": 2.5
 			},
@@ -264,7 +276,7 @@ const clan_info = {
 			},
 			"Iuchi Shugenja School": {
 				"attribute": "Perception",
-				"skills": ["Battle", "Calligraphy_(Cipher)", "Horsemanship", "Lore[Theology]", "Meditation", "Spellcraft"],
+				"skills": ["Battle", "Calligraphy_(Cipher)", "Horsemanship", "Lore: Theology", "Meditation", "Spellcraft"],
 				"skill_choices": ["High/Bugei"],
 				"honor": 5.5
 			},
@@ -305,25 +317,24 @@ const clan_info = {
 	}
 }
 
-function get_school_info(school_name) {
-	console.log(school_name);
+function get_school_info(school_id) {
 	var school_info = {};
-	let [clan, school] = school_name.split("_");
-	console.log(clan, school);
+	let [clan, school] = school_id.split("_");
 	Object.assign(school_info, clan_info[clan]["schools"][school]);
 	school_info["attribute"] = get_attribute_changes(school_info["attribute"]);
 
-	var translated_skills = [];
-	for (let skill_string in school_info["skills"]) {
-		translated_skills.push(extract_skill_info(skill_string));
+	var starting_skills = {};
+	for (let skill_string of school_info["skills"]) {
+		starting_skills = Object.assign({}, starting_skills, 
+		              extract_skill_info(skill_string));
 	}
-	school_info["skills"] = translated_skills;
+	school_info["skills"] = starting_skills;
 
 	return school_info;
 }
 
-function get_family_traits(family_name) {
-	let [clan, family] = family_name.split("_");
+function get_family_traits(family_id) {
+	let [clan, family] = family_id.split("_");
 	return get_attribute_changes(clan_info[clan]["families"][family]);
 }
 
@@ -366,7 +377,6 @@ function get_clan_schools(chosen_clan=null) {
 // Translate Storage Formats ///////////////////////////////////////////////////
 
 function get_attribute_changes(attribute_str) {
-	console.log(attribute_str);
 	var attr_iterator = attribute_str.matchAll(/([a-zA-Z]+(?:_[-\d]+)?)/g);
 	var attribute_changes = {};
 
@@ -387,7 +397,8 @@ function get_attribute_changes(attribute_str) {
 }
 
 function extract_skill_info(skill_string) {
-	var skill_match = skill_string.match(/^([a-zA-Z\[\] ]+)_?/);
+	
+	var skill_match = skill_string.match(/^([a-zA-Z: ]+)_?/);
   	var skill_name = (skill_match !== null) ? skill_match[1] : null;
   
   	var emphases_match = skill_string.match(/\(([\w\s,]+)\)/);
@@ -396,28 +407,34 @@ function extract_skill_info(skill_string) {
   	var rank_match = skill_string.match(/_(\d+)$/);
   	var rank = (rank_match !== null) ? parseInt(rank_match[1]) : 1;
   
-  	var skill_info = {
-  		"name": skill_name,
-  		"emphases": emphases,
-  		"rank": rank
-	}
-  	return skill_info;
+
+  	var skill_info = get_skill_info(skill_name);
+
+  	var output = {};
+  	output[skill_name] = {
+  			"rank": rank,
+  			"emphases": emphases,
+  			"class": skill_info["class"],
+  			"trait": skill_info["trait"]
+  	}
+  	return output;
 }
 
-function construct_skillname(skill_str) {
-	if (skill_str.includes("[")) {
-		var split_str = skill_str.split("[");
-		var macro_type = split_str[0];
-		var skill_name = split_str[1].slice(0, -1);
+function skill_display_name(skill_id) {
+	var skill_match = skill_id.match(/^([\w\s]+)\[([\w\s]+)\]$/);
 
-		if (macro_type == "Lore") {
+	if (skill_match == null) {
+		return skill_id;
+	} else {
+		var skill_type = skill_match[1];
+		var skill_name = skill_match[2];
+
+		if (skill_type == "Lore") {
 			return `Lore: ${skill_name}`;
+		} else {
+			return skill_name;
 		}
-
-		// Otherwise (not Lore)
-		return skill_name;
-
-	} else {return skill_str;}
+	}
 }
 
 // Tests ///////////////////////////////////////////////////////////////////////
@@ -431,31 +448,42 @@ function test_starting_skills() {
 			let skill_list = clan_info[clan]["schools"][school].skills;
 			skill_list.forEach(skill_str => {
 
-				var skill_info = extract_skill_info(skill_str);
-				var skill = construct_skillname(skill_info["name"]);
+				var extracted = extract_skill_info(skill_str);
+				var skill_name, skill_info;
+				for (skill_name in extracted) {
+					skill_info = extracted[skill_name];
+				}
 
-				if (!(skill in all_skills)) {
-					console.log(`Skill '${skill}' not found. ` +
+				if (!(skill_name in all_skills)) {
+					console.log(`ERROR - test_starting_skills: ` + 
+					            `Skill '${skill_name}' not found. ` +
 					            `Clan: ${clan}, School: ${school}.`)
 					return;
 				}
 
 				var emphases = skill_info["emphases"];
 				emphases.forEach(emphasis => {
-					if (!(all_skills[skill]["emphases"].includes(emphasis))) {
-						console.log(`Emphasis '${emphasis}' for skill '${skill}' ` +
-						            `not found. Clan: ${clan}, School: ${school}.`)
+					if (!(all_skills[skill_name]["emphases"].includes(emphasis))) {
+						console.log(`ERROR - test_starting_skills: ` + 
+						        `Emphasis '${emphasis}' for skill `+
+						        `'${skill_name}' not found. ` +
+						        `Clan: ${clan}, School: ${school}.`)
 						return;
 					}
 				});
 
 				if (!(1 <= skill_info["rank"] <= 10)) {
-					alert(`Invalid rank ${skill_info["rank"]} for skill ${skill}. ` +
-					      `Clan: ${clan}, School: ${school}.`)
+					console.log(`ERROR - test_starting_skills: ` + 
+					            `Invalid rank ${skill_info["rank"]} for skill `+
+					            `${skill_name}. Clan: ${clan}, School: ${school}.`)
 					return;
-}})}}}
+	}})}}
+	console.log("Completed test_starting_skills");
+}
 
 function test_starting_attributes() {
+	var trait_names = get_trait_names();
+
 	for (let clan in clan_info) {
 		for (let family in clan_info[clan]["families"]) {
 			var changes = get_attribute_changes(clan_info[clan]["families"][family]);
@@ -471,4 +499,5 @@ function test_starting_attributes() {
 				if (!(trait_names.includes(c))) {
 					console.log(`False Attribute: ${c}, ${school}, ${clan}`);
 	}}}}
+	console.log("Completed test_starting_attributes")
 }

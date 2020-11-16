@@ -9,3 +9,15 @@ select#select_char_family {
 select#select_char_school {
 	width: 200px;
 }
+
+div#skill_choice_selects input {
+	flex: 2;
+}
+
+div#create_new_character.active div#skill_choice_selects{
+	display: flex;
+}
+
+div#skill_choices {
+	margin: 10px;
+}

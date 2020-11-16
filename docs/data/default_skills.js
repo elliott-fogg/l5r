@@ -1,4 +1,6 @@
-const default_skills = {
+// Skill Lists /////////////////////////////////////////////////////////////////
+
+const general_skills = {
 	'Acting': {trait: ['Awareness'], class: ['High'], macro: [], emphases: ["Clan", "Gender", "Profession"]},
 	'Calligraphy': {trait: ['Intelligence'], class: ['High'], macro: ["Artisan"], emphases: ["Cipher", "High Rokugani"]},
 	'Courtier': {trait: ['Awareness'], class: ['High'], macro: [], emphases: ["Gossip", "Manipulation", "Rhetoric"]},
@@ -38,70 +40,148 @@ const default_skills = {
 	'Temptation': {trait: ['Awareness'], class: ['Low'], macro: [], emphases: ["Bribery", "Seduction"]},
 }
 
+const artisan_skills = {
+	"Bonsai": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Gardening": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Ikebana": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Origami": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Painting": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Poetry": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Sculpture": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+	"Tattooing": {trait: ["Awareness"], class: ["High"], macro: ["Artisan"], emphases: []},
+}
+
+const lore_skills = {
+	"Lore: Architecture": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Bushido": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Elements": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Ghosts": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Heraldry": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: History": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: ["Lion Clan"]},
+	"Lore: Nature": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Omens": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Shugenja": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Spirit Realms": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+	"Lore: Theology": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: ["Fortunes"]},
+	"Lore: War": {trait: ["Intelligence"], class: ["High"], macro: ["Lore"], emphases: []},
+
+	"Lore: Anatomy": {trait: ["Intelligence"], class: ["Low"], macro: ["Lore"], emphases: []},
+	"Lore: Maho": {trait: ["Intelligence"], class: ["Low"], macro: ["Lore"], emphases: []},
+	"Lore: Shadowlands": {trait: ["Intelligence"], class: ["Low"], macro: ["Lore"], emphases: []},
+	"Lore: Underworld": {trait: ["Intelligence"], class: ["Low"], macro: ["Lore"], emphases: []}
+}
+
+const perform_skills = {
+	"Perform: Biwa": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Dance": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Drums": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Flute": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Oratory": {trait: ["Awareness"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Puppeteer": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Samisen": {trait: ["Agility"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Song": {trait: ["Awareness"], class: ["High"], macro: ["Perform"], emphases: []},
+	"Perform: Storytelling": {trait: ["Awareness"], class: ["High"], macro: ["Perform"], emphases: []},
+}
+
+const craft_skills = {
+	"Craft: Cartography": {trait: ["Intelligence"], class: ["Merchant"], macro: ["Craft"], emphases: []},
+}
+
+var custom_skills = {};
+
+// All Skills //////////////////////////////////////////////////////////////////
+
+var all_skills = {};
+
+function update_all_skills() {
+	all_skills = Object.assign({}, general_skills, artisan_skills, craft_skills,
+	                           perform_skills, lore_skills, custom_skills);
+}
+// Note: Because it is last in the .assign() function, custom_skills will 
+// override any other skills that are duplicated in it. This could be useful
+// for modifying skills, by just duplicating their entry and adding the
+// modifications (which I currently presume is only adding an emphasis).
+
+update_all_skills();
+
+// Displaying //////////////////////////////////////////////////////////////////
+
+function display_trait(skill_name) {
+	var trait_abbreviations = {
+		"Awareness": "AWA",
+		"Reflexes": "REF",
+		"Stamina": "STA",
+		"Willpower": "WIL",
+		"Agility": "AGI",
+		"Intelligence": "INT",
+		"Perception": "PER",
+		"Strength": "STR",
+		"Void": "VOID"
+	}
+
+	var skill_info = get_skill_info(skill_name);
+	var abbreviation = [];
+	for (let trait of skill_info["trait"]) {
+		abbreviation.push(trait_abbreviations[trait]);
+	}
+	return abbreviation.join("/");
+}
+
+// Getters /////////////////////////////////////////////////////////////////////
+
+// Get a list of all skills that fit in the given class constraints.
 function get_skill_list(class_list=[]) {
 
 	if (typeof class_list != "object") {
 		class_list = [class_list]
 	}
 
-	console.log("Class list", class_list)
-
 	var skill_list = [];
 	for (let skill_name in all_skills) {
-		let skill = all_skills[skill_name];
 		if (class_list.length == 0) {
 			skill_list.push(skill_name);
 			continue;
 		}
 
 		// A class/macro is specified
+		let skill = all_skills[skill_name];
 		for (let type of class_list) {
-			console.log(type);
 			if (skill["macro"].includes(type) || skill["class"].includes(type)){
 				skill_list.push(skill_name);
 				break;
 			}
 		}
 	}
-
 	return skill_list;
 }
 
-function get_skill_emphases(skill_name) {
-	var output = [];
-	Object.assign(output, all_skills[skill_name]["emphases"]);
-	return output;
+// Checks if a provided string is a skill
+function is_skill(skill_name) {
+	return (skill_name in all_skills);
 }
 
+// Return the info for a certain skill.
 function get_skill_info(skill_name) {
-	var output = [];
-	Object.assign(output, all_skills[skill_name]);
-	return output;
-}
-
-function sort_skills_by_macro(skill_list) {
-	var skill_dict = {};
-	for (let skill_name of skill_list) {
-		let skill_macro = all_skills[skill_name]["macro"][0];
-
-		if (skill_macro) {
-			if (skill_macro in skill_dict) {
-				skill_dict[skill_macro].push(skill_name);
-			} else {
-				skill_dict[skill_macro] = [skill_name];
-			}
-		} else {
-			if ("Any" in skill_dict) {
-				skill_dict["Any"].push(skill_name);
-			} else {
-				skill_dict["Any"] = [skill_name];
-			}
-			
-		}
+	if (skill_name in all_skills) {
+		var output = {};
+		Object.assign(output, all_skills[skill_name]);
+		return output;
+	} else {
+		console.log(`ERROR - get_skill_info: ${skill_name} not found.`)
 	}
-	return skill_dict;
 }
 
+// Create information for a new skill
+function get_new_skill(skill_name) {
+	return {
+	    "rank": 1,
+	    "trait": Object.assign([], all_skills[skill_name]["trait"]),
+	    "class": Object.assign([], all_skills[skill_name]["class"]),
+	    "emphases": []
+	}
+}
+
+// Return a dictionary of skills, with Macro skills put into subgroups
 function create_skill_sublists(skill_list) {
 	var skill_dict = {};
 	for (let skill_name of skill_list) {
@@ -135,62 +215,21 @@ const rings = {
     "Void": ["Void"]
 }
 
-const trait_names = (function() {
-	var traits = [];
+function get_trait_names() {
+	var trait_names = [];
 	for (let ring in rings) {
 		for (let t of rings[ring]) {
-			traits.push(t);
+			trait_names.push(t);
 		}
-	};
-	return traits;
-})();
+	}
+	return trait_names;
+}
 
 // Macro and Custom Skills /////////////////////////////////////////////////////
 
-var custom_skills = {};
-
-function add_lore_skill(skill_name, lore_class="High", emphases=[]) {
-	custom_skills[skill_name] = {
-		"trait": ["Intelligence"],
-		"emphases": emphases,
-		"macro": ["Lore"],
-		"class": [lore_class]
-}}
-
-function add_artisan_skill(skill_name, emphases=[]) {
-	custom_skills[skill_name] = {
-		"trait": ["Awareness"],
-		"emphases": emphases,
-		"macro": ["Artisan"],
-		"class": ["High"]
-}}
-
-function add_perform_skill(skill_name, skill_traits, emphases=[]) {
-	custom_skills[skill_name] = {
-		"trait": skill_traits,
-		"emphases": emphases,
-		"macro": ["Perform"],
-		"class": ["High"]
-}}
-
-function add_craft_skill(skill_name, skill_traits, skill_class, emphases=[]) {
-	custom_skills[skill_name] = {
-		"trait": skill_traits,
-		"emphases": emphases,
-		"macro": ["Craft"],
-		"class": [skill_class]
-}}
-
-function add_weapon_skill(skill_name, skill_traits, emphases=[]) {
-	custom_skills[skill_name] = {
-		"trait": skill_traits,
-		"emphases": emphases,
-		"macro": ["Weapons"],
-		"class": ["Bugei"]
-}}
-
 function add_custom_skill(skill_name, skill_traits, skill_class, 
                           skill_macro=null, emphases=[]) {
+	// TODO: Add more formatting checks here
 	custom_skills[skill_name] = {
 		"trait": skill_traits,
 		"emphases": emphases,
@@ -199,55 +238,29 @@ function add_custom_skill(skill_name, skill_traits, skill_class,
 }}
 
 function add_emphasis_to_skill(skill_name, emphasis) {
-	if (skill_name in custom_skills) {
-		if (!(custom_skills[skill_name].emphases.includes(emphasis))) {
-			custom_skills[skill_name].emphases.push(emphasis);
-}}}
-
-// Add remaining sub-skills ////////////////////////////////////////////////////
-for (let artisan of ["Bonsai", "Gardening", "Ikebana", "Origami", "Painting", 
-     "Poetry", "Sculpture", "Tattooing"]) {
-	add_artisan_skill(artisan);
-}
-
-for (let high_lore of ["Architecture", "Bushido", "Elements", "Ghosts", 
-     "Heraldry", "History", "Nature", "Omens", "Shugenja", "Spirit Realms",
-     "Theology", "War"]) {
-	add_lore_skill(high_lore)
-}
-
-for (let low_lore of ["Anatomy", "Maho", "Shadowlands", "Underworld"]) {
-	add_lore_skill(low_lore, "Low");
-}
-
-for (let [perform, trait] of [["Biwa", "Agility"], ["Dance", "Agility"], 
-     ["Drums", "Agility"], ["Flute", "Agility"], ["Oratory", "Awareness"], 
-     ["Puppeteer", "Agility"], ["Samisen", "Agility"], ["Song", "Awareness"],
-     ["Storytelling", "Awareness"]]) {
-	add_perform_skill(perform, [trait])
-}
-
-// Adding Emphases provided by starting Schools ////////////////////////////////
-add_emphasis_to_skill("Lore: History", "Lion Clan");
-add_emphasis_to_skill("Lore: Theology", "Fortunes");
-
-// Gathering All Skills ////////////////////////////////////////////////////////
-
-var all_skills = {};
-var all_skill_names = [];
-
-function update_all_skills() {
-	all_skills = {};
-	var skills_to_include = [default_skills, custom_skills];
-
-	skills_to_include.forEach(skill_list => {
-		for (let skill in skill_list) {
-			if (skill in all_skills) {console.log(`Skill duplicate: ${skill} in ${skill_list}`)}
-			all_skills[skill] = skill_list[skill];
+	if (!(skill_name in custom_skills)) {
+		if (skill_name in all_skills) {
+			// Skill already exists, just copy it over to Custom Skills
+			Object.assign(custom_skills[skill_name], all_skills[skill_name])
+		} else {
+			// Skill does not exist yet. Needs to be created first.
+			console.log(`ERROR - add_emphasis_to_skill: Skill ${skill_name} does not exist.`)
+			return;
 		}
-	});
 
-	all_skill_names = Object.keys(all_skills);
+	} else {
+		// Skill already exists in Custom Skills, see if it already has emphasis
+		if (custom_skills[skill_name]["emphases"].includes(emphasis)) {
+			// Emphasis already exists. Log and abort.
+			console.log(`ERROR - add_emphasis_to_skill: ` + 
+			            `Emphasis ${emphasis} for skill ${skill_name} already exists.`);
+			return;
+		} else {
+
+			// Able to add emphasis
+			custom_skills[skill_name]["emphases"].push(emphasis);
+			update_all_skills();
+		}
+	}
 }
 
-update_all_skills();
