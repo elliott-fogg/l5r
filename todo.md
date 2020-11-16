@@ -1,5 +1,10 @@
 # To Do
 
+## Notes:
+* Disadvantages can only be taken up to a combined 10 experience points worth.
+* No starting character may begin play with Trait or Skill above Rank 4.
+* Status and Glory both start at 1.0 (excluding Advantages).
+
 ## Elements to add to page
 
 * Forename - User created
