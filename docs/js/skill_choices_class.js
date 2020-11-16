@@ -1,7 +1,14 @@
 class Skill_Choices {
 
 	constructor() {
+        // Set clan_only_checkbox onclick
+        var clan_only_checkbox = document.getElementById("clan_only_checkbox");
+        clan_only_checkbox.onchange = function() {
+            this.refresh_school_select();
+        }.bind(this);
+        // Initiate character creation
 		this.start_new_character_creation();
+
 	}
 
 	// Stages //////////////////////////////////////////////////////////////////
@@ -151,26 +158,29 @@ class Skill_Choices {
     		this.set_school(sel_school.value);
     	}.bind(this);
 
-        // Return schools from all clans, grouped, with char clan at top
-        var clan_names = get_clans();
         var chosen_clan = this.family_id.split("_")[0];
-        clan_names = clan_names.filter(function(e) {
-        	return e !== chosen_clan}).sort();
+        var clan_names = get_clans().filter(function(e) {
+            return e!== chosen_clan}).sort();
         clan_names.unshift(chosen_clan);
+        var clan_only = document.getElementById("clan_only_checkbox").checked;
 
         for (let clan of clan_names) {
-        	var clan_group = document.createElement("optgroup");
-        	clan_group.label = clan;
-        	for (let school of get_clan_schools(clan).sort()) {
-        		let option = document.createElement("option");
-        		option.value = `${clan}_${school}`;
-        		option.label = school;
-        		clan_group.appendChild(option);
-        	}
+            var clan_group = document.createElement("optgroup");
+            clan_group.label = clan;
+            for (let school of get_clan_schools(clan).sort()) {
+                let option = document.createElement("option");
+                option.value = `${clan}_${school}`;
+                option.label = school;
+                clan_group.appendChild(option);
+            }
+            if (clan_group.childElementCount > 0) {
+                sel_school.appendChild(clan_group);
+            }
 
-        	if (clan_group.childElementCount > 0) {
-        		sel_school.appendChild(clan_group);
-        	}
+            // If Clan Only Schools checkbox is checked, stop after first clan
+            if (clan_only) {
+                break;
+            }
         }
     	sel_school.disabled = false;
     }
@@ -240,130 +250,4 @@ class Skill_Choices {
     }
 
 // End Class
-
-
-	// refresh() {
-	// 	this.main_div.innerHTML = "";
-
-	// 	for (let i=0; i < this.choice_strings.length; i++) {
-	// 		var choice_categories;
-	// 		if (this.choice_strings[i] == "Any") {
-	// 			choice_categories = [];
-	// 		} else {
-	// 			choice_categories = this.choice_strings[i].split("/");
-	// 		}
-
-	// 		var choice_skill_list = get_skill_list(choice_categories)
-	// 		var valid_skill_choices = choice_skill_list.filter(function(s) {
-	// 			return (!(s in this.starting_skills) && !(this.choices.includes(s)));
-	// 		}.bind(this));
-
-	// 		var grouped_valid_skills = create_skill_sublists(valid_skill_choices);
-
-	// 		var button_title;
-	//         if (this.choices[i] == null) {
-	//             button_title = this.choice_strings[i];
-	//         } else {
-	//             button_title = this.choices[i];
-	//         }
-
-	// 		var choice_dropdown = create_dropdown(button_title,
-	// 		                                            grouped_valid_skills);
-
-	// 		var dropdown_options = choice_dropdown.getElementsByClassName(
-	// 		                                                    "menu-option");
-	//         for (let option of dropdown_options) {
-	//             option.onclick = function() {
-	//                 // Re-call this (outer) function to refresh the choice 
-	//                 // select dropdowns, and update the title of this particular
-	//                 // dropdown to reflect this skill choice.
-	//                 this.choices[i] = option.dataset.value;
-	//                 this.refresh()
-	//             }.bind(this);
-	//         }
-	//         this.main_div.appendChild(choice_dropdown);
-
-	//         // If all choices have been made, enable Generate Character button
-	//         if (this.choices.includes(null)) {
-	//         	console.log("Some skills not set. Cannot generate character.",
-	//         	            this.choices);
-	//         } else {
-	//         	this.character.set_char_creation_stage("set_skill_choice");
-	//         }
-	// 	}
-	// }
-
-	// constructor(school_id, character, main_div_id) {
-	// 	var school_info = get_school_info(school_id);
-	// 	this.choice_strings = school_info["skill_choices"];
-	// 	this.choices = Array(this.choice_strings.length).fill(null);
-	// 	this.main_div = document.getElementById(main_div_id);
-	// 	this.character = character;
-
-	// 	this.starting_skills = school_info["skills"];
-
-	// 	this.refresh();
-	// }
-
-	// refresh() {
-	// 	this.main_div.innerHTML = "";
-
-	// 	for (let i=0; i < this.choice_strings.length; i++) {
-	// 		var choice_categories;
-	// 		if (this.choice_strings[i] == "Any") {
-	// 			choice_categories = [];
-	// 		} else {
-	// 			choice_categories = this.choice_strings[i].split("/");
-	// 		}
-
-	// 		var choice_skill_list = get_skill_list(choice_categories)
-	// 		var valid_skill_choices = choice_skill_list.filter(function(s) {
-	// 			return (!(s in this.starting_skills) && !(this.choices.includes(s)));
-	// 		}.bind(this));
-
-	// 		var grouped_valid_skills = create_skill_sublists(valid_skill_choices);
-
-	// 		var button_title;
-	//         if (this.choices[i] == null) {
-	//             button_title = this.choice_strings[i];
-	//         } else {
-	//             button_title = this.choices[i];
-	//         }
-
-	// 		var choice_dropdown = create_dropdown(button_title,
-	// 		                                            grouped_valid_skills);
-
-	// 		var dropdown_options = choice_dropdown.getElementsByClassName(
-	// 		                                                    "menu-option");
-	//         for (let option of dropdown_options) {
-	//             option.onclick = function() {
-	//                 // Re-call this (outer) function to refresh the choice 
-	//                 // select dropdowns, and update the title of this particular
-	//                 // dropdown to reflect this skill choice.
-	//                 this.choices[i] = option.dataset.value;
-	//                 this.refresh()
-	//             }.bind(this);
-	//         }
-	//         this.main_div.appendChild(choice_dropdown);
-
-	//         // If all choices have been made, enable Generate Character button
-	//         if (this.choices.includes(null)) {
-	//         	console.log("Some skills not set. Cannot generate character.",
-	//         	            this.choices);
-	//         } else {
-	//         	this.character.set_char_creation_stage("set_skill_choice");
-	//         }
-	// 	}
-	// }
-
-
-
-// End Class
 }
-
-function bind_clan_only_checkbox() {
-        var co_box = document.getElementById("clan_only_checkbox");
-        co_box.onchange = function() {
-            this.repopulate_school_select();
-        }.bind(this);
-    }
