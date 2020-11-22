@@ -1,25 +1,15 @@
+:root{
+	--arrow-size: 15px;
+	--inner-size: 10px;
+	--arrow-border: 2px;
+}
+
 .inc_dec_btn {
-	color: black;
-	text-align: center;
-	background-color: #9f2710;
-	color: white;
-	transition-duration: 0.4s;
+	display: inline-block;
 	border-radius: 50%;
-	padding: 0px;
-	height: 15px;
-	width: 15px;
-  	-webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    
 }
 
-.inc_dec_btn:hover {
-  background-color: black;
-  color: white;
-}
-
-input.label_button {
+.label_button {
 	display: inline-block;
 	font-weight: bold;
 	margin: 2px;
@@ -30,3 +20,119 @@ input.label_button {
 	cursor: pointer;
 }
 
+.inc_button, .dec_button {
+	width: 0;
+	height: 0;
+	border-left: calc(0.8* var(--arrow-size)) solid transparent;
+	border-right: calc(0.8* var(--arrow-size)) solid transparent;
+	display: inline-block;
+	margin: 2px;
+}
+
+.inc_button::before, .dec_button::before {
+	width: 0;
+	height: 0;
+	border-left: calc(0.8 * var(--inner-size)) solid transparent;
+	border-right: calc(0.8 * var(--inner-size)) solid transparent;
+	display: block;
+	box-sizing: border-box;
+	content: "";
+	position: relative;
+}
+
+.inc_button {
+	border-bottom: var(--arrow-size) solid black;
+}
+
+.inc_button::before {
+	border-bottom: var(--inner-size) solid black;
+	/*left: calc(-0.8 * var(--inner-size));*/
+	/*top: var(--arrow-border);*/
+	left: -8px;
+	top: 3px;
+}
+
+.dec_button {
+	border-top: var(--arrow-size) solid black;
+}
+
+.dec_button::before {
+	border-top: var(--inner-size) solid black;
+/*	left: calc(-0.8 * var(--inner-size));
+	top: calc(-1 * var(--arrow-size) + var(--arrow-border));*/
+	left: -8px;
+	top: -13px;
+}
+
+.inc_button:hover::before {
+	border-bottom-color: grey;
+	transition-duration: 0.3s;
+	cursor: pointer;
+}
+.dec_button:hover::before {
+	border-top-color: grey;
+	transition-duration: 0.3s;
+	cursor: pointer;
+}
+
+.dec_button:active {
+	border-top-color: red;
+}
+
+.inc_button:active {
+	border-bottom-color: red;
+}
+
+/*       */
+
+table#trait_table {
+	border-spacing: 0;
+}
+
+table#trait_table td {
+	text-align: center;
+	padding: 3px;
+}
+
+table#trait_table tr.ring_row_Air{
+	background-color: rgba(189, 254, 247, 0.3);
+}
+
+table#trait_table tr.ring_row_Earth{
+	background-color: rgba(24, 86, 0, 0.3);
+}
+
+table#trait_table tr.ring_row_Fire{
+	background-color: rgba(255, 0, 0, 0.3);
+}
+
+table#trait_table tr.ring_row_Water{
+	background-color: rgba(0, 0, 255, 0.3);
+}
+
+table#trait_table tr.ring_row_Void{
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hover_box{
+	visibility: hidden;
+	position: absolute;
+}
+
+.inc_button:hover+.hover_box {
+	visibility: visible;
+	z-index: 1;
+	border: 1px solid black;
+	background-color: white;
+	padding: 1px;
+	transform: translateY(10px);
+}
+
+.dec_button:hover+.hover_box {
+	visibility: visible;
+	z-index: 1;
+	border: 1px solid black;
+	background-color: white;
+	padding: 1px;
+	transform: translateX(-5px) translateY(10px);
+}

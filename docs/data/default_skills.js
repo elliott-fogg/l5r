@@ -104,29 +104,6 @@ function update_all_skills() {
 
 update_all_skills();
 
-// Displaying //////////////////////////////////////////////////////////////////
-
-function display_trait(skill_name) {
-	var trait_abbreviations = {
-		"Awareness": "AWA",
-		"Reflexes": "REF",
-		"Stamina": "STA",
-		"Willpower": "WIL",
-		"Agility": "AGI",
-		"Intelligence": "INT",
-		"Perception": "PER",
-		"Strength": "STR",
-		"Void": "VOID"
-	}
-
-	var skill_info = get_skill_info(skill_name);
-	var abbreviation = [];
-	for (let trait of skill_info["trait"]) {
-		abbreviation.push(trait_abbreviations[trait]);
-	}
-	return abbreviation.join("/");
-}
-
 // Getters /////////////////////////////////////////////////////////////////////
 
 // Get a list of all skills that fit in the given class constraints.
@@ -215,6 +192,18 @@ const rings = {
     "Void": ["Void"]
 }
 
+const trait_abbreviations = {
+	"Awareness": "AWA",
+	"Reflexes": "REF",
+	"Stamina": "STA",
+	"Willpower": "WIL",
+	"Agility": "AGI",
+	"Intelligence": "INT",
+	"Perception": "PER",
+	"Strength": "STR",
+	"Void": "VOID"
+}
+
 function get_trait_names() {
 	var trait_names = [];
 	for (let ring in rings) {
@@ -223,6 +212,15 @@ function get_trait_names() {
 		}
 	}
 	return trait_names;
+}
+
+function display_trait(skill_name) {
+	var skill_info = get_skill_info(skill_name);
+	var abbreviation = [];
+	for (let trait of skill_info["trait"]) {
+		abbreviation.push(trait_abbreviations[trait]);
+	}
+	return abbreviation.join("/");
 }
 
 // Macro and Custom Skills /////////////////////////////////////////////////////

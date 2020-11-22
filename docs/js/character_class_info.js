@@ -2,16 +2,15 @@ class CharacterInfo {
 
 	// Constructors ////////////////////////////////////////////////////////////
     constructor(given_name, family_id, school_id, starting_skills, starting_traits) {
-        const self = this;
         this.given_name = given_name;
         this.family_id = family_id;
         this.school_id = school_id;
         this.total_experience = 40;
         this.experience = this.total_experience;
         this.starting_skills = starting_skills;
-        this.skills = Object.assign({}, this.starting_skills);
+        this.skills = deepcopy(this.starting_skills);
         this.starting_traits = starting_traits;
-        this.traits = Object.assign({}, this.starting_traits);
+        this.traits = deepcopy(this.starting_traits);
     }
 
     // Accessor for character information //////////////////////////////////////
@@ -170,6 +169,8 @@ class CharacterInfo {
             // At this point, the transaction has been approved.
             this.skills[skill_name].rank += 1;
             this.experience -= exp_cost;
+
+            console.log(this.skills[skill_name].rank, this.starting_skills[skill_name].rank);
         }
 
         else { // Decrease the skill
@@ -177,30 +178,11 @@ class CharacterInfo {
             // Check for limiting level from starting skills
             // Should not need to check for emphases, as they will be accounted
             // for in starting skill rank.
-            var starting_rank;
-            if (skill_name in this.starting_skills) {
-                starting_rank = this.starting_skills[skill_name].rank;
-            } else {
-                starting_rank = 0;
-            }
 
-            var current_rank = this.skills[skill_name].rank;
-
-            if (current_rank == starting_rank) {
-                alert(`Cannot reduce Rank for '${skill_name}' below ` +
-                      `starting Rank of '${starting_rank}.`)
+            if (this.skills[skill_name].rank == this.starting_skills[skill_name].rank) {
+                alert(`Cannot reduce rank for ${skill_name} below ${this.skills[skill_name].rank}`);
                 return;
             }
-
-            if (current_rank > 1) {
-                // Decrease is allowed, just reduce the rank by one
-                var exp_refund = current_rank;
-                this.skills[skill_name].rank -= 1;
-                this.experience += exp_refund;
-
-                let max_emphases
-            }
-
 
             if (this.skills[skill_name].rank > 1) {
                 // Reduce Skill Rank
@@ -221,7 +203,7 @@ class CharacterInfo {
         }
 
         console.log("Experience:", this.experience);
-        this.refresh_display();
+        refresh_display(character);
     }
 
     modify_trait(trait_name, increase=true) {
@@ -256,8 +238,8 @@ class CharacterInfo {
         else { // Decrease the trait
 
             // If the trait is at Rank 2, it cannot go lower (as 2 is default)
-            if (this.traits[trait_name] == 2) {
-                alert(`Cannot decrease trait '${trait_name} below Rank 2 (starting value).`);
+            if (this.traits[trait_name] == this.starting_traits[trait_name]) {
+                alert(`Cannot decrease trait '${trait_name} below school value of Rank ${this.starting_traits[trait_name]}.`);
                 return;
             }
 
@@ -375,6 +357,28 @@ class CharacterInfo {
         return `${dice[0]}k${dice[1]}`;
     }
 
+    get_increment_button_message(trait_or_skill, element_name, increase) {
+        var rank, multiplier, exp_cost, message;
+        if (trait_or_skill == "trait") {
+            rank = this.traits[element_name];
+            multiplier = (element_name == "Void") ? 6 : 4;
+        } else if (trait_or_skill == "skill") {
+            rank = this.skills[element_name].rank;
+            multiplier = 1;
+        } else {
+            console.log("ERROR: not skill or trait");
+            return;
+        }
+
+        if (increase) {
+            exp_cost = (rank + 1) * multiplier;
+            return `Increase ${element_name}: ${exp_cost} exp`;
+        } else {
+            exp_cost = rank * multiplier;
+            return `Decrease ${element_name}: -${exp_cost} exp`;
+        }
+    }
+
     // Save and Load ///////////////////////////////////////////////////////////
 
     output_as_json() {
@@ -405,3 +409,19 @@ class CharacterInfo {
 // End Class
 }
 
+
+function deepcopy(original) {
+    if (typeof original == "object") {
+        var output = (Array.isArray(original)) ? [] : {};
+
+        for (let key in original) {
+            let value = original[key];
+            output[key] = deepcopy(value);
+        }
+        console.log(original, output);
+        return output;
+
+    } else {
+        return original;
+    }
+}

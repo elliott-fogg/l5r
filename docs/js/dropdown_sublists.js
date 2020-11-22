@@ -2,11 +2,12 @@
 
 class dropdown_with_sublists {
 
-	constructor(button_text, input_data, callback=null) {
+	constructor(button_text, input_data, callback=null, caller=null) {
 		console.log("CREATING NEW DROPDOWN");
 		this.button_text = button_text;
 		this.input_data = input_data;
 		this.callback = callback;
+		this.caller = caller;
 		console.log("DROPDOWN CALLBACK:", this.callback);
 		this.dropdown = this.create_dropdown_menu();
 	}
@@ -54,7 +55,7 @@ class dropdown_with_sublists {
 			} else {
 				// Element is not submenu
 				p.classList = "menu-option";
-				li.dataset.value = input_data[option];
+				let callback_value = input_data[option];
 				
 				// Set the callback of clicking on an option
 				var parent_dropdown = this;
@@ -63,16 +64,18 @@ class dropdown_with_sublists {
 						event.stopPropagation();
 						event.preventDefault();
 						parent_dropdown.close_dropdown();
-						console.log(this.dataset.value);
+						console.log(callback_value);
 					}
 				} else {
 					var callback = this.callback;
+					var caller = this.caller;
+					
 					li.onclick = function(event) {
 						event.stopPropagation();
 						event.preventDefault();
 						parent_dropdown.close_dropdown();
-						callback.apply(null, [this.dataset.value]);
-					}
+						callback.apply(caller, [callback_value]);
+					};
 				}
 			}
 
