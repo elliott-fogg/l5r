@@ -35,8 +35,7 @@
 		<input type="button" value="Save Character" id="save_char" disabled
 			onclick="save_character();">
 
-		<input type="button" value="Load Character" id="load_char"
-			onclick="load_character();">
+		<input type="button" value="Characters" id="characters_button">
 
 		<input type="button" value="Load Dummy Character" 
 			onclick="load_dummy_character();" style="background-color:red;">
@@ -160,11 +159,6 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-
-		<!-- Div for loading characters -->
-		<div id="character_load_div" class="header_div">
-			<p>LOAD_CHARACTER_HERE</p>
 		</div>
 
 	</div>
@@ -461,7 +455,8 @@
 		var d = new Date();
 		var date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
 		console.log(date);
-
+		load_data_from_storage();
+        update_characters_button();
 	</script>
 
 </body>

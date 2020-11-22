@@ -100,16 +100,14 @@ class Skill_Choices {
                                                 this.starting_traits);
 
         // Change displayed header div
-        var new_char_div = document.getElementById("character_creation_div");
-        new_char_div.classList.remove("active");
-        var char_info_div = refresh_character_info(character);
-        char_info_div.classList.add("active");
+        document.getElementById("character_creation_div").classList.remove("active");
+        document.getElementById("character_info_container").classList.add("active");
 
         // Enable save and load buttons
         document.getElementById("save_char").disabled = false;
-        document.getElementById("load_char").disabled = false;
 
         refresh_display(window.character);
+        refresh_character_info(character);
 
         console.log("Character generated");
         console.log(window.character);

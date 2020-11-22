@@ -553,3 +553,42 @@ function check_exp_input() {
     else {exp_btn.disabled = true;}
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+function load_data_from_storage() {
+    window.current_character = JSON.parse(localStorage.getItem("current_character"));
+    window.saved_characters = JSON.parse(localStorage.getItem("saved_characters"));
+}
+
+function save_data_to_storage() {
+    localStorage.setItem("current_character", JSON.stringify(window.current_character));
+    localStorage.setItem("saved_characters", JSON.stringify(window.saved_characters));
+}
+
+function update_characters_button() {
+    var char_button = document.getElementById("characters_button");
+    var dropdown_data = {};
+    for (let char_name of Object.keys(window.saved_characters)) {
+        dropdown_data[char_name] = {
+            "Load": `load_${char_name}`,
+            "Delete": `delete_${char_name}`
+        }
+    }
+    var dropdown = new dropdown_with_sublists("Characters", dropdown_data, load_or_delete);
+    var dropdown_dom = dropdown.get_element();
+    dropdown_dom.id = "characters_button";
+    dropdown_dom.style = "display: inline-block";
+    char_button.replaceWith(dropdown_dom);
+}
+
+function load_or_delete(input) {
+    console.log(input);
+    var [action, char_name] = input.split("_");
+    if (action == "delete") {
+        if (window.confirm(`Are you sure you want to delete ${char_name}?`)) {
+            console.log(`Deleting ${char_name}.`)
+        }
+    } else if (action == "load") {
+        console.log(`Loading ${char_name}.`)
+    }
+}
