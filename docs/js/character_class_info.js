@@ -382,11 +382,15 @@ class CharacterInfo {
     // Save and Load ///////////////////////////////////////////////////////////
 
     output_as_json() {
-        console.log("OUTPUTTING CHARACTER AS JSON DATA");
-    }
-
-    load_from_json() {
-        console.log("LOADING CHARACTER FROM JSON DATA");
+        var json = {};
+        for (let key of ["given_name", "family_id", "school_id",
+                         "total_experience", "experience",
+                         "starting_skills", "skills",
+                         "starting_traits", "traits"]) {
+            json[key] = this[key];
+        }
+        json["save_name"] = this.get_display_name();
+        return json
     }
 
     // Debugging ///////////////////////////////////////////////////////////////
@@ -418,10 +422,23 @@ function deepcopy(original) {
             let value = original[key];
             output[key] = deepcopy(value);
         }
-        console.log(original, output);
         return output;
 
     } else {
         return original;
     }
+}
+
+function load_character_from_json(json) {
+    var char = new CharacterInfo("name", "family_id", "school_id", {}, {});
+    console.log("CHAR TO LOAD", json);
+    for (let key of ["given_name", "family_id", "school_id", "total_experience",
+                     "experience", "starting_skills", "skills",
+                     "starting_traits", "traits"]) {
+        char[key] = json[key];
+    }
+    char.given_name = json["given_name"];
+    window.character = char;
+    console.log("LOADED CHAR", char);
+    return char;
 }

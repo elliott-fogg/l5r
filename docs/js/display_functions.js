@@ -1,22 +1,29 @@
-const ring_headings = ["Ring", "Rank"];
-const trait_headings = ["Trait", "Rank"];
+const trait_table_headings = ["Ring", "Rank", "Trait", "Rank"];
 const skill_headings = ["Skill", "Rank", "Trait", "Roll", "Emphasis"];
 
 // Create Buttons //////////////////////////////////////////////////////////////
 
 function create_inc_btn_with_hover(f, increase, hover_text) {
     var container = document.createElement("div");
-    var div = document.createElement("div");
-    div.className = (increase) ? "inc_button" : "dec_button";
-    div.onclick = f;
+    var button_div = document.createElement("div");
+    button_div.className = (increase) ? "inc_button" : "dec_button";
+    button_div.onclick = f;
     var hover_div = document.createElement("span");
     hover_div.className = "hover_box";
     hover_div.innerHTML = hover_text;
 
-    container.appendChild(div);
+    container.appendChild(button_div);
     container.appendChild(hover_div);
     container.style="display: inline-block;"
     return container;
+}
+
+function set_inc_button_info(container_id, f, hover_text) {
+    var container = document.getElementById(container_id);
+    var button_div = container.getElementsByTagName("div")[0];
+    button_div.onclick = f;
+    var hover_div = container.getElementsByTagName("span")[0];
+    hover_div.innerHTML = hover_text
 }
 
 function create_increment_button(character, attr_type, attr_name, increase) {
@@ -246,149 +253,154 @@ function refresh_character_info(character) {
     }
 }
 
-function update_trait_table(character) {
+function create_trait_table() {
     var table = document.getElementById("trait_table");
+    while (table.firstChild) {table.removeChild(table.firstChild)};
 
-}
+    var thead = table.createTHead();
+    var headings = thead.insertRow(-1);
+    for (let i = 0; i < trait_table_headings.length; i++) {
+        let cell = headings.insertCell(i);
+        cell.innerHTML = `<b><u>${trait_table_headings[i]}</u></b>`;
+        cell.classList = (i == 1) ? "border_right" : "";
+    }
 
-function fill_trait_table(character) {
+    var tbody = table.createTBody();
     for (let ring_name in rings) {
-        
-        // Set onclick function for ring button
-        document.getElementById(`ring-btn-${ring_name}`).onclick = function() {
-            console.log(ring_name);
-        }
-        
-        // Set display value for ring rank
-        document.getElementById(`ring-rank-${ring_name}`).innerHTML = 
-            character.calculate_ring(ring_name);
+        let row1 = tbody.insertRow(-1);
+        row1.className = `ring_row_${ring_name}`;
+        var rowspan = Math.max(rings[ring_name].length, 1);
 
+        let cell1 = row1.insertCell(-1);
+        cell1.rowSpan = rowspan;
+        let ring_button = document.createElement("input");
+        ring_button.type = "button";
+        ring_button.value = ring_name;
+        ring_button.id = `ring-btn-${ring_name}`;
+        ring_button.className = "label_button";
+        cell1.appendChild(ring_button);
+
+        let cell2 = row1.insertCell(-1);
+        cell2.rowSpan = rowspan;
+        cell2.className = "border_right";
+        let ring_rank = document.createElement("p");
+        ring_rank.id = `ring-rank-${ring_name}`;
+        ring_rank.className = "rank_value";
+        cell2.appendChild(ring_rank);
+
+        let first = true;
         for (let trait_name of rings[ring_name]) {
-            var trait_abbr = trait_abbreviations[trait_name];
 
-            // Set function for the inc_ and dec_ buttons
-            let inc_id = `${trait_abbr}-inc-btn`;
-            let old_inc_button = document.getElementById(inc_id);
-
-            let inc_f = function () {
-                character.modify_trait(trait_name, true);
-                console.log(`Increasing ${trait_name}`);
-                refresh_display(character);
+            let current_row;
+            if (first) {
+                current_row = row1;
             }
-            let inc_msg = character.get_increment_button_message("trait",
-                                                             trait_name,
-                                                             true);
-            let new_inc_button = create_inc_btn_with_hover(inc_f, true, inc_msg);
-            new_inc_button.id = inc_id
-            old_inc_button.replaceWith(new_inc_button);
-
-            let dec_id = `${trait_abbr}-dec-btn`;
-            let old_dec_button = document.getElementById(dec_id);
-
-            let dec_f = function () {
-                character.modify_trait(trait_name, false);
-                console.log(`Decreasing ${trait_name}`);
-                refresh_display(character);
+            else {
+                current_row = tbody.insertRow(-1);
+                current_row.className = `ring_row_${ring_name}`;
             }
-            let dec_msg = character.get_increment_button_message("trait",
-                                                                 trait_name,
-                                                                 false);
-            let new_dec_button = create_inc_btn_with_hover(dec_f, false, dec_msg);
-            new_dec_button.id = dec_id;
-            old_dec_button.replaceWith(new_dec_button);
 
-            // document.getElementById(`${trait_abbr}-inc-btn`).onclick = 
-            //     function(event) {
-            //         character.modify_trait(trait_name, true);
-            //         console.log(`Increasing ${trait_name}`);
-            //         refresh_display(character);
-            //     }
+            first = false;
 
-            // document.getElementById(`${trait_abbr}-dec-btn`).onclick = 
-            //     function(event) {
-            //         character.modify_trait(trait_name, false);
-            //         console.log(`Decreasing ${trait_name}`);
-            //         refresh_display(character);
-            //     }
+            let trait_button = document.createElement("input");
+            trait_button.type = "button";
+            trait_button.value = trait_name;
+            trait_button.id = `trait-btn-${trait_name}`;
+            trait_button.className = "label_button";
+            current_row.insertCell(-1).appendChild(trait_button);
 
-            // Skip Void as only the Ring is portrayed
-            if (trait_abbr == "VOID") {continue;}
+            let trait_rank = document.createElement("p");
+            trait_rank.className = "rank_value";
+            trait_rank.id = `trait-rank-${trait_name}`;
+            current_row.insertCell(-1).appendChild(trait_rank);
 
-            // Set onclick function for trait button
-            document.getElementById(`trait-btn-${trait_abbr}`).onclick = 
-                function() {
-                    console.log(trait_name);
-                }
+            let inc_dec_cell = current_row.insertCell(-1);
+            for (let bool of [true, false]) {
+                let f = function () {}
+                let msg = "Button not yet bound";
+                let arrow_btn = create_inc_btn_with_hover(f, bool, msg);
+                arrow_btn.id = (bool) ? `${trait_name}-inc-btn` :
+                    `${trait_name}-dec-btn`;
+                inc_dec_cell.appendChild(arrow_btn);
+            }
+        }
 
-            // Set display value for trait rank
-            document.getElementById(`trait-rank-${trait_abbr}`).innerHTML = 
-                character.traits[trait_name];
+        // Exception case for when a ring has no traits (e.g. Void);
+        // In this case the ring itself must be stored as a trait;
+        if (rings[ring_name].length == 0) {
+            row1.insertCell(-1);
+            row1.insertCell(-1);
+        let inc_dec_cell = row1.insertCell(-1);
+        for (let bool of [true, false]) {
+            let f = function () {}
+            let msg = "Button not yet bound";
+            let arrow_btn = create_inc_btn_with_hover(f, bool, msg);
+            arrow_btn.id = (bool) ? `${ring_name}-inc-btn` :
+                `${ring_name}-dec-btn`;
+            inc_dec_cell.appendChild(arrow_btn);
+            inc_dec_cell.style="height: 100%"
+            }
         }
     }
 }
 
-// function fill_trait_table(character) {
-//     var table = document.getElementById("trait_table");
+function update_trait_table(character) {
+    var table = document.getElementById("trait_table");
+    for (let ring_name in rings) {
 
-//     // If the tHead of this table does not exist, create it.
-//     if (table.tHead == null) {
-//         let header = table.createTHead();
-//         let header_row = header.insertRow(0);
+        // Set onclick function for ring button
+        document.getElementById(`ring-btn-${ring_name}`).onclick = function() {
+            console.log(`Rolling ${ring_name}!`);
+        }
 
-//         header_row.insertCell(-1).innerHTML = "<b><u>Ring</u></b>";
+        // Set value for ring rank
+        document.getElementById(`ring-rank-${ring_name}`).innerHTML =
+            character.calculate_ring(ring_name);
 
-//         let ringrank_header = header_row.insertCell(-1);
-//         ringrank_header.innerHTML = "<b><u>Rank</u></b>";
-//         ringrank_header.className = "border_right";
+        // Iterate through traits
+        for (let trait_name of rings[ring_name]) {
+            // Set function and hover_text for inc_ and dec_ buttons
+            for (let bool of [true, false]) {
+                let f = function() {
+                    character.modify_trait(trait_name, bool);
+                    refresh_display(character);
+                }
+                let msg = character.get_increment_button_message("trait",
+                                                             trait_name,
+                                                             bool);
+                let div_id = (bool) ? `${trait_name}-inc-btn` :
+                    `${trait_name}-dec-btn`;
+                set_inc_button_info(div_id, f, msg);
+            }
 
-//         header_row.insertCell(-1).innerHTML = "<b><u>Trait</u></b>";
-//         header_row.insertCell(-1).innerHTML = "<b><u>Rank</u></b>";
+            // Set onclick function for trait button
+            document.getElementById(`trait-btn-${trait_name}`).onclick =
+            function() {
+                console.log(`Rolling ${trait_name}!`);
+            }
 
-//     };
+            // Set value of trait rank
+            document.getElementById(`trait-rank-${trait_name}`).innerHTML =
+                character.traits[trait_name];
+        }
 
-//     let tbdy = (table.tBodies.length == 1) ? table.tBodies[0] : table.createTBody();
-//     tbdy.innerHTML = ''; // Reset tBody incase we are refilling the table
-
-//     for (let ring_name in rings) {
-//         let first = true;
-//         rings[ring_name].forEach( trait_name => {
-//             let row = tbdy.insertRow(-1);
-//             if (first) {
-
-//                 // Create Ring Name Button
-//                 let ring_type = row.insertCell(-1);
-//                 ring_type.rowSpan = rings[ring_name].length;
-//                 ring_type.appendChild(create_ring_button(character, ring_name));
-
-//                 // Show Ring rank value
-//                 let ring_rank = row.insertCell(-1);
-//                 ring_rank.rowSpan = rings[ring_name].length;
-//                 ring_rank.innerHTML = character.calculate_ring(ring_name);
-//                 ring_rank.className = "border_right";
-
-//                 first = false;
-//             };
-
-//             // Create Trait Name Button
-//             row.insertCell(-1).appendChild(create_trait_button(
-//                                                         character, trait_name));
-
-//             // Create div for Trait Rank value with Incrementer Buttons
-//             let trait_rank_cell = row.insertCell(-1);
-//             let trait_rank_div = document.createElement("div");
-
-//             let trait_rank_text = document.createElement("p");
-//             trait_rank_text.className = "rank_value"
-//             trait_rank_text.innerHTML = character.traits[trait_name];
-//             trait_rank_div.appendChild(trait_rank_text);
-//             trait_rank_div.appendChild(create_increment_button(
-//                                         character, "trait", trait_name, true));
-//             trait_rank_div.appendChild(create_increment_button(
-//                                         character, "trait", trait_name, false));
-//             trait_rank_cell.appendChild(trait_rank_div);
-//         })
-//     }
-// }
+        // Update the inc_ dec_ buttons for rings that have no traits
+        if (rings[ring_name].length == 0) {
+            for (let bool of [true, false]) {
+                let f = function() {
+                    character.modify_trait(ring_name, bool);
+                    refresh_display(character);
+                }
+                let msg = character.get_increment_button_message("trait",
+                                                                 ring_name,
+                                                                 bool);
+                let div_id = (bool) ? `${ring_name}-inc-btn` :
+                    `${ring_name}-dec-btn`;
+                set_inc_button_info(div_id, f, msg);
+            }
+        }
+    }
+}
 
 function fill_skill_table(character, show_all_skills=false) {
     var table = document.getElementById("skill_table");
@@ -481,7 +493,7 @@ function refresh_add_skill_dropdown(character) {
 
 function refresh_display(character) {
     console.log("CHARACTER", character);
-    fill_trait_table(character);
+    update_trait_table(character);
     fill_skill_table(character);
     refresh_add_skill_dropdown(character);
     refresh_character_info(character);
@@ -538,19 +550,40 @@ function load_dummy_character() {
                                          TRAITS);
 
     // Change displayed header div
-    var new_char_div = document.getElementById("character_creation_div");
-    new_char_div.classList.remove("active");
-    char_info_div = document.getElementById("character_info_container");
-    // var char_info_div = refresh_character_info(character);
-    char_info_div.classList.add("active");
+    set_character_div("info");
 
     refresh_display(window.character);
+
+    console.log("JSON", window.character.output_as_json());
 }
 
 function check_exp_input() {
     var exp_btn = document.getElementById("exp_change_btn");
     if (this.checkValidity()) {exp_btn.disabled = false;}
     else {exp_btn.disabled = true;}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+function set_character_div(tab_name) {
+    var creation_div = document.getElementById("character_creation_div");
+    var info_div = document.getElementById("character_info_div");
+    switch (tab_name) {
+        case "none": {
+            creation_div.classList.remove("active");
+            info_div.classList.remove("active");
+            break;
+        }
+        case "creation": {
+            creation_div.classList.add("active");
+            info_div.classList.remove("active");
+            break;
+        }
+        case "info": {
+            creation_div.classList.remove("active");
+            info_div.classList.add("active");
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -563,9 +596,15 @@ function load_data_from_storage() {
 function save_data_to_storage() {
     localStorage.setItem("current_character", JSON.stringify(window.current_character));
     localStorage.setItem("saved_characters", JSON.stringify(window.saved_characters));
+    refresh_characters_button();
 }
 
-function update_characters_button() {
+function update_current_character() {
+    var char_json = window.character.output_as_json();
+    window.current_character = char_json;
+}
+
+function refresh_characters_button() {
     var char_button = document.getElementById("characters_button");
     var dropdown_data = {};
     for (let char_name of Object.keys(window.saved_characters)) {
@@ -586,9 +625,37 @@ function load_or_delete(input) {
     var [action, char_name] = input.split("_");
     if (action == "delete") {
         if (window.confirm(`Are you sure you want to delete ${char_name}?`)) {
-            console.log(`Deleting ${char_name}.`)
+            delete_character(char_name);
         }
     } else if (action == "load") {
-        console.log(`Loading ${char_name}.`)
+        load_character(char_name);
     }
+}
+
+function load_character(character_name) {
+    if (!(Object.keys(window.saved_characters).includes(character_name))) {
+        alert(`Could not find saved data for character ${character_name}`);
+        return;
+    }
+
+    console.log("LOADING " + character_name);
+    var char_json = window.saved_characters[character_name];
+    var char = load_character_from_json(char_json);
+    refresh_display(char);
+}
+
+function delete_character(character_name) {
+    console.log("DELETING " + character_name);
+    delete window.saved_characters[character_name];
+    save_data_to_storage();
+}
+
+function save_character() {
+    var char = window.character;
+    var json_data = char.output_as_json();
+
+    console.log("WINDOW_CHAR", json_data);
+    window.saved_characters[json_data["save_name"]] = json_data;
+
+    save_data_to_storage();
 }

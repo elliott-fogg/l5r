@@ -8,15 +8,13 @@ class Skill_Choices {
         }.bind(this);
         // Initiate character creation
 		this.start_new_character_creation();
-
 	}
 
 	// Stages //////////////////////////////////////////////////////////////////
 
 	start_new_character_creation() {
 		console.log("New Character Creation Initiated");
-		var new_char_div = document.getElementById("character_creation_div");
-		new_char_div.classList.add("active");
+        set_character_div("creation");
 
 		this.family_id = "";
 		this.school_id = "";
@@ -100,8 +98,7 @@ class Skill_Choices {
                                                 this.starting_traits);
 
         // Change displayed header div
-        document.getElementById("character_creation_div").classList.remove("active");
-        document.getElementById("character_info_container").classList.add("active");
+        set_character_div("info");
 
         // Enable save and load buttons
         document.getElementById("save_char").disabled = false;

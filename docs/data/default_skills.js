@@ -189,7 +189,7 @@ const rings = {
     "Earth": ["Stamina", "Willpower"],
     "Fire": ["Agility", "Intelligence"],
     "Water": ["Perception", "Strength"],
-    "Void": ["Void"]
+    "Void": [],
 }
 
 const trait_abbreviations = {

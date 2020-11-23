@@ -69,7 +69,7 @@
 		</div>
 
 		<!-- Div for displaying character information (name, family, etc) -->
-		<div class="header_div" id="character_info_container">
+		<div id="character_info_div" class="header_div">
 			<table class="info_table" id="character_info_table">
 				<tr>
 					<td>
@@ -199,204 +199,7 @@
 			<div style="overflow: hidden">
 				<div style="float: left">
 					<p style="text-align: center;"><b>Ring Table</b></p>
-					<table id="trait_table" class="table">
-						<thead>
-							<tr>
-								<tr>
-									<td><b><u>Ring</u></b></td>
-									<td class="border_right"><b><u>Rank</u></b></td>
-									<td><b><u>Trait</u></b></td>
-									<td><b><u>Rank</u></b></td>
-								</tr>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- Air Ring -->
-							<tr class="ring_row_Air">
-								<td rowspan=2>
-									<input type="button" value="Air"
-										id="ring-btn-Air" class="label_button">
-								</td>
-								<td rowspan=2 class="border_right" style="text-align: center">
-									<p class="rank_value" id="ring-rank-Air">
-										-1
-									</p>
-								</td>
-								<td>
-									<input type="button" value="Awareness"
-										id="trait-btn-AWA" class="label_button">
-								</td>
-								<td style="text-align: center">
-									<p class="rank_value" id="trait-rank-AWA">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="AWA-inc-btn"></label>
-									<label class="dec_button" id="AWA-dec-btn"></label>
-								</td>
-							</tr>
-							<tr class="ring_row_Air">
-								<td>
-									<input type="button" value="Reflexes"
-										id="trait-btn-REF" class="label_button">
-								</td>
-								<td style="text-align: center">
-									<p class="rank_value" id="trait-rank-REF">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="REF-inc-btn"></label>
-									<label class="dec_button" id="REF-dec-btn"></label>
-								</td>
-							</tr>
-
-							<!-- Earth Ring -->
-							<tr class="ring_row_Earth">
-								<td rowspan=2>
-									<input type="button" value="Earth"
-										id="ring-btn-Earth" class="label_button">
-								</td>
-								<td rowspan=2 class="border_right" style="text-align: center">
-									<p class="rank_value" id="ring-rank-Earth">
-										-1
-									</p>
-								</td>
-								<td>
-									<input type="button" value="Stamina"
-										id="trait-btn-STA" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-STA">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="STA-inc-btn"></label>
-									<label class="dec_button" id="STA-dec-btn"></label>
-								</td>
-							</tr>
-							<tr class="ring_row_Earth">
-								<td>
-									<input type="button" value="Willpower"
-										id="trait-btn-WIL" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-WIL">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="WIL-inc-btn"></label>
-									<label class="dec_button" id="WIL-dec-btn"></label>
-								</td>
-							</tr>
-
-							<!-- Fire Ring -->
-							<tr class="ring_row_Fire">
-								<td rowspan=2>
-									<input type="button" value="Fire"
-										id="ring-btn-Fire" class="label_button">
-								</td>
-								<td rowspan=2 class="border_right" style="text-align: center">
-									<p class="rank_value" id="ring-rank-Fire">
-										-1
-									</p>
-								</td>
-								<td>
-									<input type="button" value="Agility"
-										id="trait-btn-AGI" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-AGI">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="AGI-inc-btn"></label>
-									<label class="dec_button" id="AGI-dec-btn"></label>
-								</td>
-							</tr>
-							<tr class="ring_row_Fire">
-								<td>
-									<input type="button" value="Intelligence"
-										id="trait-btn-INT" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-INT">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="INT-inc-btn"></label>
-									<label class="dec_button" id="INT-dec-btn"></label>
-								</td>
-							</tr>
-
-							<!-- Water Ring -->
-							<tr class="ring_row_Water">
-								<td rowspan=2>
-									<input type="button" value="Water"
-										id="ring-btn-Water" class="label_button">
-								</td>
-								<td rowspan=2 class="border_right" style="text-align: center">
-									<p class="rank_value" id="ring-rank-Water">
-										-1
-									</p>
-								</td>
-								<td>
-									<input type="button" value="Perception"
-										id="trait-btn-PER" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-PER">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="PER-inc-btn"></label>
-									<label class="dec_button" id="PER-dec-btn"></label>
-								</td>
-							</tr>
-							<tr class="ring_row_Water">
-								<td>
-									<input type="button" value="Strength"
-										id="trait-btn-STR" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="trait-rank-STR">
-										-1
-									</p>
-								</td>
-								<td>
-									<label class="inc_button" id="STR-inc-btn"></label>
-									<label class="dec_button" id="STR-dec-btn"></label>
-								</td>
-							</tr>
-
-							<tr class="ring_row_Void">
-								<td>
-									<input type="button" value="Void"
-										id="ring-btn-Void" class="label_button">
-								</td>
-								<td>
-									<p class="rank_value" id="ring-rank-Void">
-										-1
-									</p>
-								</td>
-								<td></td>
-								<td></td>
-								<td>
-									<label class="inc_button" id="VOID-inc-btn"
-										onclick="console.log('up');"></label>
-
-									<label class="dec_button" id="VOID-dec-btn"
-										onclick="console.log('down');"></label>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					<table id="trait_table" class="table"></table>
 				</div>
 
 				<div style="margin-left: 100px; float: left">
@@ -451,12 +254,13 @@
 	</div>
 
 	<script>
-		main();
+		create_trait_table();
+		// main();
 		var d = new Date();
 		var date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
 		console.log(date);
 		load_data_from_storage();
-        update_characters_button();
+        refresh_characters_button();
 	</script>
 
 </body>
