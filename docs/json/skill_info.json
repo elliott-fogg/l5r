@@ -1,0 +1,947 @@
+{
+  "Acting": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Clan",
+      "Gender",
+      "Profession"
+    ]
+  },
+  "Calligraphy": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": [
+      "Cipher",
+      "High Rokugani"
+    ]
+  },
+  "Courtier": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Gossip",
+      "Manipulation",
+      "Rhetoric"
+    ]
+  },
+  "Divination": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Astrology",
+      "Kawaru"
+    ]
+  },
+  "Etiquette": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Bureaucracy",
+      "Conversation",
+      "Courtesy"
+    ]
+  },
+  "Investigation": {
+    "trait": [
+      "Perception"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Interrogation",
+      "Notice",
+      "Search"
+    ]
+  },
+  "Medicine": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Antidotes",
+      "Disease",
+      "Herbalism",
+      "Non-Humans",
+      "Wound-Treatment"
+    ]
+  },
+  "Meditation": {
+    "trait": [
+      "Void"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Fasting",
+      "Void Recovery"
+    ]
+  },
+  "Sincerity": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Honesty",
+      "Deceit"
+    ]
+  },
+  "Spellcraft": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": [
+      "Importune",
+      "Spell Research"
+    ]
+  },
+  "Tea Ceremony": {
+    "trait": [
+      "Void"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [],
+    "emphases": []
+  },
+  "Athletics": {
+    "trait": [
+      "Strength"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Climbing",
+      "Running",
+      "Swimming",
+      "Throwing"
+    ]
+  },
+  "Battle": {
+    "trait": [
+      "Perception"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Mass Combat",
+      "Skirmish"
+    ]
+  },
+  "Defense": {
+    "trait": [
+      "Reflexes"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": []
+  },
+  "Horsemanship": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Gaijin Riding Horse",
+      "Rokugani Pony",
+      "Utaku Steed"
+    ]
+  },
+  "Hunting": {
+    "trait": [
+      "Perception"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Surviving",
+      "Tracking",
+      "Trailblazing"
+    ]
+  },
+  "Iaijutsu": {
+    "trait": [
+      "Reflexes"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Assessment",
+      "Focus"
+    ]
+  },
+  "Jiujutsu": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [],
+    "emphases": [
+      "Grappling",
+      "Improvised Weapons",
+      "Martial Arts"
+    ]
+  },
+  "Chain Weapons": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Kusarigama",
+      "Kyoketsu-shogi",
+      "Manrikikusari"
+    ]
+  },
+  "Heavy Weapons": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Dai Tsuchi",
+      "Masakari",
+      "Ono",
+      "Tetsubo"
+    ]
+  },
+  "Kenjutsu": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Katana",
+      "Ninja-to",
+      "No-Dachi",
+      "Parangu",
+      "Scimitar",
+      "Wakizashi"
+    ]
+  },
+  "Knives": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Aiguchi",
+      "Jitte",
+      "Kama",
+      "Sai",
+      "Tanto"
+    ]
+  },
+  "Kyujutsu": {
+    "trait": [
+      "Reflexes"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Dai-kyu",
+      "Han-kyu",
+      "Yumi"
+    ]
+  },
+  "Ninjutsu": {
+    "trait": [
+      "Agility",
+      "Reflexes"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Blowgun",
+      "Shuriken",
+      "Tsubute"
+    ]
+  },
+  "Polearms": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Bisento",
+      "Nagamaki",
+      "Naginata",
+      "Sasumata",
+      "Sodegarami"
+    ]
+  },
+  "Spears": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Mai Chong",
+      "Kumade",
+      "Lance",
+      "Nage-yari",
+      "Yari"
+    ]
+  },
+  "Staves": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": [
+      "Bo",
+      "Jo",
+      "Machi-kanshisha",
+      "Nunchaku",
+      "Sang Kauw",
+      "Tonfa"
+    ]
+  },
+  "War Fan": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Bugei"
+    ],
+    "macro": [
+      "Weapons"
+    ],
+    "emphases": []
+  },
+  "Animal Handling": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "Merchant"
+    ],
+    "macro": [],
+    "emphases": [
+      "Dogs",
+      "Horses",
+      "Falcons"
+    ]
+  },
+  "Commerce": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Merchant"
+    ],
+    "macro": [],
+    "emphases": [
+      "Appraisal",
+      "Mathematics"
+    ]
+  },
+  "Engineering": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Merchant"
+    ],
+    "macro": [],
+    "emphases": [
+      "Construction",
+      "Siege"
+    ]
+  },
+  "Sailing": {
+    "trait": [
+      "Agility",
+      "Intelligence"
+    ],
+    "class": [
+      "Merchant"
+    ],
+    "macro": [],
+    "emphases": [
+      "Knot-work",
+      "Navigation"
+    ]
+  },
+  "Forgery": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [],
+    "emphases": []
+  },
+  "Intimidation": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [],
+    "emphases": [
+      "Bullying",
+      "Control",
+      "Torture"
+    ]
+  },
+  "Sleight Of Hand": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [],
+    "emphases": [
+      "Conceal",
+      "Escape",
+      "Pickpocket",
+      "Prestidigitation"
+    ]
+  },
+  "Stealth": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [],
+    "emphases": [
+      "Ambush",
+      "Shadowing",
+      "Sneaking",
+      "Spell Casting"
+    ]
+  },
+  "Temptation": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [],
+    "emphases": [
+      "Bribery",
+      "Seduction"
+    ]
+  },
+  "Bonsai": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Gardening": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Ikebana": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Origami": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Painting": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Poetry": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Sculpture": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Tattooing": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Artisan"
+    ],
+    "emphases": []
+  },
+  "Craft: Cartography": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Merchant"
+    ],
+    "macro": [
+      "Craft"
+    ],
+    "emphases": []
+  },
+  "Perform: Biwa": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Dance": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Drums": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Flute": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Oratory": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Puppeteer": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Samisen": {
+    "trait": [
+      "Agility"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Song": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Perform: Storytelling": {
+    "trait": [
+      "Awareness"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Perform"
+    ],
+    "emphases": []
+  },
+  "Lore: Architecture": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Bushido": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Elements": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Ghosts": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Heraldry": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: History": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": [
+      "Lion Clan"
+    ]
+  },
+  "Lore: Nature": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Omens": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Shugenja": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Spirit Realms": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Theology": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": [
+      "Fortunes"
+    ]
+  },
+  "Lore: War": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "High"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Anatomy": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Maho": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Shadowlands": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  },
+  "Lore: Underworld": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class": [
+      "Low"
+    ],
+    "macro": [
+      "Lore"
+    ],
+    "emphases": []
+  }
+}
