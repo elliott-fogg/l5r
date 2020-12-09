@@ -1,0 +1,5 @@
+{
+	"Acting": {"trait": ["Awareness"], "class": ["High"], "macro": [], "emphases": ["Clan", "Gender", "Profession"]},
+	"Calligraphy": {"trait": ["Intelligence"], "class": ["High"], "macro": ["Artisan"], "emphases": ["Cipher", "High Rokugani"]},
+	"Courtier": {"trait": ["Awareness"], "class": ["High"], "macro": [], "emphases": ["Gossip", "Manipulation", "Rhetoric"]}
+}
