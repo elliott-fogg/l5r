@@ -1,0 +1,261 @@
+{
+	"Absolute Direction": {
+		"type": "Mental",
+		"cost": 1,
+		"discount": "clan_Crane",
+		"selection_text": "You possess and almost supernatural sense of direction, and you always know what direction is North, no matter the circumstances...",
+		"hover_text": "Show this when hovering over Absolute Direction.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Allies": {
+		"type": "Social",
+		"cost": null,
+		"discount": "clan_Crane",
+		"selection_text": "You have carefully nurtured social connections. Some of those in your web of connections would go to great lengths...",
+		"hover_text": "Show this when hovering over Allies.",
+		"player_input": {
+			"selection": [
+				{
+					"title": "Influence",
+					"options": [
+						{
+							"cost": 1,
+							"text": "Minor (no land or appointments)"
+						},
+						{
+							"cost": 2,
+							"text": "Moderate (some land or political influence)"
+						},
+						{
+							"cost": 4,
+							"text": "Major (vast lands or prestigious appointments)"
+						}
+					]
+				},
+				{
+					"title": "Devotion",
+					"options": [
+						{
+							"cost": 1,
+							"text": "Your ally would go out of his way to help you, but not risk his honor."
+						},
+						{
+							"cost": 2,
+							"text": "Your ally would risk his honor to help you, but would do so secretly."
+						},
+						{
+							"cost": 4,
+							"text": "Your ally would do anything to aid you, regardless of the cost."
+						}
+					]
+				}
+			],
+			"text": "Your custom Allies text goes here."
+		},
+		"allow_multiple": true,
+		"added_effect": false
+	},
+
+	"Balance": {
+		"type": "Mental",
+		"cost": 2,
+		"discount": "",
+		"selection_text": "You possess an inherent calm and serenity that others have difficulty overcoming when attempting to antagonize...",
+		"hover_text": "Show this when hovering over Balance.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Blackmail": {
+		"type": "Social",
+		"cost": null,
+		"discount": "clan_Scorpion",
+		"selection_text": "You possess knowledge and proof of a dark secret held by another, and can use that secret to elicit their cooperation...",
+		"hover_text": "Show this when hovering over Blackmail.",
+		"player_input": {
+			"input": [
+				{
+					"type": "text",
+					"value": "target_name"
+				},
+				{
+					"type": "int",
+					"value": "target_rank",
+					"max": 10,
+					"min": 1
+				},
+				{
+					"type": "text",
+					"value": "blackmail_details"
+				}
+			]
+		},
+		"allow_multiple": true,
+		"added_effect": false
+	},
+
+	"Bland": {
+		"type": "Physical",
+		"cost": 2,
+		"discount": "",
+		"selection_text": "You are extremely unremarkable in every regard, and others have a difficult time recognizing you...",
+		"hover_text": "Show this when hovering over Bland.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Blissful Betrothal": {
+		"type": "Social",
+		"cost": 3,
+		"discount": "",
+		"selection_text": "Your marriage has been arranged and, much to your delight, you have come to truly love you intended spouse...",
+		"hover_text": "Show this when hovering over Blissful Betrothal.",
+		"player_input": {
+			"input": [
+				{
+					"type": "text",
+					"value": "name_of_betrothed"
+				}
+			]
+		},
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Blood of Osano-Wo": {
+		"type": "Spiritual",
+		"cost": 4,
+		"discount": "clan_Crab clan_Mantis",
+		"selection_text": "You are descended from a bloodline of Hida Osano-Wo, the Fortune of Fire and Thunder...",
+		"hover_text": "Show this when hovering over Blood of Osano-Wo.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Chosen by the Oracles": {
+		"type": "Spiritual",
+		"cost": 6,
+		"discount": "",
+		"selection_text": "For reasons beyond your understanding, you have caught the notice of one of the Oracles...",
+		"hover_text": "Show this when hovering over Chosen by the Oracles.",
+		"player_input": {
+			"selection": [
+				"Air",
+				"Earth",
+				"Fire",
+				"Water",
+				"Void"
+			]
+		},
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Clear Thinker": {
+		"type": "Mental",
+		"cost": 3,
+		"discount": "clan_Dragon",
+		"selection_text": "You possess a sharp mind and keen powers of perception...",
+		"hover_text": "Show this when hovering over Clear Thinker.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Crab Hands": {
+		"type": "Physical",
+		"cost": 3,
+		"discount": "clan_Crab class_Bushi",
+		"selection_text": "You possess a natural affinity for weapons of all kinds...",
+		"hover_text": "Show this when hovering over Crab Hands.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Crafty": {
+		"type": "Mental",
+		"cost": 3,
+		"discount": "clan_Scorpion clan_Spider class_Ninja",
+		"selection_text": "You have a knack for instinctively knowing how to do things that most people prefer to avoid...",
+		"hover_text": "Show this when hovering over Crafty.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Dangerous Beauty": {
+		"type": "Physical",
+		"cost": 3,
+		"discount": "clan_Scorpion",
+		"selection_text": "You possess a certain quality that makes you all but irresistible to members of the opposite sex...",
+		"hover_text": "Show this when hovering over Dangerous Beauty.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Daredevil": {
+		"type": "Mental",
+		"cost": 3,
+		"discount": "clan_Mantis",
+		"selection_text": "You have a natural flair for athleticism and a complete lack of self-preservation when it comes to physical danger...",
+		"hover_text": "Show this when hovering over Daredevil.",
+		"player_input": null,
+		"allow_multiple": false,
+		"added_effect": false
+	},
+
+	"Dark Paragon": {
+		"type": "Mental",
+		"cost": 5,
+		"discount": "clan_Spider",
+		"selection_text": "You have mastered one of the precepts of Shourido, the dark code that forms and antithesis of Bushio...",
+		"hover_text": "Show this when hovering over Dark Paragon.",
+		"player_input": {
+			"selection": [
+				{
+					"title": "Chosen Precept",
+					"options": [
+						{
+							"title": "Control",
+							"selection_text": "Re-roll any Social Skill Roll."
+						},
+						{
+							"title": "Determination",
+							"selection_text": "Negate all TN/Wound penalties on one Skill of Spell Casting roll (no +5 bonus is applied to the roll)."
+						},
+						{
+							"title": "Insight",
+							"selection_text": "Re-roll any roll that used the Awareness Trait."
+						},
+						{
+							"title": "Knowledge",
+							"selection_text": "Re-roll any roll that used the Intelligence Trait."
+						},
+						{
+							"title": "Perfection",
+							"selection_text": "Spending the Honor causes any one die of your choice on a Skill Roll to explode (no +5 bonus added)."
+						},
+						{
+							"title": "Strength",
+							"selection_text": "Re-roll any Damage Roll."
+						},
+						{
+							"title": "Will",
+							"selection_text": "Spending the Honor negates 10 Wounds at the moment they are suffered."
+						}
+					]
+				}
+			]
+		},
+		"allow_multiple": true,
+		"added_effect": false
+	}
+}
