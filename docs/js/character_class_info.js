@@ -393,6 +393,10 @@ class CharacterInfo {
         return json
     }
 
+    update_saved() {
+        window.current_character = this.output_as_json();
+    }
+
     // Debugging ///////////////////////////////////////////////////////////////
     console_log_skills() {
         for (var skill_name in this.skills) {

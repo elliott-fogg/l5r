@@ -267,6 +267,7 @@ function create_trait_table() {
 
     var tbody = table.createTBody();
     for (let ring_name in rings) {
+        tbody.appendChild(document.createComment(` ${ring_name} ring `));
         let row1 = tbody.insertRow(-1);
         row1.className = `ring_row_${ring_name}`;
         var rowspan = Math.max(rings[ring_name].length, 1);
@@ -658,4 +659,18 @@ function save_character() {
     window.saved_characters[json_data["save_name"]] = json_data;
 
     save_data_to_storage();
+}
+
+function check_for_current_character() {
+    load_data_from_storage();
+    if (window.current_character != null) {
+        console.log("FOUND IT");
+        window.character = load_character_from_json(window.current_character);
+        refresh_display(window.character);
+    }
+}
+
+function get_current_date() {
+    var d = new Date();
+    console.log(`${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`)
 }

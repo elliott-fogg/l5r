@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="js/skill_choices_class.js"></script>
 	<script type="text/javascript" src="js/display_functions.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
 
 </head>
 <body>
@@ -196,36 +197,65 @@
 	<!-- Skills and Traits Div - Add/remove skills, has roll functionality -->
 	<div id="skills_div" class="toplevel-div">
 		<div id="skills_tables">
-			<div style="overflow: hidden">
+			<div style="overflow: hidden;">
+				<!-- Trait Table -->
 				<div style="float: left">
 					<p style="text-align: center;"><b>Ring Table</b></p>
 					<table id="trait_table" class="table"></table>
 				</div>
 
+				<!-- Skill Table -->
 				<div style="margin-left: 100px; float: left">
 					<p style="text-align: center;"><b>Skill Table</b></p>
 					<table id="skill_table" class="table"></table>
 					<select id="add_skill_dropdown"></select>
 				</div>
 
-				<div style="float: left; height: 100%">
-					<p style="text-align: center;"><b>Roll Output</b></p>
-					<p id="dice_roller_output"></p>
+			</div>
+
+			<!-- Advantages and Disadvantages Table -->
+			<div style="width: 50%; border: solid black 1px; display: flex;">
+
+				<!-- Advantages -->
+				<div style="margin-right: 20px">
+					<table style="width: 100%; border: solid black 1px">
+						<thead>
+							<tr>
+								<td><b><u>Advantages</u></b></td>
+								<td><b><u>Cost</u></b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Adv1</b></td>
+								<td><b>Cost1</b></td>
+							</tr>
+							<tr>
+								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 
+				<!-- Disadvantages -->
 				<div style="float: left">
-					<p style="text-align: center;"><b>Roll History</b></p>
-					<div id="roll_history_header">
-						<p style="display: inline" id="title_with_button">
-							Roll History:</p>
-						<input type="button" value="Clear" style="float: right;"
-							onclick="clear_roll_history()">
-					</div>
-					<p id="dice_roll_history"></p>
-				</div>
-
-				<div>
-					<p>Advantages and Disadvantages</p>
+					<table style="width: 100%; border: solid black 1px">
+						<thead>
+							<tr>
+								<td><b>Disadvantages</b></td>
+								<td><b>Refund</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Disadv1</td>
+								<td>Refund1</td>
+							</tr>
+							<tr>
+								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -255,12 +285,10 @@
 
 	<script>
 		create_trait_table();
-		// main();
-		var d = new Date();
-		var date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
-		console.log(date);
+		main();
 		load_data_from_storage();
-        refresh_characters_button();
+
+		var data = new DataHandler();
 	</script>
 
 </body>
