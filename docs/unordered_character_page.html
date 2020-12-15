@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Character Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/dice_roller.css">
+	<link rel="stylesheet" href="css/custom_buttons.css">
+	<link rel="stylesheet" href="css/collapsible.css">
+	<link rel="stylesheet" href="css/dropdown_sublists.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/info_div.css">
+	<link rel="stylesheet" href="css/character_creation.css">
+	<link rel="stylesheet" href="css/show_all.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="data/default_skills.js"></script>
+	<script type="text/javascript" src="data/default_schools.js"></script>
+	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/navbar.js"></script>
+	<script type="text/javascript" src="js/character_class_info.js"></script>
+	<script type="text/javascript" src="js/skill_choices_class.js"></script>
+	<script type="text/javascript" src="js/display_functions.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
+
+</head>
+<body>
+
+	<h1>L5R Character Page</h1>
+
+	<div id="character_creation_div" class="toplevel-div">
+		<div id="character_personal_information">
+			<p style="display:inline">Given Name: </p>
+			<input type="text" id="character_forename_input" placeholder="Given Name...">
+			<p style="display:inline">Family Name:</p>
+			<p id="character_family_name" style="display:inline">FAMILY_NAME</p>
+			<p style="display:inline">Clan:</p>
+			<p id="character_clan" style="display:inline">CLAN_NAME</p>
+		</div>
+		
+		<select id="character_family_select">
+			<option style="display:none" value="" selected>Select a family...</option>
+		</select>
+
+		<select id="character_school_select">
+			<option style="display:none" value="" selected>Select a school...</option>
+		</select>
+
+		<div id="skill_choices_div">
+			<p>Skill Choices:</p>
+			<p>skill_choices_go_here</p>
+		</div>
+
+		<div id="advantages_choices_div">
+			<p>Advantages:</p>
+			<p>advantage_choices_go_here</p>
+		</div>
+
+		<div id="disadvantages_choices_div">
+			<p>Disadvantages:</p>
+			<p>disadvantage_chocies_go_here</p>
+		</div>
+
+		<input type="button" value="Generate Character" id="character_create_button">
+	</div>
+
+	<!-- Div for displaying character information (name, family, etc) -->
+	<div id="character_info_div" class="topleve-div">
+		<table class="info_table" id="character_info_table">
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Name:</p>
+						<p class="info_value" id="info_name">PLACEHOLDER_NAME</p>
+					</div>
+				</td>
+				<td>
+					<div>
+						<p class="info_label">Clan:</p>
+						<p class="info_value" id="info_clan">PLACEHOLDER_CLAN</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">School:</p>
+						<p class="info_value" id="info_school">PLACEHOLDER_SCHOOL</p>
+					</div>
+				</td>
+				<td>
+					<div>
+						<p class="info_label">Rank:</p>
+						<p class="info_value" id="info_rank">PLACEHOLDER_RANK</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Experience:</p>
+						<p class="info_value" id="info_exp">PLACEHOLDER_EXP</p>
+					</div>
+				</td>
+				<td>
+					<div>
+						<p class="info_label">Insight:</p>
+						<p class="info_value" id="info_insight">PLACEHOLDER_INSIGHT</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td rowspan=2>
+					<div>
+						<input type="number" value=3 pattern="/d*"
+							id="exp_change_input" onkeyup=check_exp_input>
+						<input type="button" value="Add Exp" 
+							id="exp_change_button">
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<table class="info_table" id="character_pip_table">
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Honor:</p>
+						<p class="info_value" id="info_honor">DUMMY</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Glory:</p>
+						<p class="info_value" id="info_glory">DUMMY</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Status:</p>
+						<p class="info_value" id="info_status">DUMMY</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<p class="info_label">Shadowlands Taint:</p>
+						<p class="info_value" id="info_taint">DUMMY</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<!-- Navbar -->
+	<nav id="navbar" style="border: solid black 1px">
+		<input type="button" value="Instructions" id="navbar_instructions"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Dice Roller" id="navbar_dice_roller"
+			class="navbar_button" onclick="click_nav_button(this.id)">
+		<input type="button" value="Character Skills" id="navbar_skills"
+			class="navbar_button" onclick="click_nav_button(this.id)">
+		<input type="button" value="Combat" id="navbar_combat"
+			class="navbar_button" onclick="click_nav_button(this.id)">
+		<input type="button" value="Spells" id="navbar_spells"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Add Custom Info" id="navbar_custom"
+			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+	</nav>
+
+	<!-- Instructions Div - Just contains text about how to use website -->
+	<div id="instructions_div" class="toplevel-div">
+		<div id="instructions_content">
+			<p>INSTRUCTIONS_PLACEHOLDER</p>
+		</div>
+	</div>
+
+	<!-- Dice Roller Div - Standalone Dice Roller -->
+	<div id="dice_roller_div" class="toplevel-div">
+		<div id="dice_roller_content">
+			<p>DICE_ROLLER_PLACEHOLDER</p>
+		</div>
+	</div>
+
+	<!-- Skills and Traits Div - Add/remove skills, has roll functionality -->
+	<div id="skills_div" class="toplevel-div">
+		<div id="skills_tables">
+			<div style="overflow: hidden;">
+				<!-- Trait Table -->
+				<div style="float: left">
+					<p style="text-align: center;"><b>Ring Table</b></p>
+					<table id="trait_table" class="table"></table>
+				</div>
+
+				<!-- Skill Table -->
+				<div style="margin-left: 100px; float: left">
+					<p style="text-align: center;"><b>Skill Table</b></p>
+					<table id="skill_table" class="table"></table>
+					<select id="add_skill_dropdown"></select>
+				</div>
+
+			</div>
+
+			<!-- Advantages and Disadvantages Table -->
+			<div style="width: 50%; border: solid black 1px; display: flex;">
+
+				<!-- Advantages -->
+				<div style="margin-right: 20px">
+					<table style="width: 100%; border: solid black 1px">
+						<thead>
+							<tr>
+								<td><b><u>Advantages</u></b></td>
+								<td><b><u>Cost</u></b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Adv1</b></td>
+								<td><b>Cost1</b></td>
+							</tr>
+							<tr>
+								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Disadvantages -->
+				<div style="float: left">
+					<table style="width: 100%; border: solid black 1px">
+						<thead>
+							<tr>
+								<td><b>Disadvantages</b></td>
+								<td><b>Refund</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Disadv1</td>
+								<td>Refund1</td>
+							</tr>
+							<tr>
+								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Combat and Equipment Div - Track equipment, roll attacks -->
+	<div id="combat_div" class="toplevel-div">
+		<p>Initiative</p>
+		<p>Armor</p>
+		<p>Wounds</p>
+		<p>Weapons</p>
+		<p>School Skills?</p>
+	</div>
+
+	<!-- Spells Div - Add, roll Spells (nowhere near yet) -->
+	<div id="spells_div" class="toplevel-div">
+		<p>SPELLS_PLACEHOLDER</p>
+	</div>
+
+	<!-- Custom Additions div - Add your own skills, schools, weapons, etc. -->
+	<div id="custom_additions_div" class="toplevel-div">
+		<p>Add Custom Skill</p>
+		<p>Add Custom School</p>
+		<p>Add Custom Item</p>
+		<p>CUSTOM_ADDITIONS_PLACEHOLDER</p>
+	</div>
+
+	<script>
+		create_trait_table();
+		main();
+		load_data_from_storage();
+
+		var data = new DataHandler();
+	</script>
+
+</body>
+</html>
+
+
+
