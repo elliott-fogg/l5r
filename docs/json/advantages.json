@@ -73,7 +73,7 @@
 		"discount": "",
 		"description": "You possess an inherent calm and serenity that others have difficulty overcoming when attempting to antagonize or taunt you, and that strengthens you when your honor is tested. When adding your Honor Rank to the total of any roll made to resist Intimidation or Temptation, you add an additional +1k0 to the roll as well.",
 		"output_text": "If you add your Honor to any Roll made to resist Intimidation or Temptation, add +1k0 to the roll.",		
-		"allow_multiple": false,
+		"allow_multiple": false
 	},
 
 	"Blackmail": {
@@ -116,8 +116,8 @@
 		"allow_multiple": false
 	},
 
-	// Activates other skills and discounts
 	"Blissful Betrothal": {
+		"_COMMENT": "Activates other skills and discounts",
 		"title": "Blissful Betrothal",
 		"cost": 3,
 		"discount": "",
@@ -168,10 +168,10 @@
 						"text": "Fire Ring"
 					},
 					"4": {
-						"Water Ring"
+						"text": "Water Ring"
 					},
 					"5": {
-						"Void Ring"
+						"text": "Void Ring"
 					}
 				}
 			}
@@ -184,7 +184,7 @@
 		"discount": "clan_Dragon",
 		"description": "You possess a sharp mind and keen powers of perception, making it very difficult for others to deceive you. Whenever you make a Contested Roll against someone who is attempting to confuse or manipulate you in any way, you gain a bonus of +1k0 to the total of your roll. Dragon characters may purchase this Advantage for 2 points.",
 		"output_text": "Whenever you make a Contested Roll against someone who is attempting to confuse or manipulate you in any way, you gain a bonus of +1k0 to the roll.",
-		"allow_multiple": false,
+		"allow_multiple": false
 	},
 
 	"Crab Hands": {
@@ -214,8 +214,8 @@
 		"allow_multiple": false
 	},
 
-	// Affects Void Point use
 	"Daredevil": {
+		"_COMMENT": "Affects Void Point use",
 		"title": "Daredevil",
 		"cost": 3,
 		"discount": "clan_Mantis",
@@ -266,7 +266,7 @@
 					"7": {
 						"text": "Will",
 						"hovertext": "Negate 10 Wounds at the moment they are suffered."
-					},
+					}
 				}
 			}
 		]
@@ -290,8 +290,8 @@
 		]
 	},
 
-	// Allows choosing a non-clan school
 	"Different School": {
+		"_COMMENT": "Allows choosing a non-clan school",
 		"title": "Different School",
 		"cost": 5,
 		"discount": "",
@@ -300,8 +300,8 @@
 		"allow_multiple": false
 	},
 
-	// Affects Trait upgrade costs
 	"Elemental Blessing": {
+		"_COMMENT": "Affects Trait upgrade costs",
 		"title": "Elemental Blessing",
 		"cost": 4,
 		"discount": "clan_Phoenix",
@@ -327,14 +327,14 @@
 					},
 					"4": {
 						"text": "Water Ring"
-					},
+					}
 				}
 			}
 		]
 	},
 
-	// Affects Void Ring upgrade cost
 	"Enlightened": {
+		"_COMMENT": "Affects Void Ring upgrade cost",
 		"title": "Enlightened",
 		"cost": 4,
 		"discount": "clan_Dragon class_Monk",
@@ -343,8 +343,8 @@
 		"allow_multiple": false
 	},
 
-	// Adds Glory
 	"Fame": {
+		"_COMMENT": "Adds Glory",
 		"title": "Fame",
 		"cost": 3,
 		"discount": "",
@@ -353,8 +353,8 @@
 		"allow_multiple": false
 	},
 
-	// Adds a skill
 	"Forbidden Knowledge": {
+		"_COMMENT": "Adds a skill",
 		"title": "Forbidden Knowledge",
 		"cost": 5,
 		"discount": "",
@@ -391,8 +391,8 @@
 		]
 	},
 
-	// NEED TO CHECK ELEMENTS, AND HAS POTENTIAL ADDITIONAL RESTRICTIONS
 	"Friendly Kami": {
+		"_COMMENT": "Would be good if we could introduce custom restrictions based on Elemental Deficiencies",
 		"title": "Friendly Kami",
 		"cost": 5,
 		"discount": "",
@@ -421,14 +421,14 @@
 					},
 					"5": {
 						"text": "Void"
-					},
+					}
 				}
 			}
 		]
 	},
 
-	// Affects learning Kiho
 	"Friend of the Brotherhood": {
+		"_COMMENT": "Affects learning Kiho",
 		"title": "Friend of the Brotherhood",
 		"cost": 5,
 		"discount": "clan_Dragon",
@@ -472,8 +472,8 @@
 		]
 	},
 
-	// Adds an item
 	"Gaijin Gear": {
+		"_COMMENT": "Adds an item",
 		"title": "Gaijin Gear",
 		"cost": 5,
 		"discount": "clan_Mantis clan_Unicorn",
@@ -587,8 +587,8 @@
 		"allow_multiple": false
 	},
 
-	// Affects Raise limit
 	"Great Potential": {
+		"_COMMENT": "Affects Raise Limit",
 		"title": "Great Potential",
 		"cost": 5,
 		"discount": "",
@@ -605,8 +605,8 @@
 		]
 	},
 
-	// Can affect Damage Rolls?
 	"Hands Of Stone": {
+		"_COMMENT": "Can affect Damage Rolls, if we're going to do those automatically",
 		"title": "Hands Of Stone",
 		"cost": 6,
 		"discount": "class_Monk",
@@ -659,8 +659,8 @@
 		]
 	},
 
-	// Affects Status
 	"Imperial Spouse": {
+		"_COMMENT": "Affects Status",
 		"title": "Imperial Spouse",
 		"cost": 5,
 		"discount": "",
@@ -678,8 +678,8 @@
 		"allow_multiple": false
 	},
 
-	// Adds an item
 	"Inheritance": {
+		"_COMMENT": "Adds an item",
 		"title": "Inheritance",
 		"cost": 5,
 		"discount": "",
@@ -768,8 +768,8 @@
 		"allow_multiple": false
 	},
 
-	// Allows Void Spells - coding on Spell end, not here
 	"Ishiken-Do": {
+		"_COMMENT": "Allows Void Spells - probably coding on Spell end, not here",
 		"title": "Ishiken-Do",
 		"cost": 8,
 		"discount": "clan_Phoenix_2",
@@ -804,8 +804,8 @@
 		] 
 	},
 
-	// Need to dynamically show or hide this.
 	"Kharmic Tie - Blissful Betrothal": {
+		"_COMMENT": "Need option to dynamically show this",
 		"title": "Kharmic Tie - Blissful Betrothal",
 		"cost": "{rank}",
 		"description": "Your destiny is not yours alone, but is bonded to that of your betrothed spouse. You may have been close to this other person during a previous life, or perhaps your destiny in this life will yet be entwined in theirs in some essential manner. For each point spent on this Advantage, once per session you gain a bonus of +1k1 to the total of all attack rolls made when fighting for or protecting your spouse.",
@@ -929,9 +929,13 @@
 		]
 	},
 
-	//
-	// Skipping 'Multiple Schools' for now as it can only be purchased during play.
-	//
+	"Multiple Schools": {
+		"_COMMENT": "Not implemented at all yet",
+		"title": "Multiple Schools",
+		"cost": 10,
+		"description": "THIS HAS NOT BEEN IMPLEMENTED, DO NOT TAKE THIS ADVANTAGE. Just a placeholder here to remind me to do it at some point.",
+		"output_text": "Placeholder Output_text"
+	},
 
 	"Paragon": {
 		"title": "Paragon",
@@ -1019,8 +1023,8 @@
 		"allow_multiple": false
 	},
 
-	// Affects Initiative
 	"Quick": {
+		"_COMMENT": "Affects Initiative",
 		"title": "Quick",
 		"cost": 6, 
 		"discount": "class_Ninja",
@@ -1034,7 +1038,7 @@
 		"cost": 3,
 		"discount": "",
 		"description": "Your body mends incredibly quickly, allowing you to recover from even devastating wounds with amazing speed. {output_text}",
-		"output_text": "For the purposes of recovering Wounds, your Stamina is considered to be 2 ranks higher.",
+		"output_text": "For the purposes of recovering Wounds, your Stamina is considered to be 2 ranks higher."
 	},
 
 	"Read Lips": {
@@ -1045,8 +1049,8 @@
 		"output_text": "When you are in a situation where others are speaking and you cannot hear them, you can understand what they are saying by making a Perception Trait Roll against TN (15 + 5 for every 20 feet away from you the speakers are)."
 	},
 
-	// THIS CAN BE IMPROVED BY MAKING IT AUTOMATICALLY RESTRICT TO YOUR CLAN
 	"Sacred Weapon": {
+		"_COMMENT": "Would be good if we could automatically restrict it to your clan",
 		"title": "Sacred Weapon",
 		"cost": "{weapon[cost]}",
 		"description": "You possess a special weapon created by the master weaponsmiths of your Clan, and considered to be an icon of all who bear the mon of your Clan.",
@@ -1103,7 +1107,7 @@
 						"text": "Unicorn / Moto Scimitar",
 						"cost": 6,
 						"hovertext": "3k3 Scimitar; +3 to Damage Rolls made while on horseback"
-					},
+					}
 				}
 			}
 		]
@@ -1132,9 +1136,8 @@
 		"output_text": "Whenver you would be required to make an Unskilled Roll using a Perform Skill, you are considered to have 1 rank in that skill."
 	},
 
-	// Additional customisation is required here, to allow for adding custom amounts of abilities to servants.
-	// UNFINISHED
 	"Servant": {
+		"_COMMENT": "Unfinished. Additional customisation required to allow for adding custom amounts of skills to servants.",
 		"title": "Servant",
 		"cost": 5,
 		"discount": "{servant_type[discount]}",
@@ -1316,8 +1319,8 @@
 		"output_text": "You add +1k0 to the total of all Stealth rolls."
 	},
 
-	// Affects Status
 	"Social Position": {
+		"_COMMENT": "Affects Status",
 		"title": "Social Position",
 		"cost": 6,
 		"description": "You have received an illustrious social appointment, whether through your own accomplishments or purely because of political reasons. You gain +1 Status Rank.",
@@ -1349,8 +1352,8 @@
 		]
 	},
 
-	// Affects Wound Penalties
 	"Strength Of The Earth": {
+		"_COMMENT": "Affects Wound Penalties",
 		"title": "Strength Of The Earth",
 		"cost": 3,
 		"discount": "class_Bushi",
@@ -1433,7 +1436,7 @@
 					"hovertext": "You can recover all expended Void Points with only 4 hours of rest, rather than the normal full night of 8 hours of rest.",
 					"cost": 5,
 					"output_text": "{realm[hovertext]}"
-				},
+				}
 			},
 			{
 				"type": "dropdown",
@@ -1445,8 +1448,8 @@
 		]
 	},
 
-	// Increases Honor Rank
 	"Virtuous": {
+		"_COMMENT": "Affects Honor Rank",
 		"title": "Virtuous",
 		"cost": 3,
 		"description": "You embrace virtue in your every thought and aciton. You possess one additional rank of Honor above your normal starting value (as determined by your School).",
@@ -1484,8 +1487,8 @@
 		]
 	},
 
-	// Affects Koku
 	"Wealthy": {
+		"_COMMENT": "Affects Koku",
 		"title": "Wealthy",
 		"cost": "{rank}",
 		"discount": "clan_Crane clan_Unicorn clan_Imperial",
