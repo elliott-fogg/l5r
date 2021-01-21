@@ -384,6 +384,7 @@
 			{
 				"type": "dropdown",
 				"id": "skill_choice",
+				"dropdown_type": "skills",
 				"label_text": "Skill",
 				"required": true,
 				"dependency": "{shared} == true"
@@ -504,6 +505,7 @@
 			{
 				"type": "dropdown",
 				"id": "weapon_type",
+				"dropdown_type": "weapons",
 				"label_text": "Rokugani-weapon Analog",
 				"required": true,
 				"dependency": "{weapon} == true"
@@ -599,6 +601,7 @@
 			{
 				"type": "dropdown",
 				"id": "skill_name",
+				"dropdown_type": "skills",
 				"label_text": "Chosen Skill",
 				"required": true
 			}
@@ -1207,6 +1210,7 @@
 			{
 				"type": "dropdown",
 				"id": "artisan_skill",
+				"dropdown_type": "skills_artisan",
 				"label_text": "Artisan Skill",
 				"required": true,
 				"dependency": "{servant_type} == 1"
@@ -1214,6 +1218,7 @@
 			{
 				"type": "dropdown",
 				"id": "weapon_skill",
+				"dropdown_type": "skills_weapons",
 				"label_text": "Weapon Skill",
 				"required": true,
 				"dependency": "{servant_type} == 3"
@@ -1221,6 +1226,7 @@
 			{
 				"type": "dropdown",
 				"id": "craft_skill",
+				"dropdown_type": "skills_craft",
 				"label_text": "Craft Skill",
 				"required": true,
 				"dependency": "{servant_type} == 4"
@@ -1228,6 +1234,7 @@
 			{
 				"type": "dropdown",
 				"id": "lore_skill",
+				"dropdown_type": "skills_lore",
 				"label_text": "Lore Skill",
 				"required": true,
 				"dependency": "{servant_type} == 8"
@@ -1304,6 +1311,7 @@
 			{
 				"type": "dropdown",
 				"id": "lore_skill",
+				"dropdown_type": "skills_lore",
 				"label_text": "Lore Skill",
 				"required": true,
 				"dependency": "{fortune} == 5"
@@ -1441,6 +1449,8 @@
 			{
 				"type": "dropdown",
 				"id": "skill_choice",
+				"dropdown_type": "skills",
+				"dropdown_restrict": "school",
 				"label_text": "Chosen Skill",
 				"required": true,
 				"dependency": "{realm} == 9"
