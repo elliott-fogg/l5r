@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body {
+		  margin: 0px;
+		  font-family: "Arial";
+		}
+
+		.example {
+		  padding: 20px;
+		}
+
+		input {
+		  &[type="button"] {
+		    padding: 5px 10px;
+		    margin: 10px 5px;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    background: #ddd;
+		    border: 1px solid #ccc;
+
+		    &:hover {
+		      background: #ccc;
+		    }
+		  }
+		}
+
+		.confirm {
+		  display: none;
+
+		  > div {
+		    &:first-of-type {
+		      position: fixed;
+		      width: 100%;
+		      height: 100%;
+		      background: rgba(0, 0, 0, 0.5);
+		      top: 0px;
+		      left: 0px;
+		    }
+
+		    &:last-of-type {
+		      padding: 10px 20px;
+		      background: white;
+		      position: absolute;
+		      width: auto;
+		      height: auto;
+		      left: 50%;
+		      top: 50%;
+		      transform: translate(-50%, -50%);
+		      border-radius: 5px;
+		      border: 1px solid #333;
+
+		      div {
+		        &:first-of-type {
+		          min-width: 150px;
+		          padding: 10px;
+		        }
+
+		        &:last-of-type {
+		          text-align: right;
+		        }
+		      }
+		    }
+		  }
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="example">
+	  <input type="button" onclick="save()" value="Save" />
+	</div>
+
+
+	<div class="confirm">
+	  <!-- <div></div> -->
+	  <div>
+	    <div id="confirmMessage">Confirm text</div>
+	    <div>
+	      <input id="confirmYes" type="button" value="Yes" />
+	      <input id="confirmNo" type="button" value="No" />
+	    </div>
+	  </div>
+	</div>
+
+	<div id="cover" style="position: fixed;  top: 0px; left: 0px; opacity: 1; z-index: 3; width: 100%; height: 100%; background-color: black;" ></div>
+
+	<div id="box" style="position: fixed; top: 25%; left: 25%; z-index: 4; background-color: white; height: 50%; width: 50%;">
+		<div style="position: relative">
+			<p>Hello</p>
+		</div>
+		<div style="position: relative; top: 90%; height: 10%; background-color: green; width: 100%">
+			<input type="button" value="a button">
+		</div>
+	</div>
+
+	<script>
+		const ui = {
+		  confirm: async (message) => createConfirm(message)
+		}
+
+		const createConfirm = (message) => {
+		  return new Promise((complete, failed) => {
+		  	document.getElementById("confirmMessage").innerHTML = message;
+
+		  	document.getElementById("confirmYes").onclick = function() {
+		  		var confirms = document.getElementsByClassName("confirm");
+		  		for (let el of confirms) {
+		  			el.style.display = "None";
+		  		}
+		  		complete(true);
+		  	}
+
+		  	document.getElementById("confirmNo").onclick = function() {
+		  		var confirms = document.getElementsByClassName("confirm");
+		  		for (let el of confirms) {
+		  			el.style.display = "None";
+		  		}
+		  		complete(false);
+		  	}
+
+		  	confirms = document.getElementsByClassName("confirm");
+		  	for (let el of confirms) {
+		  		el.style.display = "block";
+		  	}
+		  });
+		}
+		                     
+		const save = async () => {
+		  const confirm = await ui.confirm('Are you sure you want to do this?');
+		  
+		  if(confirm){
+		    alert('yes clicked');
+		  } else{
+		    alert('no clicked');
+		  }
+		}
+	</script>
+
+</body>
+</html>

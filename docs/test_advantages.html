@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Advantage Selection Test Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/dropdown_sublists.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+	<script type="text/javascript" src="js/modal_test.js"></script>
+
+</head>
+<body>
+
+	<h2>Test Page - Using online Advantages</h2>
+	<input type="file" value="Load Advantages File" onchange="load_data(this.files)"
+	 multiple=true>
+	<div>
+		<label>Clan:</label>
+		<select id="clan_select" onchange="refresh_advantage_costs();">
+			<option value="" selected>None</option>
+			<option value="Crab">Crab</option>
+			<option value="Crane">Crane</option>
+			<option value="Lion">Lion</option>
+			<option value="Unicorn">Unicorn</option>
+			<option value="Dragon">Dragon</option>
+			<option value="Phoenix">Phoenix</option>
+			<option value="Mantis">Mantis</option>
+			<option value="Spider">Spider</option>
+			<option value="Scorpion">Scorpion</option>
+			<option value="Imperial">Imperial</option>
+		</select>
+
+		<label>Class:</label>
+		<select id="class_select" onchange="refresh_advantage_costs();">
+			<option value="" selected>None</option>
+			<option value="Bushi">Bushi</option>
+			<option value="Shugenja">Shugenja</option>
+			<option value="Courtier">Courtier</option>
+			<option value="Monk">Monk</option>
+			<option value="Ninja">Ninja</option>
+		</select>
+	</div>
+
+	<div id="button_div">
+		<h4>Simple Advantages</h4>
+		<div id="no_input_advs"></div>
+		<h4>Input Advantages</h4>
+		<div id="input_advs"></div>
+		<h4>Dropdown Advantages</h4>
+		<div id="dropdown_advs"></div>
+		<h4>Finished Disadvantages</h4>
+		<div id="finished_disadvs"></div>
+		<h4>Unfinished Disadvantages</h4>
+		<div id="unfinished_disadvs"></div>
+	</div>
+
+	<div id="advantages_div" style="border: solid black 1px">
+		<h1>Advantages</h1>
+	</div>
+
+	<div id="disadvantages_div" style="border: solid black 1px">
+		<h1>Disadvantages</h1>
+	</div>
+
+	<script>
+		DH = new DataHandler(function() {
+			add_all_modal_tests(this.advantages);
+			add_all_modal_tests(this.disadvantages, false);
+		});
+	</script>
+
+</body>
+</html>
+
+
+
