@@ -208,7 +208,7 @@
 				"type": "select",
 				"id": "magnitude",
 				"label_text": "Strength of Compulsion",
-				"default_options": "Select the TN you must overcome...",
+				"default_option": "Select the TN you must overcome...",
 				"options": {
 					"1": {
 						"text": "TN 15",
@@ -238,7 +238,7 @@
 				"type": "select",
 				"id": "tenet",
 				"label_text": "Tenet",
-				"default_options": "Select Tenet...",
+				"default_option": "Select Tenet...",
 				"options": {
 					"1": {
 						"text": "Control",
@@ -571,6 +571,7 @@
 	},
 
 	"Forced Retirement": {
+		"_COMMENT": "Affects School Skill selection",
 		"title": "Forced Retirement",
 		"cost": 4,
 		"bonus": "class_Monk",
@@ -586,6 +587,7 @@
 	},
 
 	"Gaijin Name": {
+		"_COMMENT": "Affects Dice Explosion",
 		"title": "Gaijin Name",
 		"cost": 1,
 		"bonus": "clan_Unicorn",
@@ -631,6 +633,7 @@
 	},
 
 	"Infamous": {
+		"_COMMENT": "May affect Glory?",
 		"title": "Infamous",
 		"cost": 2,
 		"description": "You are well known in some circles, but not in the manner you might wish. Rather than being known for your valor and your courage, you are known for being ruthless, cruel, and dangerous. This reputation may not be deserved, but it is widespread enough that it no longer matters if it is true. Your starting Glory Rank is replaced with an Infamy Rank, which serves in exactly the same capacity, save for the reaction of those who recognise you.",
@@ -638,210 +641,423 @@
 	},
 
 	"Insensitive": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Insensitive",
+		"cost": 2,
+		"bonus": "clan_Scorpion",
+		"description": "Your primary interest is in yourself and things that you care about. The plight of others simply does not interest you, and you find it difficult to pretend otherwise. With the exception of those who contribute directly to your well being, such as your lord, you must spend a Void Point to place yourself at risk for the welfare of any other person unless there is an immediate benefit for you personally. This Disadvantage is worth 3 points to Scorpion characters.",
+		"output_text": "With the exception of those who contribute directly to your well being, such as your lord, you must spend a Void Point to place yourself at risk for the welfare of any other person unless there is an immediate benefit for you personally."
 	},
 
 	"Jealousy": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Jealousy",
+		"cost": 3,
+		"description": "You are obsessed with outperforming another individual in order to prove that you deserve all the things they have, things you perceive as superior to your own. Choose one other PC or a major NPC in your campaign. You are obsessed with overcoming them at all costs, and will go to any lengths to do so. Once you have bested the target of your jealousy, your nature will cause you to become jealous of someone else.",
+		"output_text": "Initial Rival: {name}<br>You are obsessed with outperforming this individual at all costs, and will go to any lengths to do so. Once you have bested them, your nature will cause you to become jealous of someone else.",
+		"input": [
+			{
+				"type": "text",
+				"id": "name",
+				"label_text": "Initial Rival"
+			}
+		]
 	},
 
 	"Lame": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Lame",
+		"cost": 4,
+		"description": "One of your legs is withered or perhaps even near-useless, either due to a birth defect, a crippling injury, or a ravaging disease. Your Water Ring is considered 1 for the purposes of determining Move Actions, and any Agility Trait Rolls or Agility-based Skill Rolls that required any sort of activity in your lower limbs suffer a penalty of +10 to the TN.",
+		"output_text": "Your Water Ring is considered 1 for the purposes of determining Move Actions, and any Agility Trait Rolls or Agility-based Skill Rolls that required any sort of activity in your lower limbs suffer a penalty of +10 to the TN."
 	},
 
 	"Lechery": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Lechery",
+		"cost": 2,
+		"description": "Physical pleasure is a weakness of yours, and you spend considerable time pursuing it. When an opponent makes a Temptation (Seduction) roll against you, they gain a bonus of +1k1 to the total of their roll.",
+		"output_text": "When an opponent makes a Temptation (Seduction) roll against you, they gain a bonus of +1k1 to the total of their roll."
 	},
 
 	"Lord Moon's Curse": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Lord Moon's Curse",
+		"cost": "{level[cost]}",
+		"description": "The madness of Lord Moon, Onnotangu, lingers in your soul, driving you to fits of madness despite your increased understanding of the universe. You gain an additional Void Point at sunset on any night of the full moon. If you do not use this Void Point, it is lost with the sunrise. However, when the full moon rises, you must make a Willpower Trait Roll against TN 10 + 5 for each level in this Disadvantage. If you fail the roll, you lost control of your character for the evening. You awaken the next morning with no idea what atrocious acts you might have committed...",
+		"output_text": "You gain an additional Void Point at sunset on any night of the full moon. If you do not use this Void Point, it is lost with the sunrise.<br>However, when the full moon rises, you must make a Willpower Trait Roll against {level[text]}. If you fail the roll, you lost control of your character for the evening. You awaken the next morning with no idea what atrocious acts you might have committed...",
+		"input": [
+			{
+				"type": "select",
+				"id": "level",
+				"label_text": "Level of Effect",
+				"options": {
+					"1": {
+						"text": "TN 15",
+						"cost": 3
+					},
+					"2": {
+						"text": "TN 20",
+						"cost": 5
+					},
+					"3": {
+						"text": "TN 25",
+						"cost": 7
+					}
+				}
+			}
+		]
 	},
 
 	"Lost Love": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Lost Love",
+		"cost": 3,
+		"description": "You shared a bond of true love with someone once, and have since lost it. This need not be romantic love, as familial or brotherly love lost is equally tragic. You tend to suffer bouts of melancholy when reminded of your lost love. When you are reminded of your loss, all your TNs are increased by 5 until you spend a Void Point to regain your focus. This disruption of your concentration cannot happen more than twice per day, and at least one hour must pass between instances.",
+		"output_text": "Lost Love: {lost_love}<br>When you are reminded of your loss, all your TNs are increased by 5 until you spend a Void Point to regain your focus. This disruption of your concentration cannot happen more than twice per day, and at least one hour must pass between instances.",
+		"input": [
+			{
+				"type": "text",
+				"id": "lost_love",
+				"label_text": "Lost One",
+				"placeholder": "(Either a name or description)"
+			}
+		]
 	},
 
 	"Low Pain Threshold": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Wound Rank penalties",
+		"title": "Low Pain Threshold",
+		"cost": 4,
+		"description": "Your ability to focus in the face of pain is less than that of others. The TN penalties you suffer due to Wound Ranks are increased by +5 each rank.",
+		"output_text": "The TN penalties you suffer due to Wound Ranks are increased by +5 each rank."
 	},
 
 	"Missing Limb": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Missing Limb",
+		"cost": 6,
+		"description": "One of your limbs is missing, either through catastrophic injury or due to an unfortunate defect of your birth. You suffer a penalty of +10 to all TNs involving the use of the limb that is missing. For example, wielding a two-handed weapon with only one arm would have a +10 to all TNs, but an Athletics (Running) Skill Roll would not.",
+		"output_text": "Missing Limb: {limb[text]}<br>You suffer a penalty of +10 to all TNs involving the use of the limb that is missing. For example, wielding a two-handed weapon with only one arm would have a +10 to all TNs, but an Athletics (Running) Skill Roll would not.",
+		"input": [
+			{
+				"type": "select",
+				"id": "limb",
+				"label_text": "Limb",
+				"default_option": "Select a limb...",
+				"options": {
+					"1": {
+						"text": "Right Arm"
+					},
+					"2": {
+						"text": "Left Arm"
+					},
+					"3": {
+						"text": "Right Leg"
+					},
+					"4": {
+						"text": "Left Leg"
+					}
+				}
+			}
+		]
 	},
 
 	"Momoku": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Momoku",
+		"cost": 8,
+		"description": "There is a fundamental spiritual imbalance present in your soul that no one can explain or rectify, but it has a dramatic impact on yout place within the universe, and harmony is a state virtually unknown to you. You possess Void Points, but you may not spend them on anything except School Techniques which specifically require Void Points. The basic uses of Void Points listed in the Book of Earth are unavailable to you.",
+		"output_text": "You possess Void Points, but you may not spend them on anything except School Techniques which specifically require Void Points. The basic uses of Void Points listed in the Book of Earth are unavailable to you."
 	},
 
 	"Obligation": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Obligation",
+		"cost": "",
+		"description": "There is someone to whom you are indebted or for whom you must fulfill some significant duty. The nature of this debt can vary considerably, but when it comes due, nothing else matters. You must honor it, even if it leads to your ruination. The first level of this Disadvantage is a relatively minor matter that nevertheless demands your full attention. The second level represents a major, significant obligation that could potentially damage your family's standing if you do not devote considerable time and resources to fulfilling it.",
+		"output_text": "Debtee: {name}<br>You are indebted to this person, and when that debt is called in you must fulfill some significant duty.<br>{severity[hovertext]}",
+		"input": [
+			{
+				"type": "text",
+				"id": "name",
+				"label_text": "Debtee",
+				"placeholder": "Name"
+			},
+			{
+				"type": "select",
+				"id": "severity",
+				"label_text": "Severity",
+				"options": {
+					"1": {
+						"text": "A minor matter",
+						"hovertext": "A minor matter that nevertheless demands your full attention."
+					},
+					"2": {
+						"text": "A major obligation",
+						"hovertext": "A major, significant obligation that could potentially damage your family's standing if you do not devote considerable time and resources to fulfilling it."
+					}
+				}
+
+			}
+		]
 	},
 
 	"Obtuse": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Skill levelling",
+		"title": "Obtuse",
+		"cost": 3,
+		"bonus": "clan_Crab class_Bushi",
+		"description": "The point of many fine things simply escapes you. Poetry, arts, music... it all seems meaningless to you. The Experience Point cost for increasing any High Skill other than Investigation or Medicine is doubled. This Disadvantage is worth 4 points to Crab and bushi characters.",
+		"output_text": "The Experience Point cost for increasing any High Skill other than Investigation or Medicine is doubled."
 	},
 
 	"Overconfident": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Overconfident",
+		"cost": 3,
+		"bonus": "clan_Lion clan_Mantis",
+		"description": "You possess a gossly inflated view of your own prowess, and are often incapable of recognising when a situation is beyond your ability to handle. When outnumbered or facing a clearly superior enemy (whether in court or in battle), you must succeed at a Perception Trait Roll (TN 20) in order to recognise the situation for what it is and leave instead of engaging. This Disadvantage is worth 4 points to Lion and Mantis characters.",
+		"output_text": "When outnumbered or facing a clearly superior enemy (whether in court or in battle), you must succeed at a Perception Trait Roll (TN 20) in order to recognise the situation for what it is and leave instead of engaging."
 	},
 
 	"Permanent Wound": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Wounds",
+		"title": "Permanent Wound",
+		"cost": 4,
+		"bonus": "class_Bushi",
+		"description": "Some wounds will not heal, no matter how often they are treated or by what means. Your first Wound Rank is always considered full. This Disadvantage is worth 5 points to bushi characters.",
+		"output_text": "Your first Wound Rank is always considered full."
 	},
 
 	"Phobia": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Phobia",
+		"cost": "{ranks}",
+		"description": "You possess and irrational fear that you cannot overcome, no matter how much you struggle to convince yourself that there is no reason behind it. When confronted with the object of your phobia, all of your TNs are increased by +5 for every point you possess in this Disadvantage.",
+		"output_text": "Phobia: {phobia}<br>Whenever you are confronted with the object of your phobia, all of your TNs are increased by +£ {ranks}*5 £.",
+		"input": [
+			{
+				"type": "text",
+				"id": "phobia",
+				"label_text": "Phobia"
+			},
+			{
+				"type": "int",
+				"id": "ranks",
+				"label_text": "Ranks",
+				"min": 1,
+				"max": 3
+			}
+		]
 	},
 
 	"Rumormonger": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Rumormonger",
+		"cost": 4,
+		"bonus": "class_Courtier",
+		"description": "You cannot resist the temptation to spread rumors and gossip, no matter how ridiculous or outlandish they might seem. When presented with an opportunity to spread rumors, to resist doing so you must succeed at a Willpower Trait Roll with a TN equal to 5x the Glory Rank of the highest-Glory individual involved in the rumor. This Disadvantage is worth 5 points to courtier characters.",
+		"output_text": "When presented with an opportunity to spread rumors, to resist doing so you must succeed at a Willpower Trait Roll with a TN equal to 5x the Glory Rank of the highest-Glory individual involved in the rumor."
 	},
 
 	"Seven Fortune's Curse": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Damage Rolls, Koku",
+		"title": "Seven Fortune's Curse - {curse[text]}",
+		"cost": 3,
+		"description": "One of the Seven Fortunes has found your behaviour unacceptable, and visited his or her wrath upon you. This curse manifests itself in a very real way, and few are ever able to placate beings as powerful and as fickle as the Seven Fortunes.",
+		"output_text": "OUTPUT_TEXT",
+		"input": [
+			{
+				"type": "select",
+				"id": "curse",
+				"label_text": "Curse",
+				"default_option": "Select a curse...",
+				"options": {
+					"1": {
+						"text": "Benten's Curse",
+						"hovertext": "The TN of any Etiquette roll you make is increased by +10."
+					},
+					"2": {
+						"text": "Bishamon's Curse",
+						"hovertext": "Your Strength is considered one rank lower for determining the Damage Roll of any weapon you wield."
+					},
+					"3": {
+						"text": "Daikoku's Curse",
+						"hovertext": "You suffer a penalty of -1k1 to all Commerce rolls, and the koku of your School's starting outfit is reduced by 1."
+					},
+					"4": {
+						"text": "Ebisu's Curse",
+						"hovertext": "You suffer a penalty of -1k1 on all Social Skill rolls made with non-samurai citizens of Rokugan."
+					},
+					"5": {
+						"text": "Fukurokujin's Curse",
+						"hovertext": "When making a Lore Skill Roll, your TN is increased by +5."
+					},
+					"6": {
+						"text": "Hotei's Curse",
+						"hovertext": "Any Technique or Advantage that requires you to spend a Void Point instead requires 2 Void Points."
+					},
+					"7": {
+						"text": "Jurojin's Curse",
+						"hovertext": "You suffer a penalty of -2k0 to resist all poisons and diseases."
+					}
+				}
+			}
+		]
 	},
 
 	"Shadowlands Taint": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Shadowlands Taint",
+		"title": "Shadowlands Taint",
+		"cost": 4,
+		"description": "You have felt the touch of darkness, and it has not left you unscathed. You possess the Shadowlands Taint, a condition that makes you hopelessly spiritually lost in the eyes of virtually the entire Empire, and which is essentially incurable. You have 0.5 ranks of Shadowlands Taint. It is up to you whether you are actually aware of your Taint, since it is not detectable at this level.",
+		"output_text": "You have 0.5 ranks of Shadowlands Taint. You may be, but are not necessarily aware that you have it, as it is not detectable at this level."
 	},
 
 	"Small": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Advantage Restriction, affects Damage Rolls",
+		"title": "Small",
+		"cost": 3,
+		"description": "You are noticeably smaller than average for a denizen of the Emerald Empire. As a result, your Water Ring is considered one rank lower for determining the distance of your Move Actions, and you suffer a penalty of -1k0 on the Damage Rolls of all your Melee attacks. You may not take the Large advantage.",
+		"output_text": "You are noticeably smaller than average for a denizen of the Emerald Empire. As a result, your Water Ring is considered one rank lower for determining the distance of your Move Actions, and you suffer a penalty of -1k0 on the Damage Rolls of all your Melee attacks."
 	},
 
 	"Social Disadvantage": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects Status Rank",
+		"title": "Social Disadvantage",
+		"cost": 3,
+		"description": "You have slipped from your position within the Celestial Order, and your place in society reflects that. You begin with Status Rank 0.",
+		"output_text": "You begin with Status Rank 0."
 	},
 
 	"Soft-Hearted": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Soft-Hearted",
+		"cost": 2,
+		"bonus": "clan_Phoenix",
+		"description": "Human life is precious to you, so much so that you have difficulty executing the basic duty of the samurai caste: to kill. When faced with the opportunity to kill another human being, you must succeed at a Willpower Trait Roll (TN 20), or you are unable to do so. If you do kill another, the TNs of all your rolls are increased by +10 for one day as you are wracked with guilt. This penalty is not cumulative with multiple deaths. This Disadvantage is worth 3 points to Phoenix characters.",
+		"output_text": "When faced with the opportunity to kill another human being, you must succeed at a Willpower Trait Roll (TN 20), or you are unable to do so. If you do kill another, the TNs of all your rolls are increased by +10 for one day as you are wracked with guilt. This penalty is not cumulative with multiple deaths."
 	},
 
 	"Sworn Enemy": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Sworn Enemy",
+		"cost": "£3 + {extra_insight} + (({kharmic}) ? 2 : 0)£",
+		"description": "You have earned an enemy, one who will stop at nothing to see you defeated or even killed. The basic version of this Advantage (costing 3 points) assumes that your enemy is of equal Insight Rank. For each Insight Rank above yours your enemy possesses, increase the value of this Disadvantage by 1. For 2 additional points the enemy becomes your kharmic nemesis, and you may not spend Void Points when opposing them in any situation.",
+		"output_text": "£({kharmic}) ? 'Kharmic' : 'Sworn'£ Enemy: {name}<br>£({extra_insight} > 0) ? 'They are {extra_insight} Insight Ranks above you.<br>' : ''£They will stop at nothing to see you defeated or even killed.",
+		"input": [
+			{
+				"type": "text",
+				"id": "name",
+				"label_text": "Nemesis Name"
+			},
+			{
+				"type": "int",
+				"id": "extra_insight",
+				"label_text": "Additional Insight Ranks",
+				"min": 0
+			},
+			{
+				"type": "checkbox",
+				"id": "kharmic",
+				"label_text": "Kharmic Nemesis?",
+				"start_checked": false
+			}
+		]
 	},
 
 	"Touch Of The Void": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Touch Of The Void",
+		"cost": 3,
+		"bonus": "clan_Phoenix",
+		"description": "You have been touched by the essence of the Void, and it has forever damaged your mind. Whenever you draw upon the Void, the effect is powerful, but it can overwhelm you. When you spend a Void Point to augment a roll, you gain a bonus of +2k1 instead of +1k1. Every time you spend a Void Point, however, you must succeed at a Willpower Trait Roll (TN 30) or be Dazed for one Round. This Disadvantage is worth 4 points to Phoenix characters.",
+		"output_text": "When you spend a Void Point to augment a roll, you gain a bonus of +2k1 instead of +1k1. Every time you spend a Void Point, however, you must succeed at a Willpower Trait Roll (TN 30) or be Dazed for one Round."
 	},
 
 	"True Love": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "True Love",
+		"cost": 3,
+		"description": "True love in Rokugan can be a wonderful experience, but more often than not it is a disaster, for it is rare for samurai to be allowed to marry for love. Whenever you are in a position where you must choose between love and duty, you must spend a Void Point before you can choose your duty over your lover.",
+		"output_text": "Whenever you are in a position where you must choose between love and duty, you must spend a Void Point before you can choose your duty over your lover."
 	},
 
 	"Unlucky": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Unlucky",
+		"cost": "{ranks} * 2",
+		"description": "Fortune favors the mortal man... just not in your case. A number of times per session equal to your rank in this Disadvantage, the GM may force you to immediately re-roll one roll, keeping the second roll in all cases.",
+		"output_text": "£{ranks}£ times per session, the GM may force you to immediately re-roll one roll, keeping the second roll in all cases.",
+		"input": [
+			{
+				"type": "int",
+				"id": "ranks",
+				"label_text": "Ranks",
+				"min": 1
+			}
+		]
 	},
 
 	"Weakness": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"_COMMENT": "Affects traits and rolls",
+		"title": "Weakness",
+		"cost": 6,
+		"description": "You have a significant weakness of some sort, either physical or mental, that is difficult to overcome even under ideal circumstances. Select one Trait. That Trait is treated as if it were one rank lower for the purposes of all rolls and Trait-based mechanical effects.",
+		"output_text": "Your {trait[text]} Trait is treated as if it were one rank lower for the purposes of all rolls and Trait-based mechanical effects.",
+		"input": [
+			{
+				"type": "select",
+				"id": "trait",
+				"label_text": "Trait",
+				"default_option": "Select a Trait...",
+				"options": {
+					"1": {
+						"text": "Awareness"
+					},
+					"2": {
+						"text": "Reflexes"
+					},
+					"3": {
+						"text": "Stamina"
+					},
+					"4": {
+						"text": "Willpower"
+					},
+					"5": {
+						"text": "Agility"
+					},
+					"6": {
+						"text": "Intelligence"
+					},
+					"7": {
+						"text": "Perception"
+					},
+					"8": {
+						"text": "Strength"
+					},
+					"9": {
+						"text": "Void"
+					}
+				}
+			}
+		]
 	},
 
 	"Wrath Of The Kami": {
-		"title": "TITLE",
-		"cost": -1,
-		"bonus": "",
-		"description": "DESCRIPTION",
-		"output_text": "OUTPUT_TEXT"
+		"title": "Wrath Of The Kami",
+		"cost": 3,
+		"bonus": "class_Shugenja",
+		"description": "The spirits of a particular element have a vehement dislike for you, and when invoked to smite you, they gleefully and enthusiastically comply. This may be the result of a shugenja's curse, an offense you offered to the Fortunes, or a variety of other spiritual causes. Select one element when you purchase this Disadvantage. Spells of this element cast against you confer one Free Raise on the Spell Casting Roll. This Disadvantage is worth 4 points to shugenja characters.",
+		"output_text": "{element[text]} Spells cast against you confer one Free Raise on the Spell Casting Roll.",
+		"input": [
+			{
+				"type": "select",
+				"id": "element",
+				"label_text": "Element",
+				"default_option": "Select an Element...",
+				"options": {
+					"1": {
+						"text": "Air"
+					},
+					"2": {
+						"text": "Earth"
+					},
+					"3": {
+						"text": "Fire"
+					},
+					"4": {
+						"text": "Water"
+					},
+					"5": {
+						"text": "Void"
+					}
+				}
+			}
+		]
 	}
 }

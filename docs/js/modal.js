@@ -205,20 +205,6 @@ class ModalWindow {
 			return false
 		}
 
-
-		// console.log("VERIFYING DATA");
-		// for (let data_id in this.data_params) {
-		// 	let constraints = this.data_params[data_id];
-		// 	let data = this.data[data_id];
-		// 	if (constraints["required"]) {
-		// 		console.log(data);
-		// 		if (data == null || data.length == 0) {
-		// 			alert(`Please fill in the field '${data_id}'.`);
-		// 			return false;
-		// 		}
-		// 	}
-		// }
-
 		return true;
 	}
 
