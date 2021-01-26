@@ -12,7 +12,7 @@
 		"title": "Allies",
 		"cost": "{influence[cost]} + {devotion[cost]}",
 		"discount": "clan_Crane",
-		"output_text": "Ally Name: {}<br>Influence: {influence[text]}<br>Devotion: {devotion[text]}",
+		"output_text": "Ally Name: {name}<br>Influence: {influence[text]}<br>Devotion: {devotion[text]}",
 		"description": "You have carefully nurtured social connections. Some of those in your web would go to great lengths to protect you, while others have considerable resources. And some precious few are both. The total cost of this Advantage is determined by how many points you spend on your ally's degree of influence and their devotion to you. Crane characrters may purchase this Advantage for 1 point less than its normal cost.",
 		"allow_multiple": true,
 		"input": [
@@ -358,6 +358,7 @@
 		"title": "Forbidden Knowledge",
 		"cost": 5,
 		"discount": "",
+		"description": "There is a subject about which you possess considerable knowledge and insight. The problem is that this subject is forbidden, and considered grossly socially inappropriate if not outright illegal. Anyone who discovers your expertise in this area might rightly wonder how you came upon it. The benefits of the Advantage vary depending upon the nature of the information, and players should discuss with their GM how this Advantage will work.",
 		"output_text": "{knowledge_title}<br>{knowledge_description}",
 		"allow_multiple": true,
 		"input": [
@@ -387,7 +388,7 @@
 				"dropdown_type": "skills",
 				"label_text": "Skill",
 				"required": true,
-				"dependency": "{shared} == true"
+				"dependency": "{gain_skill} == true"
 			}
 		]
 	},
@@ -443,7 +444,7 @@
 		"cost": 4,
 		"discount": "class_Shugenja",
 		"description": "The spirits of a certain Element swirl about you at all times, lending their aid when possible even though you are likely unaware of their presence. Choose a Ring when this Advantage is purchased. Whenever you make a Trait Roll with either Trait associated with that Ring, you gain a Free Raise. Shugenja characters may purchase this Advantage for 3 points.",
-		"output_text": "Whenever you make a Trait Roll with either Trait associated with your {ring_name[text]}, you gain a Free Raise.",
+		"output_text": "Ring: {ring_name[text]}<br>Whenever you make a Trait Roll with {ring_name[value]} trait, you gain a Free Raise.",
 		"allow_multiple": false,
 		"input": [
 			{
@@ -454,19 +455,24 @@
 				"default_option": "Select a Ring...",
 				"options": {
 					"1": {
-						"text": "Air Ring"
+						"text": "Air Ring",
+						"value": "either your Reflexes or Awareness"
 					},
 					"2": {
-						"text": "Earth Ring"
+						"text": "Earth Ring",
+						"value": "either your Stamina or Willpower"
 					},
 					"3": {
-						"text": "Fire Ring"
+						"text": "Fire Ring",
+						"value": "either your Agility or Intelligence"
 					},
 					"4": {
-						"text": "Water Ring"
+						"text": "Water Ring",
+						"value": "either your Strength or Perception"
 					},
 					"5": {
-						"text": "Void Ring"
+						"text": "Void Ring",
+						"value": "your Void"
 					}
 				}
 			}
@@ -573,7 +579,7 @@
 				"label_text": "Individual Cost",
 				"required": false,
 				"default_value": 0,
-				"min": 0,
+				"min": 1,
 				"max": 30,
 				"dependency": "{shared} == true"
 			}
@@ -705,22 +711,14 @@
 		"cost": 7,
 		"discount": "",
 		"description": "You possess a mysterious gift that even shugenja cannot fully understand. Monks describe individuals such as yourself as existing in a unique state of harmony with the universe, but then they say that sort of thing a lot. Your gift may be a manifestation of the kami, perhaps an indicator of spirit ancestry, or any of a number of different theories. The exact nature of an Inner Gift should be discussed with the GM before taking this Advantage. You may choose one of the gifts provided, or write your own.",
-		"output_text": "({custom_text}) ? '{inner_gift_choice[text]}<br>{inner_gift_choice[hovertext]}' : '{custom_gift_title}<br>{custom_gift_description}'",
+		"output_text": "£({inner_gift_choice} == 6) ? 'Gift: {custom_gift_title}<br>{custom_gift_description}' : '{inner_gift_choice[text]}<br>{inner_gift_choice[hovertext]}'£",
 		"allow_multiple": true,
 		"input": [
 			{
-				"type": "checkbox",
-				"id": "custom_text",
-				"label_text": "Create a custom Inner Gift?",
-				"required": true,
-				"start_checked": false
-			},
-			{
 				"type": "select",
 				"id": "inner_gift_choice",
-				"label_text": "inner_gift",
+				"label_text": "Inner Gift",
 				"required": true,
-				"dependency": "{custom_text} == false",
 				"default_option": "Select an effect...",
 				"options": {
 					"1": {
@@ -742,6 +740,10 @@
 					"5": {
 						"text": "Spirit Touch",
 						"hovertext": "You may make an Awareness roll (TN 15) to see the last person to touch an object that you are touching."
+					},
+					"6": {
+						"text": "Custom Gift",
+						"hovertext": "Create a custom Inner Gift"
 					}
 				}
 			},
@@ -750,14 +752,14 @@
 				"id": "custom_gift_title",
 				"label_text": "Title of Inner Gift",
 				"required": true,
-				"dependency": "{custom_text} == true"
+				"dependency": "{inner_gift_choice} == 6"
 			},
 			{
 				"type": "text",
 				"id": "custom_gift_description",
 				"label_text": "Description",
 				"required": true,
-				"dependency": "{custom_text} == true"
+				"dependency": "{inner_gift_choice} == 6"
 			}
 		]
 	},
@@ -990,7 +992,7 @@
 
 	"Perceived Honor": {
 		"title": "Perceived Honor",
-		"cost": "",
+		"cost": "{rank}*2",
 		"discount": "",
 		"description": "Others find it difficult to perceive your true nature, a fact that benefits you in concealing your sometimes questionable actions. For each rank you possess in this Advantage, your Honor is considered one full rank higher for the purpose of all attempts to discern it. Anyone attempting to roll Lore: Bushido to determine your Honor Rank will determine the false rank instead of your actual Honor.",
 		"output_text": "Your Honor is considered {rank} rank(s) higher for the purpose of all attempts to discern it. Anyone attempting to roll Lore: Bushido to determine your Honor Rank will determine the false rank instead of your actual Honor.",
@@ -1002,7 +1004,6 @@
 				"label_text": "Ranks",
 				"max": 10,
 				"min": 1,
-				"default_value": 1,
 				"required": true
 			}
 		]
@@ -1040,7 +1041,7 @@
 		"title": "Quick Healer",
 		"cost": 3,
 		"discount": "",
-		"description": "Your body mends incredibly quickly, allowing you to recover from even devastating wounds with amazing speed. {output_text}",
+		"description": "Your body mends incredibly quickly, allowing you to recover from even devastating wounds with amazing speed. For the purposes of recovering Wounds, your Stamina is considered to be 2 ranks higher.",
 		"output_text": "For the purposes of recovering Wounds, your Stamina is considered to be 2 ranks higher."
 	},
 
@@ -1048,7 +1049,7 @@
 		"title": "Read Lips",
 		"cost": 4,
 		"discount": "class_Courtier",
-		"description": "Either through natural ability or incredible patience and practice, you have the ability to understand what others are saying even if you cannot hear them, simply by observing how their lips move. {output_text} Courtier characters may purchase this Advantage for 3 points.",
+		"description": "Either through natural ability or incredible patience and practice, you have the ability to understand what others are saying even if you cannot hear them, simply by observing how their lips move. When you are in a situation where others are speaking and you cannot hear them, you can understand what they are saying by making a Perception Trait Roll against TN (15 + 5 for every 20 feet away from you the speakers are). Courtier characters may purchase this Advantage for 3 points.",
 		"output_text": "When you are in a situation where others are speaking and you cannot hear them, you can understand what they are saying by making a Perception Trait Roll against TN (15 + 5 for every 20 feet away from you the speakers are)."
 	},
 
@@ -1057,7 +1058,7 @@
 		"title": "Sacred Weapon",
 		"cost": "{weapon[cost]}",
 		"description": "You possess a special weapon created by the master weaponsmiths of your Clan, and considered to be an icon of all who bear the mon of your Clan.",
-		"output_text": "Weapon: {weapon[text]}<br>{weapon[hovertext}",
+		"output_text": "Weapon: {weapon[text]}<br>{weapon[hovertext]}",
 		"input": [
 			{
 				"type": "select",
@@ -1365,7 +1366,7 @@
 		"title": "Strength Of The Earth",
 		"cost": 3,
 		"discount": "class_Bushi",
-		"description": "In your soul can be found the spirit of the mountains and the strength of stone. You can overcome injuries that would cripple other men. {output_text} Bushi characters may purchase this Advantage for 2 points.",
+		"description": "In your soul can be found the spirit of the mountains and the strength of stone. You can overcome injuries that would cripple other men. The TN penalties you suffer from Wound Ranks are reduced by 3. Bushi characters may purchase this Advantage for 2 points.",
 		"output_text": "The TN penalties you suffer from Wound Ranks are reduced by 3."
 	},
 
@@ -1385,65 +1386,71 @@
 		"output_text": "{realm[text]}<br>{realm[output_text]}",
 		"input": [
 			{
-				"1": {
-					"text": "Chikushudo",
-					"hovertext": "You gain a +1k1 on all Animal Handling rolls.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"2": {
-					"text": "Gaki-do",
-					"hovertext": "When you resolve an attack that kills an opponent, you immediately regain 5 Wounds.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"3": {
-					"text": "Jigoku",
-					"hovertext": "You may add your Taint Rank to any attack roll and any Skill roll or Trait roll that uses a Physical Trait. If you are Lost, you add twice your Taint Rank.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"4": {
-					"text": "Maigo No Musha",
-					"hovertext": "When you are awarded Glory in an amount greater than 3 points, you receive 1 additional point.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"5": {
-					"text": "Meido",
-					"hovertext": "You gain a bonus of +2k0 to Contested Rolls versus attempts to manipulate you in social interractions, such as use of the Courtier Skill.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"6": {
-					"text": "Sakkaku",
-					"hovertext": "You gain a bonus of +1k1 on Sincerity (Deceit) rolls.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"7": {
-					"text": "Tengoku",
-					"hovertext": "You gain a bonus of +2k0 on Earth Ring Rolls made to resist the Shadowlands Taint.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
-				},
-				"8": {
-					"text": "Toshigoku",
-					"hovertext": "When making a Move Action to get into range to attack an opponent, the distance of your move is increased by 5 feet.",
-					"cost": 8,
-					"output_text": "{realm[hovertext]}"
-				},
-				"9": {
-					"text": "Yomi",
-					"hovertext": "Select one School Skill. You gain a bonus of +1k0 on all Skill Rolls made using that Skill.",
-					"cost": 7,
-					"output_text": "You gain a bonus of +1k0 on all {skill_choice} rolls."
-				},
-				"10": {
-					"text": "Yume-Do",
-					"hovertext": "You can recover all expended Void Points with only 4 hours of rest, rather than the normal full night of 8 hours of rest.",
-					"cost": 5,
-					"output_text": "{realm[hovertext]}"
+				"type": "select",
+				"id": "realm",
+				"label_text": "Realm",
+				"default_option": "Select a Spirit Realm...",
+				"options": {
+					"1": {
+						"text": "Chikushudo",
+						"hovertext": "You gain a +1k1 on all Animal Handling rolls.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"2": {
+						"text": "Gaki-do",
+						"hovertext": "When you resolve an attack that kills an opponent, you immediately regain 5 Wounds.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"3": {
+						"text": "Jigoku",
+						"hovertext": "You may add your Taint Rank to any attack roll and any Skill roll or Trait roll that uses a Physical Trait. If you are Lost, you add twice your Taint Rank.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"4": {
+						"text": "Maigo No Musha",
+						"hovertext": "When you are awarded Glory in an amount greater than 3 points, you receive 1 additional point.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"5": {
+						"text": "Meido",
+						"hovertext": "You gain a bonus of +2k0 to Contested Rolls versus attempts to manipulate you in social interractions, such as use of the Courtier Skill.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"6": {
+						"text": "Sakkaku",
+						"hovertext": "You gain a bonus of +1k1 on Sincerity (Deceit) rolls.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"7": {
+						"text": "Tengoku",
+						"hovertext": "You gain a bonus of +2k0 on Earth Ring Rolls made to resist the Shadowlands Taint.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					},
+					"8": {
+						"text": "Toshigoku",
+						"hovertext": "When making a Move Action to get into range to attack an opponent, the distance of your move is increased by 5 feet.",
+						"cost": 8,
+						"output_text": "{realm[hovertext]}"
+					},
+					"9": {
+						"text": "Yomi",
+						"hovertext": "Select one School Skill. You gain a bonus of +1k0 on all Skill Rolls made using that Skill.",
+						"cost": 7,
+						"output_text": "You gain a bonus of +1k0 on all {skill_choice} rolls."
+					},
+					"10": {
+						"text": "Yume-Do",
+						"hovertext": "You can recover all expended Void Points with only 4 hours of rest, rather than the normal full night of 8 hours of rest.",
+						"cost": 5,
+						"output_text": "{realm[hovertext]}"
+					}
 				}
 			},
 			{
@@ -1509,8 +1516,7 @@
 				"type": "int",
 				"id": "rank",
 				"label_text": "Ranks",
-				"min": 1,
-				"default_value": 1
+				"min": 1
 			}
 		]
 	}

@@ -3,7 +3,8 @@ class DataLoader {
 		this.data = {
 			"skills": {"path": "/json/skill_info.json"},
 			"clans": {"path": "/json/clan_info.json"},
-			"advantages": {"path": "/json/advantages_sample.json"},
+			"advantages": {"path": "/json/advantages.json"},
+			"disadvantages": {"path": "/json/disadvantages.json"}
 		}
 		this.loaded = false;
 		this.callback = callback;
@@ -327,6 +328,29 @@ class DataHandler extends DataLoader {
 				return skill_name;
 			}
 		}
+	}
+
+	// General Functions ///////////////////////////////////////////////////////
+
+	get_list(list_type) {
+		if (list_type == null) {
+			console.log("ERROR: No list_type provided!");
+			list_type = "skills_lore";
+		}
+		var [main_type, sub_type] = list_type.split("_")
+		console.log(main_type, sub_type);
+		var results;
+		switch (main_type) {
+			case "skills":
+				results = this.get_skill_list(sub_type)
+				break
+			default:
+				console.log(`ERROR: List type does not exist: ${list_type}`)
+				results = ["PLACEHOLDER_1", "PLACEHOLDER_2", "PLACEHOLDER_3"];
+		}
+
+		console.log(results)
+		return results
 	}
 
 // End Class
