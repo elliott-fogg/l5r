@@ -166,37 +166,58 @@ class ModalWindow {
 		console.log("REPLACED DEPENDENCY STRING", dependency_string, eval(dependency_string));
 
 		return eval(dependency_string);
-
-
-		// if (dependency_string.includes("{")) {
-		// 	let matches = [...dependency_string.matchAll(/{([a-zA-Z_]+)}/g)];
-		// 	for (let match of matches) {
-		// 		let to_replace = match[0];
-		// 		let data_id = match[1];
-
-		// 		let new_value = this.data[data_id];
-
-		// 		dependency_string = dependency_string.replace(to_replace, new_value);
-		// 	}
-		// 	console.log("REPLACED DEPENDENCY STRING:", dependency_string, eval(dependency_string));
-		// }
-
-		// return eval(dependency_string);
 	}
 
 	verify_data() {
 		console.log("VERIFYING DATA");
+		console.log(this.data_params);
+
+		var failed_inputs = [];
+
 		for (let data_id in this.data_params) {
 			let constraints = this.data_params[data_id];
 			let data = this.data[data_id];
-			if (constraints["required"]) {
-				console.log(data);
-				if (data == null || data.length == 0) {
-					alert(`Please fill in the field '${data_id}'.`);
-					return false;
-				}
+
+			// If data is Optional, check is irrelevant
+			if ("optional" in constraints) {
+				continue;
+			}
+
+			// If the data has an unfulfilled dependency, check is irrelevant
+			if ("dependency" in constraints &&
+			    !(this.validate_dependency(data_id))) {
+				continue;
+			}
+
+			// At this point, data is not optional and either does not have a 
+			// dependency or the dependency is fulfilled, so it must not be
+			// empty / undefined.
+			if (data == null || data.length == 0) {
+				let field_name = `'${this.data_params[data_id]["label_text"]}'`;
+				failed_inputs.push(field_name);
 			}
 		}
+
+		if (failed_inputs.length > 0) {
+			var alert_text = "Error: Please fill in the " + failed_inputs.join(", ") + 
+				" fields."
+			alert(alert_text);
+			return false
+		}
+
+
+		// console.log("VERIFYING DATA");
+		// for (let data_id in this.data_params) {
+		// 	let constraints = this.data_params[data_id];
+		// 	let data = this.data[data_id];
+		// 	if (constraints["required"]) {
+		// 		console.log(data);
+		// 		if (data == null || data.length == 0) {
+		// 			alert(`Please fill in the field '${data_id}'.`);
+		// 			return false;
+		// 		}
+		// 	}
+		// }
 
 		return true;
 	}

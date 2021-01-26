@@ -1,5 +1,6 @@
 // TODO:
-// * Add in CustomDropdown for Skill Selection
+// * Add in CustomDropdown for Skill Selection - Make it work
+// * Add in Textbox Input Option
 
 function load_data(files) {
 	for (file of files) {
