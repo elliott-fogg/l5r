@@ -1,12 +1,36 @@
 /* Only display dropdown menu when button is active */
-.dropdown-toggle + .dropdown-menu {
+.dropdown-toggle + .dropdown-div {
   display: none;
+  max-height: 200px;
+  overflow-y: auto; /*?*/
 }
-.dropdown-toggle.active + .dropdown-menu {
-  display: table;
-  margin: none;
+
+.dropdown-toggle + .dropdown-div {
+  display: none;
   position: absolute;
-  z-index: 2; /* Display dropdown list above everything else, so nothing moves */
+  margin: 0;
+  z-index: 50;
+  /*transform: translateY(-16px);*/
+  padding: 0;
+  scroll-padding: 0;
+}
+
+.dropdown-div + .dropdown-menu {
+  display: inline;
+  margin: 0, 0;
+  padding: 0, 0;
+  margin-block-start: 0;
+}
+
+.dropdown-toggle.active + .dropdown-div {
+  display: block;
+}
+
+.dropdown-toggle.active + .dropdown-menu {
+  display: block;
+  /*margin: none;*/
+  /*position: absolute;*/
+  /*z-index: 50;  Display dropdown list above everything else, so nothing moves */
   transform: translateY(-16px);
 }
 
@@ -14,9 +38,11 @@
 .dropdown-submenu>.dropdown-menu {
   display: none;
 }
+
 .dropdown-submenu.active>.dropdown-menu {
   display: inline;
   position: absolute;
+  overflow: scroll; /*?*/
 }
 
 /* Position submenu relative to the menu item that spawned it */
@@ -57,6 +83,8 @@ ul.dropdown-menu {
   outline: solid black 1px;
   margin-left: 1px;
   padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   width: auto;
   list-style-type: none;
   background-color: white;

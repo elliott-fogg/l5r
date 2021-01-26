@@ -4,6 +4,7 @@ class dropdown_with_sublists {
 
 	constructor(button_text, input_data, callback=null, caller=null) {
 		console.log("CREATING NEW DROPDOWN");
+		console.log(input_data);
 		this.button_text = button_text;
 		this.input_data = input_data;
 		this.callback = callback;
@@ -37,7 +38,10 @@ class dropdown_with_sublists {
 	}
 
 	create_sublist(input_data) {
+		var sublist_div = document.createElement("div")
+		sublist_div.classList = "dropdown-div"
 		var ulist = document.createElement("ul");
+		sublist_div.appendChild(ulist)
 		ulist.classList = "dropdown-menu";
 		for (let option in input_data) {
 			let li = document.createElement("li");
@@ -84,7 +88,7 @@ class dropdown_with_sublists {
 
 			ulist.appendChild(li);
 		}
-		return ulist;
+		return sublist_div;
 	}
 
 	bind_submenu_onclick(event) {
