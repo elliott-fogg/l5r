@@ -74,7 +74,7 @@
 		"cost": "{honor_rank}",
 		"discount": "clan_Scorpion",
 		"description": "You possess knowledge and proof of a dark secret held by another, and can use that secret to elicit their cooperation in a number of ways. The cost of the Advantage is equal to theh Status Rank of the individual whom you are blackmailing. Using this Advantage too frequently or making grandiose demands mar result in them deciding your death is worth the risk of exposing their secret, no matter what the consequences might be. Scorpion characters may purchase this Advantage for 1 point less than normal.",
-		"output_text": "Person Blackmailed: {target_name}<br>Blackmail: {blackmail_description}",
+		"output_text": "<b>Person Blackmailed:</b> {target_name}<br><b>Blackmail:</b> {blackmail_description}",
 		"allow_multiple": true,
 		"input": [
 			{
@@ -90,7 +90,7 @@
 				"min": 1
 			},
 			{
-				"type": "text",
+				"type": "textbox",
 				"id": "blackmail_description",
 				"label_text": "Blackmail Description (Optional)",
 				"optional": true
@@ -129,7 +129,7 @@
 	},
 
 	"Chosen by the Oracles": {
-		"title": "Chosen by the Oracles",
+		"title": "Chosen by the Oracles - {ring_name[text]}",
 		"cost": 6,
 		"description": "For reasons beyond your understanding, you have caught the notice of one of the Oracles, humans suffused with the divine power of Elemental Dragons. You must select one Ring when you take this Advantage. You gain a bonus of +1k1 to the total of all Ring Rolls using that Ring.",
 		"output_text": "You gain a bonus of +1k1 to the total of all {ring_name[text]} Rolls.",
@@ -550,7 +550,7 @@
 		"title": "Great Potential",
 		"cost": 5,
 		"description": "Within you lies the potential to excel at one particular endeavor, perhaps more so than any other living soul in the Empire. Select any one Skill when you purchase this Advantage. When you make Raises on a Skill Roll using that Skill, your raises are limited by your rank in that Skill instead of your Void RIng. If your Void Ring is higher, however, you may use that as a measure for your Raises if you so choose.",
-		"output_text": "When you make Raises on a {skill_name} Skill Roll, your Raises are limited by your rank in that Skill instead of your Void Ring (unless your Void Ring is higher).",
+		"output_text": "When you make Raises on {skill_name} Skill Rolls, your Raises are limited by your rank in that Skill instead of your Void Ring (unless your Void Ring is higher).",
 		"allow_multiple": true,
 		"input": [
 			{

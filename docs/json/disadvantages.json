@@ -115,8 +115,9 @@
 	},
 
 	"Blackmailed": {
+		"_COMMENT": "Cost dependent on Status Rank",
 		"title": "Blackmailed",
-		"cost": -1,
+		"cost": "{PLAYER[status]}",
 		"description": "Someone out there knows of some dark secret of yours, or some horrible indiscretion you committed in a moment of weakness. What's worse, they intend to make you pay for it. The cost of this Disadvantage is equal to your Status Rank. The person blackmailing you will contact you periodically and require certain things of you. You must weigh these actions against the potential disgrace if your secret is discovered, and act accordingly.",
 		"output_text": "Blackmailer: {blackmailer}<br>Blackmail: {blackmail}",
 		"input": [
@@ -516,7 +517,7 @@
 	},
 
 	"Failure Of Bushido": {
-		"title": "Failure Of Bushido - {tenet[text]}",
+		"title": "Failure Of Bushido",
 		"cost": "{tenet[cost]}",
 		"bonus": "class_Ninja",
 		"description": "Try though you might to adhere to the code of bushido, one tenet in particular is simply foreign to you, and you have no concept of how to exemplify it through your actions. This Disadvantage is worth 1 additional point to ninja characters.",
@@ -851,7 +852,7 @@
 
 	"Seven Fortune's Curse": {
 		"_COMMENT": "Affects Damage Rolls, Koku",
-		"title": "Seven Fortune's Curse - {curse[text]}",
+		"title": "Seven Fortune's Curse",
 		"cost": 3,
 		"description": "One of the Seven Fortunes has found your behaviour unacceptable, and visited his or her wrath upon you. This curse manifests itself in a very real way, and few are ever able to placate beings as powerful and as fickle as the Seven Fortunes.",
 		"output_text": "OUTPUT_TEXT",

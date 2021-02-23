@@ -1471,6 +1471,47 @@
                         "text": "This is the fifth School Technique."
                     }
                 ]
+            },
+            "Moto Death Priest": {
+                "class": "Shugenja",
+                "attribute": "Willpower",
+                "skills": [
+                    "Athletics",
+                    "Horsemanship",
+                    "Hunting",
+                    "Lore: Theology",
+                    "Meditation",
+                    "Spellcraft"
+                ],
+                "skill_choices": [
+                    "Any"
+                ],
+                "honor": 3.5,
+                "money": "5koku",
+                "outfit": [
+                    "Sturdy_travelling_clothing",
+                    "Wakizashi",
+                    "any 1 Weapon",
+                    "traveling_pack",
+                    "Horse (Unicorn Steed)"
+                ],
+                "affinity": "Earth",
+                "deficiency": "Air",
+                "spells": [
+                    "Sense",
+                    "Commune",
+                    "Summon",
+                    "choice_Earth_3",
+                    "choice_Fire_2",
+                    "choice_Water_1"
+                ],
+                "techniques": [
+                    {
+                        "rank": 1,
+                        "name": "Blessings of the Shi-Tien Yen-Wang",
+                        "text": "As a Simple Action you may sacrifice a spell slot and target one enemy (within a maximum range equal to your School Rank x 100 feet). Make a Contested Willpower Roll against that opponent. If you are successful, the target may not benefit from exploding dice or from Advantages that allow him to re-roll a roll. This effect lasts for a number of Rounds equal to your School Rank. You gain a Free Raise on any spell with the Travel keyword."
+                    }
+                ]
             }
         }
     },
