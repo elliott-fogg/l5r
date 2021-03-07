@@ -39,6 +39,10 @@
 	margin: 10px;
 }
 
+.modal_div.modal_buttons {
+	margin-top: 10px;
+}
+
 .modal_close {
 /*	position: absolute;
 	right: 10px;
