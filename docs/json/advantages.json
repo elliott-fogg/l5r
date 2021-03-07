@@ -90,10 +90,11 @@
 				"min": 1
 			},
 			{
-				"type": "textbox",
+				"type": "text",
 				"id": "blackmail_description",
 				"label_text": "Blackmail Description (Optional)",
-				"optional": true
+				"optional": true,
+				"textbox": true
 			}
 		]
 	},
@@ -804,7 +805,6 @@
 	"Luck": {
 		"title": "Luck",
 		"cost": "{rank[cost]}",
-		"discount": "",
 		"description": "Fortune favors the mortal man. A number of times per session equal to your rank in this Advantage, you may choose to immediately re-roll any one roll you make, keeping the higher of the two results.",
 		"output_text": "You may choose to immediately re-roll any one roll you make, keeping the higher of the two results. Can be used {rank} time(s) per session.",
 		"input":[
@@ -843,7 +843,6 @@
 				"type": "int",
 				"id": "rank",
 				"label_text": "Rank",
-				"default_value": 1,
 				"max": 3,
 				"min": 1
 			}
