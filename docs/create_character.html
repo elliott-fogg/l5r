@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Character Creation Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/custom_buttons.css">
+ 	<link rel="stylesheet" href="css/custom_dropdown.css">
+	<link rel="stylesheet" href="css/character_creation.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/collapsible_divs.css">
+	<link rel="stylesheet" href="css/tables.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/collapsible_divs.js"></script>
+	<script type="text/javascript" src="js/character_class_info.js"></script>
+	<script type="text/javascript" src="js/skill_choices_class.js"></script>
+	<script type="text/javascript" src="js/display_functions.js"></script>
+	<script type="text/javascript" src="js/character_creation_new.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+	<script type="text/javascript" src="js/custom_dropdown.js"></script>
+
+	<script type="text/javascript">
+		function initiate_page() {
+
+			// Attach necessary listener to all collapsible divs on page
+			window.addEventListener("DOMContentLoaded", (event) => {
+				activate_collapsible_divs();
+			})
+			
+
+			// Initiate DataHandler, with callback to run CharacterCreator
+			// when all data is loaded.
+			// NOTE: Should find a way to circumvent this, so that the page can 
+			// load while the data is being retrieved.
+
+			var dataHandler;
+
+			dataHandler = new DataHandler( function() {
+				new CharacterCreator(dataHandler)
+			});
+		}
+
+		// window.onload = initiate_page();
+	</script>
+
+</head>
+<body onload="initiate_page()">
+
+	<h1>L5R Character Creation Page</h1>
+
+	<input type="button" value="Generate Character" id="character_create_button">
+
+	<input type="button" value="Upload local files" id="upload_local">
+
+	<br><br>
+
+	<!-- Personal Information -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p class="advantage">Personal Information</p>
+		</div>
+		<div class="collapsible-div-content">
+			<label>Name:</label>
+			<input type="text" id="character_name_input" placeholder="Name...">
+		</div>
+	</div>
+
+	<!-- Family and School Select -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p>Family and School Select</p>
+		</div>
+		<div class="collapsible-div-content">
+			<label>Family:</label>
+			<select id="character_family_select" style="margin-right: 20px"></select>
+			<label>School:</label>
+			<select id="character_school_select"></select>
+			<div>
+				<p style="display: inline">School Skill Choices:</p>
+				<div id="skill_choices_div"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Traits and Skills Tables -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p>Starting Traits and Skills</p>
+		</div>
+		<div class="collapsible-div-content">
+			<div style="display: flex">
+				<table style="margin-right: 5px">
+					<thead>
+						<tr>
+							<td><b><u>Trait</u></b></td>
+							<td><b><u>Starting Value</u></b></td>
+						</tr>
+					</thead>
+					<tbody id="trait_tbody">
+					</tbody>
+				</table>
+
+				<table>
+					<thead>
+						<tr>
+							<td><b><u>Skill</u></b></td>
+							<td><b><u>Rank</u></b></td>
+							<td><b><u>Emphases</u></b></td>
+						</tr>
+					</thead>
+					<tbody id="skill_tbody">
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Techniques -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p>Techniques</p>
+		</div>
+		<div class="collapsible-div-content" id="techniques_div">
+			<p>Techniques Here</p>
+		</div>
+	</div>
+
+	<!-- Advantages and Disadvantages -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p>Advantages and Disadvantages</p>
+		</div>
+		<div class="collapsible-div-content">
+			<div id="total_advantages_div" style="display: flex">
+				<div id="advantages_div">
+					<select id="advantage_select"></select>
+					<br>
+					<table id="adv_table">
+						<thead>
+							<tr>
+								<td width="400px"><b><u>Advantages</u></b></td>
+								<td><b><u>Cost</u></b></td>
+							</tr>
+						</thead>
+						<tbody id="adv_tbody"></tbody>
+					</table>
+				</div>
+
+				<div style="border: black solid 1px; margin-top: 0px; margin-right: 3px"></div>
+
+				<div id="disadvantages_div">
+					<select id="disadvantage_select"></select>
+					<br>
+					<table id="disadv_table">
+						<thead>
+							<tr>
+								<td width="400px"><b><u>Disadvantages</u></b></td>
+								<td><b><u>Refund</u></b></td>
+							</tr>
+						</thead>
+						<tbody id="disadv_tbody"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Spells -->
+	<div class="collapsible-div-container heading disabled" id="spells_container">
+		<div class="collapsible-div-title">
+			<p>Spells</p>
+		</div>
+		<div class="collapsible-div-content">
+			<div>
+				<p>Affinity: </p>
+				<p id="p_affinity" style="margin-right: 20px">None</p>
+				<p>Deficiency: </p>
+				<p id="p_deficiency">None</p>
+			</div>
+			<div>
+				<p>Starting Spell Choices:</p>
+				<p id="p_spell_choices">SPELL_CHOICES_GO_HERE</p>
+			</div>
+			<input type="button" value="Add spell..." id="spell_btn">
+
+			<!-- Spells Table -->
+			<table>
+				<thead>
+					<tr>
+						<td style="padding-right: 50px">
+							<b><u>Spell</u></b>
+						</td>
+						<td><u>Mastery Level</u></td>
+						<td><u>Element(s)</u></td>
+					</tr>
+				</thead>
+				<tbody id="spells_tbody">
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Equipment -->
+	<div class="collapsible-div-container heading">
+		<div class="collapsible-div-title">
+			<p>Equipment</p>
+		</div>
+		<div class="collapsible-div-content">
+			<p><b>EQUIPMENT GOES HERE</b></p>
+		</div>
+	</div>
+
+	<!-- Additional Effects -->
+	<div class="collapsible-div-container heading hidden">
+		<div class="collapsible-div-title">
+			<p>Additional Effects</p>
+		</div>
+		<div class="collapsible-div-content">
+			<select>
+				<option value="" style="display:none" selected>Apply an effect...</option>
+				<option>Ronin</option>
+			</select>
+			<div id="effects_div">
+				<div class="collapsible-div-container">
+					<div class="collapsible-div-title">
+						<p>Ronin</p>
+					</div>
+					<div class="collapsible-div-content">
+						<p>No extra exp.<br>
+							Status 0<br>
+							Glory 0<br>
+							Starting koku halved<br>
+							No advantages that grant wealth or status<br>
+							Ascetic is allowed<br>
+							Fill out travelling pack in advance<br>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+
