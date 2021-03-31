@@ -1,0 +1,57 @@
+{
+    "Crab": {
+        "Hida": "Strength",
+        "Hiruma": "Agility",
+        "Kaiu": "Intelligence",
+        "Kuni": "Intelligence",
+        "Toritaka": "Perception",
+        "Yasuki": "Awareness"
+    },
+    "Crane": {
+        "Asahina": "Intelligence",
+        "Daidoji": "Stamina",
+        "Doji": "Awareness",
+        "Kakita": "Agility"
+    },
+    "Dragon": {
+        "Kitsuki": "Awareness",
+        "Mirumoto": "Agility",
+        "Tamori": "Willpower",
+        "Togashi": "Reflexes"
+    },
+    "Lion": {
+        "Akodo": "Agility",
+        "Ikoma": "Awareness",
+        "Kitsu": "Intelligence",
+        "Matsu": "Strength"
+    },
+    "Mantis": {
+        "Kitsune": "Awareness",
+        "Moshi": "Intelligence",
+        "Tsuruchi": "Perception",
+        "Yoritomo": "Stamina"
+    },
+    "Phoenix": {
+        "Agasha": "Perception",
+        "Asako": "Awareness",
+        "Isawa": "Willpower",
+        "Shiba": "Perception"
+    },
+    "Scorpion": {
+        "Bayushi": "Agility",
+        "Shosuro": "Awareness",
+        "Soshi": "Intelligence",
+        "Yogo": "Willpower"
+    },
+    "Unicorn": {
+        "Horiuchi": "Willpower",
+        "Ide": "Perception",
+        "Iuchi": "Intelligence",
+        "Moto": "Agility",
+        "Shinjo": "Reflexes",
+        "Utaku": "Stamina"
+    },
+    "Dummy_clan": {
+        "Dummy_family": "Reflexes"
+    }
+}

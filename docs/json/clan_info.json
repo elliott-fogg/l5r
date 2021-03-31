@@ -91,18 +91,16 @@
                 "affinity": "Earth",
                 "deficiency": "Air",
                 "spells": [
-                    "Sense",
-                    "Commune",
-                    "Summon",
-                    "choice_Earth_3",
-                    "choice_Fire_2",
-                    "choice_Water_1"
+                    "Earth_3",
+                    "Fire_2",
+                    "Water_1"
                 ],
+                "keyword_bonus": "Jade",
                 "techniques": [
                     {
                         "rank": 1,
                         "name": "Gaze Into Shadow",
-                        "text": "The Kuni have carefully studied many of the most sinister opponents imaginable, and have learned how to combat them. You gain a bonus of +1k0 to the total of all Spell Casting Rolls when the target is any non-human creature, and any spell that inflicts damage inflicts an additional +1k1 damage when used against a target who possesses the Shadowlands Taint. You also gain a Free Raise on any spell with the Jade keyword."
+                        "text": "You gain a bonus of +1k0 to the total of all Spell Casting Rolls when the target is any non-human creature, and any spell that inflicts damage inflicts an additional +1k1 damage when used against a target who possesses the Shadowlands Taint."
                     }
                 ]
             },
@@ -172,7 +170,7 @@
                     "Any"
                 ],
                 "honor": 4.5,
-                "money": "3koku",
+                "money": 15.0,
                 "outfit": [
                     [
                         "ashigaru",
@@ -282,31 +280,17 @@
                     "High"
                 ],
                 "honor": 6.5,
+                "money": 50.0,
+                "outfit": ["Robes", "weapon_Bo", "weapon_Wakizashi", "Scroll Satchel", "Travelling Pack"],
+                "affinity": "Air",
+                "deficiency": "Fire",
+                "spell_choices": "Air_3 Water_2 Earth_1",
+                "keyword_bonus": "Defense",
                 "techniques": [
                     {
                         "rank": 1,
-                        "name": "School Technique 1",
-                        "text": "This is the first School Technique."
-                    },
-                    {
-                        "rank": 2,
-                        "name": "School Technique 2",
-                        "text": "This is the second School Technique."
-                    },
-                    {
-                        "rank": 3,
-                        "name": "School Technique 3",
-                        "text": "This is the third School Technique."
-                    },
-                    {
-                        "rank": 4,
-                        "name": "School Technique 4",
-                        "text": "This is the fourth School Technique."
-                    },
-                    {
-                        "rank": 5,
-                        "name": "School Technique 5",
-                        "text": "This is the fifth School Technique."
+                        "name": "The Soul's Grace",
+                        "text": "You may spend a Void Point to reduce the total of all opponents' damage rolls inflicted within 20' of you by 0k1 for a number of rounds equal to your School Rank. Using this technique again before its duration expires 'resets' the duration, but does not increase the damage penalty."
                     }
                 ]
             },
@@ -467,26 +451,6 @@
                         "rank": 1,
                         "name": "School Technique 1",
                         "text": "This is the first School Technique."
-                    },
-                    {
-                        "rank": 2,
-                        "name": "School Technique 2",
-                        "text": "This is the second School Technique."
-                    },
-                    {
-                        "rank": 3,
-                        "name": "School Technique 3",
-                        "text": "This is the third School Technique."
-                    },
-                    {
-                        "rank": 4,
-                        "name": "School Technique 4",
-                        "text": "This is the fourth School Technique."
-                    },
-                    {
-                        "rank": 5,
-                        "name": "School Technique 5",
-                        "text": "This is the fifth School Technique."
                     }
                 ]
             },
@@ -716,7 +680,7 @@
                 ]
             },
             "Matsu Berserker School": {
-                "class": "Berserker",
+                "class": "Bushi",
                 "attribute": "Strength",
                 "skills": [
                     "Battle",
@@ -898,6 +862,7 @@
                 ]
             },
             "Tsuruchi Archer School": {
+                "class": "Bushi",
                 "attribute": "Reflexes",
                 "skills": [
                     "Athletics",
@@ -949,6 +914,7 @@
         },
         "schools": {
             "Shiba Bushi School": {
+                "class": "Bushi",
                 "attribute": "Agility",
                 "skills": [
                     "Defense",
@@ -991,6 +957,7 @@
                 ]
             },
             "Isawa Shugenja School": {
+                "class": "Shugenja",
                 "attribute": "Intelligence",
                 "skills": [
                     "Calligraphy_(Cipher)",
@@ -1033,6 +1000,7 @@
                 ]
             },
             "Asako Loremaster School": {
+                "class": "Courtier",
                 "attribute": "Intelligence",
                 "skills": [
                     "Courtier",
@@ -1075,6 +1043,7 @@
                 ]
             },
             "Agasha Shugenja School": {
+                "class": "Shugenja",
                 "attribute": "Intelligence",
                 "skills": [
                     "Calligraphy_(Cipher)",
@@ -1127,6 +1096,7 @@
         },
         "schools": {
             "Bayushi Bushi School": {
+                "class": "Bushi",
                 "attribute": "Intelligence",
                 "skills": [
                     "Courtier_(Manipulation)",
@@ -1169,6 +1139,7 @@
                 ]
             },
             "Soshi Shugenja School": {
+                "class": "Shugenja",
                 "attribute": "Awareness",
                 "skills": [
                     "Calligraphy_(Cipher)",
@@ -1211,6 +1182,7 @@
                 ]
             },
             "Bayushi Courtier School": {
+                "class": "Courtier",
                 "attribute": "Awareness",
                 "skills": [
                     "Calligraphy",
@@ -1253,6 +1225,7 @@
                 ]
             },
             "Shosuro Infiltrator School": {
+                "class": "Ninja",
                 "attribute": "Reflexes",
                 "skills": [
                     "Acting",
@@ -1306,6 +1279,7 @@
         },
         "schools": {
             "Moto Bushi School": {
+                "class": "Bushi",
                 "attribute": "Strength",
                 "skills": [
                     "Athletics",
@@ -1348,6 +1322,7 @@
                 ]
             },
             "Iuchi Shugenja School": {
+                "class": "Shugenja",
                 "attribute": "Perception",
                 "skills": [
                     "Battle",
@@ -1390,6 +1365,7 @@
                 ]
             },
             "Ide Emissary School": {
+                "class": "Courtier",
                 "attribute": "Awareness",
                 "skills": [
                     "Calligraphy",
@@ -1432,6 +1408,7 @@
                 ]
             },
             "Utaku Battle Maiden": {
+                "class": "Bushi",
                 "attribute": "Reflexes",
                 "skills": [
                     "Battle",

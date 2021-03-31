@@ -8,7 +8,7 @@
 
 	"Allies": {
 		"title": "Allies",
-		"cost": "{influence[cost]} + {devotion[cost]}",
+		"cost": "£{influence[cost]} + {devotion[cost]}£",
 		"discount": "clan_Crane",
 		"output_text": "Ally Name: {name}<br>Influence: {influence[text]}<br>Devotion: {devotion[text]}",
 		"description": "You have carefully nurtured social connections. Some of those in your web would go to great lengths to protect you, while others have considerable resources. And some precious few are both. The total cost of this Advantage is determined by how many points you spend on your ally's degree of influence and their devotion to you. Crane characrters may purchase this Advantage for 1 point less than its normal cost.",

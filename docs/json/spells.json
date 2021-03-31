@@ -2,7 +2,7 @@
 	"Sense": {
 		"description": "Allows the caster to sense the presense, quantity, and rough location of elemental spirits of the chosen element within the range of the spell.",
 		"keywords": [],
-		"ring": "Air Earth Fire Water",
+		"elements": ["Air","Earth","Fire","Water"],
 		"mastery_level": 1,
 		"range": "Personal",
 		"aoe": "50' Radius",
@@ -13,13 +13,12 @@
 			}
 		},
 		"universal": true
-
 	},
 
 	"Summon": {
 		"description": "Allows the caster to summon a modest quantity (one cubic foot) of the chosen element, in any open space within the spell's range. The element will behave in a normal and mundane manner. Raises may be used to summon a more specific type of the appropriate element, such as Wood or Iron with Earth, or Tea with Water, at the GM's discretion. Rare/precious materials (e.g. Gold) or spiritually powerful substances (e.g. Jade or Crystal) are not allowed.",
 		"keywords": [],
-		"ring": "Air Earth Fire Water",
+		"elements": ["Air","Earth","Fire","Water"],
 		"mastery_level": 1,
 		"range": 30,
 		"aoe": "1 cubic foot of summoned material",
@@ -42,7 +41,7 @@
 	"Commune": {
 		"description": "Allows the caster to speak with one of the local elemental kami, asking it a few questions, which it will answer honestly to the best of its ability. The spirit will answer two questions.",
 		"keywords": [],
-		"ring": "Air Earth Fire Water",
+		"elements": ["Air","Earth","Fire","Water"],
 		"mastery_level": 1,
 		"range": 20,
 		"aoe": "self",
@@ -65,7 +64,7 @@
 	"Blessed Wind": {
 		"description": "You summon a swirling aura of winds to protext you from ranged attacks. While maintained, this spell adds +15 to your Armor TN versus all non-magical ranged attacks.",
 		"keywords": ["Defense"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Personal",
 		"aoe": "10' Radius around caster",
@@ -82,7 +81,7 @@
 	"By The Light Of The Moon": {
 		"description": "All concealed objects within the area of effect appear as slightly luminous outlines to you. Any non-magical concealment is revealed, including secret compartments, trap doors, concealed weapons, etc. Only the caster is able to see the presence of these objects.",
 		"keywords": [],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Personal",
 		"aoe": "20' radius",
@@ -100,7 +99,7 @@
 	"Cloak Of Night": {
 		"description": "Target any one non-living object smaller than you. This object becomes invisible to the naked eye. Attempts to perceive it magically will automatically succeed if the Master Level of the spell used is higher than this spell. Spells of equal Mastery Level requier a Contested Air Roll to detect the hidden object. The object is still physically present and can be touched, smelled, or sensed with any normal sense other than vision.",
 		"keywords": ["Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Touch",
 		"aoe": "One object",
@@ -115,7 +114,7 @@
 	"Legacy Of Kaze-No-Kami": {
 		"description": "You call upon the spirits of the wind to take form as a bird and carry a message for you. The bird that is created appears perfectly normal in all regards, but if it takes any damage it dissipates into wind immediately, ending the spell. Upon creating the bird, you may speak to it, giving it a spoken message up to one minute in length. The bird will then fly away to deliver the message or the person(s) specified when the spell is cast, via a whisper. If the bird cannot reach the individual, but they are within range, it will remain outside waiting for up to one week before disappearing. If the person is not within range, the bird will fly in a random direction and disappear once out of sight.",
 		"keywords": ["Craft"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "£{School Rank} * 10£ miles",
 		"aoe": "One known individual within range",
@@ -133,7 +132,7 @@
 	"Nature's Touch": {
 		"description": "You may speak to a natural, non-shadowlands animal and have it understand what you are saying (literally, not necessarily conceptually). The spell lasts as long as you maintain your full and undivided attention on the animal and continue speaking to it.",
 		"keywords": [],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "10'",
 		"aoe": "One creature",
@@ -148,7 +147,7 @@
 	"Tempest Of Air": {
 		"description": "You summon a powerful gust of air emanating from your position that crashes into all in its path, knocking them to the ground. All targets within the AoE suffer 1k1 Wounds and must make a Contested Roll using their Earth against your Air. Every target that fails suffers Knockdown.",
 		"keywords": ["Thunder"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Personal",
 		"aoe": "A cone 75' long and 15' wide at its end",
@@ -172,7 +171,7 @@
 	"Token Of Memory": {
 		"description": "You create a flawless illusion of one object. The item appears real in every way up until the spell expires, at which point it disappears. If you are attempting to create a specific, familiar object, such as another samurai's katana, you must declare one Raise, and that individual may make a Contested Roll using their Perception against your Spell Casting Roll to detect the forgery. Images created by this spell are completely stationary, and if placed in a situation where they must move (e.g. floating in water) they will disappear instantly. Objects created with this spell have no true physical substance and cannot bear weight or inflict damage.",
 		"keywords": ["Craft", "Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "10'",
 		"aoe": "One small (1 cubic foot or smaller) illusory object",
@@ -190,7 +189,7 @@
 	"To Seek The Truth": {
 		"description": "You call upon the wind to purge the mind of your target, granting them clarity. This spell may negate temporary mental or social penalties suffered as a result of a mechanical effect (e.g. Techniques, Wound Ranks, or other spells). The TN of the Spell Casting Roll made to cast this spell is increased by an amount equal to the Technique Rank, Wound Rank, or Spell Mastery Level used to create the penalty in the first place. Disadvantages permanently possessed by an individual my not be countered using this spell.",
 		"keywords": [],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Personal / Touch",
 		"aoe": "One individual touched (can be the caster)",
@@ -205,7 +204,7 @@
 	"Way Of Deception": {
 		"description": "You create a perfect illusion of yourself a short distance away. The illusion exactly reflects your appearance at the time the spell is cast. The illusion may appear anywhere within the spell's range, and will perform whatever actions you perform while it is in effect (e.g. if you sit down, it will also sit down, even if there is nothing to sit on). Once you leave the AoE, the duplicate disappears. If you make 2 Raises on the Spell Casting Roll, you may leave the AoE and the illusion will remain in whatever position it was in when you left, for as long as you continue concentrating on maintaining the spell.",
 		"keywords": ["Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "20'",
 		"aoe": "One illusory duplicate of the caster",
@@ -227,7 +226,7 @@
 	"Yari Of Air": {
 		"description": "You summon a swirling weapon of pure air, only visible as a foggy outline. The weapon's default form is a yari, but 1 Raise can change its form to any other spear of your choosing. The weapon has DR 1k1. If you do not possess the Spears Skill, you may instead use your School Rank in its place. If you do possess the Spears Skill, using this weapon grants you one Free Raise that can only be used on the Feint or Increased Damage Maneuvers. This weapon disappears if it is lost from your hand. Instead of summoning the yari for yourself, you may cause it to appear within the hands of an ally within 20 feet. They are treated as the caster for all purposes of the spell, but do not receive the Free Raise bonus.",
 		"keywords": ["Craft", "Thunder"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 1,
 		"range": "Personal or 20'",
 		"aoe": "One created weapon",
@@ -251,7 +250,7 @@
 	"Benten's Touch": {
 		"description": "The target of this spell gains a bonus of [The caster's Air Ring + 1k1] to the total of all Social Skill rolls made for the duration of the spell.",
 		"keywords": [],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"range": "Personal / Touch",
 		"aoe": "Target Individual (can be the caster)",
@@ -267,7 +266,7 @@
 	"Call Upon The Wind": {
 		"description": "The target of this spell gains a limited form of flight, allowing them to move through the air unimpeded. The target may make Free Move Actions, but not Simple Move Actions, and may never move more than 10' per round. Heavy winds can interfere with this movement or prevent it altogether. At the end of the spell's duration, the target drifts harmlessly to the ground, no matter how high they might be.",
 		"keywords": ["Travel"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"range": "Personal or 20 feet",
 		"aoe": "Target Individual (can be the caster)",
@@ -285,7 +284,7 @@
 	"Hidden Visage": {
 		"description": "You call upon the Air kami to create a subtle illusion, altering your facial features just enough that you appear to be a different person. This spell does not allow you to impersonate specific individuals, or even people radically different from you. You appear as a person of the same age, build, race, and gender. The differences are subtle enough that you could be mistaken for your own cousin.",
 		"keywords": ["Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"range": "Personal",
 		"aoe": "Self",
@@ -305,7 +304,7 @@
 	"The Kami's whisper": {
 		"description": "You petition the kami to create a false sound, either a voice or a natural sound (e.g. an animal's growl, or running water). The sound can be no louder than a normal speaking voice, and cannot impersonate a specific person's voice. If used to create the sound of a voice, the spell is limited to 20 words.",
 		"keywords": ["Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"range": "50 feet",
 		"aoe": "10 foot radius",
@@ -326,7 +325,7 @@
 	"Mists Of Illusion": {
 		"description": "You may create illusions of any object, individual, or image that you can imagine. These images are stationary, and they must fit within the spell's area of effect, but they can be as simple or complex as desired. These illusions are visual only, with no auditory component, no odors, etc.",
 		"keywords": ["Craft", "Illusion"],
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"range": "20 feet",
 		"aoe": "10 foot radius",
@@ -345,7 +344,7 @@
 	},
 
 	"Secrets On The Wind": {
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"description": "This spell requires you to perform a preparation ritual in order to cast it effectively. The ritual requires 10 minutes of uninterrupted meditation in the area designated as the spell's area of effect. Any time within the 48 hours immediately following this ritual, you may cast this spell, and overhear anything being said in the prepared area. If your concentration is disrupted, the effect ends and may not be renewed without an additional preparation ritual. Only one area may be prepared via this ritual at one time.",
 		"keywords": [],
@@ -363,7 +362,7 @@
 	},
 
 	"Whispering Wind": {
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"description": "By invoking this spell, you may determine if the last thing said by the target was true or false. The kami have no concept of personal opinion, however, and if the target truly believes what they said was true, the kami will believe it as well.",
 		"keywords": ["Divination"],
@@ -378,7 +377,7 @@
 	},
 
 	"Wolf's Proposal": {
-		"ring": "Air",
+		"elements": "Air",
 		"mastery_level": 2,
 		"description": "For the duration of this spell, the Honor Rank of the target is considered 3 ranks higher for the purposes of any Lore: Bushido rolls made to determine your Honor Rank.",
 		"keywords": ["Illusion"],
@@ -405,7 +404,7 @@
 
 
 	"Armor Of Earth": {
-		"ring": "Earth",
+		"elements": "Earth",
 		"mastery_level": 1,
 		"keywords": ["Battle", "Defense"],
 		"range": "Personal",
@@ -420,7 +419,7 @@
 	},
 
 	"Courage Of The Seven Thunders": {
-		"ring": "Earth",
+		"elements": "Earth",
 		"mastery_level": 1,
 		"keywords": "Battle",
 		"range": "30 feet",
@@ -438,7 +437,7 @@
 	},
 
 	"Earth's Stagnation": {
-		"ring": "Earth",
+		"elements": "Earth",
 		"mastery_level": 1,
 		"keywords": "",
 		"range": "50 feet",
@@ -460,7 +459,7 @@
 	},
 
 	"Earth's Touch": {
-		"ring": "Earth",
+		"elements": "Earth",
 		"mastery_level": 1,
 		"keywords": "Defense",
 		"range": "Touch",
