@@ -30,6 +30,9 @@ function click_nav_button(button_id) {
 		case "navbar_custom":
 			active_div = document.getElementById("custom_additions_div");
 			break;
+		case "navbar_notes":
+			active_div = document.getElementById("notes_div");
+			break;
 		default:
 			console.log("nav_button pressed: " + button_id)
 			return;
