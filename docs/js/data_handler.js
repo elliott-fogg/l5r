@@ -1,11 +1,19 @@
 class DataLoader {
 	constructor(callback=null, delay_ms=0, test_fail=false) {
-		this.data = {
-			"skills": {"path": "/json/skill_info.json"},
-			"clans": {"path": "/json/clan_info.json"},
-			"advantages": {"path": "/json/advantages.json"},
-			"disadvantages": {"path": "/json/disadvantages.json"}
+		console.warn("Called here");
+		this.paths = {
+			"skills": "/json/skill_info.json",
+			"clans": "/json/clan_info.json",
+			"schools": "/json/schools_reduced.json",
+			"families": "/json/families.json",
+			"advantages": "/json/advantages.json",
+			"disadvantages": "/json/disadvantages.json",
+			"spells": "/json/spells.json"
 		}
+		
+		this.times = {}
+		this.data = {}
+
 		this.loaded = false;
 		this.callback = callback;
 		this.start_time = performance.now();
@@ -14,18 +22,22 @@ class DataLoader {
 		// Not entirely sure how this works at the moment, need to manually set it for now.
 		this.hostname = "https://elliott-fogg.github.io/l5r";
 		this.get_all_data(delay_ms, test_fail);
+		this.bind_local_upload_button()
 	}
 
 	complete_function() {
+		console.groupCollapsed("Loading Data Complete!");
+
 		for (let data_name in this.data) {
-			console.log(`${data_name.toUpperCase()}:`, this[data_name]);
+			console.log(`${data_name.toUpperCase()}:`, this.data[data_name]);
 		}
 
+		console.groupEnd();
+
 		this.loaded = true;
-		console.log("Loading data complete");
 
 		if (this.callback != null) {
-			console.log("Testing callback...")
+			console.log("Triggering callback...")
 			this.callback();
 		}
 	}
@@ -53,10 +65,14 @@ class DataLoader {
 		var start = performance.now();
 		var myPromises = [];
 
-		for (let data_name in this.data) {
-			let url = this.hostname + this.data[data_name]["path"];
+		console.groupCollapsed("Checking for Data...");
+
+		for (let data_name in this.paths) {
+			let url = this.hostname + this.paths[data_name];
 			myPromises.push(this.get_load_data_promise(url, data_name));
 		}
+
+		console.groupEnd();
 
 		// Optionally add fail cases for testing.
 		if (test_fail) {
@@ -84,30 +100,27 @@ class DataLoader {
 			console.log("Hello", err);
 		});
 
-		console.log("Complete!");
 		this.complete_function();
 	}
 
 	async get_load_data_promise(url, data_name) {
-		console.log(url, data_name);
 		return new Promise((resolve) => {
 			this.load_data(resolve, url, data_name);
 		});
 	}
 
 	async load_data(resolve, url, data_name) {
-		console.log("Received request for " + data_name);
-		this.data[data_name]["start_time"] = performance.now();
+		console.log(`Received request for ${data_name}:\n${url}`);
+		this.times["start"] = performance.now();
 		var json_data = await this.get_data(url);
-		this[data_name] = json_data;
-		this.data[data_name]["end_time"] = performance.now();
+		this.data[data_name] = json_data;
+		this.times["end"] = performance.now();
+
 		if (json_data) {
 			resolve([data_name, true]);
 		} else {
 			resolve([data_name, false]);
 		}
-
-		// resolve([data_name, json_data != null]);
 	}
 
 	async get_data(url) {
@@ -120,7 +133,7 @@ class DataLoader {
 			return response.json();
 		})
 		.catch(function(err) {
-			console.log("Fetch Error :-S", err);
+			console.log("Error with url " + url + "\nFetch Error :-S", err);
 		});
 	}
 
@@ -130,26 +143,83 @@ class DataLoader {
 		})
 	}
 
+	bind_local_upload_button() {
+		var btn = document.getElementById("upload_local");
+		if (btn != null) {
+			btn.onclick = this.load_local_files.bind(this);
+			console.log("Upload Local Files button bound");
+		} else {
+			console.log("Upload Local Files button not found");
+		}
+	}
+
+	async load_local_files() {
+		console.log("Load local!");
+		var modal = new ModalWindow();
+		modal.add_title("Use Local File");
+		modal.add_subtitle("Upload a local file");
+		console.log(Object.keys(this.data));
+		var file_names = {}
+		for (let data_name in this.data) {
+			file_names[data_name] = data_name;
+		}
+		modal.add_select_input("data_name", "File", file_names);
+		modal.add_file_input("new_file", "New File", ".json");
+		var deets = await modal.get_user_input();
+
+		console.log(deets);
+
+		var fr = new FileReader()
+		fr.addEventListener("load", e => {
+			this.update_file_data(deets["data_name"], JSON.parse(fr.result));
+			// // this.update_file_data()
+			// console.log(e.target.result, JSON.parse(fr.result))
+		});
+		fr.readAsText(deets["new_file"]);
+	}
+
+	update_file_data(file_type, data) {
+		console.log(data);
+	}
+
+
 // End Class
 }
 
 class DataHandler extends DataLoader {
 
+	// Family functions ////////////////////////////////////////////////////////
+	get_family_trait(family_id) {
+		var [clan, family] = family_id.split("_");
+		console.log(this.data);
+		return this.data.families[clan][family];
+	}
+
+	// School functions ////////////////////////////////////////////////////////
+	get_school_info(school_id) {
+		var [clan, school] = school_id.split("_");
+		return this.data.schools[clan][school];
+	}
+
+	// Skill functions /////////////////////////////////////////////////////////
+
+
 	// Skill functions /////////////////////////////////////////////////////////
 	get_skill_list(class_list=[]) {
+		var SKILLS = this.data.skills;
 		if (typeof class_list != "object") {
 			class_list = [class_list];
 		}
 
 		var skill_list = [];
-		for (let skill_name in this.skills) {
+		for (let skill_name in SKILLS) {
 			if (class_list.length == 0) {
 				skill_list.push(skill_name);
 				continue;
 			}
 
 			// A class/macro is specified
-			let skill = this.skills[skill_name];
+			let skill = SKILLS[skill_name];
 			for (let type of class_list) {
 				if (skill["macro"].includes(type) ||
 				    skill["class"].includes(type)) {
@@ -162,13 +232,13 @@ class DataHandler extends DataLoader {
 	}
 
 	is_skill(skill_name) {
-		return (skill_name in this.skills);
+		return (skill_name in this.data.skills);
 	}
 
 	get_skill_info(skill_name) {
-		if (skill_name in this.skills) {
+		if (skill_name in this.data.skills) {
 			var output = {};
-			Object.assign(output, this.skills[skill_name]);
+			Object.assign(output, this.data.skills[skill_name]);
 			return output;
 		} else {
 			console.log(`ERROR - get_skill_info: ${skill_name} not found.`)
@@ -178,8 +248,8 @@ class DataHandler extends DataLoader {
 	get_new_skill(skill_name) {
 		return {
 		    "rank": 1,
-		    "trait": Object.assign([], this.skills[skill_name]["trait"]),
-		    "class": Object.assign([], this.skills[skill_name]["class"]),
+		    "trait": Object.assign([], this.data.skills[skill_name]["trait"]),
+		    "class": Object.assign([], this.data.skills[skill_name]["class"]),
 		    "emphases": []
 		}
 	}
@@ -187,7 +257,7 @@ class DataHandler extends DataLoader {
 	create_skill_sublists(skill_list) {
 		var skill_dict = {};
 		for (let skill_name of skill_list) {
-			let skill_macro = this.skills[skill_name]["macro"][0];
+			let skill_macro = this.data.skills[skill_name]["macro"][0];
 
 			if (skill_macro) {
 				if (!(skill_macro in skill_dict)) {
@@ -213,7 +283,7 @@ class DataHandler extends DataLoader {
 	get_school_info(school_id) {
 		var school_info = {};
 		let [clan, school] = school_id.split("_");
-		Object.assign(school_info, this.clans[clan]["schools"][school]);
+		Object.assign(school_info, this.data.clans[clan]["schools"][school]);
 		school_info["attribute"] = this.get_attribute_changes(school_info["attribute"]);
 
 		var starting_skills = {};
@@ -227,17 +297,17 @@ class DataHandler extends DataLoader {
 
 	get_family_traits(family_id) {
 		let [clan, family] = family_id.split("_");
-		return this.get_attribute_changes(this.clans[clan]["families"][family]);
+		return this.get_attribute_changes(this.data.clans[clan]["families"][family]);
 	}
 
 	get_clans() {
-		return Object.keys(this.clans);
+		return Object.keys(this.data.clans);
 	}
 
 	get_clan_families(chosen_clan=null) {
 		if (chosen_clan) {
-			if (chosen_clan in this.clans) {
-				return Object.keys(this.clans[chosen_clan]["families"]);
+			if (chosen_clan in this.data.clans) {
+				return Object.keys(this.data.clans[chosen_clan]["families"]);
 			} else {
 				console.log(`Clan '${chosen_clan}' not found.`)
 			}
@@ -245,17 +315,19 @@ class DataHandler extends DataLoader {
 
 		// No clan specified, return families of all clans
 		var family_dict = {}
-		for (let clan in this.clans) {
-			family_dict[clan] = Object.keys(this.clans[clan]["families"]);
+		for (let clan in this.data.clans) {
+			family_dict[clan] = Object.keys(this.data.clans[clan]["families"]);
 		}
 		return family_dict;
 	}
 
 	get_clan_schools(chosen_clan=null) {
+		var clans = this.data.clans;
+
 		if (chosen_clan) {
 			var clan_name = chosen_clan.split("_")[0];
-			if (clan_name in this.clans) {
-				return Object.keys(this.clans[clan_name]["schools"]);
+			if (clan_name in clans) {
+				return Object.keys(clans[clan_name]["schools"]);
 			} else {
 				console.log(`Clan '${clan_name}' not found.`)
 			}
@@ -263,7 +335,7 @@ class DataHandler extends DataLoader {
 
 		// No clan specified, return schools of all clans in dict;
 		school_dict = {};
-		for (let clan in this.clans) {
+		for (let clan in clans) {
 			school_dict[clan] = Object.keys(clan_info[clan]["schools"]);
 		}
 		return family_dict;
@@ -333,24 +405,53 @@ class DataHandler extends DataLoader {
 	// General Functions ///////////////////////////////////////////////////////
 
 	get_list(list_type) {
-		if (list_type == null) {
-			console.log("ERROR: No list_type provided!");
-			list_type = "skills_lore";
-		}
-		var [main_type, sub_type] = list_type.split("_")
-		console.log(main_type, sub_type);
-		var results;
-		switch (main_type) {
+		var [primary, subset] = list_type.split("_");
+
+		var item_list;
+
+		switch (primary) {
 			case "skills":
-				results = this.get_skill_list(sub_type)
-				break
+				switch(subset) {
+					case "school":
+						console.log("Attempting to load School Skills");
+						// Load school skills here
+						break;
+					case undefined:
+						item_list = this.create_skill_sublists(
+						                                this.get_skill_list());
+						break;
+					case "lore":
+						item_list = this.create_skill_sublists(this.get_skill_list("Lore"));
+						break;
+					default:
+						item_list = this.get_skill_list();
+						break;
+				}
+				break;
 			default:
-				console.log(`ERROR: List type does not exist: ${list_type}`)
-				results = ["PLACEHOLDER_1", "PLACEHOLDER_2", "PLACEHOLDER_3"];
+				console.log(`Unknown Skill Type '${primary}' with subset '${subset}'.`);
+				break;
 		}
 
-		console.log(results)
-		return results
+		if (item_list != null) {
+			console.log("ITEMS", list_type, item_list);
+			return item_list;
+		}
+
+		return {
+			"Acting": "Acting",
+			"Calligraphy": "Calligraphy",
+			"Courtier": "Courtier",
+			"Lore": {
+				"Lore: Architecture": "Lore: Architecture",
+				"Lore: Bushido": "Lore: Bushido",
+				"Lore: Elements": "Lore: Elements"
+			},
+			"Commerce": "Commerce",
+			"Perform": {
+				"Perform: Biwa": "Perform: Biwa"
+			}
+		}
 	}
 
 // End Class
