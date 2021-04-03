@@ -2,6 +2,7 @@ class CharacterInfo {
 
 	// Constructors ////////////////////////////////////////////////////////////
     constructor(given_name, family_id, school_id, starting_skills, starting_traits) {
+        this.data = new DataHandler();
         this.given_name = given_name;
         this.family_id = family_id;
         this.school_id = school_id;
@@ -56,7 +57,7 @@ class CharacterInfo {
             return;
         }
 
-        var skill_info = get_skill_info(skill_name);
+        var skill_info = this.data.get_skill_info(skill_name);
 
         this.skills[skill_name] = {
             rank: 1,
