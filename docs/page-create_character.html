@@ -3,32 +3,40 @@
 <head>
 	<title>L5R Character Creation Page</title>
 
-	<!-- CSS Files -->
-	<link rel="stylesheet" href="css/styles.css">
+	<!-- General CSS Files -->
+	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/custom_buttons.css">
- 	<link rel="stylesheet" href="css/custom_dropdown.css">
 	<link rel="stylesheet" href="css/character_creation.css">
-	<link rel="stylesheet" href="css/modal.css">
-	<link rel="stylesheet" href="css/collapsible_divs.css">
-	<link rel="stylesheet" href="css/tables.css">
 
-	<!-- JS Files -->
-	<script type="text/javascript" src="js/collapsible_divs.js"></script>
+	<!-- General JS Files -->
+	<script type="text/javascript" src="js/data_handler.js"></script>
 	<script type="text/javascript" src="js/character_class_info.js"></script>
-	<script type="text/javascript" src="js/skill_choices_class.js"></script>
 	<script type="text/javascript" src="js/display_functions.js"></script>
 	<script type="text/javascript" src="js/character_creation_new.js"></script>
-	<script type="text/javascript" src="js/data_handler.js"></script>
-	<script type="text/javascript" src="js/modal.js"></script>
+
+	<!-- Custom Dropdown Menus -->
 	<script type="text/javascript" src="js/custom_dropdown.js"></script>
+	<link rel="stylesheet" href="css/custom_dropdown.css">
+
+	<!-- Modal Pop-up Windows -->
+	<script type="text/javascript" src="js/modal.js"></script>
+	<link rel="stylesheet" href="css/modal.css">
+
+	<!-- Collapsible Divs -->
+	<script type="text/javascript" src="js/collapsible_divs.js"></script>
+	<link rel="stylesheet" href="css/collapsible_divs.css">	
 
 	<script type="text/javascript">
 		function initiate_page() {
+			console.log("Script has run");
+
+			activate_collapsible_divs();
 
 			// Attach necessary listener to all collapsible divs on page
-			window.addEventListener("DOMContentLoaded", (event) => {
-				activate_collapsible_divs();
-			})
+			// window.addEventListener("DOMContentLoaded", (event) => {
+			// 	console.log("NOTE: The page has loaded");
+			// 	activate_collapsible_divs();
+			// })
 			
 
 			// Initiate DataHandler, with callback to run CharacterCreator
@@ -88,10 +96,14 @@
 	<!-- Traits and Skills Tables -->
 	<div class="collapsible-div-container heading">
 		<div class="collapsible-div-title">
-			<p>Starting Traits and Skills</p>
+			<p>Character Stats</p>
 		</div>
 		<div class="collapsible-div-content">
+
+			<p><b>Class: </b><span id="school_class">n/a</span></p>
+			
 			<div style="display: flex">
+
 				<table style="margin-right: 5px">
 					<thead>
 						<tr>

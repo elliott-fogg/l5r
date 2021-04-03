@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dropdown Test Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/custom_dropdown.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/custom_dropdown.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+
+</head>
+<body>
+
+	<h2>Testing Custom Dropdowns</h2>
+
+	<div id="test_div">
+		<div class="dropdown-container">
+			<input type="button" class="dropdown-toggle" value="Dropdown"
+				onclick="toggle_active(event)">
+			<div class="dropdown-div">
+				<ul class="dropdown-menu">
+					<li>
+						<p>Item 1</p>
+					</li>
+					<li class="dropdown-submenu" onclick="toggle_active(event)">
+						<p>Item 2</p>
+						<div class="arrow-right"></div>
+						<div class="dropdown-div">
+							<ul class="dropdown-menu">
+								<li>
+									<p>Item 2.1</p>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<p>Item 3</p>
+					</li>
+					<li class="dropdown-submenu" onclick="toggle_active(event)">
+						<p>Item 4</p>
+						<div class="arrow-right"></div>
+						<div class="dropdown-div">
+							<ul class="dropdown-menu">
+								<li>
+									<p>Item 4.1</p>
+								</li>
+								<li class="dropdown-submenu" onclick="toggle_active(event)">
+									<p>Item 4.2</p>
+									<div class="arrow-right"></div>
+									<div class="dropdown-div">
+										<ul class="dropdown-menu">
+											<li>
+												<p>Item 4.2.1</p>
+											</li>
+											<li>
+												<p>Item 4.2.2</p>
+											</li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="black_box">
+
+	<script>
+		function toggle_active(e) {
+			console.log(e.target);
+			e.target.classList.toggle('active');
+			e.stopPropagation();
+		}
+	</script>
+
+</body>
+</html>
+
+
+

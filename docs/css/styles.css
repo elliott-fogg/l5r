@@ -1,3 +1,10 @@
+/* Set the background color to off-yellow */
+body {
+  background-color: #fff6d1;
+}
+
+
+
 span.bolded {
 	color: #f00;
 }

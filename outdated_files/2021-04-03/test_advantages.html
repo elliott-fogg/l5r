@@ -5,16 +5,20 @@
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="css/modal.css">
-	<link rel="stylesheet" href="css/dropdown_sublists.css">
+	<link rel="stylesheet" href="css/custom_dropdown.css">
 
 	<!-- JS Files -->
 	<script type="text/javascript" src="js/data_handler.js"></script>
 	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="js/custom_dropdown.js"></script>
 	<script type="text/javascript" src="js/modal.js"></script>
 	<script type="text/javascript" src="js/modal_test.js"></script>
 
 </head>
-<body>
+<body onload="DH = new DataHandler(function() {
+			add_all_modal_tests(this.advantages);
+			add_all_modal_tests(this.disadvantages, false);
+			});">
 
 	<h2>Test Page - Using online Advantages</h2>
 	<input type="file" value="Load Advantages File" onchange="load_data(this.files)"
@@ -66,13 +70,6 @@
 	<div id="disadvantages_div" style="border: solid black 1px">
 		<h1>Disadvantages</h1>
 	</div>
-
-	<script>
-		DH = new DataHandler(function() {
-			add_all_modal_tests(this.advantages);
-			add_all_modal_tests(this.disadvantages, false);
-		});
-	</script>
 
 </body>
 </html>

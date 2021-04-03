@@ -1,6 +1,6 @@
 // TODO:
-// * Add in CustomDropdown for Skill Selection - Make it work
 // * Add in Textbox Input Option
+// * Fix Discount transcription method to prevent unwanted stacking of discounts
 
 function load_data(files) {
 	for (file of files) {
@@ -230,13 +230,14 @@ function refresh_advantage_costs() {
 }
 
 function calculate_discount(discount_string, clan_string, class_string) {
+	console.groupCollapsed("Calculating Discount");
 	var total_discount = 0;
 
 	var discounts = discount_string.split(" ");
 	for (let d of discounts) {
 		let [type, value, amount] = d.split("_");
 
-		console.log(amount);
+		console.log(type, value, amount);
 
 		amount = (amount == undefined) ? 1 : parseInt(amount);
 
@@ -256,8 +257,11 @@ function calculate_discount(discount_string, clan_string, class_string) {
 
 	var return_value = parseInt(total_discount);
 	if (isNaN(return_value)) {
-		console.log(`ERROR: Invalid Discount - '${total_discount}'`);
-		return 0
+		console.warn(`ERROR: Invalid Discount - '${total_discount}'`);
+		total_discount = 0
 	}
+
+	console.log()
+	console.groupEnd();
 	return total_discount;
 }

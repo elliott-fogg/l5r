@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dropdown Test Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/custom_dropdown.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/custom_dropdown.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+
+</head>
+<body>
+
+	<h2>Testing Custom Dropdowns</h2>
+
+	<div id="test_div">
+		<input type="button" value="Modal" onclick="modal_test()">
+	</div>
+
+	<script>
+		var dropdown = new CustomDropdown("Test Dropdown", test_data_2);
+		document.getElementById("test_div").appendChild(dropdown.dropdown);
+		async function modal_test() {
+			var modal = new AdvantagesModal(test_data_3);
+			var input_data = await modal.get_user_input();
+			console.log(input_data);
+		}
+	</script>
+
+</body>
+</html>
+
+
+

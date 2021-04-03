@@ -1,0 +1,87 @@
+label.advantage > input[type=checkbox] {
+	display: none;
+}
+
+label.advantage > div.advantage {
+	padding-left: 10px;
+}
+
+label.advantage > input[type=checkbox]:checked ~ div.advantage {
+	display: none;
+}
+
+td {
+	vertical-align: top;
+	padding-top: 5px;
+}
+
+
+/*td.text_cell {
+	width: 400px;
+	min-width: 200px;
+	max-width: 400px;
+	padding-right: 20px;
+}
+
+td.cost_cell {
+	width: 50px;
+}*/
+
+label.advantage > div.advantage-title::before {
+	content: ' ';
+	display: inline-block;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-top: 5px solid currentColor;
+/*	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid currentColor;*/
+	vertical-align: middle;
+	margin-right: .2rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+label.advantage > input[type=checkbox]:checked ~ div.advantage-title::before {
+	transform: rotate(-90deg) translateX(1px);
+}
+
+label.advantage > div.advantage-title {
+	user-select: none;
+}
+
+label.advantage.outer {
+	display: block;
+	font-weight: bold;
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 1rem;
+	color: #FFF;
+	background: #333;
+	cursor: pointer;
+}
+
+tbody > tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.1);;
+}
+
+tbody > tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.05);;
+}
+
+/*.lbl-toggle {
+	display: block;
+	font-weight: bold;
+	font-family: monospace;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 1rem;
+	/*color: #CCC;
+	color: #FFF;
+	background: #333;
+	cursor: pointer;
+	border-radius: 7px;
+	transition: all 0.25s ease-out;
+}
+*/

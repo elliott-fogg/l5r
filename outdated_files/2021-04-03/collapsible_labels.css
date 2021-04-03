@@ -1,0 +1,42 @@
+label.collapsible-label > input[type=checkbox] {
+	display: none;
+}
+
+label.collapsible-label {
+	/*border: solid black 1px;*/
+}
+
+div.collapsible-label-title {
+	font-weight: bold;
+	background-color: grey;
+	user-select: none;
+}
+
+div.collapsible-label-title > p {
+	display: inline;
+	margin-bottom: 20px;
+}
+
+div.collapsible-label-title > p::before {
+	content: ' ';
+	display: inline-block;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-top: 5px solid currentColor;
+	vertical-align: middle;
+	margin-right: .2rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+input:checked ~ div.collapsible-label-title > p::before {
+	transform: rotate(-90deg) translateX(1px);
+}
+
+div.collapsible-label-content {
+	/*background-color: red;*/
+}
+
+input:checked ~ div.collapsible-label-content {
+	display: none;
+}

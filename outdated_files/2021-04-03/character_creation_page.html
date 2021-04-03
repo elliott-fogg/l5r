@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L5R Character Creation Page</title>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/custom_buttons.css">
+	<link rel="stylesheet" href="css/collapsible.css">
+<!-- 	<link rel="stylesheet" href="css/dropdown_sublists.css">
+ -->	<link rel="stylesheet" href="css/custom_dropdown.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/info_div.css">
+	<link rel="stylesheet" href="css/character_creation.css">
+	<link rel="stylesheet" href="css/show_all.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/advantages_collapsible.css">
+
+	<!-- JS Files -->
+	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
+	<script type="text/javascript" src="js/character_class_info.js"></script>
+	<script type="text/javascript" src="js/skill_choices_class.js"></script>
+	<script type="text/javascript" src="js/display_functions.js"></script>
+	<script type="text/javascript" src="js/character_creation.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+	<script type="text/javascript" src="js/custom_dropdown.js"></script>
+
+</head>
+<body>
+
+	<h1>L5R Character Creation Page</h1>
+
+	<input type="button" value="Generate Character" id="character_create_button">
+
+	<div class="wrap-collapsible">
+		<input id="collapsible" type="checkbox" class="toggle">
+		<label for="collapsible" class="lbl-toggle">Additional Options</label>
+		<div class="collapsible-content">
+			<div class="content-inner">
+				<label>Fixed Family Names</label>
+				<input type="checkbox" id="fixed_family_names_checkbox">
+				<label>Clan-only Schools</label>
+				<input type="checkbox" id="clan_only_schools">
+			</div>
+		</div>
+	</div>
+
+	<div id="personal_info_div">
+		<div id="character_personal_information">
+			<label>Name:</label>
+			<input type="text" id="character_name_input" placeholder="Name...">
+	</div>
+
+	<div id="family_and_class_div">
+		<select id="character_family_select"></select>
+		<select id="character_school_select"></select>
+			<div>
+				<p style="display: inline">School Skill Choices</p>
+				<div id="skill_choices_div"></div>
+	</div>
+
+	<div id="starting stats and skills">
+		<h4>Traits table</h4>
+		<h4>Starting Skills Table</h4>
+	</div>
+<!--
+
+	<div id="character_creation_div" class="toplevel-div">
+		<div id="character_personal_information">
+			<p style="display:inline">Given Name: </p>
+			<input type="text" id="character_forename_input" placeholder="Given Name...">
+			<p style="display:inline">Family Name:</p>
+			<input type="text" id="character_family_name" value="FAMILY_NAME" disabled>
+			<p id="character_family_name" style="display:inline">FAMILY_NAME</p>
+			<p style="display:inline">Clan:</p>
+			<input type="text" id="character_clan" value="CLAN_NAME" disabled>
+			<p id="character_clan" style="display:inline">CLAN_NAME</p>
+			<label for="fixed_family_names_checkbox">Fixed Family Names</label>
+			<input type="checkbox" id="fixed_family_names_checkbox" checked>
+		</div>
+		
+		<select id="character_family_select">
+			<option style="display:none" value="" selected>Select a family...</option>
+		</select>
+
+		<select id="character_school_select">
+			<option style="display:none" value="" selected>Select a school...</option>
+		</select>
+
+		<div>
+			<p style="display: inline">School Skill Choices</p>
+			<div id="skill_choices_div">
+				<p>Skill Choices:</p>
+				<p>skill_choices_go_here</p>
+			</div>
+		</div>
+-->
+
+		<div id="advantages_choices_div">
+			<select id="advantage_select">
+				<option>Select an Advantage...</option>
+			</select>
+			<select id="disadvantage_select">
+				<option>Select a Disadvantage...</option>
+			</select>
+		</div>
+
+		<table id="adv_table" style="display: inline; border: solid black 1px">
+			<thead>
+				<tr>
+					<td class="text_cell">Advantages</td>
+					<td class="cost_cell">Cost</td>
+				</tr>
+			</thead>
+			<tbody id="adv_tbody"></tbody>
+		</table>
+
+		<table id="disadv_table" style="display: inline; border: solid black 1px">
+			<thead>
+				<tr>
+					<td class="text_cell">Disadvantages</td>
+					<td class="cost_cell">Refund</td>
+				</tr>
+			</thead>
+			<tbody id="disadv_tbody"></tbody>
+		</table>
+	</div>
+
+	<script>
+		var dataHandler;
+
+		function main() {
+			new CharacterCreator(dataHandler);
+		}
+
+		dataHandler = new DataHandler(main);
+	</script>
+
+</body>
+</html>
+
+
+
