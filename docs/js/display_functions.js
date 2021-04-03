@@ -1,5 +1,12 @@
 const trait_table_headings = ["Ring", "Rank", "Trait", "Rank"];
 const skill_headings = ["Skill", "Rank", "Trait", "Roll", "Emphasis"];
+const rings = {
+    "Air": ["Awareness", "Reflexes"],
+    "Earth": ["Stamina", "Willpower"],
+    "Fire": ["Agility", "Intelligence"],
+    "Water": ["Perception", "Strength"],
+    "Void": ["Void"]
+}
 
 // Create Buttons //////////////////////////////////////////////////////////////
 
