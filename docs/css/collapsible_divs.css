@@ -1,0 +1,103 @@
+/*
+
+-----------------------
+General Container Setup
+-----------------------
+Container structure is as follows:
+
+<div class=collapsible-div-container>
+	<div class=collapsible-div-title>
+		<p>TITLE_TEXT_HERE</p>
+	</div>
+	<div class=collapsible-div-content>
+		COLLAPSIBLE_CONTENT_DOM_HERE
+	</div>
+</div>
+
+*/
+
+div.collapsible-div-container {
+	margin-bottom: 10px; /* Add a buffer at the bottom of each collapsible */
+}
+
+div.collapsible-div-title {
+	user-select: none; /* Don't let the user highlight the title */
+	padding-left: 2px;
+	white-space: nowrap; /* Prevent title from folding */
+	cursor: pointer;
+}
+
+div.collapsible-div-title > p {
+	display: inline;
+}
+
+div.collapsible-div-title > p::before {
+	/* Add rotating arrow before title text to indicate collapsible*/
+	content: ' ';
+	display: inline-block;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-top: 5px solid currentColor;
+	vertical-align: middle;
+	margin-right: .2rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+div.collapsible-div-content {
+	display: block;
+	margin-left: 20px; /* Indent content slightly by default */
+}
+
+/* Use hidden class to hide the content */
+
+div.collapsible-div-container.hidden > div.collapsible-div-title > p::before {
+	/* The rotation of the collapsible arrow */
+	transform: rotate(-90deg) translateX(1px);
+}
+
+div.collapsible-div-container.hidden > div.collapsible-div-content {
+	display: none;
+}
+
+
+/*--------------------------------
+Custom classes for collapsibles
+--------------------------------*/
+
+/* disabled - custom class that prevents clicking, and greys-out the title */
+
+div.collapsible-div-container.disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+
+/* heading - class for the page section collapsibles */
+
+div.collapsible-div-container.heading > .collapsible-div-title {
+	font-weight: bold;
+	background-color: #9E2727;
+	color: #fffcd1;
+	width: 50%;
+	margin-bottom: 5px;
+	border-radius: 9px;
+	padding-left: 5px;
+}
+
+/* advantage - class for Advantage collapsibles */
+
+div.collapsible-div-container.advantage > div.collapsible-div-content {
+	width: 400px;
+	max-width: 400px;
+}
+
+/* spell - class for Spell collapsibles */
+
+.collapsible-div-container.spell > div.collapsible-div-title {
+	font-weight: bold;
+	width: 600px;
+}
+
+.collapsible-div-container.spell > div.collapsible-div-content {
+	max-width: 650px;
+}
