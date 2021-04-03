@@ -1,0 +1,12 @@
+/* Set the background color to off-yellow */
+body {
+  background-color: #fff6d1;
+}
+
+/* Alternate shading of table rows */
+tbody > tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.1);;
+}
+tbody > tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.05);;
+}
