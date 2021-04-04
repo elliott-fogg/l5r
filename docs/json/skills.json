@@ -640,6 +640,15 @@
     ],
     "emphases": []
   },
+  "Craft: Armorsmithing": {
+    "trait": [
+      "Intelligence"
+    ],
+    "macro": [
+      "Craft"
+    ],
+    "emphases": []
+  },
   "Perform: Biwa": {
     "trait": [
       "Agility"
