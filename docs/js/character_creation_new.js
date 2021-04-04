@@ -125,6 +125,7 @@ class CharacterCreator {
     }
 
 	refresh_family_select() {
+        console.log("REFRESH FAMILY SELECT");
 		var family_select = document.getElementById("character_family_select");
 		family_select.innerHTML = "";
 
@@ -142,6 +143,8 @@ class CharacterCreator {
 
 		var families_by_clan = this.data.get_clan_families();
 
+        console.log(families_by_clan);
+
         for (let clan of Object.keys(families_by_clan).sort()) {
             let clan_group = document.createElement("optgroup");
             clan_group.label = clan;
@@ -153,6 +156,7 @@ class CharacterCreator {
             }
 
             // Only add clan if the number of families is > 0
+            console.log("Triggered");
             if (clan_group.childElementCount > 0) {
                 family_select.appendChild(clan_group);
             }
@@ -177,20 +181,23 @@ class CharacterCreator {
             create_select_default(school_select, new_text);
         }
 
-        var clan_names = this.data.get_clans()
+        var clan_schools = this.data.get_clan_schools();
+        var chosen_clan_schools;
 
         if (this.family_id != "") {
             let chosen_clan = this.family_id.split("_")[0];
-            var clan_names = clan_names.filter(function(e) {
-                return e !== chosen_clan
-            }).sort();
-            clan_names.unshift(chosen_clan);
+            if (chosen_clan in clan_schools) {
+                chosen_clan_schools = clan_schools[chosen_clan];
+                delete clan_schools[chosen_clan];
+            } else {
+                console.warn(`'${chosen_clan} Clan' has no schools.`);
+            }
         }
 
-        for (let clan of clan_names) {
+        for (let clan in clan_schools) {
             var clan_group = document.createElement("optgroup");
             clan_group.label = clan;
-            for (let school of this.data.get_clan_schools(clan).sort()) {
+            for (let school of clan_schools[clan]) {
                 let option = document.createElement("option");
                 option.value = `${clan}_${school}`;
                 option.label = school;
@@ -200,7 +207,6 @@ class CharacterCreator {
                 school_select.appendChild(clan_group);
             }
         }
-        this.update_skills();
     }
 
     refresh_skill_selections() {
@@ -314,6 +320,7 @@ class CharacterCreator {
         var template = document.createElement("template");
 
         var starting_skills = this.skills.set;
+        console.log(starting_skills);
 
         for (let skill in starting_skills) {
             let skill_info = starting_skills[skill];

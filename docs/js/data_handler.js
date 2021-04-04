@@ -1,9 +1,7 @@
 class DataLoader {
 	constructor(callback=null, delay_ms=0, test_fail=false) {
-		console.warn("Called here");
 		this.paths = {
-			"skills": "/json/skill_info.json",
-			"clans": "/json/clan_info.json",
+			"skills": "/json/skills.json",
 			"schools": "/json/schools_reduced.json",
 			"families": "/json/families.json",
 			"advantages": "/json/advantages.json",
@@ -283,62 +281,84 @@ class DataHandler extends DataLoader {
 	get_school_info(school_id) {
 		var school_info = {};
 		let [clan, school] = school_id.split("_");
-		Object.assign(school_info, this.data.clans[clan]["schools"][school]);
+		Object.assign(school_info, this.data.schools[clan][school]);
+
 		school_info["attribute"] = this.get_attribute_changes(school_info["attribute"]);
+
+		console.log(school_info);
 
 		var starting_skills = {};
 		for (let skill_string of school_info["skills"]) {
-			starting_skills = Object.assign({}, starting_skills,
-			                            this.extract_skill_info(skill_string));
+			console.log(skill_string);
+
+			var extracted_info = this.extract_skill_info(skill_string);
+			starting_skills[extracted_info.name] = extracted_info;
+			console.warn(starting_skills);
 		}
+
+		console.log(starting_skills);
+
 		school_info["skills"] = starting_skills;
 		return school_info;
 	}
 
 	get_family_traits(family_id) {
 		let [clan, family] = family_id.split("_");
-		return this.get_attribute_changes(this.data.clans[clan]["families"][family]);
+		return this.get_attribute_changes(this.data.families[clan][family]);
 	}
 
 	get_clans() {
-		return Object.keys(this.data.clans);
+		var family_clans = Object.keys(this.data.families);
+		var school_clans = Object.keys(this.data.schools);
+
+		var all_clans = [];
+		for (let clan_type of [family_clans, school_clans]) {
+			for (let clan_name of clan_type) {
+				if (!(all_clans.includes(clan_name))) {
+					all_clans.push(clan_name);
+				}
+			}
+		}
+		all_clans.sort();
+
+		return all_clans;
 	}
 
 	get_clan_families(chosen_clan=null) {
 		if (chosen_clan) {
-			if (chosen_clan in this.data.clans) {
-				return Object.keys(this.data.clans[chosen_clan]["families"]);
+			if (chosen_clan in this.data.families) {
+				return Object.keys(this.data[chosen_clan]);
 			} else {
-				console.log(`Clan '${chosen_clan}' not found.`)
+				console.warn(`Clan '${chosen_clan}' does not have any families`);
 			}
 		}
 
 		// No clan specified, return families of all clans
 		var family_dict = {}
-		for (let clan in this.data.clans) {
-			family_dict[clan] = Object.keys(this.data.clans[clan]["families"]);
+		for (let clan in this.data.families) {
+			family_dict[clan] = Object.keys(this.data.families[clan]);
 		}
 		return family_dict;
 	}
 
 	get_clan_schools(chosen_clan=null) {
-		var clans = this.data.clans;
+		var clan_schools = this.data.schools;
 
 		if (chosen_clan) {
 			var clan_name = chosen_clan.split("_")[0];
-			if (clan_name in clans) {
-				return Object.keys(clans[clan_name]["schools"]);
+			if (clan_name in clan_schools) {
+				return Object.keys(clan_schools[clan_name]);
 			} else {
-				console.log(`Clan '${clan_name}' not found.`)
+				console.warn(`No schools exist for the '${clan_name} Clan'`);
 			}
 		}
 
 		// No clan specified, return schools of all clans in dict;
-		school_dict = {};
-		for (let clan in clans) {
-			school_dict[clan] = Object.keys(clan_info[clan]["schools"]);
+		var school_dict = {};
+		for (let clan in clan_schools) {
+			school_dict[clan] = Object.keys(clan_schools[clan]);
 		}
-		return family_dict;
+		return school_dict;
 	}
 
 	get_attribute_changes(attribute_str) {
@@ -362,27 +382,42 @@ class DataHandler extends DataLoader {
 	}
 
 	extract_skill_info(skill_string) {
-		
-		var skill_match = skill_string.match(/^([a-zA-Z: ]+)_?/);
-	  	var skill_name = (skill_match !== null) ? skill_match[1] : null;
-	  	
-	  	var emphases_match = skill_string.match(/\(([\w\s,]+)\)/);
-	  	var emphases = (emphases_match !== null) ? emphases_match[1].split(",") : [];
+		console.log(skill_string);
+		const regex = /^([a-zA-Z-_:\s]+)(?:\(([\w\s,-_]+)\))?( \d+)?$/;
+		var [full, name, emphases, rank] = skill_string.match(regex);
+		console.log("FULL:", full, "NAME:", name, "EMPHASES:", emphases, "RANK:", rank);
 
-	  	var rank_match = skill_string.match(/_(\d+)$/);
-	  	var rank = (rank_match !== null) ? parseInt(rank_match[1]) : 1;
-	  
+		// Clean Name
+		name = name.trim();
 
-	  	var skill_info = this.get_skill_info(skill_name);
+		// Clean Emphases
+		var stripped_emphases = [];
+		if (emphases) {
+			emphases = emphases.split(",");
+			for (let em of emphases) {
+				stripped_emphases.push(em.trim());
+			}
+		}
 
-	  	var output = {};
-	  	output[skill_name] = {
-	  			"rank": rank,
-	  			"emphases": emphases,
-	  			"class": skill_info["class"],
-	  			"trait": skill_info["trait"]
-	  	}
-	  	return output;
+		// Clean Rank
+		if (rank) {
+			rank = parseInt(rank.trim());
+		} else {
+			rank = 1;
+		}
+
+		// Get remaining info
+		var skill_info = this.get_skill_info(name);
+
+		var output = {
+				"name": name,
+				"rank": rank,
+				"emphases": stripped_emphases,
+				"class": skill_info["class"],
+				"trait": skill_info["trait"]
+		}
+
+		return output
 	}
 
 	skill_display_name(skill_id) {
