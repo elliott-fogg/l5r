@@ -3,6 +3,11 @@ body {
   background-color: #fff6d1;
 }
 
+input.optional {
+	background-color: #fff6d1;
+	border: solid grey 1px;
+}
+
 /* Alternate shading of table rows */
 tbody > tr:nth-child(even) {
 	background-color: rgba(0, 0, 0, 0.1);;
