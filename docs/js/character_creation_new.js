@@ -1,8 +1,7 @@
 class CharacterCreator {
 
-	constructor(dataHandler) {
+	constructor() {
         console.log("Initiating CharacterCreator");
-        this.data = dataHandler;
         this.reset_character_data();
 		this.reset_page();
 	}
@@ -67,7 +66,7 @@ class CharacterCreator {
 
     set_family(family_id) {
     	console.group(`Set Family - ${family_id}`);
-    	var family_trait_bonus = this.data.get_family_traits(family_id);
+    	var family_trait_bonus = window.DH.get_family_traits(family_id);
 
     	this.family_id = family_id;
     	this.trait_bonuses.family = family_trait_bonus;
@@ -89,7 +88,7 @@ class CharacterCreator {
 
     set_school(school_id) {
         console.group(`Set School - ${school_id}`);
-        var school_info = this.data.get_school_info(school_id);
+        var school_info = window.DH.get_school_info(school_id);
         console.log(school_info);
 
         // Update Character Info
@@ -141,7 +140,7 @@ class CharacterCreator {
 			create_select_default(family_select, select_show_value, this.family_id);
 		}
 
-		var families_by_clan = this.data.get_clan_families();
+		var families_by_clan = window.DH.get_clan_families();
 
         console.log(families_by_clan);
 
@@ -175,19 +174,32 @@ class CharacterCreator {
         if (this.school_id === "") {
             create_select_default(school_select, "Select a school...");
         } else {
-            var school_info = this.data.get_school_info(this.school_id);
+            var school_info = window.DH.get_school_info(this.school_id);
             var [clan_name, school_name] = this.school_id.split("_");
             var new_text = `${school_name} (${clan_name} ${school_info.class})`;
             create_select_default(school_select, new_text);
         }
 
-        var clan_schools = this.data.get_clan_schools();
-        var chosen_clan_schools;
+        var clan_schools = window.DH.get_clan_schools();
 
         if (this.family_id != "") {
             let chosen_clan = this.family_id.split("_")[0];
             if (chosen_clan in clan_schools) {
-                chosen_clan_schools = clan_schools[chosen_clan];
+                let clan_group = document.createElement("optgroup");
+                clan_group.label = chosen_clan;
+                for (let school of clan_schools[chosen_clan]) {
+                    let option = document.createElement("option");
+                    option.value = `${chosen_clan}_${school}`;
+                    option.label = school;
+                    clan_group.appendChild(option);
+                }
+                if (clan_group.childElementCount > 0) {
+                    school_select.appendChild(clan_group);
+                    let divider = document.createElement("optgroup");
+                    divider.label = "--- Other Clans ---";
+                    school_select.appendChild(divider);
+                }
+
                 delete clan_schools[chosen_clan];
             } else {
                 console.warn(`'${chosen_clan} Clan' has no schools.`);
@@ -225,10 +237,10 @@ class CharacterCreator {
     	for (let i=0; i < this.skills.choices.length; i++) {
     		var allowed_skills;
     		if (this.skills.choices[i] == "Any") {
-    			allowed_skills = this.data.get_skill_list();
+    			allowed_skills = window.DH.get_skill_list();
     		} else {
     			let allowed_categories = this.skills.choices[i].split("/");
-    			allowed_skills = this.data.get_skill_list(allowed_categories)
+    			allowed_skills = window.DH.get_skill_list(allowed_categories)
     		}
 
     		// Only allow skills that aren't already part of the school's 
@@ -240,7 +252,7 @@ class CharacterCreator {
     			);
     		}.bind(this));
 
-    		var grouped_skills = this.data.create_skill_sublists(filtered_skills);
+    		var grouped_skills = window.DH.create_skill_sublists(filtered_skills);
 
     		var button_title;
     		if (this.skills.chosen[i] == null) {
@@ -268,15 +280,7 @@ class CharacterCreator {
     set_skill_choice(skill_name, skill_button) {
     	console.log(`Clicked on '${skill_name}'`, skill_button);
     	this.skills.chosen[skill_button] = skill_name;
-        console.log("CHAR", this);
     	this.refresh_skill_selections();
-    	if (!(this.skills.chosen.includes(null))) {
-	        var gen_char_btn = document.getElementById("character_create_button");
-	        gen_char_btn.disabled = false;
-	        gen_char_btn.onclick = function() {
-	            this.generate_character();
-	        }.bind(this);
-    	}
         this.update_skills();
     }
 
@@ -344,143 +348,34 @@ class CharacterCreator {
     }
 
     update_techniques() {
-        
+        console.log("UPDATE_TECHNIQUES");
     }
 
     // Advantages and Disadvantages ////////////////////////////////////////////
 
-    refresh_advantages_select() {
-        console.log("REFRESH ADVANTAGES SELECT");
-        this.refresh_adv_disadv_select(this.filter_advantages(),
-                                document.getElementById("advantage_select"),
-                                "Select an Advantage...",
-                                document.getElementById("adv_tbody"),
-                                AdvantagesModal);
-    }
-
-    refresh_disadvantages_select() {
-        this.refresh_adv_disadv_select(this.filter_disadvantages(),
-                                document.getElementById("disadvantage_select"),
-                                "Select a Disadvantage...",
-                                document.getElementById("disadv_tbody"),
-                                AdvantagesModal);
-    }
-
-    refresh_adv_disadv_select(data, select, text, tbody, modal_object) {
-        console.log("GENERAL ADVANTAGE SELECT");
-        select.innerHTML = "";
-        create_select_default(select, text);
-
-        console.log(data);
-
-        for (let item_name in data) {
-            let opt = document.createElement("option");
-            opt.innerHTML = item_name;
-            opt.value = item_name;
-            select.appendChild(opt);
-        }
-
-        var self = this;
-
-        select.onchange = async function() {
+    adv_onselect(adv_data, tbody) {
+        var func = async function() {
             console.group("Advantage/Disadvantage Selected");
-            var selected_item = this.value;
-            console.log("Loading modal window");
+            var selected_item = event.target.value;
+            var selected_data = adv_data[selected_item];
+            console.log("Loading Modal Window");
             console.log("Selected item:", selected_item);
-            console.log("Data:", data);
-
-            var modal = new modal_object(data[selected_item]);
-
-            var input_data = await modal.get_user_input();
-
-            if (input_data) {
-                console.log("INPUT_DATA", input_data);
-                tbody.appendChild(self.create_adv_object(input_data));
-            } else {
-                console.log("Advantage cancelled.")
-            }
-            // Filling this out to duplicate again, instead of having two 
-            // separate functions
-            self.refresh_advantages_select();
-            self.refresh_disadvantages_select();
-        }
-    }
-
-    refresh_adv_select(advantage) {
-        if (advantage) {
-            // Refreshing the Advantage select
-            var select_id = "advantage_select";
-            var data = this.data.advantages;
-            var filter_function = this.filter_advantages;
-            var default_text = "Select an Advantage...";
-            var function_create = this.create_advantage;
-
-        } else {
-            // Refreshing the Disadvantage select
-            var select_id = "disadvantage_select";
-            var data = this.data.disadvantages;
-            var filter_function = this.filter_disadvantages;
-            var default_text = "Select a Disadvantage...";
-            var function_create = this.create_disadvantage;
-        }
-
-        var filtered_items = filter_function(data);
-
-        var obj_select = document.getElementById(select_id);
-        obj_select.innerHTML = "";
-
-        create_select_default(obj_select, default_text);
-
-        for (let item_name in filtered_items) {
-            let opt = document.createElement("option");
-            opt.innerHTML = item_name;
-            opt.value = item_name;
-            obj_select.appendChild(opt);
-        }
-
-        // Set effect when an option is selected
-        var self = this;
-        obj_select.onchange = async function() {
-            console.group("(Dis)Advantage Selected");
-            console.log("Self: ", self);
-            console.log("This: ", this);
-
-            var selected_item = this.value;
-            console.log("Selected item: ", selected_item);
-
-            console.log("Data:", data);
-
-            console.log("Loading modal window");
-            var modal = new AdvantagesModal(data[selected_item]);
+            console.log("Data:", adv_data);
+            
+            var modal = new AdvantagesModal(selected_data);
 
             var input_data = await modal.get_user_input();
 
             if (input_data) {
-                if (advantage) {
-                    self.create_advantage(input_data);
-                } else {
-                    self.create_disadvantage(input_data);
-                }
-                
+                console.log("INPUT_DATA:", input_data);
+                tbody.appendChild(this.create_adv_object(input_data));
             } else {
-                console.log("TEST cancelled.");
+                console.log("Advantage cancelled");
             }
-
-            self.refresh_advantages_select();
-            self.refresh_disadvantages_select();
-            console.groupEnd();
+            this.refresh_advantages_select();
+            this.refresh_disadvantages_select();
         }
-    }
-
-    filter_advantages() {
-        // PLACEHOLDER
-        return this.data.data.advantages;
-        return this.data.advantages;
-    }
-
-    filter_disadvantages(disadvantage_data) {
-        // PLACEHOLDER
-        return this.data.data.disadvantages;
+        return func.bind(this);
     }
 
     create_adv_object(data) {
@@ -499,32 +394,48 @@ class CharacterCreator {
         return row;
     }
 
-    create_advantage(input_data) {
-        var tbody = document.getElementById("adv_tbody");
-        tbody.appendChild(this.create_adv_object(input_data));
-        console.log("create_advantage Placeholder Function");
-        console.log(input_data);
-    }
+    refresh_advantages_select() {
+        console.log("Refresh Advantages Select");
+        var select = document.getElementById("advantage_select");
+        var data = this.filter_advantages();
+        select.innerHTML = "";
+        create_select_default(select, "Select an Advantage...");
 
-    create_disadvantage(input_data) {
-        var tbody = document.getElementById("disadv_tbody");
-        tbody.appendChild(this.create_adv_object(input_data));
-        console.log("create_advantage Placeholder Function");
-        console.log(input_data);
-    }
-
-    generate_advantages_select(advantage_select_id) {
-        // Generate Default
-        var adv_select = document.getElementById(advantage_select_id);
-        create_select_default(adv_select, "Select advantage...");
-        var advantages = this.data.advantages;
-        console.log(advantages);
-        for (let adv in advantages) {
-            let adv_option = document.createElement("option");
-            adv_option.innerHTML = adv;
-            adv_option.title = advantages[adv]["selection_text"];
-            adv_select.appendChild(adv_option);
+        for (let item_name in data) {
+            let opt = document.createElement("option");
+            opt.innerHTML = item_name;
+            opt.value = item_name;
+            select.appendChild(opt);
         }
+        select.onchange = this.adv_onselect(this.filter_advantages(),
+                                        document.getElementById("adv_tbody"));
+    }
+
+    refresh_disadvantages_select() {
+        console.log("Refresh Disadvantages Select");
+        var select = document.getElementById("disadvantage_select");
+        var data = this.filter_disadvantages();
+        select.innerHTML = "";
+        create_select_default(select, "Select a Disadvantage...");
+
+        for (let item_name in data) {
+            let opt = document.createElement("option");
+            opt.innerHTML = item_name;
+            opt.value = item_name;
+            select.appendChild(opt);
+        }
+        select.onchange = this.adv_onselect(this.filter_disadvantages(),
+                                    document.getElementById("disadv_tbody"));
+    }
+
+    filter_advantages() {
+        // PLACEHOLDER
+        return window.DH.data.advantages;
+    }
+
+    filter_disadvantages(disadvantage_data) {
+        // PLACEHOLDER
+        return window.DH.data.disadvantages;
     }
 
     // Spells //////////////////////////////////////////////////////////////////
@@ -553,11 +464,11 @@ class CharacterCreator {
     add_default_spells() {
         console.log("ADDING DEFAULT SPELLS");
         var default_spells = {};
-        console.log(this.data.spells);
+        console.log(window.DH.spells);
 
-        for (let spell_name in this.data.spells) {
-            if (this.data.spells[spell_name].universal) {
-                let spell = this.data.spells[spell_name];
+        for (let spell_name in window.DH.spells) {
+            if (window.DH.spells[spell_name].universal) {
+                let spell = window.DH.spells[spell_name];
                 this.add_spell(spell_name, spell.description, spell.keywords,
                                spell.ring.split(), spell.mastery_level, spell.range,
                                spell.aoe, spell.duration, spell.raises,
@@ -700,4 +611,26 @@ class CharacterCreator {
 
     ////////////////////////////////////////////////////////////////////////////
 
+}
+
+// Page Functions //////////////////////////////////////////////////////////////
+function change_character_name() {
+    var new_name = document.getElementById('character_name_input').value;
+
+    if (new_name.length == 0) {
+        alert("Character cannot have a name of 0 length.");
+    } else {
+        var yesno = confirm(`Change character's name to '${new_name}'?`);
+        if (yesno) {
+            document.getElementById("character_name_display").innerHTML = new_name;
+        }
+    }
+}
+
+function complete_character() {
+    console.log("BUTTON CLICKED - Complete Character");
+}
+
+function start_over() {
+    console.log("BUTTON CLICKED - Start Over");
 }

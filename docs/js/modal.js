@@ -381,7 +381,7 @@ class ModalWindow {
 	// NEEDS WORK FOR CREATING DROPDOWN_TYPES
 	add_dropdown_input(id, label_text, dropdown_type,
 	                   optional=null, dependency=null) {
-		var item_list = DH.get_list(dropdown_type);
+		var item_list = window.DH.get_list(dropdown_type);
 		let dropdown = new CustomDropdown("Choice...", item_list, false);
 		var elem = dropdown.dropdown;
 		this.add_input(id, label_text, elem, "dropdown", optional, dependency);

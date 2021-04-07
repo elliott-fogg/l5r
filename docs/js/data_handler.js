@@ -23,6 +23,14 @@ class DataLoader {
 		this.bind_local_upload_button()
 	}
 
+	execute_on_load(func) {
+		if (this.loaded) {
+			func();
+		} else {
+			this.callback = func;
+		}
+	}
+
 	complete_function() {
 		console.groupCollapsed("Loading Data Complete!");
 
@@ -219,6 +227,9 @@ class DataHandler extends DataLoader {
 			// A class/macro is specified
 			let skill = SKILLS[skill_name];
 			for (let type of class_list) {
+				if (skill["class"] == null) {
+					console.log("MISSING CLASS:", skill_name, skill);
+				}
 				if (skill["macro"].includes(type) ||
 				    skill["class"].includes(type)) {
 					skill_list.push(skill_name);
@@ -491,3 +502,22 @@ class DataHandler extends DataLoader {
 
 // End Class
 }
+
+class CustomData {
+	// This might be a good way to store all the User-Added classes and such in 
+	// one place, so it can be easily both exported to file, and included in 
+	// the DataHandler. Just an idea for now.
+	constructor() {
+		// Skills, Emphases, etc.
+		// Families
+		// Schools
+		// Spells?
+		// Weapons
+		// Techniques?
+		// Advantages?
+	}
+}
+
+// Load DataHandler as a Window Variable
+window.DH = new DataHandler();
+console.log(window.DH);

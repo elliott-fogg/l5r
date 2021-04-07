@@ -32,22 +32,8 @@
 
 			activate_collapsible_divs();
 
-			// Attach necessary listener to all collapsible divs on page
-			// window.addEventListener("DOMContentLoaded", (event) => {
-			// 	console.log("NOTE: The page has loaded");
-			// 	activate_collapsible_divs();
-			// })
-			
-
-			// Initiate DataHandler, with callback to run CharacterCreator
-			// when all data is loaded.
-			// NOTE: Should find a way to circumvent this, so that the page can 
-			// load while the data is being retrieved.
-
-			var dataHandler;
-
-			dataHandler = new DataHandler( function() {
-				new CharacterCreator(dataHandler)
+			window.DH.execute_on_load(function() {
+				window.character = new CharacterCreator();
 			});
 		}
 
@@ -57,13 +43,22 @@
 </head>
 <body onload="initiate_page()">
 
-	<h1>L5R Character Creation Page</h1>
-
-	<input type="button" value="Generate Character" id="character_create_button">
+	<div>
+		<h1 id="character_name_display" style="display: inline;margin-right: 10px">New_Character</h1>
+		<h1 style="display: inline; margin-right: 10px; color: grey">(<i>Character Creation</i>)</h1>
+		<input type="button" value="Complete Character" style="background-color: #7dad87"
+			onclick="complete_character()">
+		<input type="button" value="Start Over" style="background-color: #ba8682"
+			onclick="start_over()">
+	</div>
+	
+	<div style="margin-top: 10px; margin-bottom: 10px">
+		<label>New Name:</label>
+		<input type="text" id="character_name_input" placeholder="Enter name ...">
+		<input type="button" value="Change" onclick="change_character_name()">
+	</div>
 
 	<input type="button" value="Upload local files" id="upload_local">
-
-	<br><br>
 
 	<!-- Personal Information -->
 	<div class="collapsible-div-container heading">
@@ -71,8 +66,80 @@
 			<p class="advantage">Personal Information</p>
 		</div>
 		<div class="collapsible-div-content">
-			<label>Name:</label>
-			<input type="text" id="character_name_input" placeholder="Name...">
+			<div style="margin-bottom:5px">
+				<label>Name:</label>
+				<input type="text" id="character_name_input" placeholder="Name...">
+			</div>
+
+			<div class="collapsible-div-container heading hidden">
+				<div class="collapsible-div-title">
+					<p>Physical Descriptors</p>
+				</div>
+				<div class="collapsible-div-content">
+					<table>
+						<tr>
+							<td><label>Sex:</label></td>
+							<td><input type="text" class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Age:</label></td>
+							<td><input type="number" min=1 value=25 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Height:</label></td>
+							<td><input type="number" min=1 value=1 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Weight:</label></td>
+							<td><input type="number" min=1 value=1 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Eye Color:</label></td>
+							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Hair Color:</label></td>
+							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="collapsible-div-container heading hidden">
+				<div class="collapsible-div-title">
+					<p>Relations</p>
+				</div>
+				<div class="collapsible-div-content">
+					<table>
+						<tr>
+							<td><label>Father:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Father's Name"></td>
+						</tr>
+						<tr>
+							<td><label>Mother:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Mother's Name"></td>
+						</tr>
+						<tr>
+							<td><label>Siblings:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Name of Siblings, if any"></td>
+						</tr>
+						<tr>
+							<td><label>Spouse:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Spouse's Name, if married"></td>
+						</tr>
+						<tr>
+							<td><label>Children:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Childrens' Names, if present"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
