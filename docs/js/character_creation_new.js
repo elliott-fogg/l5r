@@ -17,7 +17,8 @@ class CharacterCreator {
         this.refresh_disadvantages_select();
         this.set_spells_allowed(false);
         this.add_default_spells();
-        this.refresh_spell_button();
+        // this.refresh_spell_button();
+        this.update_gear();
     }
 
 	// Character Data //////////////////////////////////////////////////////////
@@ -44,6 +45,8 @@ class CharacterCreator {
 		};
 		this.affinity = null;
 		this.deficiency = null;
+        this.gear = null;
+        this.money = null;
 	}
 
 	save_character_data() {
@@ -57,7 +60,8 @@ class CharacterCreator {
 			"starting_skills": this.starting_skills,
 			"spells": this.spells,
 			"affinity": this.affinity,
-			"deficiency": this.deficiency
+			"deficiency": this.deficiency,
+            "gear": this.gear
 		}
 		localStorage["current_character"] = JSON.stringify(save_data);
 	}
@@ -79,9 +83,11 @@ class CharacterCreator {
         this.refresh_school_select(); // Update Order of School Select
         this.refresh_skill_selections(); // Clear skill choices if they exist
 
+        // Refresh Advantages Selection
         this.refresh_advantages_select();
         this.refresh_disadvantages_select();
 
+        // Refresh Traits Display (as that should be the only thing changed)
         this.update_traits();
         console.groupEnd();
     }
@@ -101,6 +107,8 @@ class CharacterCreator {
         this.affinity = school_info["affinity"];
         this.deficiency = school_info["deficiency"];
         this.spells.choices = school_info["spells"];
+        this.gear = school_info["gear"];
+        this.money = school_info["koku"];
 
         // Update Class Display
         document.getElementById("school_class").innerHTML = school_info["class"];
@@ -108,6 +116,7 @@ class CharacterCreator {
         // If Shugenja, enable Spells collapsible
         if (school_info["class"] == "Shugenja") {
             this.set_spells_allowed(true);
+            this.refresh_spells_info();
         } else {
             this.set_spells_allowed(false);
         }
@@ -116,11 +125,16 @@ class CharacterCreator {
         this.refresh_school_select();
         this.refresh_skill_selections();
 
+        // Refresh Advantages Selection
         this.refresh_advantages_select();
         this.refresh_disadvantages_select();
 
+        // Refresh Displays
         this.update_skills();
         this.update_traits();
+        this.update_gear();
+        this.update_techniques();
+
     }
 
 	refresh_family_select() {
@@ -155,7 +169,6 @@ class CharacterCreator {
             }
 
             // Only add clan if the number of families is > 0
-            console.log("Triggered");
             if (clan_group.childElementCount > 0) {
                 family_select.appendChild(clan_group);
             }
@@ -225,14 +238,13 @@ class CharacterCreator {
     	var skill_choices_div = document.getElementById("skill_choices_div");
     	skill_choices_div.innerHTML = "";
 
-    	if (this.school_id == "" || this.skills.choices.length == 0) {
-            let null_button = document.createElement("input");
-            null_button.type = "button";
-            null_button.value = "None";
-            null_button.disabled = true;
-            skill_choices_div.appendChild(null_button);
-    		return;
-    	}
+        if (this.school_id == "" || this.skills.choices.length == 0) {
+            let p = document.createElement("p");
+            p.style = "display: inline; color: grey";
+            p.innerHTML = "None";
+            skill_choices_div.appendChild(p);
+            return;
+        }
 
     	for (let i=0; i < this.skills.choices.length; i++) {
     		var allowed_skills;
@@ -266,14 +278,29 @@ class CharacterCreator {
     			this.set_skill_choice(value, i);
     		}.bind(this);
 
+            console.groupCollapsed("Skill Stages");
+            console.log("Allowed Skills", allowed_skills);
+            console.log("Filtered Skills", filtered_skills);
             console.log("Grouped Skills", grouped_skills);
+            console.groupEnd("Skill Stages");
 
             var dropdown_object = new CustomDropdown(button_title,
                                                      grouped_skills,
                                                      false,
                                                      on_option_click);
 
-            skill_choices_div.appendChild(dropdown_object.dropdown);
+            var choice_div = document.createElement("div");
+
+            var label = document.createElement("label");
+            label.innerHTML = `<u>${this.skills.choices[i]}:</u>`;
+            label.style="margin-right: 5px"
+            choice_div.appendChild(label);
+
+            choice_div.appendChild(dropdown_object.dropdown);
+            dropdown_object.dropdown.style="display: inline";
+            choice_div.style="margin-bottom: 5px"
+
+            skill_choices_div.appendChild(choice_div);
     	}
     }
 
@@ -308,10 +335,10 @@ class CharacterCreator {
         trait_tbody.innerHTML = "";
         var template = document.createElement("template");
         for (let trait in traits_dict) {
-            let row_html = `<tr><td>${trait}</td>
-                        <td>${traits_dict[trait]}</td></tr>`;
-            row_html = row_html.trim();
-            template.innerHTML = row_html;
+            let value = traits_dict[trait];
+            let value_html = (value > 2) ? `<b>${value}</b>` : `${value}`;
+            let row_html = `<tr><td>${trait}</td><td>${value_html}</td></tr>`;
+            template.innerHTML = row_html.trim();
             trait_tbody.appendChild(template.content.firstChild);
         }
     }
@@ -444,12 +471,10 @@ class CharacterCreator {
         console.log("SETTING SPELLS ALLOWED", allowed);
         var spells_container = document.getElementById("spells_container");
         if (allowed) {
-            console.log("TRUE");
             spells_container.classList.remove("hidden");
             spells_container.classList.remove("disabled");
             spells_container.title = "";
         } else {
-            console.log("FALSE");
             spells_container.classList.add("hidden");
             spells_container.classList.add("disabled");
             spells_container.title = "A Shugenja class is required to use Spells";
@@ -462,17 +487,10 @@ class CharacterCreator {
     }
 
     add_default_spells() {
-        console.log("ADDING DEFAULT SPELLS");
-        var default_spells = {};
-        console.log(window.DH.spells);
-
-        for (let spell_name in window.DH.spells) {
-            if (window.DH.spells[spell_name].universal) {
-                let spell = window.DH.spells[spell_name];
-                this.add_spell(spell_name, spell.description, spell.keywords,
-                               spell.ring.split(), spell.mastery_level, spell.range,
-                               spell.aoe, spell.duration, spell.raises,
-                               spell.universal);
+        console.groupCollapsed("Adding Default Spells");
+        for (let spell_name in window.DH.data.spells) {
+            if (window.DH.data.spells[spell_name].universal) {
+                this.add_existing_spell(spell_name);
             }
         }
 
@@ -505,51 +523,40 @@ class CharacterCreator {
 
         console.log("CUSTOM SPELL", input_data);
 
-        this.add_spell(input_data["name"],
-                       input_data["info"],
-                       input_data["keywords"],
-                       input_data["elements"],
-                       input_data["mastery_level"],
-                       input_data["range"],
-                       input_data["aoe"],
-                       input_data["duration"],
-                       null,
-                       false);
+        this.add_spell({
+            "title": input_data["name"],
+            "element": input_data["elements"],
+            "mastery_level": input_data["mastery_level"],
+            "keywords": input_data["keywords"],
+            "range": input_data["range"],
+            "aoe": input_data["aoe"],
+            "duration": input_data["duration"],
+            "raises": input_data["raises"],
+            "special": input_data["special"],
+            "description": input_data["description"]
+        })
 
         this.refresh_spells_table();
     }
 
     next_spell_id() {
-        let spell_id = `spell_${this.spell_info.count}`;
-        this.spell_info.count += 1;
+        let spell_id = `spell_${this.spells.count}`;
+        this.spells.count += 1;
         return spell_id;
     }
 
-    add_spell(name, description, keywords, elements, mastery_level, range, aoe,
-              duration, raises, universal=false) {
-        let spell_id = this.next_spell_id();
-        var spell = {
-            "name": name,
-            "description": description,
-            "keywords": keywords,
-            "elements": elements,
-            "mastery_level": mastery_level,
-            "range": range,
-            "aoe": aoe,
-            "duration": duration,
-            "raises": raises,
-            "universal": universal
-        }
-        this.spell_info.spells[spell_id] = spell;
+    add_spell(spell_dict) {
+        var spell_name = spell_dict["title"];
+        this.spells.learned[spell_name] = spell_dict;
     }
 
     refresh_spells_table() {
-        console.log("this.spell_info", this.spell_info);
+        console.log("this.spell_info", this.spells);
         var spells_tbody = document.getElementById("spells_tbody");
         spells_tbody.innerHTML = "";
 
         for (let spell_id in this.spells["learned"]) {
-            let spell = this.spell_info.spells[spell_id];
+            let spell = this.spells.learned[spell_id];
             console.log(spell);
 
             let row = document.createElement("tr");
@@ -558,10 +565,12 @@ class CharacterCreator {
             let c1 = document.createElement("td");
             
                 // Create Title
-            var spell_name = spell["name"];
+            var spell_name = spell["title"];
             if (spell["keywords"].length > 0) {
                 spell_name += ` (${spell["keywords"].join(", ")})`;
             }
+
+            var content = [];
 
                 // Create Details
             var spell_text = "";
@@ -570,37 +579,47 @@ class CharacterCreator {
             spell_text += `Duration: ${spell["duration"]}<br>`;
             let details = document.createElement("p");
             details.innerHTML = spell_text;
+            content.push(details);
 
 
-                // Add Raises to description
-            let raises = document.createElement("div");
-            raises = create_collapsible_div("Raises", "RAISES_INFO", "hidden");
-            console.log("RAISES", spell["raises"]);
-
-
+                // Add Raises to description (if present)
+            if (spell["raises"].length > 0) {
+                let raises_ul = document.createElement("ul");
+                for (let r of spell["raises"]) {
+                        let li = document.createElement("li");
+                        li.innerHTML = r;
+                        raises_ul.appendChild(li);
+                }
+                let raises = create_collapsible_div("Raises", [raises_ul], "hidden");
+                content.push(raises)
+            }
+            
                 // Add bulk description text
             let description = document.createElement("p");
             description.innerHTML = spell["description"];
+            content.push(description);
 
+            console.log(content);
 
             // Finish creating Cell 1
             c1.appendChild(create_collapsible_div(spell_name,
-                                                  [details, raises, description],
+                                                  content,
                                                   "spell hidden"
             ));
 
             c1.classList.add("text_cell");
             row.appendChild(c1);
 
+            console.log(spell)
+
             let c2 = document.createElement("td");
             c2.innerHTML = spell["mastery_level"];
             row.appendChild(c2);
             c2.style = "text-align: center; vertical-align: text-top;";
 
-
             let c3 = document.createElement("td");
-            console.log(spell["elements"])
-            c3.innerHTML = spell["elements"].join(", ");
+            console.log(spell["element"])
+            c3.innerHTML = spell["element"];
             row.appendChild(c3);
             c3.style = "vertical-align: text-top;"
 
@@ -608,6 +627,132 @@ class CharacterCreator {
         }
     }
 
+    refresh_spell_dropdown() {
+        var spell_dropdown = document.getElementById("spell_dropdown");
+        spell_dropdown.innerHTML = "";
+
+        var new_spells = [];
+        for (let spell in window.DH.data.spells) {
+            let spell_info = window.DH.data.spells[spell];
+            if (!(spell in this.spells.learned)) {
+                new_spells.push(spell);
+            }
+        }
+
+        var grouped_spells = window.DH.group_spells(new_spells)
+
+        var on_spell_click = function(value) {
+            console.log("SPELL SELECTED");
+            this.confirm_spell(value);
+        }.bind(this);
+
+        var dropdown_obj = new CustomDropdown("Add Spell", grouped_spells,
+                                              false, on_spell_click)
+
+        spell_dropdown.appendChild(dropdown_obj.dropdown);
+    }
+
+    add_existing_spell(spell_name) {
+        this.spells.learned[spell_name] = window.DH.data.spells[spell_name];
+    }
+
+    async confirm_spell(spell_name) {
+        var spell = window.DH.data.spells[spell_name];
+        console.log(spell);
+
+        var modal = new ModalWindow();
+        modal.add_title(`Add spell '${spell_name}'?`);
+        modal.add_subtitle(`${spell.element} ${spell.mastery_level} (${spell.keywords})`);
+
+        var description = "";
+        description += `<b>Range:</b> ${spell.range}<br>`;
+        description += `<b>Area of Effect:</b> ${spell.aoe}<br>`;
+        description += `<b>Duration:</b> ${spell.duration}<br>`;
+        description += `<b>Raises:</b> ${spell.raises}<br>`;
+        description += `<b>Special:</b> ${spell.special}<br>`;
+        description += spell.description;
+        modal.add_description(description);
+
+        var input_data = await modal.get_user_input();
+
+        if (input_data == null) {
+            return;
+        } else {
+            this.add_existing_spell(spell_name);
+            this.refresh_spells_info();
+        }
+    }
+
+    refresh_spells_info() {
+        this.refresh_spells_table();
+        this.refresh_spell_dropdown();
+
+        // Refresh Affinity display
+        var p_affinity = document.getElementById("p_affinity");
+        var sel_affinity = document.getElementById("sel_affinity");
+        if (this.affinity == "Any") {
+            sel_affinity.style.display = "inline";
+            p_affinity.style.display = "none";
+        } else {
+            sel_affinity.style.display = "none";
+            p_affinity.style.display = "inline";
+            p_affinity.innerHTML = this.affinity;
+        }
+
+        // Refresh Deficiency display
+        var p_deficiency = document.getElementById("p_deficiency");
+        p_deficiency.innerHTML = this.deficiency;
+
+        // Refresh Spell Choices
+        console.log(this.spells.choices);
+        var p_spell_choices = document.getElementById("p_spell_choices");
+        p_spell_choices.innerHTML = this.spells.choices.join(", ");
+    }
+
+    // Gear ////////////////////////////////////////////////////////////////////
+
+    update_gear() {
+        var money_p = document.getElementById("money_display");
+        money_p.innerHTML = "";
+        if (this.money == null) {
+            money_p.innerHTML = "None";
+        } else {
+            money_p.innerHTML = `${this.money} Koku`;
+        }
+
+        var gear_p = document.getElementById("gear_display");
+        gear_p.innerHTML = "";
+        if (this.gear == null) {
+            // gear_p.disabled = true;
+            gear_p.innerHTML = "None"
+        } else {
+            var ul = document.createElement("ul");
+            for (let item of this.gear) {
+                let li = document.createElement("li");
+                li.innerHTML = item;
+                ul.appendChild(li);
+            }
+            gear_p.appendChild(ul);
+        }
+    }
+
+    // Techniques //////////////////////////////////////////////////////////////
+
+    update_techniques() {
+        var techniques_div = document.getElementById("techniques_div");
+        techniques_div.innerHTML = "";
+
+        console.log("UPDATING TECHNIQUES");
+        var techniques = window.DH.get_techniques(this.school_id);
+
+        for (let i in techniques) {
+            let content = document.createElement("p");
+            content.innerHTML = techniques[i].effect;
+            let div = create_collapsible_div(`Rank ${i}: ${techniques[i].name}`,
+                                                [content], "bold hidden");
+            techniques_div.appendChild(div);
+        }
+    }
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -615,16 +760,14 @@ class CharacterCreator {
 
 // Page Functions //////////////////////////////////////////////////////////////
 function change_character_name() {
-    var new_name = document.getElementById('character_name_input').value;
 
-    if (new_name.length == 0) {
-        alert("Character cannot have a name of 0 length.");
-    } else {
-        var yesno = confirm(`Change character's name to '${new_name}'?`);
-        if (yesno) {
-            document.getElementById("character_name_display").innerHTML = new_name;
-        }
+    var new_name = window.prompt("Enter a new name for this character:");
+
+    if (new_name == null || new_name == "") {
+        return;
     }
+
+    document.getElementById("character_name_display").innerHTML = new_name;
 }
 
 function complete_character() {
