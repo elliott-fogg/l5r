@@ -52,96 +52,18 @@
 			onclick="start_over()">
 	</div>
 	
-	<div style="margin-top: 10px; margin-bottom: 10px">
+	<input type="button" value="Change Name" onclick="change_character_name()"
+		style="margin-top: 5px;">
+
+<!-- 	<div style="margin-top: 10px; margin-bottom: 10px">
 		<label>New Name:</label>
 		<input type="text" id="character_name_input" placeholder="Enter name ...">
 		<input type="button" value="Change" onclick="change_character_name()">
-	</div>
+	</div> -->
 
-	<input type="button" value="Upload local files" id="upload_local">
+	<!-- <input type="button" value="Upload local files" id="upload_local"> -->
 
-	<!-- Personal Information -->
-	<div class="collapsible-div-container heading">
-		<div class="collapsible-div-title">
-			<p class="advantage">Personal Information</p>
-		</div>
-		<div class="collapsible-div-content">
-			<div style="margin-bottom:5px">
-				<label>Name:</label>
-				<input type="text" id="character_name_input" placeholder="Name...">
-			</div>
-
-			<div class="collapsible-div-container heading hidden">
-				<div class="collapsible-div-title">
-					<p>Physical Descriptors</p>
-				</div>
-				<div class="collapsible-div-content">
-					<table>
-						<tr>
-							<td><label>Sex:</label></td>
-							<td><input type="text" class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Age:</label></td>
-							<td><input type="number" min=1 value=25 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Height:</label></td>
-							<td><input type="number" min=1 value=1 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Weight:</label></td>
-							<td><input type="number" min=1 value=1 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Eye Color:</label></td>
-							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Hair Color:</label></td>
-							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-			<div class="collapsible-div-container heading hidden">
-				<div class="collapsible-div-title">
-					<p>Relations</p>
-				</div>
-				<div class="collapsible-div-content">
-					<table>
-						<tr>
-							<td><label>Father:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Father's Name"></td>
-						</tr>
-						<tr>
-							<td><label>Mother:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Mother's Name"></td>
-						</tr>
-						<tr>
-							<td><label>Siblings:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Name of Siblings, if any"></td>
-						</tr>
-						<tr>
-							<td><label>Spouse:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Spouse's Name, if married"></td>
-						</tr>
-						<tr>
-							<td><label>Children:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Childrens' Names, if present"></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-		</div>
-	</div>
+	<hr>
 
 	<!-- Family and School Select -->
 	<div class="collapsible-div-container heading">
@@ -149,13 +71,13 @@
 			<p>Family and School Select</p>
 		</div>
 		<div class="collapsible-div-content">
-			<label>Family:</label>
+			<label><b>Family:</b></label>
 			<select id="character_family_select" style="margin-right: 20px"></select>
-			<label>School:</label>
+			<label><b>School:</b></label>
 			<select id="character_school_select"></select>
-			<div>
-				<p style="display: inline">School Skill Choices:</p>
-				<div id="skill_choices_div"></div>
+			<div style="margin-top: 10px">
+				<label><b>School Skill Choices:</b></p>
+				<div id="skill_choices_div" style="margin-left: 15px"></div>
 			</div>
 		</div>
 	</div>
@@ -203,8 +125,8 @@
 		<div class="collapsible-div-title">
 			<p>Techniques</p>
 		</div>
-		<div class="collapsible-div-content" id="techniques_div">
-			<p>Techniques Here</p>
+		<div class="collapsible-div-content" id="techniques_div" style="max-width: 50%">
+			<p>None</p>
 		</div>
 	</div>
 
@@ -255,16 +177,24 @@
 		</div>
 		<div class="collapsible-div-content">
 			<div>
-				<p>Affinity: </p>
-				<p id="p_affinity" style="margin-right: 20px">None</p>
-				<p>Deficiency: </p>
-				<p id="p_deficiency">None</p>
+				<p><b>Affinity:</b></p>
+				<p id="p_affinity" style="margin-right: 20px">UNKNOWN</p>
+				<select id="sel_affinity" style="display: none">
+					<option>Air</option>
+					<option>Earth</option>
+					<option>Fire</option>
+					<option>Water</option>
+					<option>Void</option>
+				</select>
+				<p><b>Deficiency:</b></p>
+				<p id="p_deficiency">UNKNOWN</p>
 			</div>
 			<div>
-				<p>Starting Spell Choices:</p>
+				<p><b>Starting Spell Choices:</b></p>
 				<p id="p_spell_choices">SPELL_CHOICES_GO_HERE</p>
 			</div>
-			<input type="button" value="Add spell..." id="spell_btn">
+			<div id="spell_dropdown"></div>
+			<!-- <input type="button" value="Add spell..." id="spell_btn"> -->
 
 			<!-- Spells Table -->
 			<table>
@@ -286,10 +216,93 @@
 	<!-- Equipment -->
 	<div class="collapsible-div-container heading">
 		<div class="collapsible-div-title">
-			<p>Equipment</p>
+			<p>Starting Equipment</p>
 		</div>
 		<div class="collapsible-div-content">
-			<p><b>EQUIPMENT GOES HERE</b></p>
+			<p><b>Money:</b></p>
+			<p id="money_display">MONEY_GOES_HERE</p>
+			<br>
+			<p><b>Gear:</b></p>
+			<p id="gear_display">EQUIPMENT_GOES_HERE</p>
+		</div>
+	</div>
+
+	<!-- Personal Information -->
+	<div class="collapsible-div-container heading hidden">
+		<div class="collapsible-div-title">
+			<p class="advantage">Personal Information</p>
+		</div>
+		<div class="collapsible-div-content">
+
+			<div class="collapsible-div-container hidden">
+				<div class="collapsible-div-title">
+					<p>Physical Descriptors</p>
+				</div>
+				<div class="collapsible-div-content">
+					<table>
+						<tr>
+							<td><label>Sex:</label></td>
+							<td><input type="text" class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Age:</label></td>
+							<td><input type="number" min=1 value=25 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Height:</label></td>
+							<td><input type="number" min=1 value=1 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Weight:</label></td>
+							<td><input type="number" min=1 value=1 class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Eye Color:</label></td>
+							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+						</tr>
+						<tr>
+							<td><label>Hair Color:</label></td>
+							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div class="collapsible-div-container hidden">
+				<div class="collapsible-div-title">
+					<p>Relations</p>
+				</div>
+				<div class="collapsible-div-content">
+					<table>
+						<tr>
+							<td><label>Father:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Father's Name"></td>
+						</tr>
+						<tr>
+							<td><label>Mother:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Mother's Name"></td>
+						</tr>
+						<tr>
+							<td><label>Siblings:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Name of Siblings, if any"></td>
+						</tr>
+						<tr>
+							<td><label>Spouse:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Spouse's Name, if married"></td>
+						</tr>
+						<tr>
+							<td><label>Children:</label></td>
+							<td><input type="text" class="optional"
+								placeholder="Childrens' Names, if present"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -322,6 +335,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 </body>
 </html>
