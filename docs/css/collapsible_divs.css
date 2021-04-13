@@ -101,3 +101,8 @@ div.collapsible-div-container.advantage > div.collapsible-div-content {
 .collapsible-div-container.spell > div.collapsible-div-content {
 	max-width: 650px;
 }
+
+/* bold - for Headings */
+.collapsible-div-container.bold > div.collapsible-div-title {
+	font-weight: bold;
+}
