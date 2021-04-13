@@ -266,7 +266,7 @@
         "Spellcraft"
       ],
       "skill_choices": [
-        "Weapon"
+        "Weapons"
       ],
       "honor": "2.5",
       "gear": [
@@ -305,7 +305,7 @@
         "Kenjutsu",
         "Lore: Shadowlands",
         "Lore: Maho",
-        "Mediation"
+        "Meditation"
       ],
       "skill_choices": [
         "Any"
@@ -1940,7 +1940,7 @@
         "Scroll Satchel",
         "Traveling Pack"
       ],
-      "affinity": "None",
+      "affinity": "Any",
       "deficiency": "None",
       "spells": [
         "Sense",

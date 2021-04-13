@@ -6,7 +6,7 @@ class DataLoader {
 			"families": "/json/families.json",
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
-			"spells": "/json/spells.json"
+			"spells": "/json/spells_full.json"
 		}
 		
 		this.times = {}
@@ -208,9 +208,6 @@ class DataHandler extends DataLoader {
 	}
 
 	// Skill functions /////////////////////////////////////////////////////////
-
-
-	// Skill functions /////////////////////////////////////////////////////////
 	get_skill_list(class_list=[]) {
 		var SKILLS = this.data.skills;
 		if (typeof class_list != "object") {
@@ -300,11 +297,8 @@ class DataHandler extends DataLoader {
 
 		var starting_skills = {};
 		for (let skill_string of school_info["skills"]) {
-			console.log(skill_string);
-
 			var extracted_info = this.extract_skill_info(skill_string);
 			starting_skills[extracted_info.name] = extracted_info;
-			console.warn(starting_skills);
 		}
 
 		console.log(starting_skills);
@@ -448,6 +442,11 @@ class DataHandler extends DataLoader {
 		}
 	}
 
+	get_techniques(school_id) {
+		var [clan, school] = school_id.split("_");
+		return this.data.schools[clan][school].techniques;
+	}
+
 	// General Functions ///////////////////////////////////////////////////////
 
 	get_list(list_type) {
@@ -515,6 +514,20 @@ class CustomData {
 		// Weapons
 		// Techniques?
 		// Advantages?
+	}
+}
+
+class DataTester extends DataLoader {
+	constructor() {
+		this.callback = this.run_all_tests();
+	}
+
+	run_all_tests() {
+
+	}
+
+	test_school_traits() {
+
 	}
 }
 
