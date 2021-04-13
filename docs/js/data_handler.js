@@ -194,6 +194,29 @@ class DataLoader {
 
 class DataHandler extends DataLoader {
 
+	// Spells //////////////////////////////////////////////////////////////////
+	group_spells(spell_list) {
+		var spells = {
+			"Air": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
+			"Earth": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
+			"Fire": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
+			"Water": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
+			"Void": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}}
+		}
+
+		for (let spell_name of spell_list) {
+			console.log(spell_name);
+			var spell = this.data.spells[spell_name];
+			console.log(spell);
+			spells[spell.element][spell.mastery_level][spell_name] = spell_name;
+		}
+
+		console.log(spells);
+
+		return spells;
+	}
+
+
 	// Family functions ////////////////////////////////////////////////////////
 	get_family_trait(family_id) {
 		var [clan, family] = family_id.split("_");
