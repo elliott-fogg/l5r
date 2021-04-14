@@ -1268,7 +1268,7 @@
 	"Tactician": {
 		"title": "Tactician",
 		"cost": 4,
-		"discount": "clan_Lion_2 class_Bushi_2",
+		"discount": "clan_Lion class_Bushi",
 		"description": "You have a mind well suited to the ebb and flow of battle. When making a roll on the Mass Battle Table, you may increase or dercease your result by 5. Lion and bushi characters may purchase this Advantage for 3 points.",
 		"output_text": "When making a roll on the Mass Battle Table, you may increase of decrease your result by 5."
 	},
