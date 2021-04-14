@@ -19,6 +19,9 @@ class CharacterCreator {
         this.update_skills();
         this.update_gear();
         this.update_techniques();
+        this.update_status();
+        this.update_honor();
+        this.update_glory();
 
         // Reset Advantages
         this.refresh_adv_selects();
@@ -53,8 +56,6 @@ class CharacterCreator {
 		};
 		this.affinity = null;
 		this.deficiency = null;
-        this.gear = null;
-        this.money = null;
         this.advantages = [];
         this.disadvantages = [];
 	}
@@ -71,7 +72,10 @@ class CharacterCreator {
 			"spells": this.spells,
 			"affinity": this.affinity,
 			"deficiency": this.deficiency,
-            "gear": this.gear
+            "gear": this.gear,
+            "glory": 1,
+            "status": 1,
+            "honor": 1
 		}
 		localStorage["current_character"] = JSON.stringify(save_data);
 	}
@@ -119,6 +123,9 @@ class CharacterCreator {
         this.spells.choices = school_info["spells"];
         this.gear = school_info["gear"];
         this.money = school_info["koku"];
+
+        // Update Honor
+        this.update_honor();
 
         // Update Class Display
         // document.getElementById("school_class").innerHTML = school_info["class"];
@@ -396,6 +403,57 @@ class CharacterCreator {
         }
     }
 
+    update_honor() {
+        var honor = 0;
+
+        // Check for school honor
+        if (this.school_id != "") {
+            let school_honor = window.DH.get_school_info(this.school_id)["honor"];
+            honor += parseFloat(school_honor);
+        }
+
+        // Check for Virtuous Advantage (hack job for now)
+        for (let adv of this.advantages) {
+            if (adv.title == "Virtuous") {
+                honor += 1;
+            }
+        }
+
+        var honor_display = document.getElementById("honor_rank");
+        honor_display.innerHTML = Math.round(honor * 10) / 10;
+    }
+
+    update_glory() {
+        var glory = 1;
+
+        // Check for Fame Advantage (hack job for now)
+        for (let adv of this.advantages) {
+            if (adv.title == "Fame") {
+                glory += 1;
+            }
+        }
+
+        var glory_display = document.getElementById("glory_rank");
+        glory_display.innerHTML = Math.round(glory * 10) / 10;
+
+    }
+
+    update_status() {
+        var status = 1;
+
+        // Check for Imperial Spouse, and Social Position advantages
+        for (let adv of this.advantages) {
+            if (adv.title == "Imperial Spouse") {
+                status += 0.5;
+            } else if (adv.title == "Social Position") {
+                status += 1;
+            }
+        }
+
+        var status_display = document.getElementById("status_rank");
+        status_display.innerHTML = Math.round(status * 10) / 10;
+    }
+
     // Advantages and Disadvantages ////////////////////////////////////////////
 
     // Adding
@@ -413,6 +471,9 @@ class CharacterCreator {
         }
         this.refresh_adv_selects();
         this.refresh_adv_display();
+
+        // Refresh displays that can be affected by Advantages
+        this.update_adv_affected_displays()
     }
 
     // Refreshing Select
@@ -506,6 +567,7 @@ class CharacterCreator {
             }
             this.refresh_adv_selects();
             this.refresh_adv_display();
+            this.update_adv_affected_displays();
         }
 
         // Create an object for each advantage
@@ -558,6 +620,60 @@ class CharacterCreator {
     }
 
     calculate_adv_cost(cost, discounts, advantage) {
+        // Make the assumption here that a character's clan is determined by
+        // their family.
+
+        console.log("Calculate Advantage Cost");
+        console.log(cost, discounts, advantage);
+
+        // Check cost for PLAYER values
+        var PLAYER_match = cost.matchAll("PLAYER_(\w+)");
+        if (PLAYER_match) {
+            // Something here
+        }
+
+        cost = eval(cost);
+
+        // Extract Discounts -- THIS AIN'T GONNA WORK. NEED TO JUST CYCLE THROUGH
+        // EACH DISCOUNT, AS SOME OF THEM MAY BE BY MORE THAN 1 POINT
+        var clan_discounts = [];
+        var class_discounts = [];
+        var adv_discounts = [];
+
+        for (let d of discounts.split(" ")) {
+            var [type, value] = d.split("_");
+            if (type == "clan") {
+                clan_discounts.push(value);
+            } else if (type == "class") {
+                class_discounts.push(value);
+            } else if (type == "adv") {
+                adv_discounts.push(value);
+            } else {
+                console.error(`Discount not recognised - '${d}'`);
+            }
+        }
+
+        var total_discount = 0;
+
+        // Check character family
+        if (this.family_id) {
+            var player_clan = this.family_id.split("_")[0];
+            console.log("Clan:", player_clan);
+            if (clan_discounts.includes(player_clan)) {
+                total_discount += 1;
+            }
+        }
+
+        // Check character class
+        if (this.school_id) {
+            var player_class = window.DH.get_school_info(this.school_id)["class"];
+            console.log("Class:", player_class);
+            if (class_discounts.includes(player_class)) {
+                total_discount += 1
+            }
+        }
+
+        console.log(`'${cost}', '${discounts}', '${advantage}'`);
         return parseInt(cost);
     }
 
@@ -629,6 +745,13 @@ class CharacterCreator {
         console.log(valid_disadvantages);
 
         return valid_disadvantages;
+    }
+
+    update_adv_affected_displays() {
+        this.update_koku();
+        this.update_honor();
+        this.update_glory();
+        this.update_status();
     }
 
     // Spells //////////////////////////////////////////////////////////////////
@@ -895,28 +1018,43 @@ class CharacterCreator {
     // Gear ////////////////////////////////////////////////////////////////////
 
     update_gear() {
-        var money_p = document.getElementById("money_display");
-        money_p.innerHTML = "";
-        if (this.money == null) {
-            money_p.innerHTML = "None";
-        } else {
-            money_p.innerHTML = `${this.money} Koku`;
-        }
+        this.update_koku();
 
         var gear_p = document.getElementById("gear_display");
         gear_p.innerHTML = "";
-        if (this.gear == null) {
-            // gear_p.disabled = true;
-            gear_p.innerHTML = "None"
+        if (this.school_id == "") {
+            gear_p.innerHTML = "None";
         } else {
+            console.log(this.school_id);
             var ul = document.createElement("ul");
-            for (let item of this.gear) {
+            var gear = window.DH.get_school_info(this.school_id)["gear"];
+            for (let item of gear) {
                 let li = document.createElement("li");
                 li.innerHTML = item;
                 ul.appendChild(li);
             }
             gear_p.appendChild(ul);
         }
+    }
+
+    update_koku() {
+        var koku = 0.;
+
+        // Check for School Koku
+        if (this.school_id != "") {
+            let school_koku = window.DH.get_school_info(this.school_id)["koku"];
+            koku += parseFloat(school_koku);
+        }
+
+        // Check for Wealthy Advantage (hack job for now)
+        for (let adv of this.advantages) {
+            if (adv.title == "Wealthy") {
+                koku += 2 * parseInt(adv.cost);
+            }
+        }
+
+        var money_p = document.getElementById("money_display");
+        money_p.innerHTML = `${Math.round(koku * 10) / 10} Koku`;
     }
 
     // Techniques //////////////////////////////////////////////////////////////
