@@ -435,10 +435,9 @@ class CharacterCreator {
 
         var glory_display = document.getElementById("glory_rank");
         glory_display.innerHTML = Math.round(glory * 10) / 10;
-
     }
 
-    update_status() {
+    calculate_status() {
         var status = 1;
 
         // Check for Imperial Spouse, and Social Position advantages
@@ -450,8 +449,12 @@ class CharacterCreator {
             }
         }
 
+        return Math.round(status * 10) / 10;
+    }
+
+    update_status() {
         var status_display = document.getElementById("status_rank");
-        status_display.innerHTML = Math.round(status * 10) / 10;
+        status_display.innerHTML = this.calculate_status();
     }
 
     // Advantages and Disadvantages ////////////////////////////////////////////
@@ -534,6 +537,7 @@ class CharacterCreator {
                               advantage);
         } else {
             console.log("Advantage cancelled");
+            this.refresh_adv_selects();
         }
     }
 
@@ -627,54 +631,78 @@ class CharacterCreator {
         console.log(cost, discounts, advantage);
 
         // Check cost for PLAYER values
-        var PLAYER_match = cost.matchAll("PLAYER_(\w+)");
-        if (PLAYER_match) {
-            // Something here
+        var PLAYER_match = [...cost.matchAll(/PLAYER_(\w+)/g)];
+        console.log(PLAYER_match);
+        if (PLAYER_match.length > 0) {
+            for (let match of PLAYER_match) {
+                console.log(match);
+                let original = match[0];
+                let value = match[1];
+
+                if (value == "status") {
+                    cost = cost.replace(original, String(this.calculate_status()));
+                } else {
+                    console.warn("PLAYER attribute not recognised - ", original);
+                }
+            }
         }
 
         cost = eval(cost);
 
-        // Extract Discounts -- THIS AIN'T GONNA WORK. NEED TO JUST CYCLE THROUGH
-        // EACH DISCOUNT, AS SOME OF THEM MAY BE BY MORE THAN 1 POINT
-        var clan_discounts = [];
-        var class_discounts = [];
-        var adv_discounts = [];
-
-        for (let d of discounts.split(" ")) {
-            var [type, value] = d.split("_");
-            if (type == "clan") {
-                clan_discounts.push(value);
-            } else if (type == "class") {
-                class_discounts.push(value);
-            } else if (type == "adv") {
-                adv_discounts.push(value);
-            } else {
-                console.error(`Discount not recognised - '${d}'`);
-            }
-        }
-
+        // Extract Discounts - NOTE:
+        //  Discounts never stack, so just taking the highest should be fine.
+        //  Will make an exception for Advantage bonuses (Blissful Betrothal).
         var total_discount = 0;
 
-        // Check character family
-        if (this.family_id) {
-            var player_clan = this.family_id.split("_")[0];
-            console.log("Clan:", player_clan);
-            if (clan_discounts.includes(player_clan)) {
-                total_discount += 1;
+        if (discounts.length > 0) {
+            for (let d_string of discounts.split(" ")) {
+                let [type, value, amount] = d_string.split("_");
+                console.log(type, value, amount);
+
+                if (amount == null) {
+                    amount = 1;
+                }
+
+                if (type == "clan") {
+                    if (this.family_id) {
+                        let clan = this.family_id.split("_")[0];
+                        if (clan == value) {
+                            total_discount = Math.max(amount, total_discount);
+                        }
+                    }
+
+
+                } else if (type == "class") {
+                    if (this.school_id) {
+                        let school_info = window.DH.get_school_info(this.school_id);
+                        if (school_info.class == value) {
+                            total_discount = Math.max(amount, total_discount);
+                        }
+                    }
+
+
+                } else if (type == "adv") {
+                    for (let adv of this.advantages) {
+                        if (this.advantages[adv].title == value) {
+                            total_discount += amount;
+                            break;
+                        }
+                    }
+
+
+                } else {
+                    if (d_string != "") {
+                        console.warn("Discount not recognised - ", d_string);
+                    }
+                }
             }
         }
 
-        // Check character class
-        if (this.school_id) {
-            var player_class = window.DH.get_school_info(this.school_id)["class"];
-            console.log("Class:", player_class);
-            if (class_discounts.includes(player_class)) {
-                total_discount += 1
-            }
+        if (advantage) {
+            return cost - total_discount;
+        } else {
+            return cost + total_discount;
         }
-
-        console.log(`'${cost}', '${discounts}', '${advantage}'`);
-        return parseInt(cost);
     }
 
     create_adv_object(title, text, cost, delete_func) {
