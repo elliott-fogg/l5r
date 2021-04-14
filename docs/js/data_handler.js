@@ -6,7 +6,8 @@ class DataLoader {
 			"families": "/json/families.json",
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
-			"spells": "/json/spells_full.json"
+			"spells": "/json/spells_full.json",
+			"universal_spells": "/json/universal_spells.json"
 		}
 		
 		this.times = {}
@@ -15,8 +16,8 @@ class DataLoader {
 		this.loaded = false;
 		this.callback = callback;
 		this.start_time = performance.now();
-		this.hostname = window.location.hostname;
-		console.log("Real hostname: " + this.hostname);
+		console.log(`window.location: '${window.location}'`);
+		console.log(`window.location.hostname: '${window.location.hostname}'`);
 		// Not entirely sure how this works at the moment, need to manually set it for now.
 		this.hostname = "https://elliott-fogg.github.io/l5r";
 		this.get_all_data(delay_ms, test_fail);
@@ -43,7 +44,7 @@ class DataLoader {
 		this.loaded = true;
 
 		if (this.callback != null) {
-			console.log("Triggering callback...")
+			console.log(this.callback);
 			this.callback();
 		}
 	}
@@ -196,19 +197,34 @@ class DataHandler extends DataLoader {
 
 	// Spells //////////////////////////////////////////////////////////////////
 	group_spells(spell_list) {
-		var spells = {
-			"Air": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
-			"Earth": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
-			"Fire": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
-			"Water": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}},
-			"Void": {"1": {}, "2": {}, "3": {}, "4": {}, "5": {}, "6": {}}
+		var all_elements = ["Air", "Earth", "Fire", "Water", "Void", "Other"];
+		var spells = {};
+		for (let e of all_elements) {
+			spells[e] = {};
+			for (let i=1; i<=6; i++) {
+				spells[e][i] = {};
+			}
 		}
 
 		for (let spell_name of spell_list) {
-			console.log(spell_name);
 			var spell = this.data.spells[spell_name];
-			console.log(spell);
-			spells[spell.element][spell.mastery_level][spell_name] = spell_name;
+			var element = spell.element;
+			if (!(element in spells)) {
+				element = "Other"
+			}
+			spells[element][spell.mastery_level][spell_name] = spell_name;
+		}
+
+		// Delete empty options
+		for (let e in spells) {
+			for (let r in spells[e]) {
+				if (Object.keys(spells[e][r]).length == 0) {
+					delete spells[e][r];
+				}
+			}
+			if (Object.keys(spells[e]).length == 0) {
+				delete spells[e];
+			}
 		}
 
 		console.log(spells);
@@ -236,6 +252,8 @@ class DataHandler extends DataLoader {
 		if (typeof class_list != "object") {
 			class_list = [class_list];
 		}
+
+		console.log(class_list);
 
 		var skill_list = [];
 		for (let skill_name in SKILLS) {
@@ -410,7 +428,7 @@ class DataHandler extends DataLoader {
 	}
 
 	extract_skill_info(skill_string) {
-		console.log(skill_string);
+		console.groupCollapsed(`Extracting Skill Info - ${skill_string}`);
 		const regex = /^([a-zA-Z-_:\s]+)(?:\(([\w\s,-_]+)\))?( \d+)?$/;
 		var [full, name, emphases, rank] = skill_string.match(regex);
 		console.log("FULL:", full, "NAME:", name, "EMPHASES:", emphases, "RANK:", rank);
@@ -437,6 +455,8 @@ class DataHandler extends DataLoader {
 		// Get remaining info
 		var skill_info = this.get_skill_info(name);
 
+		console.log(skill_info);
+
 		var output = {
 				"name": name,
 				"rank": rank,
@@ -445,7 +465,8 @@ class DataHandler extends DataLoader {
 				"trait": skill_info["trait"]
 		}
 
-		return output
+		console.groupEnd();
+		return output;
 	}
 
 	skill_display_name(skill_id) {
@@ -556,4 +577,3 @@ class DataTester extends DataLoader {
 
 // Load DataHandler as a Window Variable
 window.DH = new DataHandler();
-console.log(window.DH);
