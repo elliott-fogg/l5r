@@ -132,7 +132,7 @@
         "element": "Air",
         "mastery_level": "1",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Illusion"
         ],
         "range": "10'",
@@ -197,7 +197,7 @@
         "element": "Air",
         "mastery_level": "1",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Thunder"
         ],
         "range": "Personal or 20' (see below)",
@@ -364,7 +364,7 @@
         "element": "Air",
         "mastery_level": "2",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Illusion"
         ],
         "range": "20'",
@@ -687,7 +687,7 @@
         "element": "Air",
         "mastery_level": "4",
         "keywords": [
-            "Defense,",
+            "Defense",
             "Illusion"
         ],
         "range": "Self",
@@ -705,7 +705,7 @@
         "element": "Air",
         "mastery_level": "4",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Illusion"
         ],
         "range": "250'",
@@ -801,7 +801,7 @@
         "element": "Air",
         "mastery_level": "4",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Illusion"
         ],
         "range": "Touch",
@@ -1024,7 +1024,7 @@
         "element": "Air",
         "mastery_level": "6",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Illusion"
         ],
         "range": "Personal",
@@ -1103,7 +1103,7 @@
         "element": "Earth",
         "mastery_level": "1",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Defense"
         ],
         "range": "Personal",
@@ -1189,7 +1189,7 @@
         "element": "Earth",
         "mastery_level": "1",
         "keywords": [
-            "Jade,",
+            "Jade",
             "Thunder"
         ],
         "range": "100'",
@@ -1274,7 +1274,7 @@
         "element": "Earth",
         "mastery_level": "1",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Jade"
         ],
         "range": "Personal or 20'",
@@ -1309,7 +1309,7 @@
         "element": "Earth",
         "mastery_level": "2",
         "keywords": [
-            "Jade,",
+            "Jade",
             "Thunder"
         ],
         "range": "100'",
@@ -1525,7 +1525,7 @@
         "element": "Earth",
         "mastery_level": "3",
         "keywords": [
-            "Defense,",
+            "Defense",
             "Wards"
         ],
         "range": "Personal",
@@ -1558,7 +1558,7 @@
         "element": "Earth",
         "mastery_level": "3",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Defense"
         ],
         "range": "Centered on caster",
@@ -1623,7 +1623,7 @@
         "element": "Earth",
         "mastery_level": "3",
         "keywords": [
-            "Craft,",
+            "Craft",
             "Illusion"
         ],
         "range": "Touch",
@@ -1736,7 +1736,7 @@
         "element": "Earth",
         "mastery_level": "4",
         "keywords": [
-            "Wards,",
+            "Wards",
             "Jade"
         ],
         "range": "Touch",
@@ -1791,8 +1791,8 @@
         "element": "Earth",
         "mastery_level": "4",
         "keywords": [
-            "Jade,",
-            "Crystal,",
+            "Jade",
+            "Crystal",
             "Thunder"
         ],
         "range": "50\u2019",
@@ -1879,7 +1879,7 @@
         "element": "Earth",
         "mastery_level": "5",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Defense"
         ],
         "range": "300\u2019",
@@ -1913,7 +1913,7 @@
         "element": "Earth",
         "mastery_level": "5",
         "keywords": [
-            "Defense,",
+            "Defense",
             "Wards"
         ],
         "range": "Centered on Caster",
@@ -1930,7 +1930,7 @@
         "element": "Earth",
         "mastery_level": "5",
         "keywords": [
-            "Jade,",
+            "Jade",
             "Wards"
         ],
         "range": "100'",
@@ -2000,7 +2000,7 @@
         "element": "Earth",
         "mastery_level": "6",
         "keywords": [
-            "Defense,",
+            "Defense",
             "Jade"
         ],
         "range": "30'",
@@ -2071,8 +2071,8 @@
         "element": "Earth",
         "mastery_level": "6",
         "keywords": [
-            "Craft,",
-            "Battle,",
+            "Craft",
+            "Battle",
             "Jade"
         ],
         "range": "100\u2019",
@@ -2241,7 +2241,7 @@
         "element": "Fire",
         "mastery_level": "1",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Craft"
         ],
         "range": "Personal or 20' (see below)",
@@ -2473,7 +2473,7 @@
         "element": "Fire",
         "mastery_level": "3",
         "keywords": [
-            "Defense,",
+            "Defense",
             "Wards"
         ],
         "range": "Touch/Self",
@@ -2613,7 +2613,7 @@
         "element": "Fire",
         "mastery_level": "3",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Imperial"
         ],
         "range": "30\u2019",
@@ -2695,7 +2695,7 @@
         "element": "Fire",
         "mastery_level": "4",
         "keywords": [
-            "Wards,",
+            "Wards",
             "Imperial"
         ],
         "range": "10\u2019",
@@ -2776,8 +2776,8 @@
         "element": "Fire",
         "mastery_level": "4",
         "keywords": [
-            "Defense,",
-            "Ward,",
+            "Defense",
+            "Ward",
             "Thunder"
         ],
         "range": "Touch",
@@ -2794,7 +2794,7 @@
         "element": "Fire",
         "mastery_level": "5",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Defense"
         ],
         "range": "Centered on caster",
@@ -3739,7 +3739,7 @@
         "element": "Water",
         "mastery_level": "4",
         "keywords": [
-            "Travel,",
+            "Travel",
             "Imperial"
         ],
         "range": "Touch",
@@ -3835,7 +3835,7 @@
         "element": "Water",
         "mastery_level": "5",
         "keywords": [
-            "Battle,",
+            "Battle",
             "Travel"
         ],
         "range": "100' radius centered on the caster",
