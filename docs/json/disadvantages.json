@@ -117,7 +117,7 @@
 	"Blackmailed": {
 		"_COMMENT": "Cost dependent on Status Rank",
 		"title": "Blackmailed",
-		"cost": "{PLAYER[status]}",
+		"cost": "PLAYER_status",
 		"description": "Someone out there knows of some dark secret of yours, or some horrible indiscretion you committed in a moment of weakness. What's worse, they intend to make you pay for it. The cost of this Disadvantage is equal to your Status Rank. The person blackmailing you will contact you periodically and require certain things of you. You must weigh these actions against the potential disgrace if your secret is discovered, and act accordingly.",
 		"output_text": "Blackmailer: {blackmailer}<br>Blackmail: {blackmail}",
 		"input": [

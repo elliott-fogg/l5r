@@ -834,7 +834,7 @@
 
 	"Magic Resistance": {
 		"title": "Magic Resistance",
-		"cost": "{rank * 2}",
+		"cost": "{rank} * 2",
 		"description": "For reasons beyond your understanding, the kami are reluctant to involve themselves with you in any way. For each rank you possess in this Advantage, all elemental spells targeting you have the TN of the Spell Casting Roll made to enact it increased by +3. Maho, gaijin, and non-human forms of magic are not affected by this Advantage.",
 		"output_text": "All elemental spells targeting you have the TN of the Spell Casting Roll made to enact it increased by +£3*{rank}£. Maho, Gaijin, and non-human forms of magic are not affected.",
 		"allow_multiple": false,
