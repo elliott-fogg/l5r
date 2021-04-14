@@ -2,11 +2,11 @@ class DataLoader {
 	constructor(callback=null, delay_ms=0, test_fail=false) {
 		this.paths = {
 			"skills": "/json/skills.json",
-			"schools": "/json/schools_reduced.json",
+			"schools": "/json/schools.json",
 			"families": "/json/families.json",
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
-			"spells": "/json/spells_full.json",
+			"spells": "/json/spells.json",
 			"universal_spells": "/json/universal_spells.json"
 		}
 		
