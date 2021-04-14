@@ -650,10 +650,6 @@ class AdvantagesModal extends ModalWindow {
 
 			let new_value;
 
-			if (data_id == "PLAYER") {
-
-			}
-
 			console.log(data_id, this.data_params[data_id]);
 			let data_type = this.data_params[data_id]["type"];
 			switch (data_type) {
