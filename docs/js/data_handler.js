@@ -1,5 +1,5 @@
 class DataLoader {
-	constructor(callback=null, delay_ms=0, test_fail=false) {
+	constructor(delay_ms=0, test_fail=false) {
 		this.paths = {
 			"skills": "/json/skills.json",
 			"schools": "/json/schools.json",
@@ -14,7 +14,7 @@ class DataLoader {
 		this.data = {}
 
 		this.loaded = false;
-		this.callback = callback;
+		this.callbacks = [];
 		this.start_time = performance.now();
 		console.log(`window.location: '${window.location}'`);
 		console.log(`window.location.hostname: '${window.location.hostname}'`);
@@ -28,7 +28,7 @@ class DataLoader {
 		if (this.loaded) {
 			func();
 		} else {
-			this.callback = func;
+			this.callbacks.push(func);
 		}
 	}
 
@@ -43,10 +43,18 @@ class DataLoader {
 
 		this.loaded = true;
 
-		if (this.callback != null) {
-			console.log(this.callback);
-			this.callback();
+		if (this.callbacks.length > 0) {
+			console.log("Executing Callbacks!");
+			for (let callback of this.callbacks) {
+				console.warn(callback);
+				callback();
+			}
 		}
+
+		// if (this.callback != null) {
+		// 	console.log(this.callback);
+		// 	this.callback();
+		// }
 	}
 
 	check_for_data(max_s=10, i=0) {
@@ -561,19 +569,45 @@ class CustomData {
 	}
 }
 
-class DataTester extends DataLoader {
+class DataTester extends DataHandler {
 	constructor() {
-		this.callback = this.run_all_tests();
+		super();
+		this.callbacks.push(this.run_all_tests.bind(this));
 	}
 
 	run_all_tests() {
-
+		this.test_discounts();
+		this.check_comments();
 	}
 
 	test_school_traits() {
 
 	}
+
+	test_discounts() {
+		console.group("Advantages Discounts");
+		console.group("Advantages");
+		for (let adv in this.data.advantages) {
+			console.log(adv, this.data.advantages[adv].cost);
+		}
+		console.groupEnd();
+		console.group("Disadvantages");
+		for (let dis in this.data.disadvantages) {
+			console.log(dis, this.data.disadvantages[dis].cost);
+		}
+		console.groupEnd();
+		console.groupEnd();
+	}
+
+	check_comments() {
+		console.group("Advantage Comments");
+		for (let adv in this.data.advantages) {
+			if (this.data.advantages[adv]._COMMENT) {
+				console.log(adv, this.data.advantages[adv]._COMMENT);
+			}
+		}
+	}
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataHandler();
+window.DH = new DataTester();
