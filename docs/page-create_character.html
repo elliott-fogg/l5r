@@ -28,7 +28,7 @@
 
 	<script type="text/javascript">
 		function initiate_page() {
-			console.log("Script has run");
+			console.log("Running page initiation...");
 
 			activate_collapsible_divs();
 
@@ -54,12 +54,6 @@
 	
 	<input type="button" value="Change Name" onclick="change_character_name()"
 		style="margin-top: 5px;">
-
-<!-- 	<div style="margin-top: 10px; margin-bottom: 10px">
-		<label>New Name:</label>
-		<input type="text" id="character_name_input" placeholder="Enter name ...">
-		<input type="button" value="Change" onclick="change_character_name()">
-	</div> -->
 
 	<!-- <input type="button" value="Upload local files" id="upload_local"> -->
 
@@ -89,11 +83,11 @@
 		</div>
 		<div class="collapsible-div-content">
 
-			<p><b>Class: </b><span id="school_class">n/a</span></p>
+			<!-- <p><b>Class: </b><span id="school_class">n/a</span></p> -->
 			
 			<div style="display: flex">
 
-				<table style="margin-right: 5px">
+				<table style="margin-right: 25px">
 					<thead>
 						<tr>
 							<td><b><u>Trait</u></b></td>
@@ -136,7 +130,36 @@
 			<p>Advantages and Disadvantages</p>
 		</div>
 		<div class="collapsible-div-content">
-			<div id="total_advantages_div" style="display: flex">
+			<div id="advantages_div">
+				<select id="advantage_select"></select>
+				<table id="adv_table">
+					<thead>
+						<tr>
+							<td width="400px"><b><u>Advantages</u></b></td>
+							<td><b><u>Cost</u></b></td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="adv_tbody"></tbody>
+				</table>
+			</div>
+
+			<hr style="width: 50%; margin-left: 0">
+
+			<div id="disadvantages_div">
+				<select id="disadvantage_select"></select>
+				<table id="disadv_table">
+					<thead>
+						<tr>
+							<td width="400px"><b><u>Disadvantages</u></b></td>
+							<td><b><u>Refund</u></b></td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="disadv_tbody"></tbody>
+				</table>
+			</div>
+			<!-- <div id="total_advantages_div" style="display: flex">
 				<div id="advantages_div">
 					<select id="advantage_select"></select>
 					<br>
@@ -166,7 +189,7 @@
 						<tbody id="disadv_tbody"></tbody>
 					</table>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
