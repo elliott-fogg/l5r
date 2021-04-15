@@ -652,6 +652,30 @@
     ],
     "emphases": []
   },
+  "Craft: Weaponsmithing": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class":[
+      "Merchant"
+    ],
+    "macro": [
+      "Craft"
+    ],
+    "emphases": []
+  },
+  "Craft: Meishodo": {
+    "trait": [
+      "Intelligence"
+    ],
+    "class":[
+      "Merchant"
+    ],
+    "macro": [
+      "Craft"
+    ],
+    "emphases": []
+  },
   "Perform: Biwa": {
     "trait": [
       "Agility"
