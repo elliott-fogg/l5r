@@ -813,7 +813,7 @@
         "Kenjutsu (Katana)",
         "Lore: Shugenja",
         "Meditation",
-        "Theology"
+        "Lore: Theology"
       ],
       "skill_choices": [
         "Bugei / High"
@@ -954,7 +954,7 @@
       "attribute": "Void",
       "skills": [
         "Athletics",
-        "Artisan: Tattooing",
+        "Tattooing",
         "Defense",
         "Jiujutsu",
         "Mediation"
@@ -1351,7 +1351,7 @@
       "attribute": "Strength",
       "skills": [
         "Battle",
-        "Jiujustu",
+        "Jiujutsu",
         "Kenjutsu (Katana)",
         "Kyujutsu",
         "Lore: History"
@@ -2020,7 +2020,7 @@
         "Kyujutsu",
         "Meditation (Void Recovery)",
         "Spears",
-        "Theology"
+        "Lore: Theology"
       ],
       "skill_choices": [
         "[Bugei / High]"
@@ -2224,7 +2224,7 @@
         "Athletics",
         "Ninjutsu",
         "Sincerity",
-        "Stealthy (Sneaking) 2"
+        "Stealth (Sneaking) 2"
       ],
       "skill_choices": [
         "[Any]"
