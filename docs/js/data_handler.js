@@ -50,11 +50,6 @@ class DataLoader {
 				callback();
 			}
 		}
-
-		// if (this.callback != null) {
-		// 	console.log(this.callback);
-		// 	this.callback();
-		// }
 	}
 
 	check_for_data(max_s=10, i=0) {
@@ -240,6 +235,60 @@ class DataHandler extends DataLoader {
 		return spells;
 	}
 
+	// Clan functions //////////////////////////////////////////////////////////
+	get_clans() {
+		var family_clans = Object.keys(this.data.families);
+		var school_clans = Object.keys(this.data.schools);
+
+		var all_clans = [];
+		for (let clan_type of [family_clans, school_clans]) {
+			for (let clan_name of clan_type) {
+				if (!(all_clans.includes(clan_name))) {
+					all_clans.push(clan_name);
+				}
+			}
+		}
+		all_clans.sort();
+
+		return all_clans;
+	}
+
+	get_clan_families(chosen_clan=null) {
+		if (chosen_clan) {
+			if (chosen_clan in this.data.families) {
+				return Object.keys(this.data[chosen_clan]);
+			} else {
+				console.warn(`Clan '${chosen_clan}' does not have any families`);
+			}
+		}
+
+		// No clan specified, return families of all clans
+		var family_dict = {}
+		for (let clan in this.data.families) {
+			family_dict[clan] = Object.keys(this.data.families[clan]);
+		}
+		return family_dict;
+	}
+
+	get_clan_schools(chosen_clan=null) {
+		var clan_schools = this.data.schools;
+
+		if (chosen_clan) {
+			var clan_name = chosen_clan.split("_")[0];
+			if (clan_name in clan_schools) {
+				return Object.keys(clan_schools[clan_name]);
+			} else {
+				console.warn(`No schools exist for the '${clan_name} Clan'`);
+			}
+		}
+
+		// No clan specified, return schools of all clans in dict;
+		var school_dict = {};
+		for (let clan in clan_schools) {
+			school_dict[clan] = Object.keys(clan_schools[clan]);
+		}
+		return school_dict;
+	}
 
 	// Family functions ////////////////////////////////////////////////////////
 	get_family_trait(family_id) {
@@ -249,9 +298,35 @@ class DataHandler extends DataLoader {
 	}
 
 	// School functions ////////////////////////////////////////////////////////
-	get_school_info(school_id) {
-		var [clan, school] = school_id.split("_");
-		return this.data.schools[clan][school];
+	get_school_info(school_id, key=null) {
+		let [clan, school] = school_id.split("_");
+
+		if (key) {
+			if (key in this.data.schools[clan][school]) {
+				if (key == "skills") {
+					return this._get_school_skills(clan, school);
+				} else {
+					return this.data.schools[clan][school][key]
+				}
+			} else {
+				console.error("School Key not recognised - ", key);
+				return;
+			}
+		} else {
+			var school_info = {};
+			Object.assign(school_info, this.data.schools[clan][school]);
+			school_info.skills = this._get_school_skills(clan, school);
+			return school_info;
+		}
+	}
+
+	_get_school_skills(clan, school) {
+		var starting_skills = {};
+		for (let skill_string of this.data.schools[clan][school].skills) {
+			var extracted_info = this.extract_skill_info(skill_string);
+			starting_skills[extracted_info.name] = extracted_info;
+		}
+		return starting_skills;
 	}
 
 	// Skill functions /////////////////////////////////////////////////////////
@@ -333,108 +408,6 @@ class DataHandler extends DataLoader {
 		return sorted_skill_dict;
 	}
 
-	// Clan functions //////////////////////////////////////////////////////////
-
-	get_school_info(school_id) {
-		var school_info = {};
-		let [clan, school] = school_id.split("_");
-		Object.assign(school_info, this.data.schools[clan][school]);
-
-		school_info["attribute"] = this.get_attribute_changes(school_info["attribute"]);
-
-		console.log(school_info);
-
-		var starting_skills = {};
-		for (let skill_string of school_info["skills"]) {
-			var extracted_info = this.extract_skill_info(skill_string);
-			starting_skills[extracted_info.name] = extracted_info;
-		}
-
-		console.log(starting_skills);
-
-		school_info["skills"] = starting_skills;
-		return school_info;
-	}
-
-	get_family_traits(family_id) {
-		let [clan, family] = family_id.split("_");
-		return this.get_attribute_changes(this.data.families[clan][family]);
-	}
-
-	get_clans() {
-		var family_clans = Object.keys(this.data.families);
-		var school_clans = Object.keys(this.data.schools);
-
-		var all_clans = [];
-		for (let clan_type of [family_clans, school_clans]) {
-			for (let clan_name of clan_type) {
-				if (!(all_clans.includes(clan_name))) {
-					all_clans.push(clan_name);
-				}
-			}
-		}
-		all_clans.sort();
-
-		return all_clans;
-	}
-
-	get_clan_families(chosen_clan=null) {
-		if (chosen_clan) {
-			if (chosen_clan in this.data.families) {
-				return Object.keys(this.data[chosen_clan]);
-			} else {
-				console.warn(`Clan '${chosen_clan}' does not have any families`);
-			}
-		}
-
-		// No clan specified, return families of all clans
-		var family_dict = {}
-		for (let clan in this.data.families) {
-			family_dict[clan] = Object.keys(this.data.families[clan]);
-		}
-		return family_dict;
-	}
-
-	get_clan_schools(chosen_clan=null) {
-		var clan_schools = this.data.schools;
-
-		if (chosen_clan) {
-			var clan_name = chosen_clan.split("_")[0];
-			if (clan_name in clan_schools) {
-				return Object.keys(clan_schools[clan_name]);
-			} else {
-				console.warn(`No schools exist for the '${clan_name} Clan'`);
-			}
-		}
-
-		// No clan specified, return schools of all clans in dict;
-		var school_dict = {};
-		for (let clan in clan_schools) {
-			school_dict[clan] = Object.keys(clan_schools[clan]);
-		}
-		return school_dict;
-	}
-
-	get_attribute_changes(attribute_str) {
-		var attr_iterator = attribute_str.matchAll(/([a-zA-Z]+(?:_[-\d]+)?)/g);
-		var attribute_changes = {};
-
-		for (let group of attr_iterator) {
-			var attr_string = group[1];
-			var attr_name, attr_change;
-
-			if (attr_string.includes("_")) {
-				[attr_name, attr_change] = attr_string.split("_");
-			} else {
-				attr_name = attr_string;
-				attr_change = 1;
-			};
-
-			attribute_changes[attr_name] = parseInt(attr_change);
-		}
-		return attribute_changes;
-	}
-
 	extract_skill_info(skill_string) {
 		console.groupCollapsed(`Extracting Skill Info - ${skill_string}`);
 		const regex = /^([a-zA-Z-_:\s]+)(?:\(([\w\s,-_]+)\))?( \d+)?$/;
@@ -475,28 +448,6 @@ class DataHandler extends DataLoader {
 
 		console.groupEnd();
 		return output;
-	}
-
-	skill_display_name(skill_id) {
-		var skill_match = skill_id.match(/^([\w\s]+)\[([\w\s]+)\]$/);
-
-		if (skill_match == null) {
-			return skill_id;
-		} else {
-			var skill_type = skill_match[1];
-			var skill_name = skill_match[2];
-
-			if (skill_type == "Lore") {
-				return `Lore: ${skill_name}`;
-			} else {
-				return skill_name;
-			}
-		}
-	}
-
-	get_techniques(school_id) {
-		var [clan, school] = school_id.split("_");
-		return this.data.schools[clan][school].techniques;
 	}
 
 	// General Functions ///////////////////////////////////////////////////////
@@ -567,6 +518,54 @@ class CustomData {
 		// Techniques?
 		// Advantages?
 	}
+
+    // async add_custom_spell() {
+    //     console.groupCollapsed("Adding Custom Spell");
+
+    //     var modal = new ModalWindow();
+    //     modal.add_title("Custom Spell");
+    //     modal.add_text_input("name", "Name", "Spell Name");
+    //     modal.add_wordlist_input("keywords", "Keywords", "Keyword...", true);
+    //     // modal.add_text_input("keywords", "Keywords", "(Space separated)", null,
+    //     //                     false, true);
+    //     modal.add_int_input("mastery_level", "Mastery Level", 6, 1);
+    //     modal.add_multicheckbox_input("elements", "Elements",
+    //                                 ["Air", "Earth", "Fire", "Water", "Void"]);
+    //     modal.add_text_input("range", "Range", "e.g. Personal, 5', etc.");
+    //     modal.add_text_input("aoe", "Area of Effect", "30', 10 radius, etc.");
+    //     modal.add_text_input("duration", "Duration", "3 rounds, 1 hour, etc.");
+    //     modal.add_text_input("info", "Description", "Spell Description...",
+    //                          null, true);
+
+    //     var input_data = await modal.get_user_input();
+
+    //     if (input_data == null) {
+    //         return;
+    //     }
+
+    //     console.log("CUSTOM SPELL", input_data);
+
+    //     this.add_spell({
+    //         "title": input_data["name"],
+    //         "element": input_data["elements"],
+    //         "mastery_level": input_data["mastery_level"],
+    //         "keywords": input_data["keywords"],
+    //         "range": input_data["range"],
+    //         "aoe": input_data["aoe"],
+    //         "duration": input_data["duration"],
+    //         "raises": input_data["raises"],
+    //         "special": input_data["special"],
+    //         "description": input_data["description"]
+    //     })
+
+    // }
+
+    // next_spell_id() {
+    //     let spell_id = `spell_${this.spells.count}`;
+    //     this.spells.count += 1;
+    //     return spell_id;
+    // }
+	
 }
 
 class DataTester extends DataHandler {
@@ -610,4 +609,4 @@ class DataTester extends DataHandler {
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataTester();
+window.DH = new DataHandler();
