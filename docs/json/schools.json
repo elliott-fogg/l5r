@@ -2766,7 +2766,7 @@
         "Spellcraft"
       ],
       "skill_choices": [
-        "[Any]"
+        "Any"
       ],
       "honor": "3.5",
       "gear": [
