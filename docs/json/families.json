@@ -51,7 +51,10 @@
         "Shinjo": "Reflexes",
         "Utaku": "Stamina"
     },
-    "Dummy_clan": {
-        "Dummy_family": "Reflexes"
+    "Spider": {
+        "Chuda": "Intelligence",
+        "Daigotsu": "Stamina",
+        "Goju": "Agility",
+        "Susumu": "Awareness"
     }
 }
