@@ -1260,7 +1260,6 @@ function start_over() {
     console.log("Start Over");
     window.character.reset_character_data();
     window.character.refresh_displays();
-    
 }
 
 function save_character() {
@@ -1272,6 +1271,13 @@ function load_character() {
     console.log("Manual Load");
     window.character.load_current();
     window.character.refresh_displays();
+}
+
+function clear_save_data() {
+    console.log("Clearing Save Data");
+    delete localStorage["current_character"];
+    delete localStorage["page_options"]
+    location.reload();
 }
 
 function create_select_default(selectbox_object, default_text, italic=false) {
