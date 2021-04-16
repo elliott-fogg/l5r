@@ -55,6 +55,11 @@ div.spaced > * {
 	white-space: nowrap;
 }
 
+.delete_cell {
+	vertical-align: text-top;
+	background-color: var(--main-bg-color);
+	width: 15px;
+}
 .delete_button {
 	font-family: Arial, sans-serif;
 	background-color: var(--main-bg-color);

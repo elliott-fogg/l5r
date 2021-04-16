@@ -852,12 +852,13 @@ class CharacterCreator {
 
         var cost_cell = document.createElement("td");
         cost_cell.innerHTML = cost;
-        cost_cell.className = "center";
+        cost_cell.className = "center v-top";
         row.appendChild(cost_cell);
 
         if (index >= 0) {
             var delete_cell = document.createElement("td");
-            delete_cell.classList = "no-bg";
+            delete_cell.classList.add("delete_cell");
+            // delete_cell.classList.add("v-top");
             delete_cell.innerHTML = "<span class='delete_button'>x</span>";
             delete_cell.onclick = this.delete_advantage.bind(this, advantage, index);
             delete_cell.title = "Delete Advantage";
@@ -932,6 +933,7 @@ class CharacterCreator {
         this.update_honor();
         this.update_glory();
         this.update_status();
+        this.update_experience()
     }
 
     // Spells //////////////////////////////////////////////////////////////////
@@ -1156,7 +1158,7 @@ class CharacterCreator {
         // If indicated, add a Delete button
         if (index >= 0) {
             let delete_btn = document.createElement("td");
-            delete_btn.className = "no-bg";
+            delete_btn.classList.add("delete_cell");
             delete_btn.innerHTML = "<span class='delete_button'>x</span>";
             delete_btn.onclick = this.delete_spell.bind(this, index);
             delete_btn.title = "Delete Spell";
