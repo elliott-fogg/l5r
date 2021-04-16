@@ -267,14 +267,6 @@
 		]
 	},
 
-	"Different School": {
-		"_COMMENT": "Allows choosing a non-clan school",
-		"title": "Different School",
-		"cost": 5,
-		"description": "Your family sacrificed considerable resources and favours in order to sponsor your entrance into the School of another Clan. When creating your character, you may select a School of a different Clan to attend. You are still a member of your own Clan, however, creating a potential conflict between your loyalty to your sensei and your loyalty to your lord and family.",
-		"output_text": "You have trained in the school of a Clan that is not your own."
-	},
-
 	"Elemental Blessing": {
 		"_COMMENT": "Affects Trait upgrade costs",
 		"title": "Elemental Blessing",

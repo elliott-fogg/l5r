@@ -46,8 +46,14 @@ class DataLoader {
 		if (this.callbacks.length > 0) {
 			console.log("Executing Callbacks!");
 			for (let callback of this.callbacks) {
-				console.warn(callback);
+				console.group("Callback");
+				console.group("Callback function");
+				console.log(callback);
+				console.groupEnd();
+
 				callback();
+
+				console.groupEnd();
 			}
 		}
 	}
@@ -230,8 +236,6 @@ class DataHandler extends DataLoader {
 			}
 		}
 
-		console.log(spells);
-
 		return spells;
 	}
 
@@ -293,7 +297,6 @@ class DataHandler extends DataLoader {
 	// Family functions ////////////////////////////////////////////////////////
 	get_family_trait(family_id) {
 		var [clan, family] = family_id.split("_");
-		console.log(this.data);
 		return this.data.families[clan][family];
 	}
 
@@ -335,8 +338,6 @@ class DataHandler extends DataLoader {
 		if (typeof class_list != "object") {
 			class_list = [class_list];
 		}
-
-		console.log(class_list);
 
 		var skill_list = [];
 		for (let skill_name in SKILLS) {

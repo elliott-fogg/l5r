@@ -8,6 +8,10 @@
   transform: translateY(-1px);
 }
 
+.dropdown-container.italic > .dropdown-toggle {
+  font-style: italic;
+}
+
 .dropdown-toggle + .dropdown-div {
   display: none;
   position: absolute;

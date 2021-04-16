@@ -7,12 +7,13 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/custom_buttons.css">
 	<link rel="stylesheet" href="css/character_creation.css">
+	<link rel="stylesheet alternate" href="css/darkmode.css" id="darkmode">
 
 	<!-- General JS Files -->
 	<script type="text/javascript" src="js/data_handler.js"></script>
 	<script type="text/javascript" src="js/character_class_info.js"></script>
-	<script type="text/javascript" src="js/display_functions.js"></script>
 	<script type="text/javascript" src="js/character_creation.js"></script>
+	<script type="text/javascript" src="js/page_options.js"></script>
 
 	<!-- Custom Dropdown Menus -->
 	<script type="text/javascript" src="js/custom_dropdown.js"></script>
@@ -27,6 +28,9 @@
 	<link rel="stylesheet" href="css/collapsible_divs.css">	
 
 	<script type="text/javascript">
+
+		window.options.check_darkmode();
+
 		function initiate_page() {
 			console.log("Running page initiation...");
 
@@ -43,19 +47,24 @@
 </head>
 <body onload="initiate_page()">
 
+	<input type="button" style="float: right" value="Options"
+		onclick="window.options.modify()">
+
 	<div>
-		<h1 id="character_name_display" style="display: inline;margin-right: 10px">New_Character</h1>
+		<h1 id="character_name_display" style="display: inline;margin-right: 10px">new_character</h1>
+
 		<h1 style="display: inline; margin-right: 10px; color: grey">(<i>Character Creation</i>)</h1>
 		<input type="button" value="Complete Character" style="background-color: #7dad87"
 			onclick="complete_character()">
 		<input type="button" value="Start Over" style="background-color: #ba8682"
 			onclick="start_over()">
+		<input type="button" value="Save" onclick="save_character()">
+		<input type="button" value="Load" onclick="load_character()">
 	</div>
 	
 	<input type="button" value="Change Name" onclick="change_character_name()"
 		style="margin-top: 5px;">
-
-	<!-- <input type="button" value="Upload local files" id="upload_local"> -->
+	<label id="last_saved" class="note" style="margin-left: 15px"></label>
 
 	<hr>
 
@@ -65,12 +74,23 @@
 			<p>Family and School Select</p>
 		</div>
 		<div class="collapsible-div-content">
-			<label><b>Family:</b></label>
-			<select id="character_family_select" style="margin-right: 20px"></select>
-			<label><b>School:</b></label>
-			<select id="character_school_select"></select>
+			<table>
+				<tr>
+					<td><b>Family:</b></td>
+					<td><select id="character_family_select"></select></td>
+				</tr>
+				<tr>
+					<td><b>School:</b></td>
+					<td><select id="character_school_select"></select></td>
+				</tr>
+			</table>
+			<p class="note" id="different_clans_note" style="display: none">
+				Note: Due to picking a school of a different Clan than your Family,
+				<br> you have taken the "Different Schools" advantage.
+			</p>
+
 			<div style="margin-top: 10px">
-				<label><b>School Skill Choices:</b></p>
+				<p><b>School Skill Choices:</b></p>
 				<div id="skill_choices_div" style="margin-left: 15px"></div>
 			</div>
 		</div>
@@ -83,34 +103,38 @@
 		</div>
 		<div class="collapsible-div-content">
 
-			<!-- <p><b>Class: </b><span id="school_class">n/a</span></p> -->
+			<div class="spaced">
+				<p><b>Experience:</b> <span id="experience_display">0</span></p>
+				<p><b>Insight:</b> <span id="insight_display">0</span></p>
+				<p><b>Rank:</b> <span id="rank_display">0</span></p>
+			</div>
 			
 			<div style="display: flex">
 
-				<table style="margin-right: 25px">
+				<table style="margin-right: 25px" class="alternating">
 					<thead>
 						<tr>
 							<td><b><u>Trait</u></b></td>
-							<td><b><u>Starting Value</u></b></td>
+							<td><u>Rank</u></td>
 						</tr>
 					</thead>
 					<tbody id="trait_tbody">
 					</tbody>
 				</table>
 
-				<table style="margin-right: 25px">
+				<table style="margin-right: 25px" class="alternating">
 					<thead>
 						<tr>
 							<td><b><u>Skill</u></b></td>
-							<td><b><u>Rank</u></b></td>
-							<td><b><u>Emphases</u></b></td>
+							<td><u>Rank</u></td>
+							<td><u>Emphases</u></td>
 						</tr>
 					</thead>
 					<tbody id="skill_tbody">
 					</tbody>
 				</table>
 
-				<table>
+				<table class="alternating">
 					<thead><tr><td><b><u>Stats</u></b></td></tr></thead>
 
 					<tr>
@@ -150,7 +174,7 @@
 		<div class="collapsible-div-content">
 			<div id="advantages_div">
 				<select id="advantage_select"></select>
-				<table id="adv_table">
+				<table id="adv_table" class="alternating">
 					<thead>
 						<tr>
 							<td width="400px"><b><u>Advantages</u></b></td>
@@ -166,7 +190,7 @@
 
 			<div id="disadvantages_div">
 				<select id="disadvantage_select"></select>
-				<table id="disadv_table">
+				<table id="disadv_table" class="alternating">
 					<thead>
 						<tr>
 							<td width="400px"><b><u>Disadvantages</u></b></td>
@@ -184,7 +208,7 @@
 	<!-- Spells -->
 	<div class="collapsible-div-container heading disabled" id="spells_container">
 		<div class="collapsible-div-title">
-			<p>Spells</p>
+			<p>Spells (Shugenja only)</p>
 		</div>
 		<div class="collapsible-div-content">
 			<div>
@@ -200,15 +224,14 @@
 				<p><b>Deficiency:</b></p>
 				<p id="p_deficiency">UNKNOWN</p>
 			</div>
-			<div>
+			<div style="margin-top: 3px; margin-bottom: 5px">
 				<p><b>Starting Spell Choices:</b></p>
 				<p id="p_spell_choices">SPELL_CHOICES_GO_HERE</p>
 			</div>
 			<div id="spell_dropdown"></div>
-			<!-- <input type="button" value="Add spell..." id="spell_btn"> -->
 
 			<!-- Spells Table -->
-			<table>
+			<table class="alternating">
 				<thead>
 					<tr>
 						<td style="padding-right: 50px">
@@ -245,80 +268,83 @@
 		</div>
 		<div class="collapsible-div-content">
 
-			<div class="collapsible-div-container hidden">
-				<div class="collapsible-div-title">
-					<p>Physical Descriptors</p>
-				</div>
-				<div class="collapsible-div-content">
-					<table>
-						<tr>
-							<td><label>Sex:</label></td>
-							<td><input type="text" class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Age:</label></td>
-							<td><input type="number" min=1 value=25 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Height:</label></td>
-							<td><input type="number" min=1 value=1 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Weight:</label></td>
-							<td><input type="number" min=1 value=1 class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Eye Color:</label></td>
-							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-						</tr>
-						<tr>
-							<td><label>Hair Color:</label></td>
-							<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-						</tr>
-					</table>
-				</div>
-			</div>
+			<label>Physical Description</label>
+			<br>
+			<textarea id="physical_description" style="width: 40%"
+				placeholder="Gender, Age, other Identifying Features, etc."></textarea>
 
-			<div class="collapsible-div-container hidden">
-				<div class="collapsible-div-title">
-					<p>Relations</p>
-				</div>
-				<div class="collapsible-div-content">
-					<table>
-						<tr>
-							<td><label>Father:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Father's Name"></td>
-						</tr>
-						<tr>
-							<td><label>Mother:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Mother's Name"></td>
-						</tr>
-						<tr>
-							<td><label>Siblings:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Name of Siblings, if any"></td>
-						</tr>
-						<tr>
-							<td><label>Spouse:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Spouse's Name, if married"></td>
-						</tr>
-						<tr>
-							<td><label>Children:</label></td>
-							<td><input type="text" class="optional"
-								placeholder="Childrens' Names, if present"></td>
-						</tr>
-					</table>
-				</div>
-			</div>
+			<br>
+
+			<label>Familial Relations</label><br>
+			<textarea id="family_relations" style="width: 40%"
+				placeholder="Parents, Siblings, Spouse, Children, etc."></textarea>
+
+			<!-- Alternate Individual Boxes -->
+
+<!-- 			<p><u>Physical Descriptors</u></p>
+			<table>
+				<tr>
+					<td><label>Gender:</label></td>
+					<td><input type="text" class="optional"></td>
+				</tr>
+				<tr>
+					<td><label>Age:</label></td>
+					<td><input type="number" min=1 value=25 class="optional"></td>
+				</tr>
+				<tr>
+					<td><label>Height (cm):</label></td>
+					<td><input type="number" min=1 value=1 class="optional"></td>
+				</tr>
+				<tr>
+					<td><label>Weight (kg):</label></td>
+					<td><input type="number" min=1 value=1 class="optional"></td>
+				</tr>
+				<tr>
+					<td><label>Eye Color:</label></td>
+					<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+				</tr>
+				<tr>
+					<td><label>Hair Color:</label></td>
+					<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
+				</tr>
+			</table>
+
+			<br>
+
+			<p><u>Familial Relations</u></p>
+			<table>
+				<tr>
+					<td><label>Father:</label></td>
+					<td><input type="text" class="optional"
+						placeholder="Father's Name"></td>
+				</tr>
+				<tr>
+					<td><label>Mother:</label></td>
+					<td><input type="text" class="optional"
+						placeholder="Mother's Name"></td>
+				</tr>
+				<tr>
+					<td><label>Siblings:</label></td>
+					<td><input type="text" class="optional"
+						placeholder="Name of Siblings, if any"></td>
+				</tr>
+				<tr>
+					<td><label>Spouse:</label></td>
+					<td><input type="text" class="optional"
+						placeholder="Spouse's Name, if married"></td>
+				</tr>
+				<tr>
+					<td><label>Children:</label></td>
+					<td><input type="text" class="optional"
+						placeholder="Childrens' Names, if present"></td>
+				</tr>
+			</table> -->
 
 		</div>
 	</div>
 
 	<!-- Additional Effects -->
-	<div class="collapsible-div-container heading hidden">
+	<div class="collapsible-div-container heading hidden disabled">
 		<div class="collapsible-div-title">
 			<p>Additional Effects (WIP)</p>
 		</div>
@@ -346,8 +372,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 </body>
 </html>

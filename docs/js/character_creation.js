@@ -3,18 +3,20 @@ class CharacterCreator {
 	constructor() {
         console.log("Initiating CharacterCreator");
         this.reset_character_data();
-		this.reset_page();
+        if (localStorage["current_character"]) {
+            this.load_current();
+        }
+		this.refresh_displays();
 	}
 
-    reset_page() {
-        console.log("Resetting Character Data");
-        // Reset Data
-        this.reset_character_data();
-
+    refresh_displays() {
         // Reset Family, School, and Skill selects
         this.refresh_family_select();
         this.refresh_school_select();
         this.refresh_skill_selections();
+        this.check_different_school();
+
+        // Refresh Generic Displays
         this.update_traits();
         this.update_skills();
         this.update_gear();
@@ -22,80 +24,136 @@ class CharacterCreator {
         this.update_status();
         this.update_honor();
         this.update_glory();
+        this.update_name();
 
         // Reset Advantages
         this.refresh_adv_selects();
         this.refresh_adv_display();
 
         // Reset Spells
-        this.set_spells_allowed(false);
-        this.refresh_spells_info();
+        this.check_enable_spells()
+
+        this.update_experience()
+        this.update_insight()
     }
 
 	// Character Data //////////////////////////////////////////////////////////
 
 	reset_character_data() {
-		this.name = null;
-		this.info = {};
-		this.family_id = "";
-		this.school_id = "";
-		this.total_experience = 40;
-		this.trait_bonuses = {
-			"family": null,
-			"school": null
-		};
-		this.skills = {
-			"set": [],
-			"choices": [],
-			"chosen" : []
-		};
-		this.spells = {
-			"count": 0,
-			"choices": [],
-			"learned": []
-		};
-		this.affinity = null;
-		this.deficiency = null;
+        this.name = "";
+        this.info = {};
+        this.family_id = "";
+        this.school_id = "";
+        this.skills = {
+            "set": [],
+            "choices": [],
+            "chosen" : []
+        };
+        this.spells = {
+            "count": 0,
+            "choices": [],
+            "learned": []
+        };
+        this.affinity = null;
         this.advantages = [];
         this.disadvantages = [];
+
+        // Storage for calculated values
+        this.temp = {};
 	}
 
-	save_character_data() {
-		var save_data = {
-			"name": this.name,
-			"info": this.info,
-			"family_id": this.family_id,
-			"school_id": this.school_id,
-			"total_experience": this.total_experience,
-			"trait_bonuses": this.trait_bonuses,
-			"starting_skills": this.starting_skills,
-			"spells": this.spells,
-			"affinity": this.affinity,
-			"deficiency": this.deficiency,
-            "gear": this.gear,
-            "glory": 1,
-            "status": 1,
-            "honor": 1
-		}
-		localStorage["current_character"] = JSON.stringify(save_data);
-	}
+    get_personal_information() {
+        var info_dict = {
+            "physical": document.getElementById("physical_description").value,
+            "family": document.getElementById("family_relations").value
+        };
+        return info_dict;
+    }
+
+    set_personal_information(info_dict) {
+        document.getElementById("physical_description").value = info_dict["physical"];
+        document.getElementById("family_relations").value = info_dict["family"];
+    }
+
+    save(autosave=false) {
+        var save_data = {
+            "name": this.name,
+            "info": this.get_personal_information(),
+            "family_id": this.family_id,
+            "school_id": this.school_id,
+            "skills": this.skills,
+            "advantages": this.advantages,
+            "disadvantages": this.disadvantages,
+            "spells": this.spells,
+            "affinity": this.affinity,
+            // "gear": this.gear,
+            // "effects": this.effects
+        }
+
+        var save_json = JSON.stringify(save_data);
+        localStorage["current_character"] = JSON.stringify(save_data);
+
+        var last_saved = document.getElementById("last_saved");
+        var t = new Date();
+        if (autosave) {
+            last_saved.innerHTML = `(Autosaved at ${t.getHours()}:${t.getMinutes()}:${t.getSeconds()})`
+        } else {
+            last_saved.innerHTML = `(Saved at ${t.toLocaleString()})`
+        }
+    }
+
+    autosave() {
+        if (window.options.check("autosave")) {
+            this.save(true);
+        } else {
+            document.getElementById("last_saved").innerHTML = "";
+        }
+    }
+
+    load_current() {
+        if (!(localStorage["current_character"])) {
+            alert("There is no saved character");
+            return;
+        }
+
+        console.log("Character Found! Loading saved character...")
+
+        var load_data = JSON.parse(localStorage["current_character"]);
+
+        this.name = load_data.name;
+        this.set_personal_information(load_data.info);
+        this.family_id = load_data.family_id;
+        this.school_id = load_data.school_id;
+        this.skills = load_data.skills;
+        this.advantages = load_data.advantages;
+        this.disadvantages = load_data.disadvantages;
+        this.spells = load_data.spells;
+        this.affinity = load_data.affinity;
+        this.gear = load_data.gear;
+        this.effects = load_data.effects;
+    }
+
+    update_name() {
+        var name_display = document.getElementById("character_name_display");
+
+        if (this.name.length > 0) {
+            name_display.innerHTML = this.name;
+        } else {
+            name_display.innerHTML = "new_character";
+        }
+    }
 
     // Traits and Skills ///////////////////////////////////////////////////////
 
     set_family(family_id) {
-    	console.group(`Set Family - ${family_id}`);
-    	var family_trait_bonus = window.DH.get_family_traits(family_id);
+    	console.groupCollapsed(`Set Family - ${family_id}`);
 
     	this.family_id = family_id;
-    	this.trait_bonuses.family = family_trait_bonus;
-    	this.save_character_data();
 
-    	console.log(`Family set: '${family_id}'`);
-    	console.log(`Family trait bonus:`, family_trait_bonus);
+    	this.check_different_school();
 
         this.refresh_family_select(); // Set custom text displayed on select
         this.refresh_school_select(); // Update Order of School Select
-        this.refresh_skill_selections(); // Clear skill choices if they exist
 
         // Refresh Advantages Selection
         this.refresh_adv_selects();
@@ -103,40 +161,34 @@ class CharacterCreator {
 
         // Refresh Traits Display (as that should be the only thing changed)
         this.update_traits();
+
+        this.update_experience()
+        this.update_insight()
+
+        this.autosave();
+
         console.groupEnd();
     }
 
     set_school(school_id) {
-        console.group(`Set School - ${school_id}`);
-        var school_info = window.DH.get_school_info(school_id);
-        console.log(school_info);
+        console.groupCollapsed(`Set School - ${school_id}`);
 
         // Update Character Info
         this.school_id = school_id;
-        this.skills.set = school_info["skills"];
-        this.skills.choices = school_info["skill_choices"];
-        this.skills.chosen = 
-                        Array(school_info["skill_choices"].length).fill(null);
-        this.trait_bonuses.school = school_info["attribute"];
-        this.affinity = school_info["affinity"];
-        this.deficiency = school_info["deficiency"];
-        this.spells.choices = school_info["spells"];
-        this.gear = school_info["gear"];
-        this.money = school_info["koku"];
+        this.skills.set = window.DH.get_school_info(school_id, "skills");
+        this.skills.choices = window.DH.get_school_info(school_id, "skill_choices");
+        this.skills.chosen = Array(this.skills.choices.length).fill(null);
+        this.affinity = window.DH.get_school_info(school_id, "affinity");
+        this.spells.choices = window.DH.get_school_info(school_id, "spells");
+        this.gear = window.DH.get_school_info(school_id, "gear");
+
+        this.check_different_school();
 
         // Update Honor
         this.update_honor();
 
-        // Update Class Display
-        // document.getElementById("school_class").innerHTML = school_info["class"];
-
-        // If Shugenja, enable Spells collapsible
-        if (school_info["class"] == "Shugenja") {
-            this.set_spells_allowed(true);
-            this.refresh_spells_info();
-        } else {
-            this.set_spells_allowed(false);
-        }
+        // Disable Spells section if not Shugenja
+        this.check_enable_spells();
 
         // Generate skill selection dropdowns for the selected school
         this.refresh_school_select();
@@ -151,6 +203,25 @@ class CharacterCreator {
         this.update_traits();
         this.update_gear();
         this.update_techniques();
+
+        this.update_experience()
+        this.update_insight()
+
+        this.autosave();
+    }
+
+    check_different_school() {
+        var note = document.getElementById("different_clans_note");
+        if (this.family_id && this.school_id) {
+            var family_clan = this.family_id.split("_")[0];
+            var school_clan = this.school_id.split("_")[0];
+            if (family_clan != school_clan) {
+                note.style.display = "inline";
+                // Advantage will be added in during Refresh Adv Display
+                return;
+            }
+        }
+        note.style.display = "none";
     }
 
 	refresh_family_select() {
@@ -163,11 +234,13 @@ class CharacterCreator {
 		}.bind(this);
 
 		if (this.family_id == "") {
-			create_select_default(family_select, "Select a family...");
+            family_select.classList.add("default");
+			create_select_default(family_select, "Select a family...", true);
 		} else {
+            family_select.classList.remove("default");
 			var [clan_name, family_name] = this.family_id.split("_");
 			let select_show_value = `${family_name} (${clan_name})`;
-			create_select_default(family_select, select_show_value, this.family_id);
+			create_select_default(family_select, select_show_value);
 		}
 
 		var families_by_clan = window.DH.get_clan_families();
@@ -202,12 +275,12 @@ class CharacterCreator {
 
         // Set default text
         if (this.school_id === "") {
-            create_select_default(school_select, "Select a school...");
+            create_select_default(school_select, "Select a school...", true);
         } else {
-            var school_info = window.DH.get_school_info(this.school_id);
-            var [clan_name, school_name] = this.school_id.split("_");
-            var new_text = `${school_name} (${clan_name} ${school_info.class})`;
-            create_select_default(school_select, new_text);
+            let s_class = window.DH.get_school_info(this.school_id, "class");
+            let [s_clan, s_name] = this.school_id.split("_");
+            create_select_default(school_select,
+                                  `${s_name} (${s_clan} ${s_class})`);
         }
 
         var clan_schools = window.DH.get_clan_schools();
@@ -257,10 +330,7 @@ class CharacterCreator {
 
         if (this.school_id == "" || this.skills.choices.length == 0) {
             // No school has been selected, or there aren't any choices to make
-            let p = document.createElement("p");
-            p.style = "display: inline; color: grey";
-            p.innerHTML = "None";
-            skill_choices_div.appendChild(p);
+            skill_choices_div.innerHTML = "<span class='note'>None</span>";
             return;
         }
 
@@ -313,7 +383,14 @@ class CharacterCreator {
                                                      false,
                                                      on_option_click);
 
+            if (this.skills.chosen[i] == null) {
+                dropdown_object.dropdown.classList.add("italic");
+            }
+
+            
+
             var choice_div = document.createElement("div");
+            choice_div.className = "choice_div";
 
             var label = document.createElement("label");
             label.innerHTML = `<u>${this.skills.choices[i]}:</u>`;
@@ -321,7 +398,7 @@ class CharacterCreator {
             choice_div.appendChild(label);
 
             choice_div.appendChild(dropdown_object.dropdown);
-            dropdown_object.dropdown.style="display: inline";
+            // dropdown_object.dropdown.style="display: inline";
             choice_div.style="margin-bottom: 5px"
 
             skill_choices_div.appendChild(choice_div);
@@ -334,6 +411,8 @@ class CharacterCreator {
     	this.skills.chosen[skill_button] = skill_name;
     	this.refresh_skill_selections();
         this.update_skills();
+        this.update_insight();
+        this.autosave();
     }
 
     update_traits() {
@@ -347,12 +426,20 @@ class CharacterCreator {
             traits_dict[trait] = 2;
         }
 
-        // Add in bonuses from family/school
-        for (let type in this.trait_bonuses) {
-            for (let trait in this.trait_bonuses[type]) {
-                traits_dict[trait] += this.trait_bonuses[type][trait];
-            }
+        // Add in family bonus
+        if (this.family_id) {
+            let family_trait = window.DH.get_family_trait(this.family_id);
+            traits_dict[family_trait] += 1;
         }
+
+        // Add in school bonus
+        if (this.school_id) {
+            let school_trait = window.DH.get_school_info(this.school_id,
+                                                         "attribute");
+            traits_dict[school_trait] += 1;
+        }
+
+        this.temp.traits = traits_dict;
 
         var trait_tbody = document.getElementById("trait_tbody");
         trait_tbody.innerHTML = "";
@@ -360,25 +447,28 @@ class CharacterCreator {
         for (let trait in traits_dict) {
             let value = traits_dict[trait];
             let value_html = (value > 2) ? `<b>${value}</b>` : `${value}`;
-            let row_html = `<tr><td>${trait}</td><td>${value_html}</td></tr>`;
+            let row_html = `<tr>
+                                <td>${trait}</td>
+                                <td style="text-align: center">${value_html}</td>
+                            </tr>`;
             template.innerHTML = row_html.trim();
             trait_tbody.appendChild(template.content.firstChild);
         }
     }
 
     update_skills() {
-        console.log("UPDATING SKILLS");
-        console.log(this.skills);
+        console.groupCollapsed("Updating Skills");
+        console.log("this.skills:", this.skills);
         var skill_tbody = document.getElementById("skill_tbody");
         skill_tbody.innerHTML = "";
         var template = document.createElement("template");
 
         var starting_skills = this.skills.set;
-        console.log(starting_skills);
+        console.log("Starting Skills:", starting_skills);
 
         if (starting_skills.length == 0) {
             console.log("NO SKILLS YET");
-            template.innerHTML = "<tr><td><i>None</i></td><td></td><td></td></tr>";
+            template.innerHTML = "<tr><td class='note' colspan='3'>None</td></tr>";
             skill_tbody.appendChild(template.content.firstChild);
         }
 
@@ -401,6 +491,8 @@ class CharacterCreator {
             template.innerHTML = row_html;
             skill_tbody.appendChild(template.content.firstChild);
         }
+
+        console.groupEnd();
     }
 
     update_honor() {
@@ -408,7 +500,7 @@ class CharacterCreator {
 
         // Check for school honor
         if (this.school_id != "") {
-            let school_honor = window.DH.get_school_info(this.school_id)["honor"];
+            let school_honor = window.DH.get_school_info(this.school_id, "honor");
             honor += parseFloat(school_honor);
         }
 
@@ -457,6 +549,51 @@ class CharacterCreator {
         status_display.innerHTML = this.calculate_status();
     }
 
+    calculate_experience() {
+        var experience = 40;
+        return experience - this.temp.advantages_cost +
+            this.temp.disadvantages_refund;
+    }
+
+    update_experience() {
+        document.getElementById("experience_display").innerHTML = this.calculate_experience();
+    }
+
+    calculate_insight() {
+        var insight = 0;
+
+        // Rings
+        var traits = this.temp.traits;
+        insight += 10 * Math.min(traits.Awareness, traits.Reflexes);
+        insight += 10 * Math.min(traits.Stamina, traits.Willpower);
+        insight += 10 * Math.min(traits.Agility, traits.Intelligence);
+        insight += 10 * Math.min(traits.Perception, traits.Strength);
+        insight += 10 * traits.Void;
+
+        // Skills
+        for (let s in this.skills.set) {
+            insight += this.skills.set[s].rank;
+        }
+        for (let s of this.skills.chosen) {
+            if (s != null) {
+                insight += 1;
+            }
+        }
+
+        this.temp.insight = insight;
+        return insight;
+    }
+
+    update_insight() {
+        document.getElementById("insight_display").innerHTML = this.calculate_insight();
+        this.update_insight_rank();
+    }
+
+    update_insight_rank() {
+        var rank = Math.max(Math.floor(1 + (this.temp.insight - 125) / 25), 1);
+        document.getElementById("rank_display").innerHTML = rank;
+    }
+
     // Advantages and Disadvantages ////////////////////////////////////////////
 
     // Adding
@@ -486,7 +623,7 @@ class CharacterCreator {
         var adv_select = document.getElementById("advantage_select");
         var adv_data = this.filter_advantages();
         adv_select.innerHTML = "";
-        create_select_default(adv_select, "Select an Advantage...");
+        create_select_default(adv_select, "Select an Advantage...", true);
 
         for (let item of adv_data) {
             let opt = document.createElement("option");
@@ -499,7 +636,7 @@ class CharacterCreator {
         var dis_select = document.getElementById("disadvantage_select");
         var dis_data = this.filter_disadvantages();
         dis_select.innerHTML = "";
-        create_select_default(dis_select, "Select a Disadvantage...");
+        create_select_default(dis_select, "Select a Disadvantage...", true);
 
         for (let item of dis_data) {
             let opt = document.createElement("option");
@@ -535,6 +672,7 @@ class CharacterCreator {
             this.add_adv_item(input_data["title"], input_data["text"],
                               input_data["cost"], input_data["discount"],
                               advantage);
+            this.autosave();
         } else {
             console.log("Advantage cancelled");
             this.refresh_adv_selects();
@@ -549,8 +687,6 @@ class CharacterCreator {
                 return 1;
         }};
 
-        console.log("Refreshing Advantage Displays")
-
         // Sort Advantages
         var advantages = this.advantages.sort(adv_sort);
         var disadvantages = this.disadvantages.sort(adv_sort);
@@ -561,36 +697,34 @@ class CharacterCreator {
         var dis_tbody = document.getElementById("disadv_tbody");
         dis_tbody.innerHTML = "";
 
-        var adv_delete_func = function(advantage, number) {
-            console.log(advantage, number);
-            if (advantage) {
-                this.advantages.splice(number, 1);
-                // delete this.advantages[parseInt(number)];
-            } else {
-                this.disadvantages.splice(number, 1);
-            }
-            this.refresh_adv_selects();
-            this.refresh_adv_display();
-            this.update_adv_affected_displays();
-        }
-
         // Create an object for each advantage
         let template = document.createElement("template");
 
         var total_cost = 0;
+
+        // Check for Different School advantage
+        if (this.family_id && this.school_id) {
+            if (this.family_id.split("_")[0] != this.school_id.split("_")[0]) {
+                total_cost += 5;
+                adv_tbody.appendChild(this.create_adv_object("Different School",
+                    "You have trained in the school of a Clan that is not your own.",
+                    5))
+            }
+        }
+
+        // Create an object for each advantage
         for (let i in advantages) {
             var item = advantages[i];
             console.log(item);
             let cost = this.calculate_adv_cost(item.cost, item.discounts, true);
             let row = this.create_adv_object(item.title, item.text, cost,
-                                             adv_delete_func.bind(this, true, i)
-                                             );
+                                             i, true);
             adv_tbody.appendChild(row);
             total_cost += cost;
         }
         template.innerHTML =    `<tr>
                                     <td><i>Total:</i></td>
-                                    <td><i>${total_cost}</i></td>
+                                    <td class="center"><i>${total_cost}</i></td>
                                 </tr>`
         adv_tbody.appendChild(template.content.firstChild);
 
@@ -600,8 +734,7 @@ class CharacterCreator {
             let item = disadvantages[i];
             let cost = this.calculate_adv_cost(item.cost, item.discounts, false);
             let row = this.create_adv_object(item.title, item.text, cost,
-                                             adv_delete_func.bind(this, false, i)
-                                             );
+                                             i, false);
             dis_tbody.appendChild(row);
             total_refund += cost;
         }
@@ -618,9 +751,12 @@ class CharacterCreator {
                 " exp points from Disadvantages.'><span class='error'>10" +
                 "</span></label>";
         }
+        cell2.className = "center";
         row.appendChild(cell2);
         dis_tbody.appendChild(row);
         
+        this.temp.advantages_cost = total_cost;
+        this.temp.disadvantages_refund = Math.min(total_refund, 10);
     }
 
     calculate_adv_cost(cost, discounts, advantage) {
@@ -674,8 +810,10 @@ class CharacterCreator {
 
                 } else if (type == "class") {
                     if (this.school_id) {
-                        let school_info = window.DH.get_school_info(this.school_id);
-                        if (school_info.class == value) {
+                        let classes = window.DH.get_school_info(this.school_id,
+                                                                "class")
+                            .split("/");
+                        if (classes.includes(value)) {
                             total_discount = Math.max(amount, total_discount);
                         }
                     }
@@ -705,26 +843,40 @@ class CharacterCreator {
         }
     }
 
-    create_adv_object(title, text, cost, delete_func) {
-        console.log("Creating Advantage Object");
+    create_adv_object(title, text, cost, index=-1, advantage=null) {
         var row = document.createElement("tr");
 
         var text_cell = document.createElement("td");
-        console.log(text);
         text_cell.appendChild(create_collapsible_div(title, text, "hidden"));
         row.appendChild(text_cell);
 
         var cost_cell = document.createElement("td");
         cost_cell.innerHTML = cost;
+        cost_cell.className = "center";
         row.appendChild(cost_cell);
 
-        var delete_btn = document.createElement("input");
-        delete_btn.onclick = delete_func;
-        delete_btn.type = "button";
-        delete_btn.value = "x";
-        row.appendChild(delete_btn);
+        if (index >= 0) {
+            var delete_cell = document.createElement("td");
+            delete_cell.classList = "no-bg";
+            delete_cell.innerHTML = "<span class='delete_button'>x</span>";
+            delete_cell.onclick = this.delete_advantage.bind(this, advantage, index);
+            delete_cell.title = "Delete Advantage";
+            row.appendChild(delete_cell);
+        }
 
         return row;
+    }
+
+    delete_advantage(advantage, index) {
+        if (advantage) {
+            this.advantages.splice(index, 1);
+        } else {
+            this.disadvantages.splice(index, 1);
+        }
+        this.refresh_adv_selects();
+        this.refresh_adv_display();
+        this.update_adv_affected_displays();
+        this.autosave();
     }
 
     filter_advantages() {
@@ -784,28 +936,32 @@ class CharacterCreator {
 
     // Spells //////////////////////////////////////////////////////////////////
 
-    set_spells_allowed(allowed) {
-        console.log("SETTING SPELLS ALLOWED", allowed);
+    check_enable_spells() {
         var spells_container = document.getElementById("spells_container");
-        if (allowed) {
-            spells_container.classList.remove("hidden");
-            spells_container.classList.remove("disabled");
-            spells_container.title = "";
-        } else {
-            spells_container.classList.add("hidden");
-            spells_container.classList.add("disabled");
-            spells_container.title = "A Shugenja class is required to use Spells";
+
+        if (this.school_id) {
+            if (window.DH.get_school_info(this.school_id, "class").includes("Shugenja")) {
+                spells_container.classList.remove("hidden");
+                spells_container.classList.remove("disabled");
+                spells_container.title = "";
+                this.refresh_spells_info();
+                return;
+            }
         }
+
+        // Default Option (If no school has been picked, or it isn't a Shugenja)
+        spells_container.classList.add("hidden");
+        spells_container.classList.add("disabled");
+        spells_container.title = "A Shugenja school is required to use Spells";
     }
 
     refresh_spell_dropdown() {
+        console.groupCollapsed("Refreshing Spell Dropdown");
         // Get unlearned spells
         var learned_spells = new Set();
         for (let s of this.spells.learned) {
             learned_spells.add(s["title"]);
         }
-
-        console.log(learned_spells);
 
         var new_spells = Object.keys(window.DH.data.spells).filter(s => {
             if (learned_spells.has(s)) {
@@ -814,9 +970,8 @@ class CharacterCreator {
             return true;
         })
 
-        console.log(new_spells);
-
         var grouped_spells = window.DH.group_spells(new_spells);
+        console.log("Grouped Spells:", grouped_spells);
 
         var on_spell_click = function(value) {
             console.log("Spell selected - ", value);
@@ -830,6 +985,8 @@ class CharacterCreator {
                                               false, on_spell_click)
 
         spell_dropdown.appendChild(dropdown_obj.dropdown);
+
+        console.groupEnd();
     }
 
     async confirm_spell(spell_name) {
@@ -838,15 +995,28 @@ class CharacterCreator {
 
         var modal = new ModalWindow();
         modal.add_title(`Add spell '${spell_name}'?`);
-        modal.add_subtitle(`${spell.element} ${spell.mastery_level} (${spell.keywords})`);
+
+        let subtitle = `${spell.element} ${spell.mastery_level}`;
+        if (spell.keywords.length > 0) {
+            console.log("KEYWORDS", spell.keywords);
+            subtitle += ` (${spell.keywords.join(", ")})`;
+        }
+        modal.add_subtitle(subtitle);
 
         var description = "";
         description += `<b>Range:</b> ${spell.range}<br>`;
         description += `<b>Area of Effect:</b> ${spell.aoe}<br>`;
         description += `<b>Duration:</b> ${spell.duration}<br>`;
-        description += `<b>Raises:</b> ${spell.raises}<br>`;
-        description += `<b>Special:</b> ${spell.special}<br>`;
-        description += spell.description;
+
+        if (spell.raises) {
+            description += `<b>Raises:</b> ${spell.raises.join(", ")}<br>`;
+        }
+
+        if (spell.special) {
+            description += `<b>Special:</b> ${spell.special}<br>`;
+        }
+
+        description += "<br>" + spell.description;
         modal.add_description(description);
 
         var input_data = await modal.get_user_input();
@@ -856,6 +1026,7 @@ class CharacterCreator {
         } else {
             this.spells.learned.push(window.DH.data.spells[spell_name]);
             this.refresh_spells_info();
+            this.autosave();
         }
     }
 
@@ -866,9 +1037,22 @@ class CharacterCreator {
         // Refresh Affinity display
         var p_affinity = document.getElementById("p_affinity");
         var sel_affinity = document.getElementById("sel_affinity");
-        if (this.affinity == "Any") {
+
+        if (this.affinity.includes("Any")) {
             sel_affinity.style.display = "inline";
             p_affinity.style.display = "none";
+
+            if (this.affinity == "Any") {
+                this.affinity = "Any_Air";
+            }
+            let chosen = this.affinity.split("_")[1];
+            sel_affinity.value = chosen;
+
+            sel_affinity.onchange = function() {
+                console.log("AFFINITY SELECTED");
+                console.log(this);
+                this.affinity = `Any_${sel_affinity.value}`;
+            }.bind(this);
         } else {
             sel_affinity.style.display = "none";
             p_affinity.style.display = "inline";
@@ -877,12 +1061,21 @@ class CharacterCreator {
 
         // Refresh Deficiency display
         var p_deficiency = document.getElementById("p_deficiency");
-        p_deficiency.innerHTML = this.deficiency;
+        if (this.school_id) {
+            p_deficiency.innerHTML = window.DH.get_school_info(this.school_id,
+                                                               "deficiency");
+        } else {
+            p_deficiency.innerHTML = "None";
+        }
 
         // Refresh Spell Choices
-        console.log(this.spells.choices);
-        var p_spell_choices = document.getElementById("p_spell_choices");
-        p_spell_choices.innerHTML = this.spells.choices.join(", ");
+        if (this.school_id) {
+            let choices = window.DH.get_school_info(this.school_id, "spells");
+            if (choices) {
+                var p_spell_choices = document.getElementById("p_spell_choices");
+                p_spell_choices.innerHTML = choices.join(", ");
+            }
+        }
     }
 
     refresh_spells_table() {
@@ -890,8 +1083,6 @@ class CharacterCreator {
         console.log("Learned Spells", this.spells.learned);
         var spells_tbody = document.getElementById("spells_tbody");
         spells_tbody.innerHTML = "";
-
-        console.log(this.spells.learned);
 
         for (let spell_name in window.DH.data.universal_spells) {
             spells_tbody.appendChild(this.create_spell_object(
@@ -906,30 +1097,25 @@ class CharacterCreator {
         console.groupEnd();
     }
 
-    create_spell_object(spell, number=-1) {
-        var spell_delete_func = function(number) {
-            this.spells.learned.splice(number, 1);
-            this.refresh_spells_info();
-        }
-
+    create_spell_object(spell, index=-1) {
         let row = document.createElement("tr");
 
+        // Cell 1 - Spell Information
         let c1 = document.createElement("td");
-
-        // Create Title
+        
         var spell_name = spell.title;
         if (spell.keywords.length > 0) {
             spell_name += ` (${spell.keywords.join(", ")})`;
         }
-
+        
         var content = [];
-
+        
         var spell_details = document.createElement("p");
         spell_details.innerHTML = `Range: ${spell.range}<br>
                                     Area of Effect: ${spell.aoe}<br>
                                     Duration: ${spell.duration}<br>`
         content.push(spell_details);
-
+        
         if (spell.raises.length > 0) {
             let raises_ul = document.createElement("ul");
             for (let r of spell.raises) {
@@ -940,108 +1126,51 @@ class CharacterCreator {
             let raises = create_collapsible_div("Raises", [raises_ul], "hidden");
             content.push(raises);
         }
-
+        
         if (spell.special) {
             let special = document.createElement("p");
             special.innerHTML = spell.special;
             content.push(special);
         }
-
+        
         let description = document.createElement("p");
         description.innerHTML = spell.description;
         content.push(description);
-
-        console.log(content);
-
+        
         c1.appendChild(create_collapsible_div(spell_name, content, "spell hidden"));
-        // c1.classList.add("text_cell");
+        
         row.appendChild(c1);
 
+        // Cell 2 - Mastery Level
         let c2 = document.createElement("td");
         c2.innerHTML = spell.mastery_level;
+        c2.className = "center v-top";
         row.appendChild(c2);
-        c2.style = "text-align: center; vertical-align: text-top";
 
+        // Cell 3 - Elements
         let c3 = document.createElement("td");
         c3.innerHTML = spell.element;
+        c3.className = "v-top nowrap";
         row.appendChild(c3);
-        c3.style = "vertical-align: text-top";
 
-        console.log(number);
-
-        if (number >= 0) {
-            let c4 = document.createElement("input");
-            c4.type = "button";
-            c4.value = "x";
-            c4.onclick = spell_delete_func.bind(this, number);
-            row.appendChild(c4);
+        // If indicated, add a Delete button
+        if (index >= 0) {
+            let delete_btn = document.createElement("td");
+            delete_btn.className = "no-bg";
+            delete_btn.innerHTML = "<span class='delete_button'>x</span>";
+            delete_btn.onclick = this.delete_spell.bind(this, index);
+            delete_btn.title = "Delete Spell";
+            row.appendChild(delete_btn);
         }
 
         return row;
     }
 
-    // Adding Custom Spells (Removed for now) //////////////////////////////////
-
-    // refresh_spell_button() {
-    //     var spell_btn = document.getElementById("spell_btn");
-    //     spell_btn.onclick = this.add_custom_spell.bind(this);
-    // }
-
-    // async add_custom_spell() {
-    //     console.groupCollapsed("Adding Custom Spell");
-
-    //     var modal = new ModalWindow();
-    //     modal.add_title("Custom Spell");
-    //     modal.add_text_input("name", "Name", "Spell Name");
-    //     modal.add_wordlist_input("keywords", "Keywords", "Keyword...", true);
-    //     // modal.add_text_input("keywords", "Keywords", "(Space separated)", null,
-    //     //                     false, true);
-    //     modal.add_int_input("mastery_level", "Mastery Level", 6, 1);
-    //     modal.add_multicheckbox_input("elements", "Elements",
-    //                                 ["Air", "Earth", "Fire", "Water", "Void"]);
-    //     modal.add_text_input("range", "Range", "e.g. Personal, 5', etc.");
-    //     modal.add_text_input("aoe", "Area of Effect", "30', 10 radius, etc.");
-    //     modal.add_text_input("duration", "Duration", "3 rounds, 1 hour, etc.");
-    //     modal.add_text_input("info", "Description", "Spell Description...",
-    //                          null, true);
-
-    //     var input_data = await modal.get_user_input();
-
-    //     if (input_data == null) {
-    //         return;
-    //     }
-
-    //     console.log("CUSTOM SPELL", input_data);
-
-    //     this.add_spell({
-    //         "title": input_data["name"],
-    //         "element": input_data["elements"],
-    //         "mastery_level": input_data["mastery_level"],
-    //         "keywords": input_data["keywords"],
-    //         "range": input_data["range"],
-    //         "aoe": input_data["aoe"],
-    //         "duration": input_data["duration"],
-    //         "raises": input_data["raises"],
-    //         "special": input_data["special"],
-    //         "description": input_data["description"]
-    //     })
-
-    //     this.refresh_spells_table();
-    // }
-
-    // next_spell_id() {
-    //     let spell_id = `spell_${this.spells.count}`;
-    //     this.spells.count += 1;
-    //     return spell_id;
-    // }
-
-    // add_spell(spell_dict) {
-    //     this.spells.learned.push(spell_dict);
-    //     // var spell_name = spell_dict["title"];
-    //     // this.spells.learned[spell_name] = spell_dict;
-    // }
-
-
+    delete_spell(index) {
+        this.spells.learned.splice(index, 1);
+        this.refresh_spells_info();
+        this.autosave();
+    }
 
     // Gear ////////////////////////////////////////////////////////////////////
 
@@ -1053,9 +1182,8 @@ class CharacterCreator {
         if (this.school_id == "") {
             gear_p.innerHTML = "None";
         } else {
-            console.log(this.school_id);
             var ul = document.createElement("ul");
-            var gear = window.DH.get_school_info(this.school_id)["gear"];
+            var gear = window.DH.get_school_info(this.school_id, "gear");
             for (let item of gear) {
                 let li = document.createElement("li");
                 li.innerHTML = item;
@@ -1070,7 +1198,7 @@ class CharacterCreator {
 
         // Check for School Koku
         if (this.school_id != "") {
-            let school_koku = window.DH.get_school_info(this.school_id)["koku"];
+            let school_koku = window.DH.get_school_info(this.school_id, "koku");
             koku += parseFloat(school_koku);
         }
 
@@ -1092,7 +1220,8 @@ class CharacterCreator {
         
         if (this.school_id) {
             techniques_div.innerHTML = "";
-            var techniques = window.DH.get_techniques(this.school_id);
+            var techniques = window.DH.get_school_info(this.school_id, "techniques");
+            
             for (let i in techniques) {
                 let content = document.createElement("p");
                 content.innerHTML = techniques[i].effect;
@@ -1102,7 +1231,7 @@ class CharacterCreator {
             }
         } else {
             // No school is selected, cannot have any techniques
-            techniques_div.innerHTML = "<i>None</i>";
+            techniques_div.innerHTML = "<span class='note'>None</span>";
         }
     }
 
@@ -1111,23 +1240,49 @@ class CharacterCreator {
 }
 
 // Page Functions //////////////////////////////////////////////////////////////
+
 function change_character_name() {
-
     var new_name = window.prompt("Enter a new name for this character:");
-
     if (new_name == null || new_name == "") {
         return;
     }
-
-    document.getElementById("character_name_display").innerHTML = new_name;
+    window.character.name = new_name;
+    window.character.update_name();
+    window.character.autosave();
 }
 
 function complete_character() {
     alert("Sorry, this function is not available at this time.");
+    window.character.save();
 }
 
 function start_over() {
+    console.log("Start Over");
     window.character.reset_character_data();
-    window.character.reset_page();
-    console.log("BUTTON CLICKED - Start Over");
+    window.character.refresh_displays();
+    
+}
+
+function save_character() {
+    console.log("Manual Save");
+    window.character.save();
+}
+
+function load_character() {
+    console.log("Manual Load");
+    window.character.load_current();
+    window.character.refresh_displays();
+}
+
+function create_select_default(selectbox_object, default_text, italic=false) {
+    var def_option = document.createElement("option");
+    def_option.label = default_text;
+    def_option.selected = "selected";
+    def_option.hidden = "hidden";
+    if (italic) {
+        selectbox_object.classList.add("default");
+    } else {
+        selectbox_object.classList.remove("default");
+    }
+    selectbox_object.appendChild(def_option);
 }

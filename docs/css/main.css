@@ -1,23 +1,82 @@
 /* Set the background color to off-yellow */
+
+:root {
+	--main-bg-color: #fff6d1;
+}
+
 body {
-  background-color: #fff6d1;
+  	background-color: var(--main-bg-color);
 }
 
 input.optional {
-	background-color: #fff6d1;
+	background-color: var(--main-bg-color);
 	border: solid grey 1px;
 }
 
-/* Alternate shading of table rows */
-tbody > tr:nth-child(even) {
-	background-color: rgba(0, 0, 0, 0.1);;
+/* Alternate shading of table rows, if table labelled as .alternating */
+table.alternating > tbody > tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.05);
 }
-tbody > tr:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.05);;
+table.alternating > tbody > tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.no-bg {
+	background-color: var(--main-bg-color)
 }
 
-span.error {
+.error {
 	color: red;
 	font-weight: bold;
 	font-style: italic;
+}
+
+.note {
+	color: grey;
+	font-style: italic;
+}
+
+div.spaced {
+	margin-bottom: 5px;
+}
+
+div.spaced > * {
+	margin-right: 25px;
+}
+
+.center {
+	text-align: center;
+}
+
+.v-top {
+	vertical-align: text-top;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.delete_button {
+	font-family: Arial, sans-serif;
+	background-color: var(--main-bg-color);
+	color: red;
+	cursor: pointer;
+	right: 0%;
+	top: 50%;
+	padding: 1px 5px 3px 5px;
+}
+.delete_button:hover {
+	background-color: rgba(255, 0, 0, 0.5);
+	border-radius: 50%;
+	color: darkred;
+}
+
+.default {
+	font-style: italic;
+}
+select.default > optgroup, option {
+	font-style: normal;
+}
+
+.choice_div {
+	display: flex;
 }
