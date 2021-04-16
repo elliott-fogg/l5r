@@ -279,12 +279,9 @@
       "affinity": "Earth",
       "deficiency": "Air",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Earth",
         "2 Fire",
-        "and 1 Water"
+        "1 Water"
       ],
       "special": null,
       "techniques": {
@@ -476,12 +473,9 @@
       "affinity": "Air",
       "deficiency": "Fire",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Air",
         "2 Water",
-        "and 1 Earth"
+        "1 Earth"
       ],
       "special": null,
       "techniques": {
@@ -932,12 +926,9 @@
       "affinity": "Earth",
       "deficiency": "Air",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Earth",
         "2 Fire",
-        "and 1 Water"
+        "1 Water"
       ],
       "special": null,
       "techniques": {
@@ -1226,12 +1217,9 @@
       "affinity": "Water",
       "deficiency": "Fire",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Water",
         "2 Air",
-        "and 1 Earth"
+        "1 Earth"
       ],
       "special": null,
       "techniques": {
@@ -1424,12 +1412,9 @@
       "affinity": "Earth",
       "deficiency": "Air",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Earth",
         "2 Water",
-        "and 1 Fire"
+        "1 Fire"
       ],
       "special": null,
       "techniques": {
@@ -1517,10 +1502,8 @@
       "affinity": "Air",
       "deficiency": "Earth",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
-        "3 Air and 3 Fire spells"
+        "3 Air",
+        "3 Fire"
       ],
       "special": null,
       "techniques": {
@@ -1759,12 +1742,9 @@
       "affinity": "Water",
       "deficiency": "Earth",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
-        "3 Water spells",
-        "2 Fire spells",
-        "and 1 Air spell"
+        "3 Water",
+        "2 Fire",
+        "1 Air"
       ],
       "special": null,
       "techniques": {
@@ -1803,12 +1783,9 @@
       "affinity": "Fire",
       "deficiency": "Water",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Fire",
         "2 Earth",
-        "and 1 Air"
+        "1 Air"
       ],
       "special": null,
       "techniques": {
@@ -1943,13 +1920,10 @@
       "affinity": "Any",
       "deficiency": "None",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 spells of any one element",
         "2 spells of any other element",
         "1 spell of a third element",
-        "and 1 spell of a fourth element."
+        "1 spell of a fourth element."
       ],
       "special": null,
       "techniques": {
@@ -2342,12 +2316,9 @@
       "affinity": "Air",
       "deficiency": "Earth",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Air",
         "2 Fire",
-        "and 1 Water"
+        "1 Water"
       ],
       "special": null,
       "techniques": {
@@ -2539,12 +2510,9 @@
       "affinity": "Air",
       "deficiency": "Earth",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
-        "3 Air spells",
-        "2 Fire spells",
-        "and 1 Water spell"
+        "3 Air",
+        "2 Fire",
+        "1 Water"
       ],
       "special": null,
       "techniques": {
@@ -2719,12 +2687,9 @@
       "affinity": "Water",
       "deficiency": "Fire",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Water",
         "2 Earth",
-        "and 1 Air"
+        "1 Air"
       ],
       "special": null,
       "techniques": {
@@ -2814,12 +2779,9 @@
       "affinity": "Earth",
       "deficiency": "Air",
       "spells": [
-        "Sense",
-        "Commune",
-        "Summon",
         "3 Earth",
         "2 Fire",
-        "and 1 Water"
+        "1 Water"
       ],
       "special": null,
       "techniques": {
