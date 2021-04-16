@@ -507,12 +507,16 @@ function refresh_display(character) {
     refresh_character_info(character);
 }
 
-function create_select_default(selectbox_object, default_text, value=null) {
+function create_select_default(selectbox_object, default_text, italic=false) {
     var def_option = document.createElement("option");
-    def_option.value = value;
     def_option.label = default_text;
     def_option.selected = "selected";
     def_option.hidden = "hidden";
+    if (italic) {
+        selectbox_object.classList.add("default");
+    } else {
+        selectbox_object.classList.remove("default");
+    }
     selectbox_object.appendChild(def_option);
 }
 
