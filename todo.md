@@ -1,7 +1,18 @@
 # To Do
 
+* Add Malleable Titles (titles that are customised) to Advantages
+* Add requirements to Advantages (just like inputs, which will affect whether or 
+not they show up in the Advantages list).
+Note: They will need to be forcibly removed if their dependencies are no longer 
+met (e.g. their prerequisite Advantage is removed). Could let user know through 
+an Alert / Confirm?
+* Add in an "Effects" system, so that effects can be attached to Advantages and 
+other attributes through attributes (e.g. trait-cost_Earth)
+* Add Tags to Advantages so they can be shown at appropriate times (e.g. if you
+are making a Courtier Roll, and one of your Advantages is tagged with 
+skill_Courtier, the advantage could be displayed nearby).
 
-* Add in ability to select an Emphasis for a specified skill (Kaiu Engineer)
+
 * Implement Spell Choices limits, add necessary information to Schools
 * Implement '* No starting character may begin play with Trait or Skill above 
 Rank 4.'
