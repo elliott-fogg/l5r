@@ -6,7 +6,7 @@
 
 class CustomDropdown {
 
-	constructor(button_text, input_data, fixed_text=true,
+	constructor(button_text, input_data, fixed_text=true, add_class=null,
 	            callback=null, caller=null) {
 		console.groupCollapsed("Creating New Dropdown");
 		console.log(input_data);
@@ -17,6 +17,9 @@ class CustomDropdown {
 		this.fixed_text = fixed_text;
 		console.log("DROPDOWN CALLBACK:", this.callback);
 		this.dropdown = this.create_dropdown_menu();
+		if (add_class) {
+			this.dropdown.classList.add(add_class);
+		}
 		this.dropdown.addEventListener('closeDropdown', this);
 		console.groupEnd("Creating New Dropdown");
 	}

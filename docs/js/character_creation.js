@@ -337,63 +337,66 @@ class CharacterCreator {
         console.groupCollapsed("Refresh Skill Selections");
 
     	for (let i=0; i < this.skills.choices.length; i++) {
-    		var allowed_skills;
-    		if (this.skills.choices[i] == "Any") {
-    			allowed_skills = window.DH.get_skill_list();
-    		} else {
-                let allowed_categories = [];
-                for (let cat of this.skills.choices[i].split("/")) {
-                    allowed_categories.push(cat.trim());
+
+            var input_for_dropdown;
+            var skill_name = this.skills.choices[i];
+
+            if (this.skills.choices[i].includes("()")) {
+                // Choosing an Emphasis
+                skill_name = this.skills.choices[i].replace(" ()", "");
+                input_for_dropdown = {};
+                for (let em of window.DH.get_skill_info(skill_name)["emphases"]) {
+                    let em_text = `${skill_name} (${em})`;
+                    input_for_dropdown[em_text] = em_text;
                 }
-                console.log("Allowed categories:", allowed_categories);
-    			allowed_skills = window.DH.get_skill_list(allowed_categories)
-    		}
+            } else {
+                // Choosing a Skill
+                var allowed_categories = [];
+                if (this.skills.choices[i] != "Any") {
+                    for (let cat of this.skills.choices[i].split("/")) {
+                        allowed_categories.push(cat.trim());
+                    }
+                }
 
-    		// Only allow skills that aren't already part of the school's 
-    		// starting skills, and also haven't already been chosen in a 
-    		// different skill choice dropdown.
-    		var filtered_skills = allowed_skills.filter(function(s) {
-    			return (!(s in this.skills.set) &&
-    			        !(this.skills.chosen.includes(s))
-    			);
-    		}.bind(this));
+                var allowed_skills = window.DH.get_skill_list(allowed_categories);
 
-    		var grouped_skills = window.DH.create_skill_sublists(filtered_skills);
+                // Filter Skills to remove those already set or selected
+                var filtered_skills = allowed_skills.filter(function(s) {
+                    return (
+                            !(s in this.skills.set) &&
+                            !(this.skills.chosen.includes(s))
+                    );
+                }.bind(this));
 
-    		var button_title;
-    		if (this.skills.chosen[i] == null) {
-    			button_title = `${this.skills.choices[i]}`;
-    		} else {
-    			button_title = this.skills.chosen[i];
-    		}
-
-    		// Generate the callback function for the dropdown options
-    		var on_option_click = function(value) {
-    			this.set_skill_choice(value, i);
-    		}.bind(this);
-
-            console.groupCollapsed("Skill Stages");
-            console.log("Allowed Skills", allowed_skills);
-            console.log("Filtered Skills", filtered_skills);
-            console.log("Grouped Skills", grouped_skills);
-            console.groupEnd("Skill Stages");
-
-            var dropdown_object = new CustomDropdown(button_title,
-                                                     grouped_skills,
-                                                     false,
-                                                     on_option_click);
-
-            if (this.skills.chosen[i] == null) {
-                dropdown_object.dropdown.classList.add("italic");
+                var input_for_dropdown = window.DH.create_skill_sublists(
+                                                               filtered_skills);
             }
 
-            
+            var button_title, dropdown_class;
+            if (this.skills.chosen[i] == null) {
+                button_title = skill_name;
+                dropdown_class = "italic";
+            } else {
+                button_title = this.skills.chosen[i];
+                dropdown_class = null;
+            }
+
+            // Generate the callback function for the dropdown options
+            var on_option_click = function(value) {
+                this.set_skill_choice(value, i);
+            }.bind(this);
+
+            var dropdown_object = new CustomDropdown(button_title,
+                                                     input_for_dropdown,
+                                                     false,
+                                                     dropdown_class,
+                                                     on_option_click);
 
             var choice_div = document.createElement("div");
             choice_div.className = "choice_div";
 
             var label = document.createElement("label");
-            label.innerHTML = `<u>${this.skills.choices[i]}:</u>`;
+            label.innerHTML = `<u>${skill_name}:</u>`;
             label.style="margin-right: 5px"
             choice_div.appendChild(label);
 
@@ -407,8 +410,8 @@ class CharacterCreator {
     }
 
     set_skill_choice(skill_name, skill_button) {
-    	console.log(`Clicked on '${skill_name}'`, skill_button);
-    	this.skills.chosen[skill_button] = skill_name;
+        console.log(`Skill Set: ${skill_name}; Button: ${skill_button}`);
+        this.skills.chosen[skill_button] = skill_name;
     	this.refresh_skill_selections();
         this.update_skills();
         this.update_insight();
@@ -463,32 +466,39 @@ class CharacterCreator {
         skill_tbody.innerHTML = "";
         var template = document.createElement("template");
 
-        var starting_skills = this.skills.set;
-        console.log("Starting Skills:", starting_skills);
+        var all_skills = [];
 
-        if (starting_skills.length == 0) {
-            console.log("NO SKILLS YET");
-            template.innerHTML = "<tr><td class='note' colspan='3'>None</td></tr>";
-            skill_tbody.appendChild(template.content.firstChild);
+        // Add all school skills
+        for (let skill_name in this.skills.set) {
+            all_skills.push(this.skills.set[skill_name]);
         }
 
-        for (let skill in starting_skills) {
-            let skill_info = starting_skills[skill];
-            var row_html = `<tr><td>${skill}</td>
-                            <td>${skill_info.rank}</td>
-                            <td>${skill_info.emphases.join(", ")}</td></tr>`;
-            row_html = row_html.trim();
-            template.innerHTML = row_html;
-            skill_tbody.appendChild(template.content.firstChild);
+        // Add any chosen skills
+        for (let skill_string of this.skills.chosen) {
+            if (skill_string == null) {continue};
+            var matches = skill_string.match(/([^(]+)(?:\((.+)\))?/);
+            let skill_name = matches[1];
+            var emphasis = matches[2]; // Need to watch for Undefineds here
+            all_skills.push({
+                "name": skill_name,
+                "emphases": [emphasis],
+                "rank": 1
+            });
         }
 
-        var chosen_skills = this.skills.chosen;
+        console.log("All Skills:", all_skills);
 
-        for (let skill of chosen_skills) {
-            if (skill == null) {continue};
-            var row_html = `<tr><td>${skill}</td><td>1</td><td></td></tr>`;
-            row_html = row_html.trim();
-            template.innerHTML = row_html;
+        if (all_skills.length == 0) {
+            console.log("No Skills Present");
+            skill_tbody.innerHTML = "<tr><td class='note' colspan='3'>None</td></tr>";
+            return;
+        }
+
+        for (let skill of all_skills) {
+            var row_html = `<tr><td>${skill.name}</td>
+                            <td>${skill.rank}</td>
+                            <td>${skill.emphases.join(", ")}</td></tr>`;
+            template.innerHTML = row_html.trim();
             skill_tbody.appendChild(template.content.firstChild);
         }
 
@@ -984,7 +994,7 @@ class CharacterCreator {
         spell_dropdown.innerHTML = "";
 
         var dropdown_obj = new CustomDropdown("Add Spell", grouped_spells,
-                                              false, on_spell_click)
+                                              false, null, on_spell_click)
 
         spell_dropdown.appendChild(dropdown_obj.dropdown);
 
