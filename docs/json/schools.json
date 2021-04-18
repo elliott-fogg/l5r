@@ -869,8 +869,7 @@
         "Katana",
         "Wakizashi",
         "Tanto",
-        "Traveling Pack",
-        "1 Koku"
+        "Traveling Pack"
       ],
       "affinity": null,
       "deficiency": null,
@@ -897,7 +896,8 @@
           "name": "Balance of Nothingness",
           "effect": "The final lesson of the Taoist Swordsman teaches the school's student to pour their entire soul into a single deadly strike. While wielding a sword, once per skirmish you may spend as many Void Points on damage as you wish."
         }
-      }
+      },
+      "koku": 1
     },
     "Tamori Shugenja": {
       "name": "Tamori Shugenja",
@@ -1161,8 +1161,7 @@
         "Daisho",
         "any 1 weapon",
         "Calligraphy Set",
-        "Traveling Pack",
-        "5 Koku"
+        "Traveling Pack"
       ],
       "affinity": null,
       "deficiency": null,
@@ -1189,7 +1188,8 @@
           "name": "Ferocious Determination",
           "effect": "The wrath of a disciple of Ikoma is terrible to behold. You may spend a Void Point to take a Free Action to make a Contested Roll of your Courtier / Awareness versus against an opponent's Etiquette (Courtesy) / Awareness. If you win the roll, you have shaken his resolve by reminding him of his past failings. The opponent subtracts a penalty equal to your Awareness plus the opponent's own Honor Rank from the total of his attack and Contested Social Skill Rolls against you for a number of hours equal to your School Rank. This technique does not work against those who possess no Honor Rank (animals, oni, etc)."
         }
-      }
+      },
+      "koku": 5
     },
     "Kitsu Shugenja": {
       "name": "Kitsu Shugenja",
@@ -2260,8 +2260,7 @@
         "Sturdy Clothing",
         "Daisho",
         "any 1 weapon",
-        "Traveling Pack",
-        "5 Koku"
+        "Traveling Pack"
       ],
       "affinity": null,
       "deficiency": null,
@@ -2288,7 +2287,8 @@
           "name": "Relentless Resolve",
           "effect": "The Soshi magistrates are taught to wait for the perfect moment and then overwhelm their enemies with fear and aggression, crushing lawbreakers with a few swift blows. Once per skirmish, you may gain extra unkept dice equal to your Intimidation skill rank on all your attack rolls for one Round. This technique cannot be used in the Center Stance."
         }
-      }
+      },
+      "koku": 5
     },
     "Soshi Shugenja": {
       "name": "Soshi Shugenja",
@@ -2496,7 +2496,7 @@
         "Stealth 2"
       ],
       "skill_choices": [
-        "[Low]"
+        "Low"
       ],
       "honor": "0.0",
       "gear": [
@@ -2504,8 +2504,7 @@
         "Wakizashi",
         "Knife",
         "Scroll Satchel",
-        "Traveling Pack",
-        "2 Koku"
+        "Traveling Pack"
       ],
       "affinity": "Air",
       "deficiency": "Earth",
@@ -2520,7 +2519,8 @@
           "name": "Mask of the Nothing",
           "effect": "As a Complex Action you may expend a spell slot to dissolve your physical self and become a shadow. As a shadow you are invisible in darkness and gain a bonus of +5k0 to your Stealth Skill Rolls under all other circumstances. You are immune to most mundane attacks, but crystal and magic can affect you. Magical attacks that involve crystal or generate light double their rolled damage dice against you. When in shadow form, if you suffer damage that would kill you, you instead return to physical form at once with either half of your Wounds or with the Wounds you possessed when you entered shadow form, whichever is lower; you are Stunned when this happens. You may not inflict damage on others in any way while in shadow form, but you may cast non-damaging spells and can speak in the form of a disembodied whisper. You gain a Free Raise on all Nothing spells. You may not cast maho spells. Several existing spells may be cast as Nothing spells. When this is done the spells invoke a very unsettling atmosphere obvious to any shugenja (although they may not know what causes it, only that they feel unwell), and may even make non-shugenja uncomfortable. Common side-effects of such spells, in addition to their normal effects, include the deepening of shadows, the dimming of lights, the presence of faint undecipherable whispers, etc. GMs may of course add or exclude any spells from this list as it suits the needs and style of their campaigns."
         }
-      }
+      },
+      "koku": 2
     },
     "The Order of the Spider Monks": {
       "name": "The Order of the Spider Monks",
@@ -2866,8 +2866,7 @@
         "Bow",
         "Knife",
         "Traveling Pack",
-        "Horse",
-        "10 Koku"
+        "Horse"
       ],
       "affinity": null,
       "deficiency": null,
@@ -2894,7 +2893,8 @@
           "name": "Dancing With the Fortunes",
           "effect": "A Shinjo atop a horse is a sight that gives even the most seasoned among his enemies pause, and for good reason. During a skirmish, when mounted, when you wish to spend a Void Point you may make a Void Ring Roll (TN 20) as a Free Action. If the Ring Roll is successful, you gain the mechanical benefit of having spent the Void Point without actually spending it. (This does not actually create a bonus Void Point, it simply generates the mechanical effects of spending one.) If the roll fails, you spend the Void Point as normal. You may only use this Technique a number of times per skirmish equal to the number of Void Points you had at the start of the skirmish.\n <br/>\n You may utilize this Technique when on foot as well, but the TN of the Void Ring Roll increases to 30."
         }
-      }
+      },
+      "koku": 10
     },
     "Utaku Battle Maiden": {
       "name": "Utaku Battle Maiden",
