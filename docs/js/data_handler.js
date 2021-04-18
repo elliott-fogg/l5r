@@ -578,10 +578,56 @@ class DataTester extends DataHandler {
 	run_all_tests() {
 		this.test_discounts();
 		this.check_comments();
+		this.check_schools()
 	}
 
-	test_school_traits() {
+	check_schools() {
+		var direct_values = {
+			"class": new Set(),
+			"attribute": new Set(),
+			"honor": new Set(),
+			"affinity": new Set(),
+			"koku": new Set(),
+			"special": new Set()
+		}
 
+		var list_values = {
+			"skills": new Set(),
+			"skill_choices": new Set(),
+			"gear": new Set(),
+			"spells": new Set()
+		}
+
+		for (let clan in this.data.schools) {
+			for (let school in this.data.schools[clan]) {
+				let info = this.data.schools[clan][school];
+
+				for (let key in direct_values) {
+					direct_values[key].add(info[key]);
+				}
+
+				for (let key in list_values) {
+					if (info[key] == null) {
+						list_values[key].add(null);
+					} else {
+						for (let item of info[key]) {
+							list_values[key].add(item);
+						}
+					}
+				}
+			}
+		}
+
+		console.log(direct_values);
+		console.log(list_values);
+	}
+
+	check_advantages() {
+		for (let data of [this.advantages, this.disadvantages]) {
+			for (let adv in data) {
+
+			}
+		}
 	}
 
 	test_discounts() {
@@ -607,7 +653,14 @@ class DataTester extends DataHandler {
 			}
 		}
 	}
+
+	check_skill_choices() {
+		console.group("Skill Choices");
+		for (let adv in this.data.skills) {
+
+		}
+	}
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataHandler();
+window.DH = new DataTester();
