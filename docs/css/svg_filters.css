@@ -1,0 +1,22 @@
+.up-arrow {
+	cursor: pointer;
+	width: 14px;
+}
+
+.up-arrow:hover {
+	filter: brightness(1.5);
+}
+
+.down-arrow {
+	cursor: pointer;
+	width: 14px;
+}
+
+.down-arrow:hover {
+	filter: brightness(1.5);
+}
+
+.up-arrow.disabled, .down-arrow.disabled {
+	filter: grayscale(1) brightness(2);
+	cursor: default;
+}
