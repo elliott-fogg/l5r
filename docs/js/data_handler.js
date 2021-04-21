@@ -663,4 +663,4 @@ class DataTester extends DataHandler {
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataTester();
+window.DH = new DataHandler();

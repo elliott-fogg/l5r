@@ -1,3 +1,13 @@
+var all_traits = ["Awareness", "Reflexes", "Stamina", "Willpower", "Agility", 
+            "Intelligence", "Perception", "Strength", "Void"];
+var all_rings = {
+    "Air": ["Awareness", "Reflexes"],
+    "Earth": ["Stamina", "Willpower"],
+    "Fire": ["Agility", "Intelligence"],
+    "Water": ["Perception", "Strength"],
+    "Void": ["Void"]
+    };
+
 class CharacterCreator {
 
 	constructor() {
@@ -57,6 +67,18 @@ class CharacterCreator {
         this.affinity = null;
         this.advantages = [];
         this.disadvantages = [];
+        this.modified_traits = {
+            "Awareness": 0,
+            "Reflexes": 0,
+            "Stamina": 0,
+            "Willpower": 0,
+            "Agility": 0,
+            "Intelligence": 0,
+            "Perception": 0,
+            "Strength": 0,
+            "Void": 0
+        }
+        this.skill_increases = {};
 
         // Storage for calculated values
         this.temp = {};
@@ -418,45 +440,88 @@ class CharacterCreator {
         this.autosave();
     }
 
-    update_traits() {
-        var traits_list = ["Awareness", "Reflexes", "Stamina", "Willpower",
-                            "Agility", "Intelligence", "Perception", "Strength",
-                            "Void"];
-
-        // Create traits_dict and fill with default_value (2)
-        var traits_dict = {}
-        for (let trait of traits_list) {
-            traits_dict[trait] = 2;
+    calculate_base_traits() {
+        var traits = {
+            "Awareness": 2, "Reflexes": 2, "Stamina": 2, "Willpower": 2,
+            "Agility": 2, "Intelligence": 2, "Perception": 2, "Strength": 2,
+            "Void": 2
         }
 
         // Add in family bonus
         if (this.family_id) {
             let family_trait = window.DH.get_family_trait(this.family_id);
-            traits_dict[family_trait] += 1;
+            traits[family_trait] += 1;
         }
 
         // Add in school bonus
         if (this.school_id) {
             let school_trait = window.DH.get_school_info(this.school_id,
                                                          "attribute");
-            traits_dict[school_trait] += 1;
+            traits[school_trait] += 1;
         }
 
-        this.temp.traits = traits_dict;
+        // Add in Skills from Advantages?
+
+        return traits;
+    }
+
+    calculate_total_traits() {
+        var traits = this.calculate_base_traits();
+        for (let trait in this.modified_traits) {
+            traits[trait] += this.modified_traits[trait];
+        }
+        return traits;
+    }
+
+    update_traits() {
+        var traits_dict = this.calculate_total_traits();
 
         var trait_tbody = document.getElementById("trait_tbody");
         trait_tbody.innerHTML = "";
         var template = document.createElement("template");
         for (let trait in traits_dict) {
             let value = traits_dict[trait];
-            let value_html = (value > 2) ? `<b>${value}</b>` : `${value}`;
-            let row_html = `<tr>
-                                <td>${trait}</td>
-                                <td style="text-align: center">${value_html}</td>
-                            </tr>`;
-            template.innerHTML = row_html.trim();
-            trait_tbody.appendChild(template.content.firstChild);
+
+            let cell1 = document.createElement("td");
+            cell1.innerHTML = trait;
+
+            let cell2 = document.createElement("td");
+            cell2.innerHTML = (value > 2) ? `<b>${value}</b>` : `${value}`;
+            cell2.class="center";
+
+            let cell3 = document.createElement("td");
+            cell3.classList.add("no-bg");
+
+            let up_arrow = document.createElement("img");
+            up_arrow.src = "images/plus.svg";
+            up_arrow.classList.add("up-arrow");
+            up_arrow.onclick = this.modify_trait.bind(this, trait, 1);
+            cell3.appendChild(up_arrow);
+
+            let down_arrow = document.createElement("img");
+            down_arrow.src = "images/minus.svg";
+            down_arrow.classList.add("down-arrow");
+            if (this.modified_traits[trait] == 0) {
+                down_arrow.classList.add("disabled");
+            } else {
+                down_arrow.onclick = this.modify_trait.bind(this, trait, -1);
+            }
+            cell3.appendChild(down_arrow);
+
+            let row = document.createElement("tr");
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            row.appendChild(cell3);
+
+            trait_tbody.appendChild(row);
         }
+    }
+
+    modify_trait(trait_name, change) {
+        this.modified_traits[trait_name] += change;
+        this.update_traits();
+        this.update_experience();
+        this.update_insight();
     }
 
     update_skills() {
@@ -503,6 +568,10 @@ class CharacterCreator {
         }
 
         console.groupEnd();
+    }
+
+    modify_skill(skill_name) {
+        
     }
 
     update_honor() {
@@ -559,8 +628,39 @@ class CharacterCreator {
         status_display.innerHTML = this.calculate_status();
     }
 
+    get_total_experience() {
+        return 40;
+    }
+
     calculate_experience() {
-        var experience = 40;
+        console.groupCollapsed("Calculating Experience");
+        var experience = this.get_total_experience();
+
+        var trait_cost_modifiers = {};
+        for (let t of all_traits) {
+            trait_cost_modifiers[t] = 0;
+        }
+        // Stuff to work out trait_cost_modifiers here???
+
+        // Calculate Points Spent on Traits
+        var base_traits = this.calculate_base_traits();
+
+        for (let trait in this.modified_traits) {
+            let cost = this.modified_traits[trait] + base_traits[trait];
+            while (cost > base_traits[trait]) {
+                experience -= (cost - trait_cost_modifiers[trait]);
+                cost -= 1
+            }
+        }
+
+        // Calculate Points Spent on Skills
+
+        // Calculate Points Spent on Advantages
+
+        // Calculate Points Earned from Disadvantages
+
+        console.groupEnd();
+
         return experience - this.temp.advantages_cost +
             this.temp.disadvantages_refund;
     }
@@ -573,7 +673,7 @@ class CharacterCreator {
         var insight = 0;
 
         // Rings
-        var traits = this.temp.traits;
+        var traits = this.calculate_total_traits();
         insight += 10 * Math.min(traits.Awareness, traits.Reflexes);
         insight += 10 * Math.min(traits.Stamina, traits.Willpower);
         insight += 10 * Math.min(traits.Agility, traits.Intelligence);
@@ -690,6 +790,7 @@ class CharacterCreator {
     }
 
     refresh_adv_display() {
+        console.groupCollapsed("Refreshing Advantage Displays");
         var adv_sort = function(a,b) {
             if (a["title"] < b["title"]) {
                 return -1;
@@ -767,6 +868,8 @@ class CharacterCreator {
         
         this.temp.advantages_cost = total_cost;
         this.temp.disadvantages_refund = Math.min(total_refund, 10);
+
+        console.groupEnd();
     }
 
     calculate_adv_cost(cost, discounts, advantage) {
