@@ -8,7 +8,7 @@
 
 	"Allies": {
 		"title": "Allies",
-		"output_title": "Allies - {name}",
+		"output_title": "<b>Allies<b> ({name})",
 		"cost": "£{influence[cost]} + {devotion[cost]}£",
 		"discount": "clan_Crane",
 		"output_text": "Ally Name: {name}<br>Influence: {influence[text]}<br>Devotion: {devotion[text]}",
@@ -208,11 +208,11 @@
 
 	"Dark Paragon": {
 		"title": "Dark Paragon",
-		"output_title": "Dark Paragon ({precept[text]})",
+		"output_title": "<b>Dark Paragon<b> ({precept[text]})",
 		"cost": "5",
 		"discount": "clan_Spider",
 		"description": "You have mastered one of the precepts of Shourido, the dark code that forms an antithesis of Bushido. Once per session, you may voluntarily sacrifice 5 points of Honor as a Free Action in order to affect a particular type of roll according to your chosen precept, and gain bonus +5 to the total of that roll. If you do not have 5 points of Honor to spend in this manner, you may spend a Void Point instead. Spider character may purchase this Advantage for 4 points.",
-		"output_text": "Precept: {precept[text]}<br>Once per session, you may voluntarily sacrifice 5 points of Honor (or 1 Void Point, if you do not have enough Honor) to gain the following bonus:<br>{precept[hovertext]}",
+		"output_text": "Once per session, you may voluntarily sacrifice 5 points of Honor (or 1 Void Point, if you do not have enough Honor) to gain the following bonus:<br>{precept[hovertext]}",
 		"allow_multiple": true,
 		"input": [
 			{
