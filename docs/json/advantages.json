@@ -8,6 +8,7 @@
 
 	"Allies": {
 		"title": "Allies",
+		"output_title": "Allies - {name}",
 		"cost": "£{influence[cost]} + {devotion[cost]}£",
 		"discount": "clan_Crane",
 		"output_text": "Ally Name: {name}<br>Influence: {influence[text]}<br>Devotion: {devotion[text]}",
@@ -71,6 +72,7 @@
 
 	"Blackmail": {
 		"title": "Blackmail",
+		"output_title": "Blackmail - {target_name}",
 		"cost": "{honor_rank}",
 		"discount": "clan_Scorpion",
 		"description": "You possess knowledge and proof of a dark secret held by another, and can use that secret to elicit their cooperation in a number of ways. The cost of the Advantage is equal to theh Status Rank of the individual whom you are blackmailing. Using this Advantage too frequently or making grandiose demands mar result in them deciding your death is worth the risk of exposing their secret, no matter what the consequences might be. Scorpion characters may purchase this Advantage for 1 point less than normal.",
@@ -130,7 +132,8 @@
 	},
 
 	"Chosen by the Oracles": {
-		"title": "Chosen by the Oracles - {ring_name[text]}",
+		"title": "Chosen by the Oracles",
+		"output_title": "Chosen by the Oracles - {ring_name[text]}",
 		"cost": 6,
 		"description": "For reasons beyond your understanding, you have caught the notice of one of the Oracles, humans suffused with the divine power of Elemental Dragons. You must select one Ring when you take this Advantage. You gain a bonus of +1k1 to the total of all Ring Rolls using that Ring.",
 		"output_text": "You gain a bonus of +1k1 to the total of all {ring_name[text]} Rolls.",
@@ -205,6 +208,7 @@
 
 	"Dark Paragon": {
 		"title": "Dark Paragon",
+		"output_title": "Dark Paragon ({precept[text]})",
 		"cost": "5",
 		"discount": "clan_Spider",
 		"description": "You have mastered one of the precepts of Shourido, the dark code that forms an antithesis of Bushido. Once per session, you may voluntarily sacrifice 5 points of Honor as a Free Action in order to affect a particular type of roll according to your chosen precept, and gain bonus +5 to the total of that roll. If you do not have 5 points of Honor to spend in this manner, you may spend a Void Point instead. Spider character may purchase this Advantage for 4 points.",
@@ -252,6 +256,7 @@
 
 	"Darling Of The Court": {
 		"title": "Darling Of The Court",
+		"output_title": "Darling Of The Court ({court})",
 		"cost": 2,
 		"discount": "class_Courtier",
 		"description": "During a recent court session, you did something that gained the notice of the host, resulting in an instant increase in your importance with all those in attendance. Select one court, such as the court of Kyuden Bayushi, or the court of the Okura District in Toshi Ranbo, etc. When in attendance at this court, your Status is effectively on rank higher, but only while court is in session. Courtier characters may purchase this Advantage for 1 point. You may take this Advantage multiple times for different courts, but only once for each particular court.",
@@ -270,6 +275,7 @@
 	"Elemental Blessing": {
 		"_COMMENT": "Affects Trait upgrade costs",
 		"title": "Elemental Blessing",
+		"output_title": "Elemental Blessing ({ring_name})",
 		"cost": 4,
 		"discount": "clan_Phoenix",
 		"description": "You are much beloved by the kami of a particular element, although you know not why that might be. As a result, the cost of increasing the Traits associated with one particular Ring, chosen when this Advantage is purchased, is decreased by 1. For example, if you choose Earth when you purchase this Advantage, the cost of increasing Stamina and Willpower is reduced by 1 Experience Point ever time you increase them. Void may not be chosen for this Advantage. Phoenix characters may purchase this Advantage for 3 points.",
@@ -317,7 +323,8 @@
 
 	"Forbidden Knowledge": {
 		"_COMMENT": "Adds a skill",
-		"title": "Forbidden Knowledge - {knowledge_title}",
+		"title": "Forbidden Knowledge",
+		"output_title": "Forbidden Knowledge ({knowledge_title})",
 		"cost": 5,
 		"description": "There is a subject about which you possess considerable knowledge and insight. The problem is that this subject is forbidden, and considered grossly socially inappropriate if not outright illegal. Anyone who discovers your expertise in this area might rightly wonder how you came upon it. The benefits of the Advantage vary depending upon the nature of the information, and players should discuss with their GM how this Advantage will work.",
 		"output_text": "{knowledge_title}<br>{knowledge_description}",
@@ -354,6 +361,7 @@
 	"Friendly Kami": {
 		"_COMMENT": "Would be good if we could introduce custom restrictions based on Elemental Deficiencies",
 		"title": "Friendly Kami",
+		"output_title": "Friendly Kami ({element_choice})",
 		"cost": 5,
 		"restriction": "class_Shugenja",
 		"description": "A particular kami has befriended you, and stays in your vicinity at all times. Choose one element when this Advantage is purchased. You gain a bonus of +1k1 to the total of all Spell Casting Rolls made to cast Sense, Commune or Summon with regard to that Element only. Only shugenja may purchase this Advantage. You may not select this Advantage for an Element in which you are Deficient.",
@@ -395,7 +403,8 @@
 	},
 
 	"Friend Of The Elements": {
-		"title": "Friend Of The Elements - {ring_name[text]}",
+		"title": "Friend Of The Elements",
+		"output_title": "Friend Of The Elements ({ring_name[text]})",
 		"cost": 4,
 		"discount": "class_Shugenja",
 		"description": "The spirits of a certain Element swirl about you at all times, lending their aid when possible even though you are likely unaware of their presence. Choose a Ring when this Advantage is purchased. Whenever you make a Trait Roll with either Trait associated with that Ring, you gain a Free Raise. Shugenja characters may purchase this Advantage for 3 points.",
@@ -435,6 +444,7 @@
 	"Gaijin Gear": {
 		"_COMMENT": "Adds an item",
 		"title": "Gaijin Gear",
+		"output_title": "Gaijin Gear - {item_name}",
 		"cost": 5,
 		"discount": "clan_Mantis clan_Unicorn",
 		"description": "You possess a single piece of equipment that is gaijin in origin, constructed somewhere beyond the boundaries of the Emerald Empire. It may be a weapon from one of the many warrior cultires around Rokugan, such as the Senpet Empire, the overseas kingdoms of Merenae and Thrane, the barbarian Yobanjin tribes to the north, or even the distant Yodotai Empire far to the northwest. In this case simply establish a comparable weapon from Rokugan and use its mechanics, but the item will require its own unique Weapon Skill to utilize it. Non-weapon options include such buzarre objects as compasses, spyglasses, magnifying glasses, scissors, etc. Mantis and Unicorn characters may purchase this Advantage for 4 points.",
@@ -471,6 +481,7 @@
 
 	"Gentry": {
 		"title": "Gentry",
+		"output_title": "Gentry - {holding_name}",
 		"cost": "({shared}) ? {individual_cost} : {holding_size[cost]}",
 		"discount": "adv_BlissfulBetrothal",
 		"description": "In the manner of all Samurai, you have been given a duty to oversee that which ultimately belongs to the Emperor. In your case, however, your charge is significantly larger than most ever achieve. The number of points assigned to this Advantage determines the size of the holding you have been assigned to oversee. Multiple characters can combine points in this advantage in order to oversee a larger holding. Characters assigned to oversee a holding are responsible for defending it, administrating it, and ensuring that all taxes are paid to all responsible parties. This can be the basis for an entire campaign.",
@@ -541,6 +552,7 @@
 	"Great Potential": {
 		"_COMMENT": "Affects Raise Limit",
 		"title": "Great Potential",
+		"output_title": "Great Potential ({skill_name})",
 		"cost": 5,
 		"description": "Within you lies the potential to excel at one particular endeavor, perhaps more so than any other living soul in the Empire. Select any one Skill when you purchase this Advantage. When you make Raises on a Skill Roll using that Skill, your raises are limited by your rank in that Skill instead of your Void RIng. If your Void Ring is higher, however, you may use that as a measure for your Raises if you so choose.",
 		"output_text": "When you make Raises on {skill_name} Skill Rolls, your Raises are limited by your rank in that Skill instead of your Void Ring (unless your Void Ring is higher).",
@@ -566,6 +578,7 @@
 
 	"Heart Of Vengeance": {
 		"title": "Heart Of Vengeance",
+		"output_title": "Heart Of Vengeance ({faction_name})",
 		"cost": 5,
 		"discount": "clan_Spider",
 		"description": "One Clan has earned your eternal, undying hatred, and nothing will ever quench your rage. Select one Clan or other faction (such as the Brotherhood of Shinsei or one of the Imperial Families) when purchasing this Advantage. You gain a bonus of +1k1 to the total of any Contested Roll made against a member of the Clan/faction. Spider characters may purchase this Advantage for 4 points.",
@@ -620,6 +633,7 @@
 	"Inheritance": {
 		"_COMMENT": "Adds an item",
 		"title": "Inheritance",
+		"output_title": "Inheritance - {item_name}",
 		"cost": 5,
 		"description": "When you received your gempukku ceremony, your family honored you with an heirloom of your ancestors. It is among your most precious possessions, and you would die before you allowed it to be harmed or brought dishonor to it. You possess one item in addition to the normal starting equipment provided by your School. Whenever you make a Skill Roll using this item (such as a Perform: Biwa roll with a biwa, a Games: Go roll with a go set, or a Kenjutsu roll with a katana) you gain a bonus of +1k1 to the roll. This bonus does not apply to any attack or damage rolls, only Skill Rolls made for non-combat purposes (i.e. rolls made outside of a skirmish). Players and GMs may agree to allow a more powerful or unique item to be inherited for a higher Experience Point cost. This should be made under a custom Advantage.",
 		"output_text": "You inherited {item_name}. You would die before allowing it to be harmed or have dishonor brought to it.<br>Whenever you make a Skill Roll (for non-combat purposes only) using this item, you gain a bonus +1k1 to the roll.",
@@ -636,6 +650,7 @@
 
 	"Inner Gift": {
 		"title": "Inner Gift",
+		"output_title": "Inner Gift ({inner_gift_choice})",
 		"cost": 7,
 		"description": "You possess a mysterious gift that even shugenja cannot fully understand. Monks describe individuals such as yourself as existing in a unique state of harmony with the universe, but then they say that sort of thing a lot. Your gift may be a manifestation of the kami, perhaps an indicator of spirit ancestry, or any of a number of different theories. The exact nature of an Inner Gift should be discussed with the GM before taking this Advantage. You may choose one of the gifts provided, or write your own.",
 		"output_text": "£({inner_gift_choice} == 6) ? 'Gift: {custom_gift_title}<br>{custom_gift_description}' : '{inner_gift_choice[text]}<br>{inner_gift_choice[hovertext]}'£",
@@ -708,6 +723,7 @@
 
 	"Kharmic Tie": {
 		"title": "Kharmic Tie",
+		"output_title": "Kharmis Tie - {name_of_bonded}",
 		"cost": "{rank}",
 		"discount": "adv_BlissfulBetrothal",
 		"description": "Your destiny is not yours alone, but is bonded to that of another in some fundamental way. You may have been close to this other person during a previous life, or perhaps your destiny in this life will yet be entwined in theirs in some essential manner. Select one person when purchasing this Advantage. For each point spent on this Advantage, once per session you gain a bonus of +1k1 to the total of all attack rolls made when fighting for or protecting the person to whom you are bonded.",
@@ -748,6 +764,7 @@
 
 	"Languages": {
 		"title": "Languages",
+		"output_title": "Languages - {language_name}",
 		"cost": "{language_type[cost]}",
 		"description": "The Empire has only one language with two dialects. The world around Rokugan, however, has a wide variety of nations and cultures, each with their own language. For 1 point, you may learn one human language from any surrounding culture, including but not limited to: the Yobanjin dialect, Senpet, Yodotai, Mekham, Merenae, Rhuumal, Thrane, etc. A non-human language, such as the Nezumi or Naga languages, required 3 points and confers only an ability to understand the language and a limited ability to express very basic concepts verbally.",
 		"output_text": "{language_name[text]}<br>{language_type[text]}: {language_type[hovertext]}",
@@ -796,6 +813,7 @@
 
 	"Luck": {
 		"title": "Luck",
+		"output_title": "Luck {rank}",
 		"cost": "{rank[cost]}",
 		"description": "Fortune favors the mortal man. A number of times per session equal to your rank in this Advantage, you may choose to immediately re-roll any one roll you make, keeping the higher of the two results.",
 		"output_text": "You may choose to immediately re-roll any one roll you make, keeping the higher of the two results. Can be used {rank} time(s) per session.",
@@ -826,6 +844,7 @@
 
 	"Magic Resistance": {
 		"title": "Magic Resistance",
+		"output_title": "Magic Resistance {rank}",
 		"cost": "{rank} * 2",
 		"description": "For reasons beyond your understanding, the kami are reluctant to involve themselves with you in any way. For each rank you possess in this Advantage, all elemental spells targeting you have the TN of the Spell Casting Roll made to enact it increased by +3. Maho, gaijin, and non-human forms of magic are not affected by this Advantage.",
 		"output_text": "All elemental spells targeting you have the TN of the Spell Casting Roll made to enact it increased by +£3*{rank}£. Maho, Gaijin, and non-human forms of magic are not affected.",
@@ -851,6 +870,7 @@
 
 	"Paragon": {
 		"title": "Paragon",
+		"output_title": "Paragon ({tenet})",
 		"cost": 7,
 		"discount": "clan_Lion",
 		"description": "You exemplify the code of Bushido, and have taken one particular tenet to heart and made it your way of life. In addition to the Tenet-specific benefit, any time that your gain Honor for exhibiting the virtue that you have selected, you gain an additional +1 Honor. Lion characters may purchase this Advantage for 6 points.",
@@ -897,6 +917,7 @@
 
 	"Perceived Honor": {
 		"title": "Perceived Honor",
+		"output_title": "Perceived Honor ({rank})",
 		"cost": "{rank}*2",
 		"description": "Others find it difficult to perceive your true nature, a fact that benefits you in concealing your sometimes questionable actions. For each rank you possess in this Advantage, your Honor is considered one full rank higher for the purpose of all attempts to discern it. Anyone attempting to roll Lore: Bushido to determine your Honor Rank will determine the false rank instead of your actual Honor.",
 		"output_text": "Your Honor is considered {rank} rank(s) higher for the purpose of all attempts to discern it. Anyone attempting to roll Lore: Bushido to determine your Honor Rank will determine the false rank instead of your actual Honor.",
@@ -952,6 +973,7 @@
 	"Sacred Weapon": {
 		"_COMMENT": "Would be good if we could automatically restrict it to your clan",
 		"title": "Sacred Weapon",
+		"output_title": "Sacred Weapon ({weapon})",
 		"cost": "{weapon[cost]}",
 		"description": "You possess a special weapon created by the master weaponsmiths of your Clan, and considered to be an icon of all who bear the mon of your Clan.",
 		"output_text": "Weapon: {weapon[text]}<br>{weapon[hovertext]}",
@@ -1032,12 +1054,13 @@
 		"title": "Sensation",
 		"cost": 3,
 		"description": "You are capable of enrapturing the crowd, no matter the circumstances. Whenver you would be required to make an Unskilled Roll using a Perform Skill, you are considered to have 1 rank in that skill.",
-		"output_text": "Whenver you would be required to make an Unskilled Roll using a Perform Skill, you are considered to have 1 rank in that skill."
+		"output_text": "Whenever you would be required to make an Unskilled Roll using a Perform Skill, you are considered to have 1 rank in that skill."
 	},
 
 	"Servant": {
 		"_COMMENT": "Unfinished. Additional customisation required to allow for adding custom amounts of skills to servants.",
 		"title": "Servant",
+		"output_title": "Servant - {servant_name}",
 		"cost": 5,
 		"discount": "{servant_type[discount]}",
 		"description": "A servant has been assigned to you by your family, or possibly one whose help you purchased with your own resources in order to make life a little bit easier. You may have a maximum number of servants equal to twice your Status Rank. Different kinds of servants have different useful abilities and can more easily be supplied by different Clans. Typically, a servant has all Traits at rank 2 and a single Skill at rank 3. You may add additional Skill Ranks or Emphases to a servant at the time the Advantage is purchased by paying 3 additional points per Skill Rank or Emphasis.",
@@ -1135,6 +1158,7 @@
 
 	"Seven Fortune's Blessing": {
 		"title": "Seven Fortunes Blessing",
+		"output_title": "Seven Fortunes Blessing ({fortune[fortune]})",
 		"cost": "{fortune[cost]}",
 		"discount": "{fortune[discount]}",
 		"description": "One of the Seven Fortunes, the most powerful of all the Fortunes, has taken notice of you and showered you with his or her blessings. These can be powerful bonuses, but sometimes come with expectations. The Fortunes are both fickle and wrathful, after all. The Clans listed after each blessing may purchase that Advantage for 1 point less than its normal cost.",
@@ -1149,6 +1173,7 @@
 				"options": {
 					"1": {
 						"text": "Benten's Blessing - Fortune of Romantic Love",
+						"fortune": "Benten",
 						"cost": 4,
 						"hovertext": "When you attempt to persuade someone, regardless of circumstances, gain +0k1 to the total of the Social Skill roll in question. This bonus only applies to persuasion, not coercion.",
 						"output_text": "{fortune[hovertext]}",
@@ -1156,6 +1181,7 @@
 					},
 					"2": {
 						"text": "Bishamon's Blessing - Fortune of Strength",
+						"fortune": "Bishamon",
 						"cost": 5,
 						"hovertext": "When you declare and make 3 successful raises on an attack roll for the purpose of Increased Damage Maneuver, you gain one additional Raise. Free Raises do not count towards activating this effect. You also gain +1k0 to the total of any Strength Trait Rolls.",
 						"output_text": "{fortune[hovertext]}",
@@ -1163,6 +1189,7 @@
 					},
 					"3": {
 						"text": "Daikoku's Blessing - Fortune of Wealth",
+						"fortune": "Daikoku",
 						"cost": 4,
 						"hovertext": "You gain a bonus +1k1 to the total of all Commerce Skill Rolls.",
 						"output_text": "{fortune[hovertext]}",
@@ -1170,6 +1197,7 @@
 					},
 					"4": {
 						"text": "Ebisu's Blessing - Fortune of Honest Work",
+						"fortune": "Ebisu",
 						"cost": 4,
 						"hovertext": "You gain a bonus of +1k1 to the total of all Social Skill Rolls made with citizens of Rokugan who are not members of the Samurai caste.",
 						"output_text": "{fortune[hovertext]}",
@@ -1177,6 +1205,7 @@
 					},
 					"5": {
 						"text": "Fukurokujin's Blessing - Fortune of Wisdom",
+						"fortune": "Fukurokujin",
 						"cost": 4,
 						"hovertext": "Select one Lore Skill when you purchase this Advantage. Whenever you make a Skill Roll using that Skill, you gain a bonus +1k1 to the total of that roll.",
 						"output_text": "Whenever you make a {lore_skill} Roll, you gain a bonus +1k1 to the total of that roll.",
@@ -1184,6 +1213,7 @@
 					},
 					"6": {
 						"text": "Hotei's Blessing - Fortune of Contentment",
+						"fortune": "Hotei",
 						"cost": 4,
 						"hovertext": "Whenever an effect of any sort, either a Spell, Advantage, Technique, or other effect, would cause you to lose Void Points, the instigator of the effect must first defeat you in a Contested Void Roll. If the effect already calls for a Contested Roll of some kind, your roll is instead increased by +10.",
 						"output_text": "{fortune[hovertext]}",
@@ -1191,6 +1221,7 @@
 					},
 					"7": {
 						"text": "Jurojin's Blessing - Fortune of Longevity",
+						"fortune": "Jurojin",
 						"cost": 4,
 						"hovertext": "Whenever you are rolling to resist the effects of a disease or poison, you gain a bonus of +2k0 to the total of the roll.",
 						"output_text": "{fortune[hovertext]}",
@@ -1226,6 +1257,7 @@
 
 	"Soul Of Artistry": {
 		"title": "Soul Of Artistry",
+		"output_title": "Soul Of Artistry ({creativity_type[text]})",
 		"cost": 4,
 		"discount": "clan_Crane class_Courtier",
 		"description": "Your soul soars with the spirit of creativity. Choose either Artisan Skills or Craft Skills when purchasing thie Advantage. Any time that you would be required to make an Unskilled Roll using a Skill of the chosen type, you are considered to have 1 rank in that Skill. Crane and courtier characters may purchase this Advantage for 3 points.",
@@ -1267,6 +1299,7 @@
 
 	"Touch Of The Spirit Realms": {
 		"title": "Touch Of The Spirit Realms",
+		"output_title": "Touch Of The Spirit Realms ({realm[text]})",
 		"cost": "{realm[cost]}",
 		"discount": "class_Shugenja",
 		"description": "Somehow, a fragment of the essence of a spirit realm is present in your soul, and suffuses everything you do. Shugenja characters may pruchase thie Advantage for 4 points.",
@@ -1375,6 +1408,7 @@
 
 	"Way Of The Land": {
 		"title": "Way Of The Land",
+		"output_title": "Way Of The Land ({region})",
 		"cost": 2,
 		"discount": "clan_Unicorn",
 		"description": "You are intimately familiar with a particular region, having traveled it extensively to the point that you know it as well as the interior of your own house. Select the lands of one family, a major city, or some other reasonably sized region. While you are within that region, it is not possible for you to get lost, and you know the location of any available resources to be found there. Unicorn characters may purchase this Advantage for 1 point.",
@@ -1392,6 +1426,7 @@
 	"Wealthy": {
 		"_COMMENT": "Affects Koku",
 		"title": "Wealthy",
+		"output_title": "Wealthy {rank}",
 		"cost": "{rank}",
 		"discount": "clan_Crane clan_Unicorn clan_Imperial",
 		"description": "Your branch of the family is particularly wealthy, and they have granted you additional resources in order to facilitate your fulfillment of your duty. For each point spent on this Advantage, you gain 2 additional Koku, to be added to the amount in your School outfit. Crane, Unicorn, and Imperial characters may purchase this Advantage for 1 point less off its total cost.",
