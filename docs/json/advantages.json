@@ -76,7 +76,7 @@
 		"cost": "{honor_rank}",
 		"discount": "clan_Scorpion",
 		"description": "You possess knowledge and proof of a dark secret held by another, and can use that secret to elicit their cooperation in a number of ways. The cost of the Advantage is equal to theh Status Rank of the individual whom you are blackmailing. Using this Advantage too frequently or making grandiose demands mar result in them deciding your death is worth the risk of exposing their secret, no matter what the consequences might be. Scorpion characters may purchase this Advantage for 1 point less than normal.",
-		"output_text": "<b>Person Blackmailed:</b> {target_name}<br><b>Blackmail:</b> {blackmail_description}",
+		"output_text": "<u>Person Blackmailed:</u> {target_name} £ ({blackmail_description}) ? '<br>Blackmail: <i>{blackmail_description}</i>' : ''£",
 		"allow_multiple": true,
 		"input": [
 			{
