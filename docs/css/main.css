@@ -85,3 +85,7 @@ select.default > optgroup, option {
 .choice_div {
 	display: flex;
 }
+
+.b {
+	font-weight: bold;
+}
