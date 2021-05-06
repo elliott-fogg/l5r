@@ -541,6 +541,7 @@ class AdvantagesModal extends ModalWindow {
 		}
 
 		this.modal_params["title"] = data["title"];
+		this.modal_params["output_title"] = data["output_title"];
 		this.modal_params["description"] = data["description"];
 		this.modal_params["cost"] = data["cost"];
 		this.modal_params["discount"] = data["discount"] || "";
@@ -624,8 +625,19 @@ class AdvantagesModal extends ModalWindow {
 				}
 			}
 
+			console.log(this.modal_params["output_title"], this.modal_params["title"]);
+
+			var output_title;
+			if (this.modal_params["output_title"]) {
+				output_title = this.modal_params["output_title"];
+			} else {
+				output_title = this.modal_params["title"];
+			}
+
+			console.log(output_title);
+
 			return {
-				"title": this.replace_with_data(this.modal_params["title"]),
+				"title": this.replace_with_data(output_title),
 				"data": this.data,
 				"cost": this.replace_with_data(this.modal_params["cost"]),
 				"discount": this.replace_with_data(this.modal_params["discount"]
