@@ -1,16 +1,25 @@
-function create_collapsible_div(title_text, content, class_name=null) {
+function create_collapsible_div(title, content, class_name=null) {
     var container = document.createElement("div");
     container.classList.add("collapsible-div-container");
     if (class_name != null) {
         container.classList.add(...class_name.split(" "));
     }
 
+    // Create the clickable Title
     var title_div = document.createElement("div");
     title_div.classList.add("collapsible-div-title");
-    var title_p = document.createElement("p");
-    title_p.innerHTML = title_text;
-    title_div.appendChild(title_p);
     title_div.onclick = collapsible_div_title_onclick;
+    if (typeof title === "string") {
+        var title_p = document.createElement("p");
+        title_p.innerHTML = title;
+        title_div.appendChild(title_p);
+    } else if (Array.isArray(title)) {
+        for (let elem of title) {
+            title_div.appendChild(elem);
+        }
+    } else {
+        title_div.appendChild(title);
+    }
 
     var content_div = document.createElement("div");
     content_div.classList.add("collapsible-div-content");
@@ -36,7 +45,7 @@ function collapsible_div_title_onclick(event) {
     while (true) {
         if (target.classList.contains("collapsible-div-container")) {
             if (!(target.classList.contains("disabled"))) {
-                target.classList.toggle("hidden");
+                target.classList.toggle("closed");
             }
             return;
         } else {

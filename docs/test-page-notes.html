@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/notes.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script type="text/javascript" src="js/notes.js"></script>
+</head>
+
+<body onload="new NotesObject()">
+
+	<div class="note_container">
+
+		<input type="button" value="New" id="note_new">
+		<input type="button" value="Save" id="note_save">
+		<label>Sort By:</label>
+		<select>
+			<option value="date">Date</option>
+			<option value="title">Title</option>
+		</select>
+		<input type="button" value="Check Storage"
+			onclick="console.log('localStorage:', localStorageSpace())">
+
+		<table>
+			<tr>
+				<td>
+					Notes:
+				</td>
+				<td>
+					<p contenteditable="true" style="margin: 2px; color: red; background-color: white; border: grey solid 1px"></p>
+					<input type="text" class="title" id="note_input_title"
+						disabled>
+				</td>
+			</tr>
+			<tr>
+				<td class="note_tab_container">
+						<div>
+							<table id="note_selection"></table>
+						</div>
+				</td>
+				<td style="height: 100%; padding: 0">
+					<textarea id="note_input_text" disabled></textarea>
+				</td>
+			</tr>
+		</table>
+
+<!-- 		<div style="display: block">
+
+
+			<div>
+				<p style="display: inline">
+					Notes:
+				</p>
+
+				<div class="note_container">
+					<div>
+						<table id="note_selection"></table>
+					</div>
+				</div>
+			</div>
+
+			<div style="width: 300px; display: inline">
+				<input type="text" class="note title"
+					id="note_input_title" disabled>
+				<br>
+				<textarea class="note" id="note_input_text" disabled></textarea>
+			</div>
+		</div> -->
+
+	</div>
+
+</body>
+</html>

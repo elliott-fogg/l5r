@@ -29,6 +29,7 @@ div.collapsible-div-title {
 
 div.collapsible-div-title > p {
 	display: inline;
+	margin-right: 10px;
 }
 
 div.collapsible-div-title > p::before {
@@ -46,17 +47,17 @@ div.collapsible-div-title > p::before {
 
 div.collapsible-div-content {
 	display: block;
-	margin-left: 20px; /* Indent content slightly by default */
+	padding-left: 20px; /* Indent content slightly by default */
 }
 
-/* Use hidden class to hide the content */
+/* Use closed class to hide the content */
 
-div.collapsible-div-container.hidden > div.collapsible-div-title > p::before {
+div.collapsible-div-container.closed > div.collapsible-div-title > p::before {
 	/* The rotation of the collapsible arrow */
 	transform: rotate(-90deg) translateX(1px);
 }
 
-div.collapsible-div-container.hidden > div.collapsible-div-content {
+div.collapsible-div-container.closed > div.collapsible-div-content {
 	display: none;
 }
 
@@ -84,6 +85,28 @@ div.collapsible-div-container.heading > .collapsible-div-title {
 	padding-left: 5px;
 }
 
+/* subheading - class for headings within headings, to differentiate them */
+
+div.collapsible-div-container.subheading > .collapsible-div-title {
+	font-weight: bold;
+	background-color: #000;
+	color: #FFF;
+	width: 25%;
+	border-radius: 9px 9px 0px 0px;
+	padding-left: 5px;
+}
+
+div.collapsible-div-container.subheading.closed > .collapsible-div-title {
+	border-radius: 9px;
+}
+
+div.collapsible-div-container.subheading > .collapsible-div-content {
+	border: solid black 1px;
+	padding-left: 2px;
+	padding-top: 5px;
+	width: 50%;
+}
+
 /* advantage - class for Advantage collapsibles */
 
 div.collapsible-div-container.advantage > div.collapsible-div-content {
@@ -105,4 +128,8 @@ div.collapsible-div-container.advantage > div.collapsible-div-content {
 /* bold - for Headings */
 .collapsible-div-container.bold > div.collapsible-div-title {
 	font-weight: bold;
+}
+
+.collapsible-div-container.grey > div {
+	color: grey;
 }

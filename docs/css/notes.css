@@ -1,0 +1,127 @@
+.note_container {
+	display: inline-block;
+	border: black solid 1px;
+	padding: 2px;
+}
+
+.note_tab_container {
+	border: solid black 2px;
+	background-color: #DDD;
+	height: 100px;
+	margin-right: 10px;
+}
+
+.note_tab_container > div {
+	/*Holds the tabs for notes*/
+	margin: 2px;
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: none;
+
+}
+
+#note_selection {
+	width: 300px;
+	height: calc(100% - 25px);
+	background-color: ;
+}
+
+.note_tab {
+	width: 100%;
+	height: 50px;
+	background-color: #fff6d1;
+	padding: 5px;
+	vertical-align: top;
+	text-align: left;
+	margin-bottom: 2px;
+}
+
+.note_tab.current {
+	font-style: italic;
+	background-color: #dbd4b4;
+}
+
+/*.note::placeholder {
+	color: grey;
+	opacity: 0.5;
+	font-style: italic;
+}*/
+
+/*.note_div1 {
+	display: inline;
+}
+
+.note_div2 {
+	float: right;
+	position: relative;
+	top: 0;
+	vertical-align: top;
+}*/
+
+.note_tab_title {
+	display: inline;
+}
+
+.note_tab_date {
+	text-align: right;
+	width: 50%;
+}
+
+.note_tab_trash {
+	text-align: right;
+}
+
+.note_icon {
+	cursor: pointer;
+}
+
+.note_icon.note_trash {
+	transform: translateY(3px);
+}
+
+.note_icon.note_trash:hover {
+	filter: opacity(50%);
+}
+
+.note_icon.note_unlock {
+	transform: translateY(5px);
+	filter: brightness(0.5);
+}
+.note_icon.note_unlock:hover {
+	filter: brightness(0.5) sepia(1) saturate(10000%);
+}
+
+.note_icon.note_lock {
+	transform: translateY(5px);
+	filter: brightness(0);
+}
+.note_icon.note_lock:hover {
+	filter: brightness(0.3) sepia(1) saturate(10000%) hue-rotate(90deg);
+}
+
+#note_input_title {
+	width: 297px;
+	margin: 0;
+}
+
+textarea {
+	display: block;
+	height: 400px;
+	width: 300px;
+	resize: none;
+	margin: none;
+}
+
+textarea:disabled {
+	/*resize: none;*/
+}
+
+table {
+	/*border-spacing: 10px 0;*/
+	/*margin-bottom: 10px;*/
+	/*margin-left: 0;*/
+}
+
+/*input[type=button] {
+	height: 30px;
+}*/
