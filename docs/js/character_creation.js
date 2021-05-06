@@ -120,6 +120,8 @@ class CharacterCreator {
 
         var load_data = JSON.parse(localStorage["current_character"]);
 
+        console.log(load_data);
+
         this.name = load_data.name;
         this.set_personal_information(load_data.info);
         this.family_id = load_data.family_id;
@@ -591,18 +593,23 @@ class CharacterCreator {
         }
 
         this.temp.insight = insight;
-        return insight;
+        this.temp.insight_rank = Math.max(Math.floor(1 + (insight - 125) / 25), 1);
+    }
+
+    calculate_insight_rank() {
+        return Math.max(Math.floor(1 + (this.temp.insight - 125) / 25), 1);
     }
 
     update_insight() {
-        document.getElementById("insight_display").innerHTML = this.calculate_insight();
-        this.update_insight_rank();
+        this.calculate_insight();
+        document.getElementById("insight_display").innerHTML = this.temp.insight;
+        document.getElementById("rank_display").innerHTML = this.temp.insight_rank;
+        // this.update_insight_rank();
     }
 
-    update_insight_rank() {
-        var rank = Math.max(Math.floor(1 + (this.temp.insight - 125) / 25), 1);
-        document.getElementById("rank_display").innerHTML = rank;
-    }
+    // update_insight_rank() {
+    //     document.getElementById("rank_display").innerHTML = this.calculate_insight_rank();
+    // }
 
     // Advantages and Disadvantages ////////////////////////////////////////////
 
@@ -672,6 +679,8 @@ class CharacterCreator {
         var item = event.target.value;
         var item_data = adv_data[item];
         console.log("Loading AdvantagesModal - ", item);
+
+        console.log("ADV DATA", item_data);
 
         var modal = new AdvantagesModal(item_data);
 
@@ -857,7 +866,7 @@ class CharacterCreator {
         var row = document.createElement("tr");
 
         var text_cell = document.createElement("td");
-        text_cell.appendChild(create_collapsible_div(title, text, "hidden"));
+        text_cell.appendChild(create_collapsible_div(title, text, "closed"));
         row.appendChild(text_cell);
 
         var cost_cell = document.createElement("td");
@@ -953,7 +962,7 @@ class CharacterCreator {
 
         if (this.school_id) {
             if (window.DH.get_school_info(this.school_id, "class").includes("Shugenja")) {
-                spells_container.classList.remove("hidden");
+                spells_container.classList.remove("closed");
                 spells_container.classList.remove("disabled");
                 spells_container.title = "";
                 this.refresh_spells_info();
@@ -962,89 +971,21 @@ class CharacterCreator {
         }
 
         // Default Option (If no school has been picked, or it isn't a Shugenja)
-        spells_container.classList.add("hidden");
+        spells_container.classList.add("closed");
         spells_container.classList.add("disabled");
         spells_container.title = "A Shugenja school is required to use Spells";
     }
 
-    refresh_spell_dropdown() {
-        console.groupCollapsed("Refreshing Spell Dropdown");
-        // Get unlearned spells
-        var learned_spells = new Set();
-        for (let s of this.spells.learned) {
-            learned_spells.add(s["title"]);
-        }
-
-        var new_spells = Object.keys(window.DH.data.spells).filter(s => {
-            if (learned_spells.has(s)) {
-                return false;
-            }
-            return true;
-        })
-
-        var grouped_spells = window.DH.group_spells(new_spells);
-        console.log("Grouped Spells:", grouped_spells);
-
-        var on_spell_click = function(value) {
-            console.log("Spell selected - ", value);
-            this.confirm_spell(value);
-        }.bind(this);
-
-        var spell_dropdown = document.getElementById("spell_dropdown");
-        spell_dropdown.innerHTML = "";
-
-        var dropdown_obj = new CustomDropdown("Add Spell", grouped_spells,
-                                              false, null, on_spell_click)
-
-        spell_dropdown.appendChild(dropdown_obj.dropdown);
-
-        console.groupEnd();
-    }
-
-    async confirm_spell(spell_name) {
-        var spell = window.DH.data.spells[spell_name];
-        console.log(spell);
-
-        var modal = new ModalWindow();
-        modal.add_title(`Add spell '${spell_name}'?`);
-
-        let subtitle = `${spell.element} ${spell.mastery_level}`;
-        if (spell.keywords.length > 0) {
-            console.log("KEYWORDS", spell.keywords);
-            subtitle += ` (${spell.keywords.join(", ")})`;
-        }
-        modal.add_subtitle(subtitle);
-
-        var description = "";
-        description += `<b>Range:</b> ${spell.range}<br>`;
-        description += `<b>Area of Effect:</b> ${spell.aoe}<br>`;
-        description += `<b>Duration:</b> ${spell.duration}<br>`;
-
-        if (spell.raises) {
-            description += `<b>Raises:</b> ${spell.raises.join(", ")}<br>`;
-        }
-
-        if (spell.special) {
-            description += `<b>Special:</b> ${spell.special}<br>`;
-        }
-
-        description += "<br>" + spell.description;
-        modal.add_description(description);
-
-        var input_data = await modal.get_user_input();
-
-        if (input_data == null) {
-            return;
-        } else {
-            this.spells.learned.push(window.DH.data.spells[spell_name]);
-            this.refresh_spells_info();
-            this.autosave();
-        }
-    }
-
     refresh_spells_info() {
+        if (this.spell_limits_exceeded()) {
+            this.spells.learned = [];
+            alert("")
+        }
+
+        this.purge_spells();
         this.refresh_spells_table();
-        this.refresh_spell_dropdown();
+        this.refresh_full_spell_list();
+        // this.refresh_spell_dropdown();
 
         // Refresh Affinity display
         var p_affinity = document.getElementById("p_affinity");
@@ -1061,9 +1002,8 @@ class CharacterCreator {
             sel_affinity.value = chosen;
 
             sel_affinity.onchange = function() {
-                console.log("AFFINITY SELECTED");
-                console.log(this);
                 this.affinity = `Any_${sel_affinity.value}`;
+                this.refresh_spells_info();
             }.bind(this);
         } else {
             sel_affinity.style.display = "none";
@@ -1096,17 +1036,99 @@ class CharacterCreator {
         var spells_tbody = document.getElementById("spells_tbody");
         spells_tbody.innerHTML = "";
 
-        for (let spell_name in window.DH.data.universal_spells) {
-            spells_tbody.appendChild(this.create_spell_object(
-                        window.DH.data.universal_spells[spell_name], -1));
+        if (this.spells.learned.length == 0) {
+            let row = document.createElement("tr");
+            let cell = document.createElement("td");
+            cell.innerHTML = "None";
+            cell.classList.add("note");
+            cell.colspan = 3;
+            row.appendChild(cell);
+            spells_tbody.appendChild(row);
+            return;
         }
 
-        for (let i in this.spells.learned) {
-            let spell = this.spells.learned[i];
-            spells_tbody.appendChild(this.create_spell_object(spell, i));
+        var enumerated_spells = [];
+        for (let [index, spell_name] of this.spells.learned.entries()) {
+            enumerated_spells.push([index, spell_name]);
+        }
+
+        enumerated_spells.sort((a, b) => this.spell_sort(a[1], b[1]));
+
+        console.log(enumerated_spells);
+
+        for (let [index, spell_name] of enumerated_spells) {
+            let spell = this.spells.learned[index];
+            spells_tbody.appendChild(this.create_spell_object(spell, index));
         }
 
         console.groupEnd();
+    }
+
+    purge_spells() {
+        // Remove all spells without the required level / affinity
+        var valid_spells = [];
+        var invalid_spells = [];
+        for (let spell of this.spells.learned) {
+            if (this.spell_valid(spell.element, spell.mastery_level)) {
+                valid_spells.push(spell);
+            } else {
+                invalid_spells.push(spell.title);
+            }
+        }
+
+        this.spells.learned = valid_spells;
+        if (invalid_spells.length > 0) {
+            alert("Some chosen spells are no longer valid for your current " +
+                  "Insight Rank and/or Affinity, and will be removed.");
+            alert(`The follow spells will be removed:\n${invalid_spells.join('\n')}`);
+        }
+    }
+
+    check_spell_choices() {
+        var spell_counts = this.count_chosen_spells();
+
+        var spell_limits;
+        // Special Case for Isawa Shugenja (need to find way to codify)
+        if (this.school_id == "Phoenix_Isawa Shugenja") {
+            spell_limits = {"Air": 3, "Earth": 3, "Fire": 3, "Water": 3,
+                            "Void": 3}
+        } else {
+            spell_limits = window.DH.get_spell_choices_table(this.school_id);
+        }
+
+        for (let e in spell_limits) {
+            if (spell_counts[e] > spell_limits[e]) {
+                return 1;
+            } else if (spell_counts[e] < spell_limits[e]) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+
+    count_chosen_spells() {
+        var spell_counts = {"Air": 0, "Earth": 0, "Fire": 0, "Water": 0,
+                            "Void": 0}
+
+        for (let spell of this.spells.learned) {
+            spell_counts[spell.element] += 1;
+        }
+        return spell_counts;
+    }
+
+    spell_valid(element, level) {
+        if (this.temp.insight_rank == undefined) {this.calculate_insight()};
+        var char_level = this.temp.insight_rank;
+
+        if (this.affinity.includes(element)) {
+            char_level += 1;
+        };
+        var deficiency = window.DH.get_school_info(this.school_id, "deficiency");
+        if (deficiency.includes(element)) {
+            char_level -= 1;
+        }
+
+        return char_level >= level;
     }
 
     create_spell_object(spell, index=-1) {
@@ -1114,43 +1136,20 @@ class CharacterCreator {
 
         // Cell 1 - Spell Information
         let c1 = document.createElement("td");
-        
-        var spell_name = spell.title;
-        if (spell.keywords.length > 0) {
-            spell_name += ` (${spell.keywords.join(", ")})`;
+        var delete_btn = null;
+        if (index >= 0) {
+            delete_btn = document.createElement("input");
+            delete_btn.type = "button";
+            delete_btn.value = "Delete";
+            delete_btn.onclick = function() {
+                console.log("Delete Spell:", index);
+                this.delete_spell(index);
+                event.stopPropagation();
+            }.bind(this);
         }
-        
-        var content = [];
-        
-        var spell_details = document.createElement("p");
-        spell_details.innerHTML = `Range: ${spell.range}<br>
-                                    Area of Effect: ${spell.aoe}<br>
-                                    Duration: ${spell.duration}<br>`
-        content.push(spell_details);
-        
-        if (spell.raises.length > 0) {
-            let raises_ul = document.createElement("ul");
-            for (let r of spell.raises) {
-                let li = document.createElement("li");
-                li.innerHTML = r;
-                raises_ul.appendChild(li);
-            }
-            let raises = create_collapsible_div("Raises", [raises_ul], "hidden");
-            content.push(raises);
-        }
-        
-        if (spell.special) {
-            let special = document.createElement("p");
-            special.innerHTML = spell.special;
-            content.push(special);
-        }
-        
-        let description = document.createElement("p");
-        description.innerHTML = spell.description;
-        content.push(description);
-        
-        c1.appendChild(create_collapsible_div(spell_name, content, "spell hidden"));
-        
+
+        console.log(spell, delete_btn);
+        c1.appendChild(this.create_spell_collapsible(spell, delete_btn));
         row.appendChild(c1);
 
         // Cell 2 - Mastery Level
@@ -1165,23 +1164,162 @@ class CharacterCreator {
         c3.className = "v-top nowrap";
         row.appendChild(c3);
 
-        // If indicated, add a Delete button
-        if (index >= 0) {
-            let delete_btn = document.createElement("td");
-            delete_btn.classList.add("delete_cell");
-            delete_btn.innerHTML = "<span class='delete_button'>x</span>";
-            delete_btn.onclick = this.delete_spell.bind(this, index);
-            delete_btn.title = "Delete Spell";
-            row.appendChild(delete_btn);
+        return row;
+    }
+
+    spell_sort(spell_a, spell_b) {
+        if (spell_a.element > spell_b.element) {
+            return 1;
+        } else if (spell_a.element < spell_b.element) {
+            return -1;
+        } else {
+
+            if (spell_a.mastery_level > spell_b.mastery_level) {
+                return 1;
+            } else if (spell_a.mastery_level < spell_b.mastery_level) {
+                return -1;
+            } else {
+
+                if (spell_a.title >= spell_b.title) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            }
+        }
+    }
+
+    create_spell_collapsible(spell, button=null) {
+        // Creating the title
+        var title_content = [];
+
+        var spell_name = spell.title;
+        if (spell.keywords.length > 0) {
+            spell_name += ` (${spell.keywords.join(", ")})`;
+        }
+        var title_text = document.createElement("p");
+        title_text.innerHTML = spell_name;
+        title_content.push(title_text);
+
+        if (button != null) {
+            title_content.push(button);
         }
 
-        return row;
+        var content = [];
+
+        var spell_details = document.createElement("p");
+        spell_details.innerHTML = `<span class="b">Range:</span> ${spell.range}<br>
+                                    <span class="b">Area of Effect:</span> ${spell.aoe}<br>
+                                    <span class="b">Duration:</span> ${spell.duration}<br>`
+        content.push(spell_details);
+
+        if (spell.raises && spell.raises.length > 0) {
+            let raises_ul = document.createElement("ul");
+            for (let r of spell.raises) {
+                let li = document.createElement("li");
+                li.innerHTML = r;
+                raises_ul.appendChild(li);
+            }
+            let raises = create_collapsible_div("Raises", [raises_ul], "closed bold");
+            content.push(raises);
+        }
+
+        if (spell.special) {
+            let special = document.createElement("p");
+            special.innerHTML = spell.special;
+            content.push(special);
+        }
+        
+        let description = document.createElement("p");
+        description.innerHTML = spell.description;
+        content.push(description);
+
+        return create_collapsible_div(title_content, content, "spell closed")
+    }
+
+    add_spell(spell_name) {
+        this.spells.learned.push(window.DH.data.spells[spell_name]);
+        this.refresh_spells_info();
+        this.autosave();
     }
 
     delete_spell(index) {
         this.spells.learned.splice(index, 1);
         this.refresh_spells_info();
         this.autosave();
+    }
+
+    refresh_full_spell_list() {
+        var all_spells = document.getElementById("all_spells")
+        all_spells.innerHTML = "";
+
+        var learned_spells = [];
+        for (let s of this.spells.learned) {
+            learned_spells.push(s.title);
+        }
+
+        var spells = {
+            "Air": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+            "Earth": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+            "Fire": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+            "Water": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+            "Void": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]}
+        }
+
+        // Split Spells up into Elements
+        for (let spell_name in window.DH.data.spells) {
+            let spell_info = window.DH.data.spells[spell_name];
+            spells[spell_info.element][spell_info.mastery_level].push(spell_info);
+        }
+
+        // Sort spells within each element
+        for (let element in spells) {
+            var element_content = [];
+
+            for (let level in spells[element]) {
+                
+                let level_content = [];
+                var allowed = this.spell_valid(element, level);
+
+                // Iterate through spells
+                for (let spell of spells[element][level]) {
+
+                    // If spell is already added, skip it
+                    if (learned_spells.includes(spell.title)) {
+                        continue;
+                    }
+
+                    let spell_add = document.createElement("input");
+                    spell_add.type = "button";
+                    spell_add.value = "Add";
+
+                    if (allowed) {
+                        spell_add.onclick = function() {
+                            this.add_spell(spell.title);
+                            event.stopPropagation();
+                        }.bind(this);
+                    } else {
+                        spell_add.disabled = true;
+                        spell_add.title = "Cannot Take Spell";
+                    }
+
+                    level_content.push(
+                            this.create_spell_collapsible(spell, spell_add));
+                }
+
+                var level_div = create_collapsible_div(`Level ${level}`,
+                                                       level_content,
+                                                       "closed");
+
+                if (!(allowed)) {level_div.classList.add("grey")};
+
+                element_content.push(level_div);
+            }
+
+            all_spells.appendChild(create_collapsible_div(element,
+                                                          element_content,
+                                                          "closed"));
+        }
     }
 
     // Gear ////////////////////////////////////////////////////////////////////
@@ -1238,7 +1376,7 @@ class CharacterCreator {
                 let content = document.createElement("p");
                 content.innerHTML = techniques[i].effect;
                 let div = create_collapsible_div(`Rank ${i}: ${techniques[i].name}`,
-                                                    [content], "bold hidden");
+                                                    [content], "bold closed");
                 techniques_div.appendChild(div);
             }
         } else {

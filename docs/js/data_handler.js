@@ -7,7 +7,8 @@ class DataLoader {
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
 			"spells": "/json/spells.json",
-			"universal_spells": "/json/universal_spells.json"
+			"universal_spells": "/json/universal_spells.json",
+			"kata": "/json/kata.json"
 		}
 		
 		this.times = {}
@@ -332,6 +333,30 @@ class DataHandler extends DataLoader {
 		return starting_skills;
 	}
 
+	get_spell_choices_table(school_id) {
+		var [clan, school] = school_id.split("_");
+		var spell_choices = this.data.schools[clan][school].spells;
+		var spell_limits = {
+			"Air": 0,
+			"Earth": 0,
+			"Fire": 0,
+			"Water": 0,
+			"Void": 0
+		};
+
+        var re = /(\d) (\w+)/;
+        for (let choice of spell_choices) {
+            let matches = choice.match(re);
+            if (matches) {
+                let element = matches[2];
+                let number = matches[1]
+                spell_limits[element] = number;
+            }
+        }
+
+        return spell_limits
+	}
+
 	// Skill functions /////////////////////////////////////////////////////////
 	get_skill_list(class_list=[]) {
 		var SKILLS = this.data.skills;
@@ -449,6 +474,40 @@ class DataHandler extends DataLoader {
 
 		console.groupEnd();
 		return output;
+	}
+
+	// Kata ////////////////////////////////////////////////////////////////////
+
+	check_kata_restrictions(kata_name, school, traits) {
+		kata_info = this.data.kata[kata];
+
+		// Check if schools are a limited list
+		if (Array.isArray(kata_info.schools)) {
+			if (!(kata_info.schools.includes(school))) {
+				return false;
+			}
+
+		} else if (kata_info.schools.length > 0) {
+			let required_clan = kata_info.schools.split("_")[1];
+			let clan = this.get_school_info(school, "clan");
+			if (clan != required_clan) {
+				return false;
+			}
+		}
+
+		// If we've got to this point, the school is valid for this kata
+		if (kata_info["discount"]) {
+			if (kata_info.discount.includes(school)) {
+				return this.check_kata_traits(kata_info.mastery, traits, true);
+			}
+		}
+		return this.check_kata_traits(kata_info.mastery, traits, false);
+	}
+
+	check_traits(trait_string, traits, discounted) {
+		// Check the traits to see if they meet the kata requirements. WIP
+		return true // placeholder for now;
+
 	}
 
 	// General Functions ///////////////////////////////////////////////////////
@@ -663,4 +722,4 @@ class DataTester extends DataHandler {
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataTester();
+window.DH = new DataHandler();
