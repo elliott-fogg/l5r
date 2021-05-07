@@ -6,6 +6,7 @@ class CharacterCreator {
         if (localStorage["current_character"]) {
             this.load_current();
         }
+        this.create_full_spell_list();
 		this.refresh_displays();
 	}
 
@@ -119,8 +120,6 @@ class CharacterCreator {
         console.log("Character Found! Loading saved character...")
 
         var load_data = JSON.parse(localStorage["current_character"]);
-
-        console.log(load_data);
 
         this.name = load_data.name;
         this.set_personal_information(load_data.info);
@@ -977,15 +976,9 @@ class CharacterCreator {
     }
 
     refresh_spells_info() {
-        if (this.spell_limits_exceeded()) {
-            this.spells.learned = [];
-            alert("")
-        }
-
         this.purge_spells();
         this.refresh_spells_table();
         this.refresh_full_spell_list();
-        // this.refresh_spell_dropdown();
 
         // Refresh Affinity display
         var p_affinity = document.getElementById("p_affinity");
@@ -1065,6 +1058,15 @@ class CharacterCreator {
     }
 
     purge_spells() {
+        var spell_surplus = this.spell_choices_surplus();
+        for (let e in spell_surplus) {
+            if (spell_surplus[e] > 0) {
+                alert("Spell Limits were exceeded. All chosen spells have been removed.");
+                this.spells.learned = [];
+                return;
+            }
+        }
+
         // Remove all spells without the required level / affinity
         var valid_spells = [];
         var invalid_spells = [];
@@ -1114,6 +1116,17 @@ class CharacterCreator {
             spell_counts[spell.element] += 1;
         }
         return spell_counts;
+    }
+
+    spell_choices_surplus() {
+        var chosen_spells = this.count_chosen_spells();
+        var spell_choices = window.DH.get_spell_choices_table(this.school_id);
+        var spell_surplus = {};
+        for (let element in chosen_spells) {
+            spell_surplus[element] = chosen_spells[element] - 
+                                                        spell_choices[element];
+        }
+        return spell_surplus;
     }
 
     spell_valid(element, level) {
@@ -1249,9 +1262,29 @@ class CharacterCreator {
         this.autosave();
     }
 
+    create_full_spell_list() {
+        var all_spells_div = document.getElementById("all_spells");
+        for (let element of ["Air", "Earth", "Fire", "Water", "Void"]) {
+            var element_contents = [];
+            for (let level of [1, 2, 3, 4, 5, 6]) {
+                var level_spells = document.createElement("div");
+                level_spells.id = `all_spells_${element}_${level}_contents`;
+                var level_div = create_collapsible_div(`Level ${level}`,
+                                                       [level_spells],
+                                                       "closed");
+                level_div.id = `all_spells_${element}_${level}_container`;
+                element_contents.push(level_div);
+            }
+            var element_div = create_collapsible_div(element, element_contents,
+                                                     "closed");
+            element_div.id = `all_spells_${element}_container`;
+            all_spells_div.appendChild(element_div);
+        }
+    }
+
     refresh_full_spell_list() {
-        var all_spells = document.getElementById("all_spells")
-        all_spells.innerHTML = "";
+        var spell_surplus = this.spell_choices_surplus();
+        console.log(spell_surplus);
 
         var learned_spells = [];
         for (let s of this.spells.learned) {
@@ -1274,12 +1307,26 @@ class CharacterCreator {
 
         // Sort spells within each element
         for (let element in spells) {
-            var element_content = [];
+
+            if (this.spell_valid(element, 1)) {
+                document.getElementById(`all_spells_${element}_container`).classList.remove("grey");
+            } else {
+                document.getElementById(`all_spells_${element}_container`).classList.add("grey");
+            }
 
             for (let level in spells[element]) {
                 
-                let level_content = [];
+                var content_div = document.getElementById(`all_spells_${element}_${level}_contents`);
+                content_div.innerHTML = "";
                 var allowed = this.spell_valid(element, level);
+                var surplus = spell_surplus[element] >= 0;
+
+                let container_id = `all_spells_${element}_${level}_container`;
+                if (allowed) {
+                    document.getElementById(container_id).classList.remove("grey");
+                } else {
+                    document.getElementById(container_id).classList.add("grey");
+                }
 
                 // Iterate through spells
                 for (let spell of spells[element][level]) {
@@ -1293,32 +1340,25 @@ class CharacterCreator {
                     spell_add.type = "button";
                     spell_add.value = "Add";
 
-                    if (allowed) {
+                    if (allowed && !surplus) {
                         spell_add.onclick = function() {
                             this.add_spell(spell.title);
                             event.stopPropagation();
                         }.bind(this);
                     } else {
                         spell_add.disabled = true;
-                        spell_add.title = "Cannot Take Spell";
+                        if (!allowed) {
+                            spell_add.title = "Cannot Take Spell";
+                        } else {
+                            spell_add.title = `${element} spell limit reached.`;
+                        }
                     }
 
-                    level_content.push(
-                            this.create_spell_collapsible(spell, spell_add));
+                    var spell_div = this.create_spell_collapsible(spell,
+                                                                  spell_add);
+                    content_div.appendChild(spell_div);
                 }
-
-                var level_div = create_collapsible_div(`Level ${level}`,
-                                                       level_content,
-                                                       "closed");
-
-                if (!(allowed)) {level_div.classList.add("grey")};
-
-                element_content.push(level_div);
             }
-
-            all_spells.appendChild(create_collapsible_div(element,
-                                                          element_content,
-                                                          "closed"));
         }
     }
 
