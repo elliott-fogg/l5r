@@ -1,0 +1,77 @@
+{
+  "Balance": {
+    "text": "While this tattoo is active, the TN of all Spell Casting Rolls made with you as a target are increased or decreased by an amount equal to twice your School Rank plus 5. You determine whether this is an increase or a decrease when you activate the tattoo."
+  },
+  "Bamboo": {
+    "text": "While this tattoo is active, your Armor TN is increased by an amount equal to twice your School Rank +5."
+  },
+  "Bear": {
+    "text": "While this tattoo is active, you may choose to increase your Stamina by an amount equal to your School Rank. Alternatively, you may instead choose to increase your Strength by an amount equal to half your School Rank, rounding up."
+  },
+  "Blaze": {
+    "text": "When activated, this tattoo causes your unarmed strikes to be bolstered with pure fire. Your unarmed attacks are accompanied by flickering flames that inflict an additional amount of fire damage equal to your Fire Ring plus your School Rank."
+  },
+  "Centipede": {
+    "text": "When this tattoo is activated, you may make a special Complex Move Action that allows you to move a distance equal to your Water Ring x 100'. This effect lasts for an entire day, essentially allowing you to cross the face of the Empire in a day. If you stop for more than one minute, the effect ends. When the effect ends, you collapse into an exhausted state and can take no physical actions for a period of twelve hours."
+  },
+  "Cloud": {
+    "text": "While this tattoo is active, any melee attack that successfully strikes you must immediately make a second attack roll. If the second attack roll fails, the strike misses. However, while this tattoo is active you may not make attacks of any kind."
+  },
+  "Crab": {
+    "text": "While this tattoo is active, you gain a Reduction rating equal to your Earth Ring."
+  },
+  "Crane": {
+    "text": "When you activate this tattoo, you gain a number of bonus dice equal to your School Rank plus your Air Ring. These dice may be spent on any Social Skill Roll. Each die contributes a bonus of +1k0. If these bonus dice are not used within an hour, they are lost. You may not add more dice to a single roll than your Void Ring. This tattoo is considered active the entire hour, and if another tattoo is activated, any unspent dice from this tattoo are lost."
+  },
+  "Dragon": {
+    "text": "As a Complex Action, you may breathe fire in a cone, equal to ten feet plus your School Rank in length, and five feet wide at the end. This fire deals damage to all in its area of effect, with a DR equal to your Fire Ring. You take damage equal to your Fire Ring upon each use."
+  },
+  "Hawk": {
+    "text": "As a Complex Action, you may leap a distance equal to your Water Ring x 25'."
+  },
+  "Ki-Rin": {
+    "text": "Upon activating this tattoo, you may immediately re-roll any one roll per round, keeping the higher of the two results."
+  },
+  "Lion": {
+    "text": "Upon activating this tattoo, you gain ranks equal to your School Rank in any Bugei Skill of your choice."
+  },
+  "Mantis": {
+    "text": "Upon receiving this tattoo, you are completely immune to all Fear effects. This tattoo is active at all times, and does not prevent the use of other tattoos."
+  },
+  "Mountain": {
+    "text": "When you activate this tattoo, all your Wound Penalties are reduced by an amount equal to your School Rank plus 2."
+  },
+  "Ocean": {
+    "text": "When granted this tattoo, you no longer have need of food or drink, although you may still partake of them if you wish. When this tattoo is activated, you are instantly refreshed as if you had spent eight hours of sleep, and you regain all spent Void Points. This tattoo may only be used once every three days."
+  },
+  "Phoenix": {
+    "text": "You must have at least one unspent Void Point for this tattoo to be triggered. when you are reduced to the Down Wound Level or below, this tattoo automatically activates. All unspent Void Points are lost, and you immediately heal a number of Wounds equal to your School Rank x 10. This tattoo cannot be activated more than once per week."
+  },
+  "Scorpion": {
+    "text": "While this tattoo is active, you roll additional dice on any Stealth Skill Roll equal to your School Rank. Also, during this time your unarmed attacks automatically Daze your opponent if any dice explode on your damage roll."
+  },
+  "Spider": {
+    "text": "While this tattoo is active, you may move across vertical and inverted surfaces (such as sheer walls or ceilings) while making Move Actions. You move at half your normal rate when doing so."
+  },
+  "Storm": {
+    "text": "While this tattoo is active, your unarmed attacks require only one Raise to use the Knockdown Maneuver."
+  },
+  "Void": {
+    "text": "When this tattoo is activated, you gain awareness of all life around you. You know the location and rough details of all living things within a radius of your School Rank x 10', even if you cannot see them. You know only rough details, such as 'two warriors' or 'a pair of rabbits,' not specific identities. You can recognize individuals well-known to you, however."
+  },
+  "Volcano": {
+    "text": "While this tattoo is active, the skin of the monk’s torso and upper limbs takes on the appearance of lava, a surface of searing-hot blackness riven with brightly glowing fiery cracks. Any flammable object which strikes the monk’s body - including wooden weapons and arrows - will sear to ash within moments, and consequently the monk is considered to have Reduction of 5 against such attacks (due to their burning up before they can deliver the full impact of their blows). Metal weapons inflict normal damage, but the wielders of such weapons must succeed in Contested Fire rolls against the monk or be forced to drop their weapons due to the intense heat (Sacred Weapons and nemuranai are immune to this effect). Unarmed attacks (including the Strike option while grappling) inflict normal damage and suffer no ill effects, since their impact does not crack the fiery surface of the lava."
+  },
+  "Wave": {
+    "text": "While this tattoo is active, you gain a +Xk0 bonus (where X is your Insight Rank) to the Contested Strength Roll used to determine the success of a Knockdown maneuver you perform with an unarmed attack. You also gain an identical bonus to resist all enemy Knockdown attempts, regardless of whether they are made unarmed or with weapons."
+  },
+  "Whisper": {
+    "text": "When invoked, the tattoo allows those who bear it to send brief silent messages over long distances. When this tattoo is active, as a Complex Action you may send a whispered message to anyone within a number of miles equal to 10 x your School Rank. You cannot receive messages from the target unless they share the same tattoo or have some other means of transmitting such information."
+  },
+  "Wind": {
+    "text": "While this tattoo is active, you gain an additional Simple Action per round, which may not be used to make an attack. Your maximum total movement is not limited to your Water Ring x 20."
+  },
+  "Wolf": {
+    "text": "When you activate this tattoo, your senses become superhumanly sharp, allowing you to perceive small details and even individual scents. You gain a number of Free Raises on Hunting (Tracking) Skill Rolls equal to your School Rank. This tattoo's effect last a number of hours equal to your School Rank."
+  }
+}
