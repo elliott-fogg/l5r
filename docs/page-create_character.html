@@ -96,78 +96,81 @@
 				<p><b>School Skill Choices:</b></p>
 				<div id="skill_choices_div" style="margin-left: 15px"></div>
 			</div>
-		</div>
-	</div>
 
-	<!-- Traits and Skills Tables -->
-	<div class="collapsible-div-container heading">
-		<div class="collapsible-div-title">
-			<p>Character Stats</p>
-		</div>
-		<div class="collapsible-div-content">
+			<!-- Traits and Skills Tables -->
+			<div class="collapsible-div-container subheading closed">
+				<div class="collapsible-div-title">
+					<p>Character Stats</p>
+				</div>
+				<div class="collapsible-div-content">
 
-			<div class="spaced">
-				<p><b>Experience:</b> <span id="experience_display">0</span></p>
-				<p><b>Insight:</b> <span id="insight_display">0</span></p>
-				<p><b>Rank:</b> <span id="rank_display">0</span></p>
+					<div class="spaced">
+						<p><b>Experience:</b> <span id="experience_display">0</span></p>
+						<p><b>Insight:</b> <span id="insight_display">0</span></p>
+						<p><b>Rank:</b> <span id="rank_display">0</span></p>
+					</div>
+					
+					<div style="display: flex">
+
+						<table style="margin-right: 25px" class="alternating">
+							<thead>
+								<tr>
+									<td><b><u>Trait</u></b></td>
+									<td><u>Rank</u></td>
+								</tr>
+							</thead>
+							<tbody id="trait_tbody">
+							</tbody>
+						</table>
+
+						<table style="margin-right: 25px" class="alternating">
+							<thead>
+								<tr>
+									<td><b><u>Skill</u></b></td>
+									<td><u>Rank</u></td>
+									<td><u>Emphases</u></td>
+								</tr>
+							</thead>
+							<tbody id="skill_tbody">
+							</tbody>
+						</table>
+
+						<table class="alternating">
+							<thead><tr><td><b><u>Stats</u></b></td></tr></thead>
+
+							<tr>
+								<td>Honor:</td>
+								<td id="honor_rank">1</td>
+							</tr>
+							<tr>
+								<td>Glory:</td>
+								<td id="glory_rank">1</td>
+							</tr>
+							<tr>
+								<td>Status:</td>
+								<td id="status_rank">1</td>
+							</tr>
+						</table>
+
+					</div>
+
+				</div>
 			</div>
-			
-			<div style="display: flex">
 
-				<table style="margin-right: 25px" class="alternating">
-					<thead>
-						<tr>
-							<td><b><u>Trait</u></b></td>
-							<td><u>Rank</u></td>
-						</tr>
-					</thead>
-					<tbody id="trait_tbody">
-					</tbody>
-				</table>
-
-				<table style="margin-right: 25px" class="alternating">
-					<thead>
-						<tr>
-							<td><b><u>Skill</u></b></td>
-							<td><u>Rank</u></td>
-							<td><u>Emphases</u></td>
-						</tr>
-					</thead>
-					<tbody id="skill_tbody">
-					</tbody>
-				</table>
-
-				<table class="alternating">
-					<thead><tr><td><b><u>Stats</u></b></td></tr></thead>
-
-					<tr>
-						<td>Honor:</td>
-						<td id="honor_rank">1</td>
-					</tr>
-					<tr>
-						<td>Glory:</td>
-						<td id="glory_rank">1</td>
-					</tr>
-					<tr>
-						<td>Status:</td>
-						<td id="status_rank">1</td>
-					</tr>
-				</table>
-
+			<!-- Techniques -->
+			<div class="collapsible-div-container subheading">
+				<div class="collapsible-div-title">
+					<p>Techniques</p>
+				</div>
+				<div class="collapsible-div-content" id="techniques_div" style="max-width: 50%">
+					<p>None</p>
+				</div>
 			</div>
 
 		</div>
 	</div>
 
-	<!-- Techniques -->
-	<div class="collapsible-div-container heading">
-		<div class="collapsible-div-title">
-			<p>Techniques</p>
-		</div>
-		<div class="collapsible-div-content" id="techniques_div" style="max-width: 50%">
-			<p>None</p>
-		</div>
-	</div>
+
 
 	<!-- Advantages and Disadvantages -->
 	<div class="collapsible-div-container heading">
@@ -231,14 +234,13 @@
 				<p><b>Starting Spell Choices:</b></p>
 				<p id="p_spell_choices">SPELL_CHOICES_GO_HERE</p>
 			</div>
-			<div id="spell_dropdown"></div>
 
 			<!-- Spells Table -->
 			<table class="alternating" width="50%">
 				<thead>
 					<tr>
 						<td style="padding-right: 50px" width="80%">
-							<b><u>Spell</u></b>
+							<b><u>Chosen Spells</u></b>
 						</td>
 						<td><u>Mastery Level</u></td>
 						<td><u>Element(s)</u></td>
@@ -247,6 +249,18 @@
 				<tbody id="spells_tbody">
 				</tbody>
 			</table>
+
+			<br>
+
+			<!-- List of All Spells -->
+			<div class="collapsible-div-container subheading closed">
+				<div class="collapsible-div-title">
+					<p>All Spells</p>
+				</div>
+				<div class="collapsible-div-content" id="all_spells">
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -265,7 +279,7 @@
 	</div>
 
 	<!-- Personal Information -->
-	<div class="collapsible-div-container heading hidden">
+	<div class="collapsible-div-container heading closed">
 		<div class="collapsible-div-title">
 			<p class="advantage">Personal Information</p>
 		</div>
@@ -282,72 +296,11 @@
 			<textarea id="family_relations" style="width: 40%"
 				placeholder="Parents, Siblings, Spouse, Children, etc."></textarea>
 
-			<!-- Alternate Individual Boxes -->
-
-<!-- 			<p><u>Physical Descriptors</u></p>
-			<table>
-				<tr>
-					<td><label>Gender:</label></td>
-					<td><input type="text" class="optional"></td>
-				</tr>
-				<tr>
-					<td><label>Age:</label></td>
-					<td><input type="number" min=1 value=25 class="optional"></td>
-				</tr>
-				<tr>
-					<td><label>Height (cm):</label></td>
-					<td><input type="number" min=1 value=1 class="optional"></td>
-				</tr>
-				<tr>
-					<td><label>Weight (kg):</label></td>
-					<td><input type="number" min=1 value=1 class="optional"></td>
-				</tr>
-				<tr>
-					<td><label>Eye Color:</label></td>
-					<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-				</tr>
-				<tr>
-					<td><label>Hair Color:</label></td>
-					<td><input type="text" placeholder="e.g. Brown" class="optional"></td>
-				</tr>
-			</table>
-
-			<br>
-
-			<p><u>Familial Relations</u></p>
-			<table>
-				<tr>
-					<td><label>Father:</label></td>
-					<td><input type="text" class="optional"
-						placeholder="Father's Name"></td>
-				</tr>
-				<tr>
-					<td><label>Mother:</label></td>
-					<td><input type="text" class="optional"
-						placeholder="Mother's Name"></td>
-				</tr>
-				<tr>
-					<td><label>Siblings:</label></td>
-					<td><input type="text" class="optional"
-						placeholder="Name of Siblings, if any"></td>
-				</tr>
-				<tr>
-					<td><label>Spouse:</label></td>
-					<td><input type="text" class="optional"
-						placeholder="Spouse's Name, if married"></td>
-				</tr>
-				<tr>
-					<td><label>Children:</label></td>
-					<td><input type="text" class="optional"
-						placeholder="Childrens' Names, if present"></td>
-				</tr>
-			</table> -->
-
 		</div>
 	</div>
 
 	<!-- Additional Effects -->
-	<div class="collapsible-div-container heading hidden disabled">
+	<div class="collapsible-div-container heading closed disabled">
 		<div class="collapsible-div-title">
 			<p>Additional Effects (WIP)</p>
 		</div>
