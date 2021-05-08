@@ -399,7 +399,7 @@
       "Tonfa"
     ]
   },
-  "War Fan": {
+  "War Fans": {
     "trait": [
       "Agility"
     ],
@@ -977,6 +977,60 @@
     ],
     "macro": [
       "Lore"
+    ],
+    "emphases": []
+  },
+  "Games: Fortunes & Winds": {
+    "trait": [
+      "Awareness"
+    ],
+    "macro": [
+      "Games"
+    ],
+    "emphases": []
+  },
+  "Games: Go": {
+    "trait": [
+      "Intelligence"
+    ],
+    "macro": [
+      "Games"
+    ],
+    "emphases": []
+  },
+  "Games: Kemari": {
+    "trait": [
+      "Agility"
+    ],
+    "macro": [
+      "Games"
+    ],
+    "emphases": []
+  },
+  "Games: Letters": {
+    "trait": [
+      "Awareness"
+    ],
+    "macro": [
+      "Games"
+    ],
+    "emphases": []
+  },
+  "Games: Sadane": {
+    "trait": [
+      "Awareness"
+    ],
+    "macro": [
+      "Games"
+    ],
+    "emphases": []
+  },
+  "Games: Shogi": {
+    "trait": [
+      "Intelligence"
+    ],
+    "macro": [
+      "Games"
     ],
     "emphases": []
   }
