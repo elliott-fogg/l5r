@@ -22,7 +22,6 @@ class DataLoader {
 		// Not entirely sure how this works at the moment, need to manually set it for now.
 		this.hostname = "https://elliott-fogg.github.io/l5r";
 		this.get_all_data(delay_ms, test_fail);
-		this.bind_local_upload_button()
 	}
 
 	execute_on_load(func) {
@@ -69,6 +68,12 @@ class DataLoader {
 			i += 1;
 			setTimeout(function(){this.check_for_data(max_s, i)}.bind(this), 1000);
 		}
+	}
+
+	async delay(ms) {
+		return new Promise((resolve, reject) => {
+			setTimeout(function(){resolve()}, ms);
+		})
 	}
 
 	calculate_time_taken() {
@@ -153,52 +158,6 @@ class DataLoader {
 			console.log("Error with url " + url + "\nFetch Error :-S", err);
 		});
 	}
-
-	async delay(ms) {
-		return new Promise((resolve, reject) => {
-			setTimeout(function(){resolve()}, ms);
-		})
-	}
-
-	bind_local_upload_button() {
-		var btn = document.getElementById("upload_local");
-		if (btn != null) {
-			btn.onclick = this.load_local_files.bind(this);
-			console.log("Upload Local Files button bound");
-		} else {
-			console.log("Upload Local Files button not found");
-		}
-	}
-
-	async load_local_files() {
-		console.log("Load local!");
-		var modal = new ModalWindow();
-		modal.add_title("Use Local File");
-		modal.add_subtitle("Upload a local file");
-		console.log(Object.keys(this.data));
-		var file_names = {}
-		for (let data_name in this.data) {
-			file_names[data_name] = data_name;
-		}
-		modal.add_select_input("data_name", "File", file_names);
-		modal.add_file_input("new_file", "New File", ".json");
-		var deets = await modal.get_user_input();
-
-		console.log(deets);
-
-		var fr = new FileReader()
-		fr.addEventListener("load", e => {
-			this.update_file_data(deets["data_name"], JSON.parse(fr.result));
-			// // this.update_file_data()
-			// console.log(e.target.result, JSON.parse(fr.result))
-		});
-		fr.readAsText(deets["new_file"]);
-	}
-
-	update_file_data(file_type, data) {
-		console.log(data);
-	}
-
 
 // End Class
 }
@@ -629,10 +588,122 @@ class CustomData {
 }
 
 class DataTester extends DataHandler {
+
 	constructor() {
 		super();
-		this.callbacks.push(this.run_all_tests.bind(this));
+
+		this.document_ready = false;
+		this.data_loaded = false;
+
+		this.callbacks.push(function() {
+			this.data_loaded = true;
+			this.create_test_buttons_if_ready();
+		}.bind(this));
+
+		if (document.readyState === "complete") {
+			this.document_ready = true;
+			this.create_test_buttons_if_ready();
+		} else {
+			document.addEventListener('readystatechange', (event) => {
+				if (document.readyState === "complete") {
+					this.document_ready = true;
+					this.create_test_buttons_if_ready();
+				}
+			});
+		}
+
+		this.test_functions = [
+			["All Tests", this.run_all_tests],
+			["Check Skill Choices", this.check_skill_choices]
+		]
 	}
+
+	create_test_buttons_if_ready() {
+		console.log(this.document_ready, this.data_loaded);
+		if (this.document_ready && this.data_loaded) {
+			setTimeout(this.create_test_buttons(), 100);
+		}
+	}
+
+	create_test_buttons() {
+		var button_div = document.createElement("div");
+		var self = this;
+
+		//
+
+		var load_div = document.createElement("div");
+
+		var file_select = document.createElement("select");
+		console.log(this.data);
+		for (let data_type in this.data) {
+			let option = document.createElement("option");
+			option.value = data_type;
+			option.innerHTML = data_type;
+			file_select.appendChild(option);
+		}
+		load_div.appendChild(file_select);
+
+		var file_button = document.createElement("input");
+		file_button.type = "file";
+		load_div.appendChild(file_button);
+
+		var upload_button = document.createElement("input");
+		upload_button.type = "button";
+		upload_button.value = "Load Local File";
+		upload_button.onclick = function() {
+			var fr = new FileReader()
+			fr.addEventListener("load", e => {
+				// console.log(JSON.parse(fr.result))
+				var data_to_replace = file_select.value;
+				console.log(data_to_replace);
+				self.data[data_to_replace] = JSON.parse(fr.result);
+			});
+			fr.readAsText(file_button.files[0]);
+		}
+		load_div.appendChild(upload_button);
+
+		//
+
+		var test_div = document.createElement("div");
+
+		var test_select = document.createElement("select");
+
+		for (let pair of this.test_functions) {
+			let option = document.createElement("option");
+			console.log(pair);
+			option.innerHTML = pair[0];
+			option.value = pair[0];
+			test_select.appendChild(option);
+		}
+		test_div.appendChild(test_select);
+
+		var test_button = document.createElement("input");
+		test_button.type = "button";
+		test_button.value = "Run Test";
+		test_button.onclick = function() {
+			console.log(test_select.value);
+			var test_name = test_select.value;
+			var func;
+
+			for (let pair of self.test_functions) {
+				if (pair[0] == test_name) {
+					func = pair[1];
+					break;
+				}
+			}
+			func.call(self);
+		}
+		test_div.appendChild(test_button);
+
+		//
+
+		button_div.appendChild(load_div);
+		button_div.appendChild(test_div);
+
+		document.getElementsByTagName("BODY")[0].prepend(button_div);
+	}
+
+	// Tests ///////////////////////////////////////////////////////////////////
 
 	run_all_tests() {
 		this.test_discounts();
@@ -722,4 +793,4 @@ class DataTester extends DataHandler {
 }
 
 // Load DataHandler as a Window Variable
-window.DH = new DataHandler();
+window.DH = new DataTester();
