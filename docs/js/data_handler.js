@@ -2,8 +2,8 @@ class DataLoader {
 	constructor(delay_ms=0, test_fail=false) {
 		this.paths = {
 			"skills": "/json/skills.json",
-			"schools": "/json/schools.json",
-			"families": "/json/families.json",
+			"schools": "/json/base_schools.json",
+			"families": "/json/base_families.json",
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
 			"spells": "/json/spells.json",
@@ -201,75 +201,95 @@ class DataHandler extends DataLoader {
 
 	// Clan functions //////////////////////////////////////////////////////////
 	get_clans() {
-		var family_clans = Object.keys(this.data.families);
-		var school_clans = Object.keys(this.data.schools);
-
-		var all_clans = [];
-		for (let clan_type of [family_clans, school_clans]) {
-			for (let clan_name of clan_type) {
-				if (!(all_clans.includes(clan_name))) {
-					all_clans.push(clan_name);
-				}
-			}
+		var all_clans = new Set();
+		for (let school in this.data.schools) {
+			all_clans.add(this.data.schools[school].clan);
 		}
-		all_clans.sort();
-
-		return all_clans;
+		for (let family in this.data.families) {
+			all_clans.add(this.data.families[family].clan);
+		}
+		return Array(all_clans);
 	}
 
 	get_clan_families(chosen_clan=null) {
-		if (chosen_clan) {
-			if (chosen_clan in this.data.families) {
-				return Object.keys(this.data[chosen_clan]);
-			} else {
-				console.warn(`Clan '${chosen_clan}' does not have any families`);
-			}
-		}
+		var families = this.data.families;
 
-		// No clan specified, return families of all clans
-		var family_dict = {}
-		for (let clan in this.data.families) {
-			family_dict[clan] = Object.keys(this.data.families[clan]);
+		if (chosen_clan) {
+			var clan_families = [];
+			for (let family in families) {
+				if (families[family].clan == chosen_clan) {
+					clan_families.push(family);
+				}
+			}
+
+			if (clan_families.length == 0) {
+				console.warn(`Clan '${chosen_clan}' has no families.`);
+			} else {
+				return clan_families;
+			}
+		} else {
+			var family_dict = {};
+			for (let family in families) {
+				let family_clan = families[family].clan;
+				if (family_clan in family_dict) {
+					family_dict[family_clan].push(family);
+				} else {
+					family_dict[family_clan] = [family];
+				}
+			}
+			return family_dict;
 		}
-		return family_dict;
 	}
 
 	get_clan_schools(chosen_clan=null) {
-		var clan_schools = this.data.schools;
+		var schools = this.data.schools;
 
 		if (chosen_clan) {
-			var clan_name = chosen_clan.split("_")[0];
-			if (clan_name in clan_schools) {
-				return Object.keys(clan_schools[clan_name]);
-			} else {
-				console.warn(`No schools exist for the '${clan_name} Clan'`);
+			var clan_schools = [];
+			for (let school in schools) {
+				if (school.clan == chosen_clan) {
+					clan_schools.push(school);
+				}
 			}
-		}
 
-		// No clan specified, return schools of all clans in dict;
-		var school_dict = {};
-		for (let clan in clan_schools) {
-			school_dict[clan] = Object.keys(clan_schools[clan]);
+			if (clan_schools.length == 0) {
+				console.warn(`Clan '${chosen_clan}' has no schools.`);
+			} else {
+				return clan_schools;
+			}
+
+		} else {
+			var school_dict = {};
+			for (let school in schools) {
+				let clan = schools[school].clan;
+				if (clan in school_dict) {
+					school_dict[clan].push(school);
+				} else {
+					school_dict[clan] = [school];
+				}
+			}
+			return school_dict;
 		}
-		return school_dict;
 	}
 
 	// Family functions ////////////////////////////////////////////////////////
-	get_family_trait(family_id) {
-		var [clan, family] = family_id.split("_");
-		return this.data.families[clan][family];
+	get_family_clan(family) {
+		return this.data.families[family].clan;
+	}
+
+	get_family_trait(family) {
+		return this.data.families[family].attribute;
 	}
 
 	// School functions ////////////////////////////////////////////////////////
-	get_school_info(school_id, key=null) {
-		let [clan, school] = school_id.split("_");
-
+	get_school_info(school, key=null) {
+		console.log(school);
 		if (key) {
-			if (key in this.data.schools[clan][school]) {
+			if (key in this.data.schools[school]) {
 				if (key == "skills") {
-					return this._get_school_skills(clan, school);
+					return this._get_school_skills(school);
 				} else {
-					return this.data.schools[clan][school][key]
+					return this.data.schools[school][key]
 				}
 			} else {
 				console.error("School Key not recognised - ", key);
@@ -277,24 +297,23 @@ class DataHandler extends DataLoader {
 			}
 		} else {
 			var school_info = {};
-			Object.assign(school_info, this.data.schools[clan][school]);
-			school_info.skills = this._get_school_skills(clan, school);
+			Object.assign(school_info, this.data.schools[school]);
+			school_info.skills = this._get_school_skills(school);
 			return school_info;
 		}
 	}
 
-	_get_school_skills(clan, school) {
+	_get_school_skills(school) {
 		var starting_skills = {};
-		for (let skill_string of this.data.schools[clan][school].skills) {
+		for (let skill_string of this.data.schools[school].skills) {
 			var extracted_info = this.extract_skill_info(skill_string);
 			starting_skills[extracted_info.name] = extracted_info;
 		}
 		return starting_skills;
 	}
 
-	get_spell_choices_table(school_id) {
-		var [clan, school] = school_id.split("_");
-		var spell_choices = this.data.schools[clan][school].spells;
+	get_spell_choices_table(school) {
+		var spell_choices = this.data.schools[school].spells;
 		var spell_limits = {
 			"Air": 0,
 			"Earth": 0,
@@ -312,8 +331,11 @@ class DataHandler extends DataLoader {
                 spell_limits[element] = number;
             }
         }
-
         return spell_limits
+	}
+
+	get_school_clan(school) {
+		return this.data.schools[school].clan;
 	}
 
 	// Skill functions /////////////////////////////////////////////////////////
@@ -438,7 +460,7 @@ class DataHandler extends DataLoader {
 	// Kata ////////////////////////////////////////////////////////////////////
 
 	check_kata_restrictions(kata_name, school, traits) {
-		kata_info = this.data.kata[kata];
+		kata_info = this.data.kata[kata_name];
 
 		// Check if schools are a limited list
 		if (Array.isArray(kata_info.schools)) {

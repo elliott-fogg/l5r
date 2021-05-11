@@ -43,8 +43,8 @@ class CharacterCreator {
 	reset_character_data() {
         this.name = "";
         this.info = {};
-        this.family_id = "";
-        this.school_id = "";
+        this.family = "";
+        this.school = "";
         this.skills = {
             "set": [],
             "choices": [],
@@ -80,8 +80,8 @@ class CharacterCreator {
         var save_data = {
             "name": this.name,
             "info": this.get_personal_information(),
-            "family_id": this.family_id,
-            "school_id": this.school_id,
+            "family": this.family,
+            "school": this.school,
             "skills": this.skills,
             "advantages": this.advantages,
             "disadvantages": this.disadvantages,
@@ -123,8 +123,8 @@ class CharacterCreator {
 
         this.name = load_data.name;
         this.set_personal_information(load_data.info);
-        this.family_id = load_data.family_id;
-        this.school_id = load_data.school_id;
+        this.family = load_data.family;
+        this.school = load_data.school;
         this.skills = load_data.skills;
         this.advantages = load_data.advantages;
         this.disadvantages = load_data.disadvantages;
@@ -146,10 +146,10 @@ class CharacterCreator {
 
     // Traits and Skills ///////////////////////////////////////////////////////
 
-    set_family(family_id) {
-    	console.groupCollapsed(`Set Family - ${family_id}`);
+    set_family(family) {
+    	console.groupCollapsed(`Set Family - ${family}`);
 
-    	this.family_id = family_id;
+    	this.family = family;
 
     	this.check_different_school();
 
@@ -171,17 +171,17 @@ class CharacterCreator {
         console.groupEnd();
     }
 
-    set_school(school_id) {
-        console.groupCollapsed(`Set School - ${school_id}`);
+    set_school(school) {
+        console.groupCollapsed(`Set School - ${school}`);
 
         // Update Character Info
-        this.school_id = school_id;
-        this.skills.set = window.DH.get_school_info(school_id, "skills");
-        this.skills.choices = window.DH.get_school_info(school_id, "skill_choices");
+        this.school = school;
+        this.skills.set = window.DH.get_school_info(school, "skills");
+        this.skills.choices = window.DH.get_school_info(school, "skill_choices");
         this.skills.chosen = Array(this.skills.choices.length).fill(null);
-        this.affinity = window.DH.get_school_info(school_id, "affinity");
-        this.spells.choices = window.DH.get_school_info(school_id, "spells");
-        this.gear = window.DH.get_school_info(school_id, "gear");
+        this.affinity = window.DH.get_school_info(school, "affinity");
+        this.spells.choices = window.DH.get_school_info(school, "spells");
+        this.gear = window.DH.get_school_info(school, "gear");
 
         this.check_different_school();
 
@@ -213,9 +213,9 @@ class CharacterCreator {
 
     check_different_school() {
         var note = document.getElementById("different_clans_note");
-        if (this.family_id && this.school_id) {
-            var family_clan = this.family_id.split("_")[0];
-            var school_clan = this.school_id.split("_")[0];
+        if (this.family && this.school) {
+            var family_clan = window.DH.get_family_clan(this.family);
+            var school_clan = window.DH.get_school_info(this.school, "clan");
             if (family_clan != school_clan) {
                 note.style.display = "inline";
                 // Advantage will be added in during Refresh Adv Display
@@ -234,15 +234,15 @@ class CharacterCreator {
 			this.set_family(family_select.value);
 		}.bind(this);
 
-		if (this.family_id == "") {
+        if (this.family == "") {
             family_select.classList.add("default");
-			create_select_default(family_select, "Select a family...", true);
-		} else {
+            create_select_default(family_select, "Select a family...", true);
+        } else {
             family_select.classList.remove("default");
-			var [clan_name, family_name] = this.family_id.split("_");
-			let select_show_value = `${family_name} (${clan_name})`;
-			create_select_default(family_select, select_show_value);
-		}
+            var clan_name = window.DH.get_family_clan(this.family);
+            let select_show_value = `${this.family} (${clan_name})`;
+            create_select_default(family_select, select_show_value);
+        }
 
 		var families_by_clan = window.DH.get_clan_families();
 
@@ -253,7 +253,7 @@ class CharacterCreator {
             clan_group.label = clan;
             for (let family of families_by_clan[clan].sort()) {
                 let option = document.createElement("option");
-                option.value = clan + "_" + family;
+                option.value = family;
                 option.label = family;
                 clan_group.appendChild(option);
             }
@@ -275,25 +275,28 @@ class CharacterCreator {
         }.bind(this);
 
         // Set default text
-        if (this.school_id === "") {
+        if (this.school == "") {
             create_select_default(school_select, "Select a school...", true);
         } else {
-            let s_class = window.DH.get_school_info(this.school_id, "class");
-            let [s_clan, s_name] = this.school_id.split("_");
+            let s_class = window.DH.get_school_info(this.school, "class");
+            let s_clan = window.DH.get_school_info(this.school, "clan");
             create_select_default(school_select,
-                                  `${s_name} (${s_clan} ${s_class})`);
+                                  `${this.school} (${s_clan} ${s_class})`);
         }
 
         var clan_schools = window.DH.get_clan_schools();
 
-        if (this.family_id != "") {
-            let chosen_clan = this.family_id.split("_")[0];
+        console.log(clan_schools);
+
+        if (this.family != "") {
+            let chosen_clan = window.DH.get_family_clan(this.family);
+            console.log(chosen_clan);
             if (chosen_clan in clan_schools) {
                 let clan_group = document.createElement("optgroup");
                 clan_group.label = chosen_clan;
                 for (let school of clan_schools[chosen_clan]) {
                     let option = document.createElement("option");
-                    option.value = `${chosen_clan}_${school}`;
+                    option.value = school;
                     option.label = school;
                     clan_group.appendChild(option);
                 }
@@ -305,6 +308,7 @@ class CharacterCreator {
                 }
 
                 delete clan_schools[chosen_clan];
+
             } else {
                 console.warn(`'${chosen_clan} Clan' has no schools.`);
             }
@@ -315,7 +319,7 @@ class CharacterCreator {
             clan_group.label = clan;
             for (let school of clan_schools[clan]) {
                 let option = document.createElement("option");
-                option.value = `${clan}_${school}`;
+                option.value = school;
                 option.label = school;
                 clan_group.appendChild(option);
             }
@@ -329,13 +333,15 @@ class CharacterCreator {
     	var skill_choices_div = document.getElementById("skill_choices_div");
     	skill_choices_div.innerHTML = "";
 
-        if (this.school_id == "" || this.skills.choices.length == 0) {
+        if (this.school == "" || this.skills.choices.length == 0) {
             // No school has been selected, or there aren't any choices to make
             skill_choices_div.innerHTML = "<span class='note'>None</span>";
             return;
         }
 
         console.groupCollapsed("Refresh Skill Selections");
+
+        console.log(this.skills);
 
     	for (let i=0; i < this.skills.choices.length; i++) {
 
@@ -368,6 +374,8 @@ class CharacterCreator {
                             !(this.skills.chosen.includes(s))
                     );
                 }.bind(this));
+
+                console.log(filtered_skills, allowed_categories);
 
                 var input_for_dropdown = window.DH.create_skill_sublists(
                                                                filtered_skills);
@@ -431,14 +439,14 @@ class CharacterCreator {
         }
 
         // Add in family bonus
-        if (this.family_id) {
-            let family_trait = window.DH.get_family_trait(this.family_id);
+        if (this.family) {
+            let family_trait = window.DH.get_family_trait(this.family);
             traits_dict[family_trait] += 1;
         }
 
         // Add in school bonus
-        if (this.school_id) {
-            let school_trait = window.DH.get_school_info(this.school_id,
+        if (this.school) {
+            let school_trait = window.DH.get_school_info(this.school,
                                                          "attribute");
             traits_dict[school_trait] += 1;
         }
@@ -510,8 +518,8 @@ class CharacterCreator {
         var honor = 0;
 
         // Check for school honor
-        if (this.school_id != "") {
-            let school_honor = window.DH.get_school_info(this.school_id, "honor");
+        if (this.school != "") {
+            let school_honor = window.DH.get_school_info(this.school, "honor");
             honor += parseFloat(school_honor);
         }
 
@@ -721,8 +729,10 @@ class CharacterCreator {
         var total_cost = 0;
 
         // Check for Different School advantage
-        if (this.family_id && this.school_id) {
-            if (this.family_id.split("_")[0] != this.school_id.split("_")[0]) {
+        if (this.family && this.school) {
+            if (window.DH.get_family_clan(this.family) != 
+                            window.DH.get_school_info(this.school, "clan")) {
+
                 total_cost += 5;
                 adv_tbody.appendChild(this.create_adv_object("Different School",
                     "You have trained in the school of a Clan that is not your own.",
@@ -818,8 +828,8 @@ class CharacterCreator {
                 }
 
                 if (type == "clan") {
-                    if (this.family_id) {
-                        let clan = this.family_id.split("_")[0];
+                    if (this.family) {
+                        let clan = window.DH.get_family_clan(this.family);
                         if (clan == value) {
                             total_discount = Math.max(amount, total_discount);
                         }
@@ -827,8 +837,8 @@ class CharacterCreator {
 
 
                 } else if (type == "class") {
-                    if (this.school_id) {
-                        let classes = window.DH.get_school_info(this.school_id,
+                    if (this.school) {
+                        let classes = window.DH.get_school_info(this.school,
                                                                 "class")
                             .split("/");
                         if (classes.includes(value)) {
@@ -966,8 +976,8 @@ class CharacterCreator {
     check_enable_spells() {
         var spells_container = document.getElementById("spells_container");
 
-        if (this.school_id) {
-            if (window.DH.get_school_info(this.school_id, "class").includes("Shugenja")) {
+        if (this.school) {
+            if (window.DH.get_school_info(this.school, "class").includes("Shugenja")) {
                 spells_container.classList.remove("closed");
                 spells_container.classList.remove("disabled");
                 spells_container.title = "";
@@ -1013,16 +1023,16 @@ class CharacterCreator {
 
         // Refresh Deficiency display
         var p_deficiency = document.getElementById("p_deficiency");
-        if (this.school_id) {
-            p_deficiency.innerHTML = window.DH.get_school_info(this.school_id,
+        if (this.school) {
+            p_deficiency.innerHTML = window.DH.get_school_info(this.school,
                                                                "deficiency");
         } else {
             p_deficiency.innerHTML = "None";
         }
 
         // Refresh Spell Choices
-        if (this.school_id) {
-            let choices = window.DH.get_school_info(this.school_id, "spells");
+        if (this.school) {
+            let choices = window.DH.get_school_info(this.school, "spells");
             if (choices) {
                 var p_spell_choices = document.getElementById("p_spell_choices");
                 p_spell_choices.innerHTML = choices.join(", ");
@@ -1098,11 +1108,11 @@ class CharacterCreator {
 
         var spell_limits;
         // Special Case for Isawa Shugenja (need to find way to codify)
-        if (this.school_id == "Phoenix_Isawa Shugenja") {
+        if (this.school == "Phoenix_Isawa Shugenja") {
             spell_limits = {"Air": 3, "Earth": 3, "Fire": 3, "Water": 3,
                             "Void": 3}
         } else {
-            spell_limits = window.DH.get_spell_choices_table(this.school_id);
+            spell_limits = window.DH.get_spell_choices_table(this.school);
         }
 
         for (let e in spell_limits) {
@@ -1127,7 +1137,7 @@ class CharacterCreator {
 
     spell_choices_surplus() {
         var chosen_spells = this.count_chosen_spells();
-        var spell_choices = window.DH.get_spell_choices_table(this.school_id);
+        var spell_choices = window.DH.get_spell_choices_table(this.school);
         var spell_surplus = {};
         for (let element in chosen_spells) {
             spell_surplus[element] = chosen_spells[element] - 
@@ -1143,7 +1153,7 @@ class CharacterCreator {
         if (this.affinity.includes(element)) {
             char_level += 1;
         };
-        var deficiency = window.DH.get_school_info(this.school_id, "deficiency");
+        var deficiency = window.DH.get_school_info(this.school, "deficiency");
         if (deficiency.includes(element)) {
             char_level -= 1;
         }
@@ -1377,11 +1387,11 @@ class CharacterCreator {
 
         var gear_p = document.getElementById("gear_display");
         gear_p.innerHTML = "";
-        if (this.school_id == "") {
+        if (this.school == "") {
             gear_p.innerHTML = "None";
         } else {
             var ul = document.createElement("ul");
-            var gear = window.DH.get_school_info(this.school_id, "gear");
+            var gear = window.DH.get_school_info(this.school, "gear");
             for (let item of gear) {
                 let li = document.createElement("li");
                 li.innerHTML = item;
@@ -1395,8 +1405,8 @@ class CharacterCreator {
         var koku = 0.;
 
         // Check for School Koku
-        if (this.school_id != "") {
-            let school_koku = window.DH.get_school_info(this.school_id, "koku");
+        if (this.school != "") {
+            let school_koku = window.DH.get_school_info(this.school, "koku");
             koku += parseFloat(school_koku);
         }
 
@@ -1416,9 +1426,9 @@ class CharacterCreator {
     update_techniques() {
         var techniques_div = document.getElementById("techniques_div");
         
-        if (this.school_id) {
+        if (this.school) {
             techniques_div.innerHTML = "";
-            var techniques = window.DH.get_school_info(this.school_id, "techniques");
+            var techniques = window.DH.get_school_info(this.school, "techniques");
             
             for (let i in techniques) {
                 let content = document.createElement("p");
