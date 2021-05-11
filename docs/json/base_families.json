@@ -1,0 +1,170 @@
+{
+    "Hida": {
+        "attribute": "Strength",
+        "clan": "Crab"
+    },
+    "Hiruma": {
+        "attribute": "Agility",
+        "clan": "Crab"
+    },
+    "Kaiu": {
+        "attribute": "Intelligence",
+        "clan": "Crab"
+    },
+    "Kuni": {
+        "attribute": "Intelligence",
+        "clan": "Crab"
+    },
+    "Toritaka": {
+        "attribute": "Perception",
+        "clan": "Crab"
+    },
+    "Yasuki": {
+        "attribute": "Awareness",
+        "clan": "Crab"
+    },
+
+    "Asahina": {
+        "attribute": "Intelligence",
+        "clan": "Crane"
+    },
+    "Daidoji": {
+        "attribute": "Stamina",
+        "clan": "Crane"
+    },
+    "Doji": {
+        "attribute": "Awareness",
+        "clan": "Crane"
+    },
+    "Kakita": {
+        "attribute": "Agility",
+        "clan": "Crane"
+    },
+
+    "Kitsuki": {
+        "attribute": "Awareness",
+        "clan": "Dragon"
+    },
+    "Mirumoto": {
+        "attribute": "Agility",
+        "clan": "Dragon"
+    },
+    "Tamori": {
+        "attribute": "Willpower",
+        "clan": "Dragon"
+    },
+    "Togashi": {
+        "attribute": "Reflexes",
+        "clan": "Dragon"
+    },
+
+    "Akodo": {
+        "attribute": "Agility",
+        "clan": "Lion"
+    },
+    "Ikoma": {
+        "attribute": "Awareness",
+        "clan": "Lion"
+    },
+    "Kitsu": {
+        "attribute": "Intelligence",
+        "clan": "Lion"
+    },
+    "Matsu": {
+        "attribute": "Strength",
+        "clan": "Lion"
+    },
+
+    "Kitsune": {
+        "attribute": "Awareness",
+        "clan": "Mantis"
+    },
+    "Moshi": {
+        "attribute": "Intelligence",
+        "clan": "Mantis"
+    },
+    "Tsuruchi": {
+        "attribute": "Perception",
+        "clan": "Mantis"
+    },
+    "Yoritomo": {
+        "attribute": "Stamina",
+        "clan": "Mantis"
+    },
+
+    "Agasha": {
+        "attribute": "Perception",
+        "clan": "Phoenix"
+    },
+    "Asako": {
+        "attribute": "Awareness",
+        "clan": "Phoenix"
+    },
+    "Isawa": {
+        "attribute": "Willpower",
+        "clan": "Phoenix"
+    },
+    "Shiba": {
+        "attribute": "Perception",
+        "clan": "Phoenix"
+    },
+
+    "Bayushi": {
+        "attribute": "Agility",
+        "clan": "Scorpion"
+    },
+    "Shosuro": {
+        "attribute": "Awareness",
+        "clan": "Scorpion"
+    },
+    "Soshi": {
+        "attribute": "Intelligence",
+        "clan": "Scorpion"
+    },
+    "Yogo": {
+        "attribute": "Willpower",
+        "clan": "Scorpion"
+    },
+
+    "Horiuchi": {
+        "attribute": "Willpower",
+        "clan": "Unicorn"
+    },
+    "Ide": {
+        "attribute": "Perception",
+        "clan": "Unicorn"
+    },
+    "Iuchi": {
+        "attribute": "Intelligence",
+        "clan": "Unicorn"
+    },
+    "Moto": {
+        "attribute": "Agility",
+        "clan": "Unicorn"
+    },
+    "Shinjo": {
+        "attribute": "Reflexes",
+        "clan": "Unicorn"
+    },
+    "Utaku": {
+        "attribute": "Stamina",
+        "clan": "Unicorn"
+    },
+
+    "Chuda": {
+        "attribute": "Intelligence",
+        "clan": "Spider"
+    },
+    "Daigotsu": {
+        "attribute": "Stamina",
+        "clan": "Spider"
+    },
+    "Goju": {
+        "attribute": "Agility",
+        "clan": "Spider"
+    },
+    "Susumu": {
+        "attribute": "Awareness",
+        "clan": "Spider"
+    }
+}
