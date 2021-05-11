@@ -17,7 +17,8 @@ Container structure is as follows:
 */
 
 div.collapsible-div-container {
-	margin-bottom: 10px; /* Add a buffer at the bottom of each collapsible */
+	margin-top: 5px;
+	margin-bottom: 5px; /* Add a buffer at the bottom of each collapsible */
 }
 
 div.collapsible-div-title {
