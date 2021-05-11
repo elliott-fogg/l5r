@@ -1,3 +1,12 @@
+.icon-red {
+	cursor: pointer;
+	transform: translateY(3px);
+	/*filter: invert(17%) sepia(38%) saturate(5469%) hue-rotate(350deg) brightness(95%) contrast(81%);*/
+}
+.icon-red:hover {
+	filter: invert(34%) sepia(70%) saturate(4584%) hue-rotate(345deg) brightness(108%) contrast(101%);
+}
+
 .up-arrow {
 	cursor: pointer;
 	width: 14px;

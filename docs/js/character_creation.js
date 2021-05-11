@@ -864,24 +864,31 @@ class CharacterCreator {
     create_adv_object(title, text, cost, index=-1, advantage=null) {
         var row = document.createElement("tr");
 
+        var trash_icon;
+        if (index >= 0) {
+            trash_icon = document.createElement("img");
+            trash_icon.src = "images/trash2.svg";
+            trash_icon.classList.add("icon-red");
+            trash_icon.height = 14;
+            trash_icon.onclick = function() {
+                console.log("Delete Advantage:", index);
+                this.delete_advantage(advantage, index);
+                event.stopPropagation();
+            }.bind(this);
+            trash_icon.title = `Delete ${advantage} Advantage`;
+        }
+
         var text_cell = document.createElement("td");
-        text_cell.appendChild(create_collapsible_div(title, text, "closed"));
+        var title_p = document.createElement("p");
+        title_p.innerHTML = title;
+        text_cell.appendChild(create_collapsible_div([title_p, trash_icon],
+                                                     text, "closed"));
         row.appendChild(text_cell);
 
         var cost_cell = document.createElement("td");
         cost_cell.innerHTML = cost;
         cost_cell.className = "center v-top";
         row.appendChild(cost_cell);
-
-        if (index >= 0) {
-            var delete_cell = document.createElement("td");
-            delete_cell.classList.add("delete_cell");
-            // delete_cell.classList.add("v-top");
-            delete_cell.innerHTML = "<span class='delete_button'>x</span>";
-            delete_cell.onclick = this.delete_advantage.bind(this, advantage, index);
-            delete_cell.title = "Delete Advantage";
-            row.appendChild(delete_cell);
-        }
 
         return row;
     }
@@ -1149,20 +1156,21 @@ class CharacterCreator {
 
         // Cell 1 - Spell Information
         let c1 = document.createElement("td");
-        var delete_btn = null;
+        var trash_icon = null;
         if (index >= 0) {
-            delete_btn = document.createElement("input");
-            delete_btn.type = "button";
-            delete_btn.value = "Delete";
-            delete_btn.onclick = function() {
+            trash_icon = document.createElement("img");
+            trash_icon.src = "images/trash2.svg";
+            trash_icon.classList.add("icon-red");
+            trash_icon.height = 14;
+            trash_icon.onclick = function() {
                 console.log("Delete Spell:", index);
                 this.delete_spell(index);
                 event.stopPropagation();
             }.bind(this);
         }
 
-        console.log(spell, delete_btn);
-        c1.appendChild(this.create_spell_collapsible(spell, delete_btn));
+        console.log(spell, trash_icon);
+        c1.appendChild(this.create_spell_collapsible(spell, trash_icon));
         row.appendChild(c1);
 
         // Cell 2 - Mastery Level
