@@ -275,7 +275,7 @@
 	"Elemental Blessing": {
 		"_COMMENT": "Affects Trait upgrade costs",
 		"title": "Elemental Blessing",
-		"output_title": "Elemental Blessing ({ring_name})",
+		"output_title": "Elemental Blessing ({ring_name[text]})",
 		"cost": 4,
 		"discount": "clan_Phoenix",
 		"description": "You are much beloved by the kami of a particular element, although you know not why that might be. As a result, the cost of increasing the Traits associated with one particular Ring, chosen when this Advantage is purchased, is decreased by 1. For example, if you choose Earth when you purchase this Advantage, the cost of increasing Stamina and Willpower is reduced by 1 Experience Point ever time you increase them. Void may not be chosen for this Advantage. Phoenix characters may purchase this Advantage for 3 points.",
@@ -361,7 +361,7 @@
 	"Friendly Kami": {
 		"_COMMENT": "Would be good if we could introduce custom restrictions based on Elemental Deficiencies",
 		"title": "Friendly Kami",
-		"output_title": "Friendly Kami ({element_choice})",
+		"output_title": "Friendly Kami ({element_choice[text]})",
 		"cost": 5,
 		"restriction": "class_Shugenja",
 		"description": "A particular kami has befriended you, and stays in your vicinity at all times. Choose one element when this Advantage is purchased. You gain a bonus of +1k1 to the total of all Spell Casting Rolls made to cast Sense, Commune or Summon with regard to that Element only. Only shugenja may purchase this Advantage. You may not select this Advantage for an Element in which you are Deficient.",
@@ -650,7 +650,7 @@
 
 	"Inner Gift": {
 		"title": "Inner Gift",
-		"output_title": "Inner Gift ({inner_gift_choice})",
+		"output_title": "Inner Gift ({inner_gift_choice[text]})",
 		"cost": 7,
 		"description": "You possess a mysterious gift that even shugenja cannot fully understand. Monks describe individuals such as yourself as existing in a unique state of harmony with the universe, but then they say that sort of thing a lot. Your gift may be a manifestation of the kami, perhaps an indicator of spirit ancestry, or any of a number of different theories. The exact nature of an Inner Gift should be discussed with the GM before taking this Advantage. You may choose one of the gifts provided, or write your own.",
 		"output_text": "£({inner_gift_choice} == 6) ? 'Gift: {custom_gift_title}<br>{custom_gift_description}' : '{inner_gift_choice[text]}<br>{inner_gift_choice[hovertext]}'£",
@@ -813,7 +813,7 @@
 
 	"Luck": {
 		"title": "Luck",
-		"output_title": "Luck {rank}",
+		"output_title": "Luck {rank[text]}",
 		"cost": "{rank[cost]}",
 		"description": "Fortune favors the mortal man. A number of times per session equal to your rank in this Advantage, you may choose to immediately re-roll any one roll you make, keeping the higher of the two results.",
 		"output_text": "You may choose to immediately re-roll any one roll you make, keeping the higher of the two results. Can be used {rank} time(s) per session.",
@@ -870,7 +870,7 @@
 
 	"Paragon": {
 		"title": "Paragon",
-		"output_title": "Paragon ({tenet})",
+		"output_title": "Paragon ({tenet[text]})",
 		"cost": 7,
 		"discount": "clan_Lion",
 		"description": "You exemplify the code of Bushido, and have taken one particular tenet to heart and made it your way of life. In addition to the Tenet-specific benefit, any time that your gain Honor for exhibiting the virtue that you have selected, you gain an additional +1 Honor. Lion characters may purchase this Advantage for 6 points.",
@@ -973,7 +973,7 @@
 	"Sacred Weapon": {
 		"_COMMENT": "Would be good if we could automatically restrict it to your clan",
 		"title": "Sacred Weapon",
-		"output_title": "Sacred Weapon ({weapon})",
+		"output_title": "Sacred Weapon ({weapon[info]})",
 		"cost": "{weapon[cost]}",
 		"description": "You possess a special weapon created by the master weaponsmiths of your Clan, and considered to be an icon of all who bear the mon of your Clan.",
 		"output_text": "Weapon: {weapon[text]}<br>{weapon[hovertext]}",
@@ -986,46 +986,55 @@
 				"options": {
 					"1": {
 						"text": "Crab / Kaiu Blade",
+						"info": "Kaiu Blade",
 						"cost": 6,
 						"hovertext": "3k3 Katana; Unbreakable; -2 to target's Reduction"
 					},
 					"2": {
 						"text": "Crane / Kakita Blade",
+						"info": "Kakita Blade",
 						"cost": 5,
 						"hovertext": "4k2 Katana; May re-roll damage once per Iaijutsu duel"
 					},
 					"3": {
 						"text": "Dragon / Twin Sister Blades",
+						"info": "Twin Sister Blades",
 						"cost": 3,
 						"hovertext": "Diasho; +5 to the TN of all Disarm Maneuvers against you"
 					},
 					"4": {
 						"text": "Lion / Akodo Blade",
+						"info": "Akodo Blade",
 						"cost": 6,
 						"hovertext": "4k2 Katana; Honor Rank considered at +1 while carried"
 					},
 					"5": {
 						"text": "Mantis / Storm Kama (pair)",
+						"info": "Storm Kama",
 						"cost": 6,
 						"hovertext": "2k2 Kama; +1k0 to attack rolls when wielding both"
 					},
 					"6": {
 						"text": "Phoenix / Inquisitor's Strike",
+						"info": "Inquisitor's Strike",
 						"cost": 6,
 						"hovertext": "3k2 Wakizashi; Considered jade against targets with Taint"
 					},
 					"7": {
 						"text": "Scorpion / Shosuro Blade",
+						"info": "Shosuro Blade",
 						"cost": 5,
 						"hovertext": "4k2 Katana; Add +5 to TN to resist poisons applied to blade"
 					},
 					"8": {
 						"text": "Spider / Black Steel Blade",
+						"info": "Black Steel Blade",
 						"cost": 6,
 						"hovertext": "4k2 Katana; Any exploding Damage dice require target to make an Earth Ring Roll (TN 15) or gain 1 point of Shadowlands Taint"
 					},
 					"9": {
 						"text": "Unicorn / Moto Scimitar",
+						"info": "Moto Scimitar",
 						"cost": 6,
 						"hovertext": "3k3 Scimitar; +3 to Damage Rolls made while on horseback"
 					}
