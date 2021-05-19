@@ -324,7 +324,7 @@ var skills_dict = {
 // Call Display Functions //////////////////////////////////////////////////////
 
 // update_trait_table(t_dict);
-update_skill_table(skills_dict, true);
+// update_skill_table(skills_dict, true);
 
 create_full_spell_list();
 refresh_full_spell_list();
