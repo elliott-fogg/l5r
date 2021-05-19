@@ -68,7 +68,7 @@ class NotesObject {
 
 		cell_trash.className = "note_tab_trash";
 		var trash_svg = document.createElement("img");
-		trash_svg.src = "images/trash.svg";
+		trash_svg.src = "images/trash2.svg";
 		trash_svg.height = 15;
 		trash_svg.className = "note_icon note_trash";
 		trash_svg.onclick = function() {
