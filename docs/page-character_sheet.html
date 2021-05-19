@@ -8,9 +8,6 @@
 	<script type="text/javascript" src="js/data_loader.js"></script>
 	<script type="text/javascript" src="js/data_handler.js"></script>
 	<script type="text/javascript" src="js/data_tester.js"></script>
-	<script>
-		window.DH = new DataTester();
-	</script>
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="css/main.css">
@@ -57,8 +54,8 @@
 			activate_collapsible_divs();
 
 			window.DH.execute_on_load(function() {
-				create_full_spell_list();
-				refresh_full_spell_list();
+				// create_full_spell_list();
+				// refresh_full_spell_list();
 			});
 		}
 	</script>
@@ -264,6 +261,9 @@
 	</div>
 
 	<script>
+
+		window.DH = new DataHandler();
+		
 		// main();
 		// load_data_from_storage();
 
@@ -274,9 +274,11 @@
 		console.log("LOCAL STORAGE", localStorage)
 
 		// includeHTML();
+
+		
 	</script>
 
-	<script type="text/javascript" src="js/character_sheet_test_fill.js"></script>
+	<!-- <script type="text/javascript" src="js/character_sheet_test_fill.js"></script> -->
 	
 
 </body>
