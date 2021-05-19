@@ -72,6 +72,7 @@ function update_skill_table(skills_dict) {
 
 	if (skills_dict.length == 0) {
 		skill_tbody.innerHTML = "<tr><td class='note' colspan='3'>None</td></tr>";
+		console.groupEnd();
 		return;
 	}
 
@@ -106,8 +107,6 @@ function update_skill_table(skills_dict) {
 
 		tbody.appendChild(row);
 	}
+
+	console.groupEnd();
 }
-
-
-
-
