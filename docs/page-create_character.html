@@ -3,6 +3,14 @@
 <head>
 	<title>L5R Character Creation Page</title>
 
+	<!-- Data Loader, Handler, and Tester -->
+	<script type="text/javascript" src="js/data_loader.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/data_tester.js"></script>
+	<script>
+		window.DH = new DataTester();
+	</script>
+
 	<!-- General CSS Files -->
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/custom_buttons.css">
@@ -11,8 +19,10 @@
 	<link rel="stylesheet" href="css/svg_filters.css">
 	<link rel="stylesheet" href="css/topnav.css">
 
+
+
 	<!-- General JS Files -->
-	<script type="text/javascript" src="js/data_handler.js"></script>
+
 	<script type="text/javascript" src="js/character_class_info.js"></script>
 	<script type="text/javascript" src="js/character_creation.js"></script>
 	<script type="text/javascript" src="js/page_options.js"></script>
