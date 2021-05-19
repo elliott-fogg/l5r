@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>L5R Character Page</title>
 
 	<!-- CSS Files -->
@@ -8,6 +9,11 @@
 	<link rel="stylesheet" href="css/dice_roller.css">
 	<link rel="stylesheet" href="css/custom_buttons.css">
 	<link rel="stylesheet" href="css/info_div.css">
+	<link rel="stylesheet" href="css/notes.css">
+	<link rel="stylesheet" href="css/collapsible_divs.css">
+	<link rel="stylesheet" href="css/topnav.css">
+	<link rel="stylesheet" href="css/svg_filters.css">
+	<link rel="stylesheet" href="css/tables.css">
 
 	<!-- JS Files -->
 	<script type="text/javascript" src="js/dice_roller.js"></script>
@@ -15,6 +21,7 @@
 	<script type="text/javascript" src="js/display_functions.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/include_html.js"></script>
 
 	<!-- Custom Dropdown Menus -->
 	<script type="text/javascript" src="js/custom_dropdown.js"></script>
@@ -28,141 +35,60 @@
 	<script type="text/javascript" src="js/dropdown_sublists.js"></script>
 	<link rel="stylesheet" href="css/dropdown_sublists.css">
 
+	<!-- Modal Windows -->
+	<script type="text/javascript" src="js/modal.js"></script>
+	<link rel="stylesheet" href="css/modal.css">
+
+	<script type="text/javascript" src="js/notes.js"></script>
+
+	<script type="text/javascript" src="js/collapsible_divs.js"></script>
+
+	<script>
+		function initiate_page() {
+			console.log("Running page initiation...");
+
+			create_dice_roller("dice_roller_content");
+			activate_collapsible_divs();
+
+			window.DH.execute_on_load(function() {
+				create_full_spell_list();
+				refresh_full_spell_list();
+			});
+		}
+	</script>
+
 </head>
-<body>
+<body onload="initiate_page()">
 
-	<h1>L5R Character Page</h1>
-	<div id="character_information">
-		<input type="button" value="Create New Character" id="new_char_btn" 
-			onclick="start_character_creation();">
+<!-- 	<div class="topnav">
+		<h2 style="display: inline">L5R Character Page</h2>
+		<a>Create New Character</a>
+		<a>Options</a>
+		<a>Instructions</a>
+	</div> -->
 
+	<div include-html="navbar.html"></div>
+
+	<!-- <h2 style="color: #9E2727">L5R Character Page</h2> -->
+
+	<div>
+		<h1 style="display: inline">Tomoe</h1>
 		<input type="button" value="Save Character" id="save_char" disabled
 			onclick="save_character();">
+		<select onselect="load_character(this.value)" disabled>
+			<option hidden selected>Load a character...</option>
+		</select>
+	</div>
 
-		<input type="button" value="Characters" id="characters_button">
+	<div include-html="character_details.html" id="character_deets"></div>
 
-		<input type="button" value="Load Dummy Character" 
-			onclick="load_dummy_character();" style="background-color:red;">
-
-		<!-- Div for creating a new character -->
-		<div id="character_creation_div" class="header_div">
-			<div>
-				<p style="display: inline;">Family:</p>
-				<select id="char_creation_family_select">
-					<option style="display:none" value="">Select a family...</option>
-				</select>
-			</div>
-
-			<div>
-				<p style="display: inline;">School:</p>
-				<select id="char_creation_school_select" disabled>
-					<option style="display:none" value="">Select a school...</option>
-				</select>
-				<label for="clan_only_checkbox" disabled>Clan-only Schools?</label>
-				<input type="checkbox" id="clan_only_checkbox" checked>
-			</div>
-
-			<div id="skill_choices_div">
-				<p style="display: inline">Skill Choices:</p>
-				<div id="skill_choice_selects">
-				</div>
-			</div>
-
-			<input type="button" value="Generate Character"
-				id="gen_char_btn" disabled>
+	<!-- Dice Roller Div - Standalone Dice Roller -->
+	<div class="collapsible-div-container closed heading">
+		<div class="collapsible-div-title">
+			<p>Dice Roller</p>
 		</div>
-
-		<!-- Div for displaying character information (name, family, etc) -->
-		<div id="character_info_div" class="header_div">
-			<table class="info_table" id="character_info_table">
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Name:</p>
-							<p class="info_value" id="info_name">PLACEHOLDER_NAME</p>
-						</div>
-					</td>
-					<td>
-						<div>
-							<p class="info_label">Clan:</p>
-							<p class="info_value" id="info_clan">PLACEHOLDER_CLAN</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">School:</p>
-							<p class="info_value" id="info_school">PLACEHOLDER_SCHOOL</p>
-						</div>
-					</td>
-					<td>
-						<div>
-							<p class="info_label">Rank:</p>
-							<p class="info_value" id="info_rank">PLACEHOLDER_RANK</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Experience:</p>
-							<p class="info_value" id="info_exp">PLACEHOLDER_EXP</p>
-						</div>
-					</td>
-					<td>
-						<div>
-							<p class="info_label">Insight:</p>
-							<p class="info_value" id="info_insight">PLACEHOLDER_INSIGHT</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td rowspan=2>
-						<div>
-							<input type="number" value=3 pattern="/d*"
-								id="exp_change_input" onkeyup=check_exp_input>
-							<input type="button" value="Add Exp" 
-								id="exp_change_button">
-						</div>
-					</td>
-				</tr>
-			</table>
-
-			<table class="info_table" id="character_pip_table">
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Honor:</p>
-							<p class="info_value" id="info_honor">DUMMY</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Glory:</p>
-							<p class="info_value" id="info_glory">DUMMY</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Status:</p>
-							<p class="info_value" id="info_status">DUMMY</p>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<p class="info_label">Shadowlands Taint:</p>
-							<p class="info_value" id="info_taint">DUMMY</p>
-						</div>
-					</td>
-				</tr>
-			</table>
+		<div class="collapsible-div-content">
+			<div id="dice_roller_content"></div>
 		</div>
 
 	</div>
@@ -171,14 +97,12 @@
 	<nav id="navbar" style="border: solid black 1px">
 		<input type="button" value="Instructions" id="navbar_instructions"
 			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
-		<input type="button" value="Dice Roller" id="navbar_dice_roller"
-			class="navbar_button" onclick="click_nav_button(this.id)">
 		<input type="button" value="Character Skills" id="navbar_skills"
 			class="navbar_button" onclick="click_nav_button(this.id)">
 		<input type="button" value="Combat" id="navbar_combat"
-			class="navbar_button" onclick="click_nav_button(this.id)">
-		<input type="button" value="Spells" id="navbar_spells"
 			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
+		<input type="button" value="Spells" id="navbar_spells"
+			class="navbar_button" onclick="click_nav_button(this.id)">
 		<input type="button" value="Add Custom Info" id="navbar_custom"
 			class="navbar_button" onclick="click_nav_button(this.id)" disabled>
 		<input type="button" value="Notes" id="navbar_notes"
@@ -192,78 +116,34 @@
 		</div>
 	</div>
 
-	<!-- Dice Roller Div - Standalone Dice Roller -->
-	<div id="dice_roller_div" class="toplevel-div">
-		<div id="dice_roller_content">
-			<p>DICE_ROLLER_PLACEHOLDER</p>
-		</div>
-	</div>
-
 	<!-- Skills and Traits Div - Add/remove skills, has roll functionality -->
 	<div id="skills_div" class="toplevel-div">
-		<div id="skills_tables">
-			<div style="overflow: hidden;">
-				<!-- Trait Table -->
-				<div style="float: left">
-					<p style="text-align: center;"><b>Ring Table</b></p>
-					<table id="trait_table" class="table"></table>
-				</div>
 
-				<!-- Skill Table -->
-				<div style="margin-left: 100px; float: left">
-					<p style="text-align: center;"><b>Skill Table</b></p>
-					<table id="skill_table" class="table"></table>
-					<select id="add_skill_dropdown"></select>
-				</div>
+		<div id="skills_tables" style="display: flex">
 
-			</div>
+			<div include-html="traits_table.html" id="traits_table"></div>
 
-			<!-- Advantages and Disadvantages Table -->
-			<div style="width: 50%; border: solid black 1px; display: flex;">
+			<div include-html="skills_table.html"></div>
 
-				<!-- Advantages -->
-				<div style="margin-right: 20px">
-					<table style="width: 100%; border: solid black 1px">
-						<thead>
-							<tr>
-								<td><b><u>Advantages</u></b></td>
-								<td><b><u>Cost</u></b></td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><b>Adv1</b></td>
-								<td><b>Cost1</b></td>
-							</tr>
-							<tr>
-								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				<!-- Disadvantages -->
-				<div style="float: left">
-					<table style="width: 100%; border: solid black 1px">
-						<thead>
-							<tr>
-								<td><b>Disadvantages</b></td>
-								<td><b>Refund</b></td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Disadv1</td>
-								<td>Refund1</td>
-							</tr>
-							<tr>
-								<td>A very long and wordy description of the advantage. Really this is so long that it's going to cause me a bit of a headache to work out what to do with it. I'm just typing away to make this as long as I can be bothered to.</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
 		</div>
+
+		<table id="adv_table">
+			<tbody>
+				<tr class="header_row">
+					<td>Advantages</td>
+					<td>Cost</td>
+				</tr>
+			</tbody>
+			<tbody id="adv_tbody"></tbody>
+			<tbody>
+				<tr>
+					<td>Disadvantages</td>
+					<td>Refund</td>
+				</tr>
+			</tbody>
+			<tbody id="disadv_tbody"></tbody>
+		</table>
+
 	</div>
 
 	<!-- General Skills Lookup -->
@@ -282,8 +162,52 @@
 
 	<!-- Spells Div - Add, roll Spells (nowhere near yet) -->
 	<div id="spells_div" class="toplevel-div">
-		<p>SPELLS_PLACEHOLDER</p>
+
+		<div>
+			<p><b>Affinity:</b></p>
+			<p id="p_affinity" style="margin-right: 20px">UNKNOWN</p>
+			<p><b>Deficiency:</b></p>
+			<p id="p_deficiency">UNKNOWN</p>
+		</div>
+
+		<details>
+			<summary>
+				<p>Learned Spells</p>
+			</summary>
+			<table class="alternating" width="50%">
+				<thead>
+					<tr>
+						<td style="padding-right: 50px" width="80%">
+							<b><u>Spells</u></b>
+						</td>
+						<td><u>Mastery Level</u></td>
+						<td><u>Element(s)</u></td>
+					</tr>
+				</thead>
+				<tbody id="spells_tbody">
+				</tbody>
+			</table>
+		</details>
+
+		<details>
+			<summary>
+				<p>All Spells</p>
+			</summary>
+			<div id="all_spells">PLACEHOLDER</div>
+		</details>
+
+		<details>
+			<summary>
+				<p>Hello</p>
+				<input type="button" value="test" onclick="{
+					console.log('HELLO');
+				}">
+			</summary>
+			<p>TEST CONTENT</p>
+		</details>
+
 	</div>
+
 
 	<!-- Custom Additions div - Add your own skills, schools, weapons, etc. -->
 	<div id="custom_additions_div" class="toplevel-div">
@@ -294,18 +218,60 @@
 	</div>
 
 	<div id="notes_div" class="toplevel-div">
-		<p>TEXT HERE</p>
+
+		<div class="note_container">
+
+			<input type="button" value="New" id="note_new">
+			<input type="button" value="Save" id="note_save">
+			<label>Sort By:</label>
+			<select>
+				<option value="date">Date</option>
+				<option value="title">Title</option>
+			</select>
+			<input type="button" value="Check Storage"
+				onclick="console.log('localStorage:', localStorageSpace())">
+
+			<table>
+				<tr>
+					<td>
+						Notes:
+					</td>
+					<td>
+						<input type="text" class="title" id="note_input_title"
+							disabled>
+					</td>
+				</tr>
+				<tr>
+					<td class="note_tab_container">
+							<div>
+								<table id="note_selection"></table>
+							</div>
+					</td>
+					<td style="height: 100%; padding: 0">
+						<textarea id="note_input_text" disabled></textarea>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
 	</div>
 
 	<script>
-		create_trait_table();
-		main();
-		load_data_from_storage();
+		// main();
+		// load_data_from_storage();
 
-		var data = new DataHandler();
+		// var data = new DataHandler();
+
+		new NotesObject();
 
 		console.log("LOCAL STORAGE", localStorage)
+
+		// includeHTML();
 	</script>
+
+	<script type="text/javascript" src="js/character_sheet_test_fill.js"></script>
+	
 
 </body>
 </html>
