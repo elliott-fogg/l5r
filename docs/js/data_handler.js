@@ -15,7 +15,7 @@ class DataLoader {
 		this.data = {}
 
 		this.loaded = false;
-		this.callbacks = [];
+		this.callbacks = [this.check_for_html_templates.bind(this)];
 		this.start_time = performance.now();
 		console.log(`window.location: '${window.location}'`);
 		console.log(`window.location.hostname: '${window.location.hostname}'`);
@@ -157,6 +157,47 @@ class DataLoader {
 		.catch(function(err) {
 			console.log("Error with url " + url + "\nFetch Error :-S", err);
 		});
+	}
+
+	// Load HTML Templates /////////////////////////////////////////////////////
+
+	check_for_html_templates() {
+		var elements_to_replace = document.querySelectorAll('[include-html]');
+		for (let i=0; i < elements_to_replace.length; i++) {
+			console.log(this);
+			var element = elements_to_replace[i];
+			var file_name = element.getAttribute("include-html");
+			element.removeAttribute("include-html");
+			this.load_html_template_from_website(element, file_name);
+		}
+	}
+
+	load_html_template_from_website(element, file_name) {
+		fetch("https://elliott-fogg.github.io/l5r/html/" + file_name)
+		.then(response => {
+	    	console.log(response.url, response.status);
+	    	if (response.status == 200) {
+	    		return response.text();
+	    	} else {
+	    		this.element_failed_load(element, file_name);
+	    		return null;
+	    	}
+		}).then(html => {
+			if (html) {
+				element.innerHTML = html;
+				this.check_for_html_templates();
+			}
+	    }).catch(err => {
+	    	console.warn("Could not load HTML template.", err);
+	    	this.element_failed_load(element, file_name);
+		});
+	}
+
+	element_failed_load(element, message=null) {
+		element.innerHTML = "Failed to load element";
+		if (message) {
+			element.innerHTML += ` - ${message}`;
+		}
 	}
 
 // End Class
@@ -622,6 +663,9 @@ class DataTester extends DataHandler {
 			this.create_test_buttons_if_ready();
 		}.bind(this));
 
+		this.templates = [];
+		this.debounce_ask = false;
+
 		if (document.readyState === "complete") {
 			this.document_ready = true;
 			this.create_test_buttons_if_ready();
@@ -723,6 +767,78 @@ class DataTester extends DataHandler {
 		button_div.appendChild(test_div);
 
 		document.getElementsByTagName("BODY")[0].prepend(button_div);
+	}
+
+	// Load local HTML templates ///////////////////////////////////////////////
+
+	// Overwrite method to give me the option of uploading a local file, using
+	// an online one, or just skipping the template.
+	check_for_html_templates() {
+		var elements_to_replace = document.querySelectorAll('[include-html]');
+		console.log("ADDING NODES", elements_to_replace);
+
+		for (let element of elements_to_replace) {
+			let file_name = element.getAttribute("include-html");
+			this.templates.push( [element, file_name] );
+			element.removeAttribute("include-html");
+		}
+		this.debounce_ask_html_templates();
+	}
+
+	debounce_ask_html_templates() {
+		var t = `${this.debounce_ask}`;
+		console.log("DEBOUNCING", t);
+		if (this.debounce_ask == false) {
+			console.log("DEBOUNCE SUCCESS");
+			this.ask_html_templates();
+		}
+	}
+
+	async ask_html_templates() {
+		this.debounce_ask = true;
+		console.log("STARTING ASK");
+
+		if (this.templates.length == 0) {
+			console.log("ASK OVER");
+			this.debounce_ask = false;
+			return;
+		}
+
+		var [element, file_name] = this.templates.shift();
+
+		console.log(element);
+
+		var modal = new ModalWindow();
+		modal.add_title("Replace with HTML Template?");
+		modal.add_subtitle(file_name);
+		modal.add_checkbox_input("use_local", "Local File?", false, false);
+		modal.add_file_input("local_file", "File Name", ".html", false,
+		                     "{use_local} == true");
+		modal.check_dependencies();
+
+		var input_data = await modal.get_user_input();
+
+		if (input_data) {
+			if (input_data["use_local"]) {
+				this.load_local_template(element, input_data["local_file"]);
+			} else {
+				this.load_html_template_from_website(element, file_name);
+			}
+		} else {
+			this.element_failed_load(element, `${file_name} (ignored)`);
+		}
+
+		this.ask_html_templates();
+	}
+
+	load_local_template(element, local_file) {
+		// console.log(local_file)
+		var fr = new FileReader();
+		fr.addEventListener("load", e => {
+			element.innerHTML = fr.result;
+		});
+		fr.readAsText(local_file);
+		element.removeAttribute("include-html");
 	}
 
 	// Tests ///////////////////////////////////////////////////////////////////
