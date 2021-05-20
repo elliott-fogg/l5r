@@ -1,0 +1,35 @@
+<div class="note_container">
+
+	<input type="button" value="New" id="note_new">
+	<input type="button" value="Save" id="note_save">
+	<label>Sort By:</label>
+	<select>
+		<option value="date">Date</option>
+		<option value="title">Title</option>
+	</select>
+	<input type="button" value="Check Storage"
+		onclick="console.log('localStorage:', localStorageSpace())">
+
+	<table>
+		<tr>
+			<td>
+				Notes:
+			</td>
+			<td>
+				<input type="text" class="title" id="note_input_title"
+					disabled>
+			</td>
+		</tr>
+		<tr>
+			<td class="note_tab_container">
+					<div>
+						<table id="note_selection"></table>
+					</div>
+			</td>
+			<td style="height: 100%; padding: 0">
+				<textarea id="note_input_text" disabled></textarea>
+			</td>
+		</tr>
+	</table>
+
+</div>
