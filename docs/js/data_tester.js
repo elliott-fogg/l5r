@@ -2,7 +2,7 @@ class DataTester extends DataHandler {
 
 	constructor() {
 		super();
-		
+
 		this.callbacks.push(function() {
 			this.data_loaded = true;
 			this.create_test_buttons_if_ready();
@@ -34,7 +34,6 @@ class DataTester extends DataHandler {
 	}
 
 	create_test_buttons_if_ready() {
-		console.log(this.document_ready, this.data_loaded);
 		if (this.document_ready && this.data_loaded) {
 			setTimeout(this.create_test_buttons(), 100);
 		}
@@ -126,7 +125,6 @@ class DataTester extends DataHandler {
 		this.templates = []
 
 		var elements_to_replace = document.querySelectorAll('[include-html]');
-		console.log("ADDING NODES", elements_to_replace);
 
 		for (let element of elements_to_replace) {
 			let file_name = element.getAttribute("include-html");
@@ -138,26 +136,24 @@ class DataTester extends DataHandler {
 
 	debounce_ask_html_templates() {
 		var t = `${this.debounce_ask}`;
-		console.log("DEBOUNCING", t);
 		if (this.debounce_ask == false) {
-			console.log("DEBOUNCE SUCCESS");
 			this.ask_html_templates();
 		}
 	}
 
 	async ask_html_templates() {
 		this.debounce_ask = true;
-		console.log("STARTING ASK");
 
 		if (this.templates.length == 0) {
-			console.log("ASK OVER");
 			this.debounce_ask = false;
 			return;
 		}
 
 		var [element, file_name] = this.templates.shift();
 
+		console.groupCollapsed("Asking about HTML File: " + file_name);
 		console.log(element);
+		console.groupEnd();
 
 		var modal = new ModalWindow();
 		modal.add_title("Replace with HTML Template?");

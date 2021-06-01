@@ -119,7 +119,6 @@ class DataHandler extends DataLoader {
 
 	// School functions ////////////////////////////////////////////////////////
 	get_school_info(school, key=null) {
-		console.log(school);
 		if (key) {
 			if (key in this.data.schools[school]) {
 				if (key == "skills") {

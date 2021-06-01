@@ -52,6 +52,7 @@ class DataLoader {
 		console.groupCollapsed("Checking for Data...");
 		for (let data_name in this.paths) {
 			let url = this.hostname + this.paths[data_name];
+			console.log(data_name + ":", url);
 			this.load_data(url, data_name);
 		}
 		console.groupEnd();
@@ -96,7 +97,10 @@ class DataLoader {
 		this.html_promises.push(promise);
 
 		promise.then(response => {
-	    	console.log(response.url, response.status);
+			console.groupCollapsed("Load HTML file: " + file_name);
+			console.log("Response URL: " + response.url);
+			console.log("Response Status: " + response.status);
+			console.groupEnd();
 	    	if (response.status == 200) {
 	    		return response.text();
 	    	} else {
@@ -124,10 +128,8 @@ class DataLoader {
 	// Await all data to confirm loaded ////////////////////////////////////////
 
 	async await_data() {
-		await Promise.all([Promise.all(this.data_promises), Promise.all(this.html_promises)])
-		.then(x => {
-			console.log(x);
-		})
+		await Promise.all([Promise.all(this.data_promises),
+		                  Promise.all(this.html_promises)]);
 		this.complete_function();
 	}
 
@@ -145,7 +147,7 @@ class DataLoader {
 		if (this.callbacks.length > 0) {
 			console.log("Executing Callbacks!");
 			for (let i=0; i < this.callbacks.length; i++) {
-				console.group(`Callback ${i}`);
+				console.group(`Callback ${i+1}`);
 				console.group("Callback Function:");
 				console.log(this.callbacks[i]);
 				console.groupEnd();
