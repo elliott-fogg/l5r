@@ -18,6 +18,8 @@ class DataLoader {
 		this.html_promises = [];
 		this.callbacks = [];
 
+		this.additional_init();
+
 		this.start_time = performance.now();
 
 		console.log(`window.location: '${window.location}'`);
@@ -28,6 +30,10 @@ class DataLoader {
 		this.get_all_data();
 		this.check_for_html_templates();
 		this.await_data();
+	}
+
+	additional_init() {
+
 	}
 
 	execute_on_load(func) {

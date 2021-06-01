@@ -2,17 +2,11 @@ class DataTester extends DataHandler {
 
 	constructor() {
 		super();
-
-		this.document_ready = false;
-		this.data_loaded = false;
-
+		
 		this.callbacks.push(function() {
 			this.data_loaded = true;
 			this.create_test_buttons_if_ready();
 		}.bind(this));
-
-		this.templates = [];
-		this.debounce_ask = false;
 
 		if (document.readyState === "complete") {
 			this.document_ready = true;
@@ -30,6 +24,13 @@ class DataTester extends DataHandler {
 			["All Tests", this.run_all_tests],
 			["Check Skill Choices", this.check_skill_choices]
 		]
+	}
+
+	additional_init() {
+		this.document_ready = false;
+		this.data_loaded = false;
+		this.templates = [];
+		this.debounce_ask = false;
 	}
 
 	create_test_buttons_if_ready() {
@@ -122,6 +123,8 @@ class DataTester extends DataHandler {
 	// Overwrite method to give me the option of uploading a local file, using
 	// an online one, or just skipping the template.
 	check_for_html_templates() {
+		this.templates = []
+
 		var elements_to_replace = document.querySelectorAll('[include-html]');
 		console.log("ADDING NODES", elements_to_replace);
 
