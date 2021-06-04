@@ -122,9 +122,9 @@ class DataTester extends DataHandler {
 	// Overwrite method to give me the option of uploading a local file, using
 	// an online one, or just skipping the template.
 	check_for_html_templates() {
-		this.templates = []
-
 		var elements_to_replace = document.querySelectorAll('[include-html]');
+
+		console.log(elements_to_replace);
 
 		for (let element of elements_to_replace) {
 			let file_name = element.getAttribute("include-html");
