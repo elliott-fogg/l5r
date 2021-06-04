@@ -110,3 +110,74 @@ function update_skill_table(skills_dict) {
 
 	console.groupEnd();
 }
+
+function all_spells_change_page(event) {
+
+	var all_spells_tabs = document.querySelectorAll(".all_spells_tab");
+	for (let tab of all_spells_tabs) {
+		tab.classList.remove("active");
+	}
+
+	event.target.classList.add("active");
+	var selected_page = event.target.innerHTML;
+
+	console.log("Selected All Spells page", selected_page);
+
+	for (let page_name of ["Air", "Earth", "Fire", "Water", "Void"]) {
+		let elem = document.getElementById(`${page_name}-spells-content`);
+		elem.classList.remove("active");
+	}
+	var select_elem = document.getElementById(`${selected_page}-spells-content`);
+	select_elem.classList.add("active");
+}
+
+function refresh_full_spell_list() {
+
+	// Need to add in some modifications from input
+	console.log("REFRESHING ALL SPELLS");
+    var spells = {
+        "Air": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+        "Earth": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+        "Fire": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+        "Water": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+        "Void": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]}
+    }
+
+    // Split Spells up into Elements
+    for (let spell_name in window.DH.data.spells) {
+        let spell_info = window.DH.data.spells[spell_name];
+        spells[spell_info.element][spell_info.mastery_level].push(spell_info);
+    }
+
+    // Sort spells within each element
+    for (let element in spells) {
+
+    	for (let level in spells[element]) {
+    		var content_div = document.getElementById(`${element}-${level}-spells-content`);
+    		content_div.innerHTML = "";
+
+    		for (let spell of spells[element][level]) {
+    			content_div.appendChild(create_spell_collapsible(spell));
+    		}
+
+            // var content_div = document.getElementById(`all_spells_${element}_${level}_contents`);
+            // content_div.innerHTML = "";
+
+            // let container_id = `all_spells_${element}_${level}_container`;
+
+            // // Iterate through spells
+            // for (let spell of spells[element][level]) {
+
+            //     let spell_add = document.createElement("input");
+            //     spell_add.type = "button";
+            //     spell_add.value = "Add";
+
+            //     // Onclick goes here
+
+            //     var spell_div = create_spell_collapsible(spell,
+            //                                                 spell_add);
+            //     content_div.appendChild(spell_div);
+            // }
+        }
+    }
+}
