@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="css/topnav.css">
 	<link rel="stylesheet" href="css/svg_filters.css">
 	<link rel="stylesheet" href="css/tables.css">
+	<link rel="stylesheet" href="css/all_spells.css">
 
 	<!-- JS Files -->
 	<script type="text/javascript" src="js/dice_roller.js"></script>
@@ -63,16 +64,7 @@
 </head>
 <body onload="initiate_page()">
 
-<!-- 	<div class="topnav">
-		<h2 style="display: inline">L5R Character Page</h2>
-		<a>Create New Character</a>
-		<a>Options</a>
-		<a>Instructions</a>
-	</div> -->
-
 	<div include-html="navbar.html"></div>
-
-	<!-- <h2 style="color: #9E2727">L5R Character Page</h2> -->
 
 	<div>
 		<h1 style="display: inline">Tomoe</h1>
@@ -196,17 +188,7 @@
 			<summary>
 				<p>All Spells</p>
 			</summary>
-			<div id="all_spells">PLACEHOLDER</div>
-		</details>
-
-		<details>
-			<summary>
-				<p>Hello</p>
-				<input type="button" value="test" onclick="{
-					console.log('HELLO');
-				}">
-			</summary>
-			<p>TEST CONTENT</p>
+			<div include-html="full_spell_list.html" id="all_spells"></div>
 		</details>
 
 	</div>
@@ -262,8 +244,11 @@
 
 	<script>
 
-		window.DH = new DataHandler();
-		
+		window.DH = new DataTester();
+		window.DH.execute_on_load(function() {
+			console.log(window.DH.get_all_spells());
+		});
+
 		// main();
 		// load_data_from_storage();
 
@@ -274,6 +259,8 @@
 		console.log("LOCAL STORAGE", localStorage)
 
 		// includeHTML();
+
+		console.log(window.DH.get_all_spells());
 
 		
 	</script>

@@ -1,0 +1,25 @@
+table.alternating > tbody > tr:nth-child(odd) {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+table.alternating > tbody > tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.air_row {
+	background-color: rgba(255,255,255,1);
+}
+.earth_row {
+	background-color: rgba(0,255,0,0.1);
+}
+.fire_row {
+	background-color: rgba(255,0,0,0.1);
+}
+.water_row {
+	background-color: rgba(0,0,255,0.3);
+}
+.void_row {
+	background-color: rgba(0,0,0,0.9);
+	color: white;
+}
+
+

@@ -1,0 +1,11 @@
+.all_spells {
+	display: none;
+}
+
+.all_spells.active {
+	display:  block;
+}
+
+.all_spells_tab.active {
+	background-color: red;
+}

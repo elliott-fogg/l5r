@@ -14,12 +14,7 @@ input.optional {
 }
 
 /* Alternate shading of table rows, if table labelled as .alternating */
-table.alternating > tbody > tr:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.05);
-}
-table.alternating > tbody > tr:nth-child(even) {
-	background-color: rgba(0, 0, 0, 0.1);
-}
+
 .no-bg {
 	background-color: var(--main-bg-color)
 }

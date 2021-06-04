@@ -1,0 +1,24 @@
+.topnav {
+	background-color: #9E2727;
+	padding: 5px;
+}
+
+.topnav > h2 {
+	margin: 0;
+	color: white;
+}
+
+.topnav > a {
+	margin-left: 25px;
+	padding: 5px;
+	color: white;
+	vertical-align: text-top;
+	height: 100%;
+	border-radius: 10px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.topnav > a:hover {
+	background-color: red;
+}
