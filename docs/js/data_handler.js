@@ -35,6 +35,40 @@ class DataHandler extends DataLoader {
 		return spells;
 	}
 
+	get_all_spells() {
+		var all_elements = ["Air", "Earth", "Fire", "Water", "Void", "Other"];
+		var spells = {};
+		for (let e of all_elements) {
+			spells[e] = {};
+			for (let i=1; i<=6; i++) {
+				spells[e][i] = {};
+			}
+		}
+
+		for (let spell_name in this.data.spells) {
+			var spell = this.data.spells[spell_name];
+			var element = spell.element;
+			if (!(element in spells)) {
+				element = "Other";
+			}
+			spells[element][spell.mastery_level][spell_name] = spell_name;
+		}
+
+		// Delete empty options
+		for (let e in spells) {
+			for (let r in spells[e]) {
+				if (Object.keys(spells[e][r]).length == 0) {
+					delete spells[e][r];
+				}
+			}
+			if (Object.keys(spells[e]).length == 0) {
+				delete spells[e];
+			}
+		}
+
+		return spells;
+	}
+
 	// Clan functions //////////////////////////////////////////////////////////
 	get_clans() {
 		var all_clans = new Set();
