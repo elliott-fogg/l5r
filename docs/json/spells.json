@@ -517,9 +517,7 @@
         "range": "Personal or Touch",
         "aoe": "Self or target individual",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "You call upon the kami to create an area of distraction surrounding you, drawing all attention away from you and your actions. The kami whisper in the ears of those within 20' of you (or of the target if you cast the spell on someone else), causing them to be conveniently distracted from your presence. You are not invisible, but those within 20' of you will not see you as long as you do not make any loud noises or otherwise draw attention to yourself. Those outside that distance are not distracted, however, and will see you perfectly well regardless of your action or inaction."
     },
@@ -694,8 +692,7 @@
         "aoe": "20' radius around the caster",
         "duration": "10 rounds",
         "raises": [
-            "Duration (+2 Rounds per Raise)",
-            "Special"
+            "Duration (+2 Rounds per Raise)"
         ],
         "special": null,
         "description": "The prayer commonly known as Castle of Water protects the caster by creating a physical barrier of water kami to obstruct attackers. The Castle of Air, by contrast, protects the caster by creating a cunning illusion that confuses and bewilders attackers. The Air kami create a circular barrier of false sounds and images, making it incredibly difficult for attackers to actually perceive the correct location of anyone within the bounds of the Castle of Air. An attacker may believe he is striking at the caster when he is actually swinging at empty space.\nThe circular barrier of illusions is centered on the caster. Once cast, it remains in place regardless of whether or where the caster moves. The illusions can only be fully perceived by those who were outside of the Castle of Air when it was cast; those within the Castle when it appears can easily perceive the shadowy, insubstantial nature of the illusions. If foes from outside the Castle attempt to attack those within it, the illusions will try to misdirect or fool them. Mechanically, such attackers must make a Contested Roll of their Perception against the Caster's Air each time they try to attack someone within the Castle. A success means they manage to briefly see through the illusion and may attack normally for that Round (only). A failure means the illusion tricks them and they suffer a -5k0 penalty to their attack rolls that Round. The illusions cannot affect enemy spells, since the Air kami cannot fool other kami."
