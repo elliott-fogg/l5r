@@ -1,0 +1,17 @@
+details, summary {
+	font-weight:  bold;
+}
+
+details > div {
+	margin-left:  5px;
+}
+
+details.heading > summary {
+	font-weight: bold;
+	background-color: #9E2727;
+	color: #fffcd1;
+	width: 50%;
+	margin-bottom: 5px;
+	border-radius: 9px;
+	padding-left: 5px;
+}
