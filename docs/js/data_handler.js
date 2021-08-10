@@ -69,6 +69,29 @@ class DataHandler extends DataLoader {
 		return spells;
 	}
 
+	get_all_spell_names() {
+		var spell_names = [];
+		for (let spell in this.data.spells) {
+			spell_names.push(spell);
+		}
+		return spell_names;
+	}
+
+	get_searchable_spell_names() {
+		if (this.searchable_spell_names) {
+			return this.searchable_spell_names;
+		} else {
+			var spell_names = this.get_all_spell_names();
+			var searchable_spell_names = {}
+			for (let name of spell_names) {
+				let search_name = name.replace(/[\.'"\(\)’]/g, "").toLowerCase();
+				searchable_spell_names[search_name] = name;
+			}
+			this.searchable_spell_names = searchable_spell_names;
+			return searchable_spell_names;
+		}
+	}
+
 	// Clan functions //////////////////////////////////////////////////////////
 	get_clans() {
 		var all_clans = new Set();
