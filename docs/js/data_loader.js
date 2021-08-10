@@ -20,8 +20,6 @@ class DataLoader {
 
 		this.additional_init();
 
-		this.start_time = performance.now();
-
 		console.log(`window.location: '${window.location}'`);
 		console.log(`window.location.hostname: '${window.location.hostname}'`);
 		// Not entirely sure how this works at the moment, need to manually set it for now.
@@ -37,6 +35,8 @@ class DataLoader {
 	}
 
 	execute_on_load(func) {
+		console.log("Adding callback")
+		console.log(func);
 		if (this.loaded) {
 			func();
 		} else {
@@ -58,25 +58,51 @@ class DataLoader {
 		console.groupEnd();
 	}
 
-	async load_data(url, data_name) {
-		var promise = fetch(url);
-
-		this.data_promises.push(promise);
-
-		promise.then(response => {
-			if (response.status != 200) {
-				console.log(`Fetch request for url ${url} failed. ` +
-				            `Status Code: ${response.status}.`);
-				return;
-			}
-			return response.json();
-		}).then(json_data => {
-			this.data[data_name] = json_data;
+	load_data(url, data_name) {
+		// Required to make storing the data part of the Promise
+		var data_promise = new Promise((resolve, reject) => {
+			fetch(url).then(response => {
+				if (response.status != 200) {
+					console.log(`Fetch request for url ${url} failed. ` +
+					            `Status Code: ${response.status}.`);
+					return;
+				}
+				return response.json();
+			}).then(json_data => {
+				this.data[data_name] = json_data;
+				resolve();
+			})
+			.catch(err => {
+				console.log("Error with url " + url + "\nFetch Error :-S", err);
+				resolve();
+			})
 		})
-		.catch(err => {
-			console.log("Error with url " + url + "\nFetch Error :-S", err);
-		})
+
+		this.data_promises.push(data_promise);
 	}
+
+	// async load_data(url, data_name) {
+	// 	var promise = fetch(url);
+
+	// 	this.data_promises.push(promise);
+
+	// 	console.log(promise);
+	// 	console.log(this.data_promises);
+
+	// 	promise.then(response => {
+	// 		if (response.status != 200) {
+	// 			console.log(`Fetch request for url ${url} failed. ` +
+	// 			            `Status Code: ${response.status}.`);
+	// 			return;
+	// 		}
+	// 		return response.json();
+	// 	}).then(json_data => {
+	// 		this.data[data_name] = json_data;
+	// 	})
+	// 	.catch(err => {
+	// 		console.log("Error with url " + url + "\nFetch Error :-S", err);
+	// 	})
+	// }
 
 	// Load HTML Templates /////////////////////////////////////////////////////
 
@@ -84,38 +110,73 @@ class DataLoader {
 		console.log("CHECKING FOR include-html");
 		var elements_to_replace = document.querySelectorAll('[include-html]');
 		for (let element of elements_to_replace) {
-			var file_name = element.getAttribute("include-html");
-			element.removeAttribute("include-html");
-			this.load_html_template_from_website(element, file_name);
+			let html_promise = new Promise((resolveFunc, reject) => {
+				var file_name = element.getAttribute("include-html");
+				element.removeAttribute("include-html");
+				this.handle_load_html(element, file_name, resolveFunc)
+			});
+			this.html_promises.push(html_promise);
+			// var file_name = element.getAttribute("include-html");
+			// element.removeAttribute("include-html");
+			// this.load_html_template_from_website(element, file_name);
 		}
 	}
 
-	load_html_template_from_website(element, file_name) {
-		var promise = fetch("https://elliott-fogg.github.io/l5r/html/" +
-		                    file_name);
+	handle_load_html(element, file_name, resolveFunc) {
+		console.log("TRIGGER");
+		this.load_html_template_from_website(element, file_name, resolveFunc);
+	}
 
-		this.html_promises.push(promise);
-
-		promise.then(response => {
+	load_html_template_from_website(element, file_name, resolveFunc) {
+		fetch("https://elliott-fogg.github.io/l5r/html/" + file_name)
+		.then(response => {
 			console.groupCollapsed("Load HTML file: " + file_name);
 			console.log("Response URL: " + response.url);
 			console.log("Response Status: " + response.status);
 			console.groupEnd();
-	    	if (response.status == 200) {
-	    		return response.text();
-	    	} else {
-	    		this.element_failed_load(element, file_name);
-	    		return null;
-	    	}
+			if (response.status == 200) {
+				return response.text();
+			} else {
+				this.element_failed_load(element, file_name, resolveFunc);
+				return null;
+			}
 		}).then(html => {
 			if (html) {
 				element.innerHTML = html;
 				this.check_for_html_templates();
 			}
-	    }).catch(err => {
-	    	console.warn("Could not load HTML template.", err);
-	    	this.element_failed_load(element, file_name);
+		}).catch(err => {
+			console.warn("Could not load HTML template.", err);
+			this.element_failed_load(element, file_name);
 		});
+
+		resolveFunc();
+
+		// var promise = fetch("https://elliott-fogg.github.io/l5r/html/" +
+		//                     file_name);
+
+		// this.html_promises.push(promise);
+
+		// promise.then(response => {
+		// 	console.groupCollapsed("Load HTML file: " + file_name);
+		// 	console.log("Response URL: " + response.url);
+		// 	console.log("Response Status: " + response.status);
+		// 	console.groupEnd();
+	 //    	if (response.status == 200) {
+	 //    		return response.text();
+	 //    	} else {
+	 //    		this.element_failed_load(element, file_name);
+	 //    		return null;
+	 //    	}
+		// }).then(html => {
+		// 	if (html) {
+		// 		element.innerHTML = html;
+		// 		this.check_for_html_templates();
+		// 	}
+	 //    }).catch(err => {
+	 //    	console.warn("Could not load HTML template.", err);
+	 //    	this.element_failed_load(element, file_name);
+		// });
 	}
 
 	element_failed_load(element, message=null) {
@@ -130,6 +191,8 @@ class DataLoader {
 	async await_data() {
 		await Promise.all([Promise.all(this.data_promises),
 		                  Promise.all(this.html_promises)]);
+		console.log(this.data_promises);
+		console.log(this.html_promises);
 		this.complete_function();
 	}
 
@@ -145,6 +208,7 @@ class DataLoader {
 		this.loaded = true;
 
 		if (this.callbacks.length > 0) {
+			console.log(this.callbacks);
 			console.log("Executing Callbacks!");
 			for (let i=0; i < this.callbacks.length; i++) {
 				console.group(`Callback ${i+1}`);

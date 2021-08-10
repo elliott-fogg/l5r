@@ -29,7 +29,8 @@ class DataTester extends DataHandler {
 	additional_init() {
 		this.document_ready = false;
 		this.data_loaded = false;
-		this.templates = [];
+		this.queued_templates = [];
+		this.html_query_promises = [];
 		this.debounce_ask = false;
 	}
 
@@ -119,37 +120,51 @@ class DataTester extends DataHandler {
 
 	// Load local HTML templates ///////////////////////////////////////////////
 
-	// Overwrite method to give me the option of uploading a local file, using
-	// an online one, or just skipping the template.
-	check_for_html_templates() {
-		var elements_to_replace = document.querySelectorAll('[include-html]');
-
-		console.log(elements_to_replace);
-
-		for (let element of elements_to_replace) {
-			let file_name = element.getAttribute("include-html");
-			this.templates.push( [element, file_name] );
-			element.removeAttribute("include-html");
-		}
-		this.debounce_ask_html_templates();
+	// Extend the Promises to include HTML Query Promises
+	async await_data() {
+		await Promise.all([Promise.all(this.data_promises),
+		                   Promise.all(this.html_promises),
+		                   Promise.all(this.html_query_promises)]);
+		this.complete_function();
 	}
 
-	debounce_ask_html_templates() {
-		var t = `${this.debounce_ask}`;
-		if (this.debounce_ask == false) {
-			this.ask_html_templates();
-		}
+	// //
+	// check_for_html_templates() {
+	// 	var elements_to_replace = document.querySelectorAll('[include-html]');
+
+	// 	console.log(elements_to_replace);
+
+	// 	for (let element of elements_to_replace) {
+	// 		let html_query_promise = new Promise((resolve, reject) => {
+	// 			let file_name = element.getAttribute("include-html");
+	// 			element.removeAttribute("include-html");
+
+	// 			this.queued_templates.push( [element, file_name, resolve] );
+	// 		});
+	// 		this.html_query_promises.push(html_query_promise);
+	// 	}
+
+	// 	this.ask_html_templates();
+	// }
+
+	handle_load_html(element, file_name, resolveFunc) {
+		this.queued_templates.push( [element, file_name, resolveFunc] );
+		this.ask_html_templates();
 	}
+
+	// debounce_ask_html_templates() {
+	// 	var t = `${this.debounce_ask}`;
+	// 	if (this.debounce_ask == false) {
+	// 		this.ask_html_templates();
+	// 	}
+	// }
 
 	async ask_html_templates() {
-		this.debounce_ask = true;
-
-		if (this.templates.length == 0) {
-			this.debounce_ask = false;
+		if (this.queued_templates.length == 0) {
 			return;
 		}
 
-		var [element, file_name] = this.templates.shift();
+		var [element, file_name, resolve] = this.queued_templates.shift();
 
 		console.groupCollapsed("Asking about HTML File: " + file_name);
 		console.log(element);
@@ -167,9 +182,9 @@ class DataTester extends DataHandler {
 
 		if (input_data) {
 			if (input_data["use_local"]) {
-				this.load_local_template(element, input_data["local_file"]);
+				this.load_local_template(element, input_data["local_file"], resolve);
 			} else {
-				this.load_html_template_from_website(element, file_name);
+				this.load_html_template_from_website(element, file_name, resolve);
 			}
 		} else {
 			this.element_failed_load(element, `${file_name} (ignored)`);
@@ -178,14 +193,14 @@ class DataTester extends DataHandler {
 		this.ask_html_templates();
 	}
 
-	load_local_template(element, local_file) {
-		// console.log(local_file)
+	load_local_template(element, local_file, resolve) {
 		var fr = new FileReader();
 		fr.addEventListener("load", e => {
 			element.innerHTML = fr.result;
-		});
+			console.log(`${local_file} loaded`);
+			resolve();
+		})
 		fr.readAsText(local_file);
-		element.removeAttribute("include-html");
 	}
 
 	// Tests ///////////////////////////////////////////////////////////////////
