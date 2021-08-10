@@ -3,6 +3,8 @@
 <head>
 	<title>L5R Roller</title>
 	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/data_loader.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
 	<link rel="stylesheet" href="css/dice_roller.css">
 </head>
 <body>
@@ -10,12 +12,10 @@
 	<h1>L5R Dice Roller</h1>
 	<p>A Dice Roller for use in our L5R Campaign</p>
 
-	<div id="dice_roller_content">
-		<p>DICE_ROLLER_PLACEHOLDER</p>
-	</div>
+	<div include-html="dice_roller.html">
 
 	<script>
-		create_dice_roller("dice_roller_content")
+		// create_dice_roller("dice_roller_content")
 	</script>
 
 </body>
