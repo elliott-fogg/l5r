@@ -1,0 +1,22 @@
+details {
+	margin-top: 5px;
+	margin-bottom: 5px; /* Add a buffer at the bottom of each collapsible */
+}
+
+details > summary {
+	user-select: none; /* Don't let the user highlight the title */
+	padding-left: 2px;
+	white-space: nowrap; /* Prevent title from folding */
+	cursor: pointer;
+	font-weight: bold;
+}
+
+details > summary > p {
+	display: inline;
+	margin-right: 10px;
+}
+
+details > div {
+	display: block;
+	padding-left: 20px; /* Indent content slightly by default */
+}
