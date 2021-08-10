@@ -35,7 +35,7 @@
 
 	<!-- Collapsible Divs -->
 	<script type="text/javascript" src="js/collapsible_divs.js"></script>
-	<link rel="stylesheet" href="css/collapsible_divs.css">	
+	<link rel="stylesheet" href="css/collapsible_details.css">	
 
 	<script type="text/javascript">
 
@@ -83,6 +83,100 @@
 	<hr>
 
 	<!-- Family and School Select -->
+	<details class="heading" open>
+		<summary>Family and School Select</summary>
+		<div>
+			<table>
+				<tr>
+					<td><b>Family:</b></td>
+					<td><select id="character_family_select"></select></td>
+				</tr>
+				<tr>
+					<td><b>School:</b></td>
+					<td><select id="character_school_select"></select></td>
+				</tr>
+			</table>
+			<p class="note" id="different_clans_note" style="display: none">
+				Note: Due to picking a school of a different Clan than your Family,
+				<br> you have taken the "Different Schools" advantage.
+			</p>
+
+			<div style="margin-top: 10px">
+				<p><b>School Skill Choices:</b></p>
+				<div id="skill_choices_div" style="margin-left: 15px"></div>
+			</div>
+
+			<!-- Traits and Skills Tables -->
+			<details class="subheading closed">
+				<summary>Character Stats</summary>
+				<div >
+
+					<div class="spaced">
+						<p><b>Experience:</b> <span id="experience_display">0</span></p>
+						<p><b>Insight:</b> <span id="insight_display">0</span></p>
+						<p><b>Rank:</b> <span id="rank_display">0</span></p>
+					</div>
+					
+					<div style="display: flex">
+
+						<table style="margin-right: 25px" class="alternating">
+							<thead>
+								<tr>
+									<td><b><u>Trait</u></b></td>
+									<td><u>Rank</u></td>
+								</tr>
+							</thead>
+							<tbody id="trait_tbody">
+							</tbody>
+						</table>
+
+						<table style="margin-right: 25px" class="alternating">
+							<thead>
+								<tr>
+									<td><b><u>Skill</u></b></td>
+									<td><u>Rank</u></td>
+									<td><u>Emphases</u></td>
+								</tr>
+							</thead>
+							<tbody id="skill_tbody">
+							</tbody>
+						</table>
+
+						<table class="alternating">
+							<thead><tr><td><b><u>Stats</u></b></td></tr></thead>
+
+							<tr>
+								<td>Honor:</td>
+								<td id="honor_rank">1</td>
+							</tr>
+							<tr>
+								<td>Glory:</td>
+								<td id="glory_rank">1</td>
+							</tr>
+							<tr>
+								<td>Status:</td>
+								<td id="status_rank">1</td>
+							</tr>
+						</table>
+
+					</div>
+
+				</div>
+			</details>
+
+			<!-- Techniques -->
+			<details class="subheading">
+				<summary>Techniques</summary>
+				<div id="techniques_div" style="max-width: 50%">
+					<p>None</p>
+				</div>
+			</details>
+
+		</div>
+	</details>
+
+<!-- 
+
 	<div class="collapsible-div-container heading">
 		<div class="collapsible-div-title">
 			<p>Family and School Select</p>
@@ -108,7 +202,6 @@
 				<div id="skill_choices_div" style="margin-left: 15px"></div>
 			</div>
 
-			<!-- Traits and Skills Tables -->
 			<div class="collapsible-div-container subheading closed">
 				<div class="collapsible-div-title">
 					<p>Character Stats</p>
@@ -168,7 +261,6 @@
 				</div>
 			</div>
 
-			<!-- Techniques -->
 			<div class="collapsible-div-container subheading">
 				<div class="collapsible-div-title">
 					<p>Techniques</p>
@@ -179,16 +271,14 @@
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 
 
 
 	<!-- Advantages and Disadvantages -->
-	<div class="collapsible-div-container heading">
-		<div class="collapsible-div-title">
-			<p>Advantages and Disadvantages</p>
-		</div>
-		<div class="collapsible-div-content">
+	<details class="heading">
+		<summary>Advantages and Disadvantages</summary>
+		<div>
 			<div id="advantages_div">
 				<select id="advantage_select"></select>
 				<table id="adv_table" class="alternating" width="50%">
@@ -220,14 +310,12 @@
 			</div>
 
 		</div>
-	</div>
+	</details>
 
 	<!-- Spells -->
-	<div class="collapsible-div-container heading disabled" id="spells_container">
-		<div class="collapsible-div-title">
-			<p>Spells (Shugenja only)</p>
-		</div>
-		<div class="collapsible-div-content">
+	<details class="heading disabled" id="spells_container">
+		<summary>Spells (Shugenja only)</summary>
+		<div>
 			<div>
 				<p><b>Affinity:</b></p>
 				<p id="p_affinity" style="margin-right: 20px">UNKNOWN</p>
@@ -264,37 +352,30 @@
 			<br>
 
 			<!-- List of All Spells -->
-			<div class="collapsible-div-container subheading closed">
-				<div class="collapsible-div-title">
-					<p>All Spells</p>
-				</div>
-				<div class="collapsible-div-content" id="all_spells">
-				</div>
+			<details class=" subheading closed">
+				<summary>All Spells</summary>
+				<div id="all_spells"></div>
 			</div>
 
 		</div>
-	</div>
+	</details>
 
 	<!-- Equipment -->
-	<div class="collapsible-div-container heading">
-		<div class="collapsible-div-title">
-			<p>Starting Equipment (WIP)</p>
-		</div>
-		<div class="collapsible-div-content">
+	<details class="heading">
+		<summary>Starting Equipment (WIP)</summary>
+		<div>
 			<p><b>Money:</b></p>
 			<p id="money_display">MONEY_GOES_HERE</p>
 			<br>
 			<p><b>Gear:</b></p>
 			<p id="gear_display">EQUIPMENT_GOES_HERE</p>
 		</div>
-	</div>
+	</details>
 
 	<!-- Personal Information -->
-	<div class="collapsible-div-container heading closed">
-		<div class="collapsible-div-title">
-			<p class="advantage">Personal Information</p>
-		</div>
-		<div class="collapsible-div-content">
+	<details class="heading closed">
+		<summary class="advantage">Personal Information</summary>
+		<div>
 
 			<label>Physical Description</label>
 			<br>
@@ -308,35 +389,30 @@
 				placeholder="Parents, Siblings, Spouse, Children, etc."></textarea>
 
 		</div>
-	</div>
+	</details>
 
 	<!-- Additional Effects -->
-	<div class="collapsible-div-container heading closed disabled">
-		<div class="collapsible-div-title">
-			<p>Additional Effects (WIP)</p>
-		</div>
-		<div class="collapsible-div-content">
+	<details class="heading closed disabled">
+		<summary>Additional Effects (WIP)</summary>
+		<div>
 			<select>
 				<option value="" style="display:none" selected>Apply an effect...</option>
 				<option>Ronin</option>
 			</select>
-			<div id="effects_div">
-				<div class="collapsible-div-container">
-					<div class="collapsible-div-title">
-						<p>Ronin</p>
-					</div>
-					<div class="collapsible-div-content">
-						<p>No extra exp.<br>
-							Status 0<br>
-							Glory 0<br>
-							Starting koku halved<br>
-							No advantages that grant wealth or status<br>
-							Ascetic is allowed<br>
-							Fill out travelling pack in advance<br>
-						</p>
-					</div>
-				</div>
-			</div>
+
+			<details>
+				<summary>Ronin</summary>
+				<ul>
+					<li>No Extra Exp.</li>
+					<li>Status 0</li>
+					<li>Glory 0</li>
+					<li>Starting Koku is halved</li>
+					<li>No advantages that grant wealth or status</li>
+					<li>Ascetic is allowed</li>
+					<li>Fill out travelling pack in advance</li>
+				</ul>
+			</details>
+
 		</div>
 	</div>
 
