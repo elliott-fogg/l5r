@@ -42,7 +42,7 @@ span.roll_text {
 	margin-left: 2px;
 	background-color: #faeebb;
 	margin-top: 0px;
-	transform: translateY(-10px);
+	transform: translateY(10px);
 }
 
 .red_round_rectangle {
