@@ -3,9 +3,37 @@
 }
 
 .all_spells.active {
-	display:  block;
+	display: block;
+}
+
+.all_spells_tab {
+	user-select: none;
+	cursor: pointer;
+}
+
+.all_spells_tab:hover {
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .all_spells_tab.active {
-	background-color: red;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.all_spells > details > summary:hover {
+	color: #6b6b6b;
+}
+
+.clickable_spell_name {
+	cursor: pointer;
+	user-select:  none;
+}
+
+.clickable_spell_name:hover {
+	color: #6b6b6b;
+}
+
+.clickable_spell_name.current {
+	font-weight: bold;
+	font-style: italic;
 }

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spell Caster</title>
+	<script type="text/javascript" src="js/spell_roller.js"></script>
+	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/data_loader.js"></script>
+	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/data_tester.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
+	<script type="text/javascript" src="js/collapsible_divs.js"></script>
+	<link rel="stylesheet" href="css/details.css">
+	<link rel="stylesheet" href="css/dice_roller.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<link rel="stylesheet" href="css/all_spells.css">
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+	<h1>L5R Generic Spell Caster</h1>
+
+	<p>The Spellcasting roll for a spell, with no raises, is Roll 'Ring of Spell Element + School Rank + Affinity - Deficiency' Keep 'Ring of Spell Element + Affinity - Deficiency'.
+
+	The TN for a spell is the Spell Level * 5, + 5. So a Spell of Level 1 is TN 10.
+	</p>
+
+	<details>
+		<summary>Stats</summary>
+		<div style="display: flex">
+
+			<div>
+				<table>
+					<tr>
+						<td>Affinity: </td>
+						<td>
+							<select>
+								<option value="None" selected>None</option>
+								<option value="Air">Air</option>
+								<option value="Earth">Earth</option>
+								<option value="Fire">Fire</option>
+								<option value="Water">Water</option>
+								<option value="Void">Void</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Deficiency: </td>
+						<td>
+							<select>
+								<option value="None" selected>None</option>
+								<option value="Air">Air</option>
+								<option value="Earth">Earth</option>
+								<option value="Fire">Fire</option>
+								<option value="Water">Water</option>
+								<option value="Void">Void</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<p id="affinity_warning">WARNING</p>
+			</div>
+
+			<div>
+				<label><b><u>Traits</u></b></label><br>
+				<table>
+					<tr>
+						<td>Air</td>
+						<td><input type="number" value=2 min=2 max=10></td>
+					</tr>
+					<tr>
+						<td>Earth</td>
+						<td><input type="number" value=2 min=2 max=10></td>
+					</tr>
+					<tr>
+						<td>Fire</td>
+						<td><input type="number" value=2 min=2 max=10></td>
+					</tr>
+					<tr>
+						<td>Water</td>
+						<td><input type="number" value=2 min=2 max=10></td>
+					</tr>
+					<tr>
+						<td>Void</td>
+						<td><input type="number" value=2 min=2 max=10></td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</details>
+
+	<h4>Spell Roller</h4>
+	<div>
+		<h4 id="current_spell-name">SPELL_NAME</h4>
+		<p id="current_spell-element_level">SPELL_ELEMENT_AND_LEVEL</p>
+		<p id="current_spell-description">SPELL_DESCRIPTION</p>
+		<div id="current_spell-raises">SPELL_RAISES</div>
+	</div>
+	
+	<details>
+		<summary>Additional Options</summary>
+		<ul>
+			<li>
+				<label>
+					Manual Roll: 
+					<input type="checkbox" id="manual_roll_checkbox">
+				</label>
+			</li>
+		</ul>
+	</details>
+	
+	<div include-html="dice_roller.html">DICE_ROLLER_HERE</div>
+
+	<details id="saved_spells_details">
+		<summary>Learned Spells</summary>
+		<div id="saved_spells_div"></div>
+	</details>
+
+	<input type="text" id="spell_search_box" oninput="refresh_spell_search_results()"
+		placeholder="Search for a spell...">
+	<div id="spell_search_results"></div>
+
+	<div include-html="full_spell_list.html">FULL_SPELL_LIST</div>
+
+	<input type="button" value="Load Sample Spell" onclick="load_sample_spell()">
+	<input type="button" value="Load All Spells" onclick="load_all_spell_names()">
+
+	<script>
+		window.DH = new DataTester();
+		window.DH.execute_on_load(spell_roller_main);
+	</script>
+
+</body>
+</html>
