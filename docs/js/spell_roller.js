@@ -1,46 +1,28 @@
-var sample_spell = {
-        "title": "Arrow's Flight",
-        "element": "Air",
-        "mastery_level": "1",
-        "keywords": [
-            "Battle"
-        ],
-        "range": "Touch",
-        "aoe": "1 arrow",
-        "duration": "3 Rounds",
-        "raises": [
-            "Duration (+1 Round per Raise)",
-            "Special (one additional arrow per Raise)"
-        ],
-        "special": "SOME SPECIAL TEXT",
-        "description": "A prayer used by shugenja to aid bushi when an arrow absolutely must hit its target. The shugenja entreats the Air kami to play a game by guiding the arrow, and if the arrow is fired within the duration of the spell, it will unerringly strike its target. (It must still be fired by someone with a minimal understanding of archery - at least one Rank of Kyujutsu.) However, because it is the kami who ultimately ensure the arrow will hit, the shot cannot benefit from the effects of Raises or Techniques."
-    }
-
 window.saved_spells = [];
 
 // Spell Information ///////////////////////////////////////////////////////////
 
-function load_sample_spell() {
-	load_spell(sample_spell["title"], sample_spell["keywords"], 
-	           sample_spell["element"], sample_spell["mastery_level"],
-	           sample_spell["description"], sample_spell["range"],
-	           sample_spell["aoe"], sample_spell["duration"],
-	           sample_spell["special"], sample_spell["raises"])
-}
-
 function load_spell(title, keywords, element, level, description, range, aoe,
                     duration, special, raises) {
 	window.current_spell = title;
+
+	document.getElementById("spell_info_placeholder").style.display = "none";
+	document.getElementById("spell_info").style.display = "block";
+	document.getElementById("spell_info").open = true;
+
+	document.getElementById("current_spell-tn").innerHTML = 
+													construct_spell_tn(level);
+
 	document.getElementById("current_spell-name").innerHTML = 
 										construct_spell_title(title, keywords);
 	document.getElementById("current_spell-element_level").innerHTML = 
 										construct_element_level(element, level);
 	document.getElementById("current_spell-description").innerHTML = 
 		construct_spell_description(description, range, aoe, duration, special);
-	document.getElementById("current_spell-raises").innerHTML = "";
 
+	document.getElementById("current_spell-raises").innerHTML = "";
 	document.getElementById("current_spell-raises").appendChild(
-		construct_spell_raises(raises, level));
+		construct_spell_raises_info(raises, level));
 
 	load_all_spell_names();
 	refresh_saved_spells();
@@ -54,6 +36,10 @@ function load_spell_by_name(spell_name) {
 	           s["special"], s["raises"]);
 }
 
+function construct_spell_tn(level) {
+	return `<b><u>Base Spell TN:</u></b> ${5 * level + 5}`;
+}
+
 function construct_spell_title(title, keywords=null) {
 	var output = title;
 	if (keywords.length > 0) {
@@ -64,7 +50,7 @@ function construct_spell_title(title, keywords=null) {
 }
 
 function construct_element_level(element, level) {
-	return `${element} ${level}`
+	return `<b>Ring/Mastery:</b> ${element} ${level}`
 }
 
 function construct_spell_description(description, range, aoe, duration,
@@ -80,6 +66,27 @@ function construct_spell_description(description, range, aoe, duration,
 	output_text += description;
 
 	return output_text;
+}
+
+function construct_spell_raises_info(raises, level) {
+	var main_div = document.createElement("div");
+	if (raises.length > 0) {
+		raises_title = document.createElement("p");
+		raises_title.innerHTML = "<b>Possible Raises:</b>";
+		
+		raises_list = document.createElement("ul");
+
+		for (let r of raises) {
+			raise_item = document.createElement("li");
+			raise_item.innerHTML = r;
+			raises_list.appendChild(raise_item);
+		}
+
+		main_div.appendChild(raises_title);
+		main_div.appendChild(raises_list);
+
+	}
+	return main_div;
 }
 
 function construct_spell_raises(raises, level) {
@@ -105,7 +112,6 @@ function construct_spell_raises(raises, level) {
 // Spell Selectors /////////////////////////////////////////////////////////////
 
 function load_all_spell_names() {
-	console.log("Loading all spells");
     var spells = {
         "Air": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
         "Earth": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
@@ -123,8 +129,6 @@ function load_all_spell_names() {
     for (let element in spells) {
 
     	for (let level in spells[element]) {
-    		console.log(element, level);
-    		console.log(document.getElementById(`Air-1-spells-content`));
     		var content_div = document.getElementById(`${element}-${level}-spells-content`);
     		content_div.innerHTML = "";
 
@@ -140,8 +144,6 @@ function refresh_saved_spells() {
 	saved_spells_div.innerHTML = "";
 
 	document.getElementById("saved_spells_details").open = true;
-
-	console.log(window.saved_spells);
 
 	for (let spell_name of window.saved_spells) {
 		saved_spells_div.appendChild(make_spell_div(spell_name, true, true));
@@ -205,26 +207,6 @@ function make_spell_div(spell_name, include_element=false, saved_spell=false) {
 	spell_div.classList.add("clickable_spell_name");
 
 	return spell_div;
-}
-
-function all_spells_change_page(event) {
-
-	var all_spells_tabs = document.querySelectorAll(".all_spells_tab");
-	for (let tab of all_spells_tabs) {
-		tab.classList.remove("active");
-	}
-
-	event.target.classList.add("active");
-	var selected_page = event.target.innerHTML;
-
-	console.log("Selected All Spells page", selected_page);
-
-	for (let page_name of ["Air", "Earth", "Fire", "Water", "Void"]) {
-		let elem = document.getElementById(`${page_name}-spells-content`);
-		elem.classList.remove("active");
-	}
-	var select_elem = document.getElementById(`${selected_page}-spells-content`);
-	select_elem.classList.add("active");
 }
 
 function update_spell_roller() {

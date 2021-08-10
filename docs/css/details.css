@@ -20,3 +20,15 @@ details > div {
 	display: block;
 	padding-left: 20px; /* Indent content slightly by default */
 }
+
+details.disabled {
+	color: grey;
+}
+
+details p {
+	margin: 0;
+}
+
+details ul {
+	margin: 0;
+}

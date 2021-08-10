@@ -37,3 +37,7 @@
 	font-weight: bold;
 	font-style: italic;
 }
+
+details > ul {
+	margin: 0;
+}
