@@ -239,7 +239,7 @@
             "Area (5 square feet)."
         ],
         "special": null,
-        "description": "While the Crane would go without an organized shugenja family or order until the Asahina would be founded centuries after the clan\u2019s founding, a few of Doji\u2019s followers had a talent for speaking with the kami. They focused on the arts of peace and meditation, and this spell was one of their first attempts to bring the harmony of the Elements to a samurai. While this spell is active, all rolls based on Void and Awareness gain a +1k0 bonus when made within the area of effect, and all hostile actions suffer a -1k0 penalty. Hostile actions based on Awareness (such as threatening someone with Intimidation) suffer a -2k0 penalty instead of the previous, self-negating, effects. The caster of this spell may use the Meditation Skill without breaking the concentration required to maintain it."
+        "description": "While the Crane would go without an organized shugenja family or order until the Asahina would be founded centuries after the clan's founding, a few of Doji's followers had a talent for speaking with the kami. They focused on the arts of peace and meditation, and this spell was one of their first attempts to bring the harmony of the Elements to a samurai. While this spell is active, all rolls based on Void and Awareness gain a +1k0 bonus when made within the area of effect, and all hostile actions suffer a -1k0 penalty. Hostile actions based on Awareness (such as threatening someone with Intimidation) suffer a -2k0 penalty instead of the previous, self-negating, effects. The caster of this spell may use the Meditation Skill without breaking the concentration required to maintain it."
     },
     "Call Upon The Wind": {
         "title": "Call Upon The Wind",
@@ -314,15 +314,15 @@
         "element": "Air",
         "mastery_level": "2",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One individual",
         "duration": "Three rounds",
         "raises": [
             "Duration (One round)",
-            "Range (10\u2019)"
+            "Range (10')"
         ],
         "special": null,
-        "description": "An early attempt to use the magic of Air to gain advantage against the unwary, the Soshi family devised this spell to delay those who had stumbled upon their Clan\u2019s machinations, or to cover their tracks. Once this spell is cast, the next thing the victim sees that seems unusual or out of the ordinary instead appears completely normal to them. This does not change the victim\u2019s reaction, it simply clouds their perceptions such that they believe they are seeing something they expect to see, or at least something not unusual at all. A guard under the influence of this spell, for example, might walk through his regular patrol and see an undisturbed room rather than the ransacked mess a thief had left behind.\nThis spell only affects vision, so the victim is allowed an Investigation roll against a TN of the caster\u2019s Air x 5 if there are subtle clues betraying the illusion (such as stepping on a bit of spilled sake). Any major clues (such as screaming coming from the changed scene or tripping over an object covered by the illusion) ends the effect immediately."
+        "description": "An early attempt to use the magic of Air to gain advantage against the unwary, the Soshi family devised this spell to delay those who had stumbled upon their Clan's machinations, or to cover their tracks. Once this spell is cast, the next thing the victim sees that seems unusual or out of the ordinary instead appears completely normal to them. This does not change the victim's reaction, it simply clouds their perceptions such that they believe they are seeing something they expect to see, or at least something not unusual at all. A guard under the influence of this spell, for example, might walk through his regular patrol and see an undisturbed room rather than the ransacked mess a thief had left behind.\nThis spell only affects vision, so the victim is allowed an Investigation roll against a TN of the caster's Air x 5 if there are subtle clues betraying the illusion (such as stepping on a bit of spilled sake). Any major clues (such as screaming coming from the changed scene or tripping over an object covered by the illusion) ends the effect immediately."
     },
     "Hidden Visage": {
         "title": "Hidden Visage",
@@ -557,8 +557,8 @@
         "special": null,
         "description": "A skilled shugenja can petition the kami to create incredibly elaborate illusions to obscure one's identity and appearance. You may use this spell to adopt the appearance of any humanoid creature of approximately the same size, up to one foot taller or shorter than you. You could use this spell to assume the guise of a kenku, for example, because they roughly the same size as humans. A goblin or an ogre would be impossible, however, because they are too short and too large, respectively."
     },
-    "Master Cloud\u2019S Eyes": {
-        "title": "Master Cloud\u2019S Eyes",
+    "Master Cloud's Eyes": {
+        "title": "Master Cloud's Eyes",
         "element": "Air",
         "mastery_level": "3",
         "keywords": [
@@ -571,7 +571,7 @@
             "Duration (+1 minute)"
         ],
         "special": null,
-        "description": "The kami can share the vision of others. You may view the world through the eyes of another living creature within your line of sight. You only see, you do not experience any of the target\u2019s other senses, and you have no control over what the target looks at. For the duration of this spell, any Perception-based rolls you make for your own body suffer a -2k2 penalty, due to the distraction created by the spell."
+        "description": "The kami can share the vision of others. You may view the world through the eyes of another living creature within your line of sight. You only see, you do not experience any of the target's other senses, and you have no control over what the target looks at. For the duration of this spell, any Perception-based rolls you make for your own body suffer a -2k2 penalty, due to the distraction created by the spell."
     },
     "Soul Of Kaze-no-kami": {
         "title": "Soul Of Kaze-no-kami",
@@ -1049,7 +1049,7 @@
             "Duration (+1 Round per 3 Raises)"
         ],
         "special": "Must be Phoenix Clan shugenja",
-        "description": "Known only to true masters of magic, this spell is a secret of the Phoenix and has never been intentionally shared with any other shugenja school, not even the Imperial one. It is considered a sacred trust among the most high-ranking of Phoenix priests, and not even all of the Elemental Masters have been considered worthy of its power\u2026 for to abuse this prayer is to call down the very wrath of Heaven.\nThis prayer calls for the direct attention of a Fortune named by the shugenja. It may only be performed within a temple or shrine specifically devoted to that Fortune, and may never be cast more than once a month lest it anger the entirety of Tengoku. If the spell is successfully cast, a mote of the Fortune's essence will manifest within the shrine's sacred icon and the shugenja will be permitted to briefly commune with the divine being. The Fortune is neither compelled to answer questions asked nor to fulfill boons requested, and the utmost reverence must be maintained lest its immediate and terrible wrath be unleashed. However, if true reverence is offered and the cause is worthy, the Fortune may offer help available nowhere else."
+        "description": "Known only to true masters of magic, this spell is a secret of the Phoenix and has never been intentionally shared with any other shugenja school, not even the Imperial one. It is considered a sacred trust among the most high-ranking of Phoenix priests, and not even all of the Elemental Masters have been considered worthy of its power... for to abuse this prayer is to call down the very wrath of Heaven.\nThis prayer calls for the direct attention of a Fortune named by the shugenja. It may only be performed within a temple or shrine specifically devoted to that Fortune, and may never be cast more than once a month lest it anger the entirety of Tengoku. If the spell is successfully cast, a mote of the Fortune's essence will manifest within the shrine's sacred icon and the shugenja will be permitted to briefly commune with the divine being. The Fortune is neither compelled to answer questions asked nor to fulfill boons requested, and the utmost reverence must be maintained lest its immediate and terrible wrath be unleashed. However, if true reverence is offered and the cause is worthy, the Fortune may offer help available nowhere else."
     },
     "Wind Of The Moon": {
         "title": "Wind Of The Moon",
@@ -1080,7 +1080,7 @@
             "Duration (1 additional month per 3 Raises)"
         ],
         "special": null,
-        "description": "This secret spell is an important element in the Kolat\u2019s methods for creating sleeper agents, but even when used by itself it is a potent weapon in the conspiracy\u2019s arsenal. The Kolat typically use this spell when it is vitally necessary to conceal their operations without actually killing someone - typically because the person in question is too important to be easily disposed of.\nCasting this spell requires the caster to hold the target by the head and focus on him for 8 hours uninterrupted; typically, the target will be bound to prevent interruptions. If contact with the target is broken for more than 3 minutes the spell will fail. At the end of 8 hours the shugenja makes a Contested Insight/Air roll against the target. If the shugenja wins the roll, the target\u2019s thoughts and memories are rewritten and rearranged in whatever way the caster prefers. Mental Advantages and Disadvantages cannot be changed, but the target may be made to think he is someone else, to forget something that happened, to remember events or persons differently, and so forth. (This does not grant any Skill ranks, Techniques, or other actual capabilities. The target may believe he is the Elemental Master of Fire but this will not make him capable of casting spells.)"
+        "description": "This secret spell is an important element in the Kolat's methods for creating sleeper agents, but even when used by itself it is a potent weapon in the conspiracy's arsenal. The Kolat typically use this spell when it is vitally necessary to conceal their operations without actually killing someone - typically because the person in question is too important to be easily disposed of.\nCasting this spell requires the caster to hold the target by the head and focus on him for 8 hours uninterrupted; typically, the target will be bound to prevent interruptions. If contact with the target is broken for more than 3 minutes the spell will fail. At the end of 8 hours the shugenja makes a Contested Insight/Air roll against the target. If the shugenja wins the roll, the target's thoughts and memories are rewritten and rearranged in whatever way the caster prefers. Mental Advantages and Disadvantages cannot be changed, but the target may be made to think he is someone else, to forget something that happened, to remember events or persons differently, and so forth. (This does not grant any Skill ranks, Techniques, or other actual capabilities. The target may believe he is the Elemental Master of Fire but this will not make him capable of casting spells.)"
     },
     "Wrath Of Kaze-no-kami (Hurricane)": {
         "title": "Wrath Of Kaze-no-kami (Hurricane)",
@@ -1252,8 +1252,8 @@
         "special": null,
         "description": "This spell fills the target's soul with the firm and unyielding strength of stone. For the duration of the spell, the target's feelings are immovable, and any attempt to divert or distract him will be resisted with supernatural determination. He gains a +3k0 bonus to any rolls made to resist emotional manipulation or the distractions of desire, including Courtier (Manipulation) rolls, Temptation rolls, Compulsions, and any similar effect the GM judges to be appropriate. However, this stony self-control also makes it difficult for the target to read and affect the emotions of others, and for the duration of the spell he suffers a -1k0 penalty to all Awareness Trait rolls and Awareness-related Skill Rolls made for the purpose of influencing others."
     },
-    "Stone\u2019S Endurance": {
-        "title": "Stone\u2019S Endurance",
+    "Stone's Endurance": {
+        "title": "Stone's Endurance",
         "element": "Earth",
         "mastery_level": "1",
         "keywords": [
@@ -1266,7 +1266,7 @@
             "Duration (+1 hour per Raise)"
         ],
         "special": null,
-        "description": "This spell calls on the strength of stone to enhance the target creature\u2019s physical endurance and toughness. This spell was originally devised by the Unicorn to allow their\nhorses to ride for long periods of time without tiring, but after the Unicorn returned to the Empire other clans also saw value in the spell \u2013 particularly the Crab, who found it quite useful for situations where their soldiers had to remain on duty for long periods of time. For the duration of the spell, the target is immune to being Fatigued due to a lack of rest, and is considered to have a Stamina that is one Rank higher for the purpose of any rolls or effects which specifically key on Stamina (such as resisting poisons, determining how long one can avoid drowning, etc).\nThe spell may be cast multiple times on the same target, but the Earth spirits cannot sustain the effort beyond a total of 24 consecutive hours. Once the spell expires, the target is automatically considered Fatigued until he rests for at least half as long as he was under the spell\u2019s effects."
+        "description": "This spell calls on the strength of stone to enhance the target creature's physical endurance and toughness. This spell was originally devised by the Unicorn to allow their\nhorses to ride for long periods of time without tiring, but after the Unicorn returned to the Empire other clans also saw value in the spell \u2013 particularly the Crab, who found it quite useful for situations where their soldiers had to remain on duty for long periods of time. For the duration of the spell, the target is immune to being Fatigued due to a lack of rest, and is considered to have a Stamina that is one Rank higher for the purpose of any rolls or effects which specifically key on Stamina (such as resisting poisons, determining how long one can avoid drowning, etc).\nThe spell may be cast multiple times on the same target, but the Earth spirits cannot sustain the effort beyond a total of 24 consecutive hours. Once the spell expires, the target is automatically considered Fatigued until he rests for at least half as long as he was under the spell's effects."
     },
     "Tetsubo Of Earth": {
         "title": "Tetsubo Of Earth",
@@ -1387,21 +1387,21 @@
         "special": null,
         "description": "This spell infuses Earth spirits into the hands and feet of the caster, allowing them to merge with the Earth found in wood, earth, and stone. This allows the caster to walk and climb along sheer surfaces, including walls and cliffs, at half his normal movement speed (rounded up). He can even hand from ceilings and move along them, although in that case he can only move 3' with a Simple Action. When the spell ends, the effect concludes without warning, possibly leading to a painful fall."
     },
-    "Jurojin\u2019S Curse": {
-        "title": "Jurojin\u2019S Curse",
+    "Jurojin's Curse": {
+        "title": "Jurojin's Curse",
         "element": "Earth",
         "mastery_level": "2",
         "keywords": [],
-        "range": "30\u2019",
+        "range": "30'",
         "aoe": "One target creature",
         "duration": "1 day",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Area of Effect (+1 creature per two Raises)",
             "Duration (+1 day per two Raises)"
         ],
         "special": null,
-        "description": "This spell calls on the Earth kami to remove all protection of Jurojin, the Fortune of Health and Longevity, from the target. For the duration of the spell, the target\u2019s Earth is considered to be 3 Ranks lower (to a minimum of 1) for the purpose of healing injuries and resisting disease or poison."
+        "description": "This spell calls on the Earth kami to remove all protection of Jurojin, the Fortune of Health and Longevity, from the target. For the duration of the spell, the target's Earth is considered to be 3 Ranks lower (to a minimum of 1) for the purpose of healing injuries and resisting disease or poison."
     },
     "Rites Of Preservation": {
         "title": "Rites Of Preservation",
@@ -1410,21 +1410,21 @@
         "keywords": [
             "Imperial"
         ],
-        "range": "10\u2019",
+        "range": "10'",
         "aoe": "One human corpse",
         "duration": "1 day",
         "raises": [
             "Duration (+1 day per three Raises)"
         ],
         "special": null,
-        "description": "This spell is used to preserve the bodies of the dead until they can be properly disposed of (typically by cremation). It was originally developed to allow Imperial and other high-ranking nobles\u2019 bodies to be preserved in dignity until their funerals, since the funeral rites of such major lords are not only lengthy but also tend to draw guests from great distances. The Crab have also found it useful for protecting their dead against the Taint, although the spell is difficult to use on the battlefield.\nRites of Preservation is a ritual spell that requires one hour to cast. When a corpse is blessed with this prayer, the Earth kami are entreated to protect the body against\nputrefaction and other unclean influences, allowing it to remain pristine and untouched until cremation. This blessing is one of the more important religious duties of shugenja, and despite its association with dead flesh is considered an honorable task.\nA body which is blessed by the Rites of Preservation will not putrefy for the duration of the spell. Moreover, because the blessing repels the attentions of the kansen, the corpse is immune to being animated by maho or the Taint until the spell expires."
+        "description": "This spell is used to preserve the bodies of the dead until they can be properly disposed of (typically by cremation). It was originally developed to allow Imperial and other high-ranking nobles' bodies to be preserved in dignity until their funerals, since the funeral rites of such major lords are not only lengthy but also tend to draw guests from great distances. The Crab have also found it useful for protecting their dead against the Taint, although the spell is difficult to use on the battlefield.\nRites of Preservation is a ritual spell that requires one hour to cast. When a corpse is blessed with this prayer, the Earth kami are entreated to protect the body against\nputrefaction and other unclean influences, allowing it to remain pristine and untouched until cremation. This blessing is one of the more important religious duties of shugenja, and despite its association with dead flesh is considered an honorable task.\nA body which is blessed by the Rites of Preservation will not putrefy for the duration of the spell. Moreover, because the blessing repels the attentions of the kansen, the corpse is immune to being animated by maho or the Taint until the spell expires."
     },
     "Taming The Beast": {
         "title": "Taming The Beast",
         "element": "Earth",
         "mastery_level": "2",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target natural creature",
         "duration": "1 hour",
         "raises": [
@@ -1432,7 +1432,7 @@
             "Duration (1/2 hour per Raise)"
         ],
         "special": null,
-        "description": "This spell is a secret of the Kitsune family and thus far has never been taught outside of their ranks. It calls on the power of Earth to soothe a wild animal\u2019s temperamental spirit, causing it to become temporarily tame. After completing the prayer, the shugenja makes a Contested Earth roll against the target creature (as a Free Action); with a success, the creature ceases all hostile activity for the duration of the spell, and the caster may persuade the creature to obey simple commands by means of the Animal Handling skill (TNs determined by the GM based on the complexity of the command). When the spell\u2019s\nduration expires, the animal returns to its normal behavior \u2013 however, in some cases, repeated castings of this spell on the same animal have resulted in its being effectively\npermanently tamed (GM\u2019s discretion).\nThis spell only works on natural creatures (such as snakes or bears) \u2013 it has no effect on spirits, supernatural creatures, or Tainted creatures."
+        "description": "This spell is a secret of the Kitsune family and thus far has never been taught outside of their ranks. It calls on the power of Earth to soothe a wild animal's temperamental spirit, causing it to become temporarily tame. After completing the prayer, the shugenja makes a Contested Earth roll against the target creature (as a Free Action); with a success, the creature ceases all hostile activity for the duration of the spell, and the caster may persuade the creature to obey simple commands by means of the Animal Handling skill (TNs determined by the GM based on the complexity of the command). When the spell's\nduration expires, the animal returns to its normal behavior \u2013 however, in some cases, repeated castings of this spell on the same animal have resulted in its being effectively\npermanently tamed (GM's discretion).\nThis spell only works on natural creatures (such as snakes or bears) \u2013 it has no effect on spirits, supernatural creatures, or Tainted creatures."
     },
     "The Mountain's Feet": {
         "title": "The Mountain's Feet",
@@ -1475,10 +1475,10 @@
         "mastery_level": "2",
         "keywords": [],
         "range": "Centered on Caster",
-        "aoe": "50\u2019 radius",
+        "aoe": "50' radius",
         "duration": "10 minutes",
         "raises": [
-            "Area of Effect (+50\u2019 radius per Raise)",
+            "Area of Effect (+50' radius per Raise)",
             "Duration (+5 minutes per Raise)",
             "Special (+1 day of tracks per two Raises)"
         ],
@@ -1550,7 +1550,7 @@
             "Area (5 feet to either dimension per Raise)"
         ],
         "special": null,
-        "description": "Developed by the Kuni as a way to deal with the swarming masses of Shadowlands beasts they would frequently encounter, this spell sends a rolling shockwave through the ground, knocking the unsteady from their feet. The shugenja chooses a direction, and this force shakes the ground immediately in that direction in an area of effect based on the spell and any Raises. All creatures caught in the area of effect must make a Contested roll with their Strength against the Caster\u2019s Earth Ring or be knocked prone as if they had been hit with a Knockdown maneuver. Creatures with more than two legs gain two Free Raises on this roll."
+        "description": "Developed by the Kuni as a way to deal with the swarming masses of Shadowlands beasts they would frequently encounter, this spell sends a rolling shockwave through the ground, knocking the unsteady from their feet. The shugenja chooses a direction, and this force shakes the ground immediately in that direction in an area of effect based on the spell and any Raises. All creatures caught in the area of effect must make a Contested roll with their Strength against the Caster's Earth Ring or be knocked prone as if they had been hit with a Knockdown maneuver. Creatures with more than two legs gain two Free Raises on this roll."
     },
     "Groves Of Stone": {
         "title": "Groves Of Stone",
@@ -1561,15 +1561,15 @@
             "Defense"
         ],
         "range": "Centered on caster",
-        "aoe": "Circular barrier 15\u2019 in radius",
+        "aoe": "Circular barrier 15' in radius",
         "duration": "10 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 radius per two Raises)",
+            "Area of Effect (+5' radius per two Raises)",
             "Duration (+2 Rounds per Raise)",
             "Special (+5\u00a0TN to climb rocks per Raise)"
         ],
         "special": null,
-        "description": "This spell is a specialized variation of the more commonprayer known as Wall of Earth. It entreats the Earth spirits to draw an array of huge stones up from the ground, erupting in an instant through most intervening physical obstacles (such as the floor of a house) to create a circular barrier around the caster. The stones are too strong to break through with anything short of a siege engine (against a siege engine they are considered to have 500 Wounds and Reduction 15), but can be clambered over with a Complex Action and a roll of Athletics / Strength against the caster\u2019s Earth x5.\nWhen the spell expires, the stones crumble away to loose earth and dust."
+        "description": "This spell is a specialized variation of the more commonprayer known as Wall of Earth. It entreats the Earth spirits to draw an array of huge stones up from the ground, erupting in an instant through most intervening physical obstacles (such as the floor of a house) to create a circular barrier around the caster. The stones are too strong to break through with anything short of a siege engine (against a siege engine they are considered to have 500 Wounds and Reduction 15), but can be clambered over with a Complex Action and a roll of Athletics / Strength against the caster's Earth x5.\nWhen the spell expires, the stones crumble away to loose earth and dust."
     },
     "Murmur Of Earth": {
         "title": "Murmur Of Earth",
@@ -1580,7 +1580,7 @@
         "aoe": "100 foot radius around caster",
         "duration": "1 round",
         "raises": [
-            "Area of Effect (+50\u2019 radius per Raise)",
+            "Area of Effect (+50' radius per Raise)",
             "Special (+5 to TN per two Raises)"
         ],
         "special": null,
@@ -1665,10 +1665,10 @@
             "Duration (+1 minute per Raise)"
         ],
         "special": null,
-        "description": "This spell calls on the spirits of Earth to strengthen the target\u2019s hands and forearms, making them as hard as stone. The target\u2019s hands cannot be physically harmed for the duration of the spell (allowing him to perform a variety of feats, such as prying open a lock with his fingers), and his unarmed Damage Rating is increased by +2k0."
+        "description": "This spell calls on the spirits of Earth to strengthen the target's hands and forearms, making them as hard as stone. The target's hands cannot be physically harmed for the duration of the spell (allowing him to perform a variety of feats, such as prying open a lock with his fingers), and his unarmed Damage Rating is increased by +2k0."
     },
-    "Time\u2019S Deadly Hand": {
-        "title": "Time\u2019S Deadly Hand",
+    "Time's Deadly Hand": {
+        "title": "Time's Deadly Hand",
         "element": "Earth",
         "mastery_level": "3",
         "keywords": [],
@@ -1676,10 +1676,10 @@
         "aoe": "One physical object",
         "duration": "Permanent",
         "raises": [
-            "Range (change from Touch to 50\u2019 with three Raises)"
+            "Range (change from Touch to 50' with three Raises)"
         ],
         "special": null,
-        "description": "This spell causes the Earth kami within a physical object to abandon that object, weakening its physical strength. Wood warps and flakes, stone and metal turn weak and brittle, cloth becomes thin and fragile, and so forth. The spell\u2019s effects are permanent.\nMechanically, any weapon which is affected by this spell will lose 2k1 from its DR, and any armor will lose 5 from its Armor TN bonus and 3 from its Reduction. A variety of other non-mechanical effects can also take place, subject to the GM\u2019s adjudication - for example, a kimono affected by this spell will rip if it is subject to the slightest tension or stress, and a scroll will tear and crumble the moment it is unrolled. Weakened stones or beams could be used to sabotage a bridge, to facilitate breaking into a besieged castle, and so forth.\nIn general, this spell will not affect awakened items (e.g. nemuranai), since their empowered spirits resist the shugenja\u2019s entreaty."
+        "description": "This spell causes the Earth kami within a physical object to abandon that object, weakening its physical strength. Wood warps and flakes, stone and metal turn weak and brittle, cloth becomes thin and fragile, and so forth. The spell's effects are permanent.\nMechanically, any weapon which is affected by this spell will lose 2k1 from its DR, and any armor will lose 5 from its Armor TN bonus and 3 from its Reduction. A variety of other non-mechanical effects can also take place, subject to the GM's adjudication - for example, a kimono affected by this spell will rip if it is subject to the slightest tension or stress, and a scroll will tear and crumble the moment it is unrolled. Weakened stones or beams could be used to sabotage a bridge, to facilitate breaking into a besieged castle, and so forth.\nIn general, this spell will not affect awakened items (e.g. nemuranai), since their empowered spirits resist the shugenja's entreaty."
     },
     "The Wolf's Mercy": {
         "title": "The Wolf's Mercy",
@@ -1703,16 +1703,16 @@
         "keywords": [
             "Defense"
         ],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target creature",
         "duration": "5 Rounds",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Duration (+1 Round per Raise)",
-            "Special (+1k0 to the plants\u2019 Strength per Raise)"
+            "Special (+1k0 to the plants' Strength per Raise)"
         ],
         "special": null,
-        "description": "This spell entreats the Earth kami inhabiting living plants and trees, causing them to make the plants rapidly grow and twine themselves around a designated target. Within seconds the target finds himself ensnared in a dense tangle of vines, creepers, and branches. The target is automatically Entangled at the moment the spell is cast; on his subsequent Turns, the target may attempt to escape as a Simple Action by making a Contested Strength roll against the plants\u2019 Strength of 4. (Alternatively, the target can be cut free by allies \u2013 it takes two Turns\u2019 worth of effort to slash away enough of the plants to free the target.) If the target escapes, or the spell expires, the plants drop away and shrivel up as the Earth kami cease to stimulate them.\nThis spell can only function in an area where living plants are present, e.g. it will not function inside a building, in a desert, on a barren mountainside, or other such environments. It cannot target a flying creature."
+        "description": "This spell entreats the Earth kami inhabiting living plants and trees, causing them to make the plants rapidly grow and twine themselves around a designated target. Within seconds the target finds himself ensnared in a dense tangle of vines, creepers, and branches. The target is automatically Entangled at the moment the spell is cast; on his subsequent Turns, the target may attempt to escape as a Simple Action by making a Contested Strength roll against the plants' Strength of 4. (Alternatively, the target can be cut free by allies \u2013 it takes two Turns' worth of effort to slash away enough of the plants to free the target.) If the target escapes, or the spell expires, the plants drop away and shrivel up as the Earth kami cease to stimulate them.\nThis spell can only function in an area where living plants are present, e.g. it will not function inside a building, in a desert, on a barren mountainside, or other such environments. It cannot target a flying creature."
     },
     "Armor Of The Emperor": {
         "title": "Armor Of The Emperor",
@@ -1730,8 +1730,8 @@
         "special": null,
         "description": "This spell covers the caster in a thick layer of tough, resilient Earth spirits who repel all damage, whether physical blows or magical effects. Any time the caster suffers damage from an enemy physical or magical attack, each individual damage die has its total Reduced by the caster's Shugenja School Rank. This cannot reduce a die's total below 0."
     },
-    "Earth Dragon\u2019S Ward": {
-        "title": "Earth Dragon\u2019S Ward",
+    "Earth Dragon's Ward": {
+        "title": "Earth Dragon's Ward",
         "element": "Earth",
         "mastery_level": "4",
         "keywords": [
@@ -1739,11 +1739,11 @@
             "Jade"
         ],
         "range": "Touch",
-        "aoe": "20\u2019 radius",
+        "aoe": "20' radius",
         "duration": "10 minutes",
         "raises": [
             "Duration (+5 minutes per Raise)",
-            "Special (+1k1 to the caster\u2019s Willpower roll per two Raises)"
+            "Special (+1k1 to the caster's Willpower roll per two Raises)"
         ],
         "special": null,
         "description": "This spell calls on the power of the Dragon of Earth to protect an area against dangerous spirits. It was originally pioneered by the Isawa but was soon embraced by other shugenja families, especially the Yogo and the Kuni. The spell requires a warding symbol be inscribed on a solid surface (the ground, a wall, etc) prior to casting; this takes five minutes. Once successfully cast, the spell wards the area against possessing spirits and effects, making it extremely difficult for any individual within the area of effect to be possessed (whether by a ghost, a gaki, an oni, a spell, or in any other manner). Any spirit or being attempting a possession within the area of effect must first succeed in a Contested Willpower roll against the caster. (The caster will be aware that something tried to penetrate the Ward, and will know whether or not it was successful, but will not know the nature or identity of the possessing force.) This spell cannot drive out a spirit which is already possessing someone; it only protects against new possessions."
@@ -1775,15 +1775,15 @@
         "keywords": [
             "Battle"
         ],
-        "range": "40\u2019",
-        "aoe": "Approximately 10\u2019 in radius",
+        "range": "40'",
+        "aoe": "Approximately 10' in radius",
         "duration": "Permanent",
         "raises": [
-            "Range (+20\u2019 per Raise)",
+            "Range (+20' per Raise)",
             "Special/Damage (extra ten feet of depth and 1k1 of damage per two Raises)"
         ],
         "special": null,
-        "description": "This prayer causes the Earth spirits in the ground to wrench open a large pit roughly 20 feet deep, swallowing up anyone in the vicinity. Anyone at or within 10\u2019 of the pit must roll their Reflexes against the caster\u2019s Earth or fall into the pit, suffering 3k2 damage. They are also trapped in the pit until they are rescued or can climb out. (Climbing out of the pit is a Complex Action and requires an Athletics / Strength roll at a TN equal to the pit\u2019s depth in feet.)"
+        "description": "This prayer causes the Earth spirits in the ground to wrench open a large pit roughly 20 feet deep, swallowing up anyone in the vicinity. Anyone at or within 10' of the pit must roll their Reflexes against the caster's Earth or fall into the pit, suffering 3k2 damage. They are also trapped in the pit until they are rescued or can climb out. (Climbing out of the pit is a Complex Action and requires an Athletics / Strength roll at a TN equal to the pit's depth in feet.)"
     },
     "Sapphire Strike": {
         "title": "Sapphire Strike",
@@ -1794,16 +1794,16 @@
             "Crystal",
             "Thunder"
         ],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target creature",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+20\u2019 per Raise)",
+            "Range (+20' per Raise)",
             "Targets (+1 target per Raise)",
             "Damage (+1k1 per Raise)"
         ],
         "special": null,
-        "description": "During the War Against the Darkness, the Kuni family of the Crab came to realize that the forces of the Lying Darkness were uniquely vulnerable to the power of crystal. The Kuni threw themselves into researching the ways of crystal and learning how to call on its power through the medium of the Earth kami. This prayer was the result.\nA Sapphire Strike appears much like the far more well- known Jade Strike, but the blast of elemental energy which is unleashed shows a distinctive blue-green tinge, quite different from the bright green color of a Jade Strike, as the Earth kami call on the essence of Lady Sun\u2019s tears. The Sapphire Strike has a DR of 4k4, but only against targets who are specifically vulnerable to Jade or Crystal. It is considered to be both Jade and Crystal for the purpose of game effects such as whether it penetrates Invulnerability or Reduction."
+        "description": "During the War Against the Darkness, the Kuni family of the Crab came to realize that the forces of the Lying Darkness were uniquely vulnerable to the power of crystal. The Kuni threw themselves into researching the ways of crystal and learning how to call on its power through the medium of the Earth kami. This prayer was the result.\nA Sapphire Strike appears much like the far more well- known Jade Strike, but the blast of elemental energy which is unleashed shows a distinctive blue-green tinge, quite different from the bright green color of a Jade Strike, as the Earth kami call on the essence of Lady Sun's tears. The Sapphire Strike has a DR of 4k4, but only against targets who are specifically vulnerable to Jade or Crystal. It is considered to be both Jade and Crystal for the purpose of game effects such as whether it penetrates Invulnerability or Reduction."
     },
     "Symbol Of Earth": {
         "title": "Symbol Of Earth",
@@ -1835,7 +1835,7 @@
             "Duration (+1/2 hour or one Mass Battle Round per two Raises)"
         ],
         "special": null,
-        "description": "This spell was originally developed by the Kitsu family of the Lion, but quickly spread to other families due to its value to any army on the field of battle. It calls on the Earth kami to re-arrange the landscape of a battlefield in a manner favorable to his side of the battle. For example, a hillside might shift to allow the caster\u2019s side to charge downhill, or a cliff that shields the enemy flank might change into a gentle slope. The spell awards a +3k2 bonus to any roll made by the commander of the caster\u2019s side to determine who is winning a Mass Battle, and a +1k1 bonus to any Mass Battle Table rolls made by individual samurai on the caster\u2019s side. Because this spell invokes the Earth kami on such a large scale, casting it on both sides of the same battle can lead to a violent spiritual backlash \u2013 typically triggering a massive earthquake (equivalent to the Rank 5 spell Earthquake)."
+        "description": "This spell was originally developed by the Kitsu family of the Lion, but quickly spread to other families due to its value to any army on the field of battle. It calls on the Earth kami to re-arrange the landscape of a battlefield in a manner favorable to his side of the battle. For example, a hillside might shift to allow the caster's side to charge downhill, or a cliff that shields the enemy flank might change into a gentle slope. The spell awards a +3k2 bonus to any roll made by the commander of the caster's side to determine who is winning a Mass Battle, and a +1k1 bonus to any Mass Battle Table rolls made by individual samurai on the caster's side. Because this spell invokes the Earth kami on such a large scale, casting it on both sides of the same battle can lead to a violent spiritual backlash \u2013 typically triggering a massive earthquake (equivalent to the Rank 5 spell Earthquake)."
     },
     "Tomb Of Jade": {
         "title": "Tomb Of Jade",
@@ -1881,11 +1881,11 @@
             "Battle",
             "Defense"
         ],
-        "range": "300\u2019",
+        "range": "300'",
         "aoe": "One target structure (up to a small castle)",
         "duration": "1 day",
         "raises": [
-            "Range (+150\u2019 per Raise)",
+            "Range (+150' per Raise)",
             "Area of Effect (one additional structure for 3 Raises)",
             "Duration (+1 day per 3 Raises)"
         ],
@@ -1916,13 +1916,13 @@
             "Wards"
         ],
         "range": "Centered on Caster",
-        "aoe": "Caster and all allies within a 20\u2019radius",
+        "aoe": "Caster and all allies within a 20' radius",
         "duration": "3 Rounds",
         "raises": [
             "Duration (+1 Round per two Raises)"
         ],
         "special": null,
-        "description": "This spell, originally devised by the Yogo, calls on the spirits of Earth to fortify the caster and his companions, allowing them to resist the power of accursed maho spells. Any maho spell that targets the caster or any of the caster\u2019s allies within the area of effect has its Spell Casting TN increased by an amount equal to 10x the target\u2019s Earth."
+        "description": "This spell, originally devised by the Yogo, calls on the spirits of Earth to fortify the caster and his companions, allowing them to resist the power of accursed maho spells. Any maho spell that targets the caster or any of the caster's allies within the area of effect has its Spell Casting TN increased by an amount equal to 10x the target's Earth."
     },
     "Major Binding": {
         "title": "Major Binding",
@@ -2074,7 +2074,7 @@
             "Battle",
             "Jade"
         ],
-        "range": "100\u2019",
+        "range": "100'",
         "aoe": "N/a",
         "duration": "1 hour",
         "raises": [
@@ -2082,7 +2082,7 @@
             "Special (+2 soldiers per Raise)"
         ],
         "special": null,
-        "description": "Most famously used by Isawa Tadaka and Isawa Sezaru in the early twelfth century, this powerful variation of Rise, Earth is found solely in the Phoenix libraries. Thus far the Phoenix have not shared it with any other clan, although they seriously considered doing so during the Kali-Ma Invasion. Depending on specific campaign settings, the GM could also have this spell introduced to the wider Empire in an earlier era. The spell creates ten human-sized warriors, forming them from earth and stone and animating them with the power of the Earth kami which infuse them. The warriors will move, fight, and otherwise act as the caster commands, obediently and fearlessly. They have Traits and Rings equal to the caster\u2019s Earth, attack (with swords made of stone) as though they have Kenjutsu of 4, and have Reduction equal to twice the caster\u2019s Earth. Their swords are considered to have the Jade property. When destroyed (or when the spell\u2019s duration ends) they collapse\ninto piles of loose earth."
+        "description": "Most famously used by Isawa Tadaka and Isawa Sezaru in the early twelfth century, this powerful variation of Rise, Earth is found solely in the Phoenix libraries. Thus far the Phoenix have not shared it with any other clan, although they seriously considered doing so during the Kali-Ma Invasion. Depending on specific campaign settings, the GM could also have this spell introduced to the wider Empire in an earlier era. The spell creates ten human-sized warriors, forming them from earth and stone and animating them with the power of the Earth kami which infuse them. The warriors will move, fight, and otherwise act as the caster commands, obediently and fearlessly. They have Traits and Rings equal to the caster's Earth, attack (with swords made of stone) as though they have Kenjutsu of 4, and have Reduction equal to twice the caster's Earth. Their swords are considered to have the Jade property. When destroyed (or when the spell's duration ends) they collapse\ninto piles of loose earth."
     },
     "Biting Steel": {
         "title": "Biting Steel",
@@ -2158,8 +2158,8 @@
         "special": null,
         "description": "Fire spirits can be driven away by the proper invocation, a very useful ability in Rokugani towns and cities where the construction is all wood and paper. The spell dismisses the active Fire kami in the area. All non-magical fire in the area of effect is immediately snuffed out, and any damage dealt by fire (magical or not) reduces its DR by 1k1 until the start of the next round."
     },
-    "Fire Kami\u2019S Blessing": {
-        "title": "Fire Kami\u2019S Blessing",
+    "Fire Kami's Blessing": {
+        "title": "Fire Kami's Blessing",
         "element": "Fire",
         "mastery_level": "1",
         "keywords": [],
@@ -2170,7 +2170,7 @@
             "Duration (+1/2 hour per Raise)"
         ],
         "special": null,
-        "description": "This prayer calls on the Fire kami to stimulate the mind and memory, allowing the recipient to recall the most obscure information, details he may have encountered only once or briefly. For the duration of this spell, the target gains a +Xk0 bonus (where X is the caster\u2019s Fire Ring) to any High or Merchant Skill rolls using the Intelligence Trait."
+        "description": "This prayer calls on the Fire kami to stimulate the mind and memory, allowing the recipient to recall the most obscure information, details he may have encountered only once or briefly. For the duration of this spell, the target gains a +Xk0 bonus (where X is the caster's Fire Ring) to any High or Merchant Skill rolls using the Intelligence Trait."
     },
     "Fires Of Purity": {
         "title": "Fires Of Purity",
@@ -2225,11 +2225,11 @@
         "keywords": [
             "Defense"
         ],
-        "range": "50\u2019",
-        "aoe": "50\u2019 radius sphere",
+        "range": "50'",
+        "aoe": "50' radius sphere",
         "duration": "10 minutes",
         "raises": [
-            "Range (+25\u2019 per Raise)",
+            "Range (+25' per Raise)",
             "Duration (+5 minutes per Raise)"
         ],
         "special": null,
@@ -2268,21 +2268,21 @@
         "special": null,
         "description": "This spell invokes Fire's element of knowledge and understanding, strengthening the spirit of one of your allies by opening his eyes to the courage of his ancestors. The target of the spell receives a bonus to all attack rolls, Skill rolls, and Trait Rolls equal to your Fire Ring. This effect lasts until either the spell expires, or until the target fails an attack roll or Skill Roll, or until the target suffers Wounds from any source, whichever comes first."
     },
-    "Osano-wo\u2019S Blessing": {
-        "title": "Osano-wo\u2019S Blessing",
+    "Osano-wo's Blessing": {
+        "title": "Osano-wo's Blessing",
         "element": "Fire",
         "mastery_level": "1",
         "keywords": [],
-        "range": "100\u2019",
-        "aoe": "40\u2019 radius",
+        "range": "100'",
+        "aoe": "40' radius",
         "duration": "30 minutes",
         "raises": [
-            "Range (+25\u2019 per Raise)",
-            "Area of Effect (+10\u2019 radius per Raise)",
+            "Range (+25' per Raise)",
+            "Area of Effect (+10' radius per Raise)",
             "Duration (+10 minutes per Raise)"
         ],
         "special": null,
-        "description": "This prayer acts in the exact opposite way of the commonly-used spell Extinguish; instead of urging the Fire kami to depart and thus put out flames, it urges them to greater energy and vigor, making flames harder to extinguish. For the duration of this spell, all fires within the area of effect become impossible to extinguish by normal means, and any magical effort to put them out (such as the aforementioned Extinguish spell) must succeed in a Contested Fire roll with the caster of Osano Wo\u2019s Blessing. This spell is controversial, since it can result in otherwise controllable fires in cities and villages raging out of control. Pacifistic shugenja such as the Asahina and Isawa generally eschew its usage."
+        "description": "This prayer acts in the exact opposite way of the commonly-used spell Extinguish; instead of urging the Fire kami to depart and thus put out flames, it urges them to greater energy and vigor, making flames harder to extinguish. For the duration of this spell, all fires within the area of effect become impossible to extinguish by normal means, and any magical effort to put them out (such as the aforementioned Extinguish spell) must succeed in a Contested Fire roll with the caster of Osano Wo's Blessing. This spell is controversial, since it can result in otherwise controllable fires in cities and villages raging out of control. Pacifistic shugenja such as the Asahina and Isawa generally eschew its usage."
     },
     "The Raging Forge": {
         "title": "The Raging Forge",
@@ -2394,15 +2394,15 @@
         "keywords": [
             "Defense"
         ],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target person/effect",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Area of Effect (+1"
         ],
         "special": null,
-        "description": "target per 2 Raises)\nThis spell was originally devised by the Isawa to deal with the threat of Yobanjin magic, and later spread to the rest of the Empire when other gaijin threats became more frequent. The spell calls on Shinsei\u2019s principles of Elemental unity and harmony to oppose unnatural foreign magic, using the energy of Fire as a focus. Purity of Shinsei ends the effects of a gaijin spell or spell-like effect. Typically this means targeting an individual who is being afflicted by an ongoing gaijin spell effect (such as a samurai laboring under a foreign curse), though it can also target an effect which is not afflicting a specific individual (such as a foreign curse on a castle, a village, or a physical item). The GM has final discretion on whether a particular gaijin magic effect can be countered with Purity of Shinsei. If the optional Counterspelling rules as in use, the GM may opt to let a shugenja who knows this spell attempt to Counterspell meishodo spells and gaijin magic."
+        "description": "target per 2 Raises)\nThis spell was originally devised by the Isawa to deal with the threat of Yobanjin magic, and later spread to the rest of the Empire when other gaijin threats became more frequent. The spell calls on Shinsei's principles of Elemental unity and harmony to oppose unnatural foreign magic, using the energy of Fire as a focus. Purity of Shinsei ends the effects of a gaijin spell or spell-like effect. Typically this means targeting an individual who is being afflicted by an ongoing gaijin spell effect (such as a samurai laboring under a foreign curse), though it can also target an effect which is not afflicting a specific individual (such as a foreign curse on a castle, a village, or a physical item). The GM has final discretion on whether a particular gaijin magic effect can be countered with Purity of Shinsei. If the optional Counterspelling rules as in use, the GM may opt to let a shugenja who knows this spell attempt to Counterspell meishodo spells and gaijin magic."
     },
     "Relentless Heat": {
         "title": "Relentless Heat",
@@ -2465,10 +2465,10 @@
             "Special (move at +1 Water Rank for 3 Raises)"
         ],
         "special": null,
-        "description": "This prayer is a simpler and less potent form of the spell Wings of the Phoenix, although it is also slightly more flexible in that it does not require a suit of armor to act as an \"anchor\" for the Fire kami. When this spell is cast, a cloud of Fire kami gather and take the form of large feathery wings sprouting from the caster\u2019s arms and back. The caster may use these wings to fly slowly (normally moving at a speed equal to Water 1, regardless of his actual Water Ring). If the caster is able to glide (e.g. he is already at a significant height above the ground), he can move more quickly, as though he is Water 4. While the spell is in effect, the caster cannot use his arms for anything but flapping and moving his fiery wings, severely limiting his potential actions; also, he will set fire to any easily flammable objects (such as paper or spell scrolls) he touches, although the Fire kami will avoid harming his clothes. When the spell ends, the Fire kami immediately disperse, regardless of whether the caster is on the ground or in the air - unlike the friendly Air kami, the mercurial and aggressive Fire kami do not particularly care about the caster\u2019s fate once they depart."
+        "description": "This prayer is a simpler and less potent form of the spell Wings of the Phoenix, although it is also slightly more flexible in that it does not require a suit of armor to act as an \"anchor\" for the Fire kami. When this spell is cast, a cloud of Fire kami gather and take the form of large feathery wings sprouting from the caster's arms and back. The caster may use these wings to fly slowly (normally moving at a speed equal to Water 1, regardless of his actual Water Ring). If the caster is able to glide (e.g. he is already at a significant height above the ground), he can move more quickly, as though he is Water 4. While the spell is in effect, the caster cannot use his arms for anything but flapping and moving his fiery wings, severely limiting his potential actions; also, he will set fire to any easily flammable objects (such as paper or spell scrolls) he touches, although the Fire kami will avoid harming his clothes. When the spell ends, the Fire kami immediately disperse, regardless of whether the caster is on the ground or in the air - unlike the friendly Air kami, the mercurial and aggressive Fire kami do not particularly care about the caster's fate once they depart."
     },
-    "Agasha\u2019S Shield (Tamori\u2019S Curse)": {
-        "title": "Agasha\u2019S Shield (Tamori\u2019S Curse)",
+    "Agasha's Shield (Tamori's Curse)": {
+        "title": "Agasha's Shield (Tamori's Curse)",
         "element": "Fire",
         "mastery_level": "3",
         "keywords": [
@@ -2476,14 +2476,14 @@
             "Wards"
         ],
         "range": "Touch/Self",
-        "aoe": "30\u2019 radius around caster",
+        "aoe": "30' radius around caster",
         "duration": "6 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 radius per Raise)",
+            "Area of Effect (+5' radius per Raise)",
             ""
         ],
         "special": null,
-        "description": "Duration (+1 Round per Raise)\nOriginally devised by Agasha shugenja who were working with hanabi (fireworks), in modern times this spell has been renamed Tamori\u2019s Curse by the Tamori family. The spell creates a zone of protection in which Fire kami friendly to the caster reject any intrusion by other Fire kami. Any hostile Fire spell cast within the Area of Effect suffers a -4k0 penalty to the Spell Casting Roll. Any hostile Fire spell cast from an outside location that attempts to project Fire effects into the Area of Effect (such as spells like Fires From Within) will suffer a -3k0 penalty to its DR as Agasha\u2019s Shield disperses and weakens the kami."
+        "description": "Duration (+1 Round per Raise)\nOriginally devised by Agasha shugenja who were working with hanabi (fireworks), in modern times this spell has been renamed Tamori's Curse by the Tamori family. The spell creates a zone of protection in which Fire kami friendly to the caster reject any intrusion by other Fire kami. Any hostile Fire spell cast within the Area of Effect suffers a -4k0 penalty to the Spell Casting Roll. Any hostile Fire spell cast from an outside location that attempts to project Fire effects into the Area of Effect (such as spells like Fires From Within) will suffer a -3k0 penalty to its DR as Agasha's Shield disperses and weakens the kami."
     },
     "Breath Of The Fire Dragon": {
         "title": "Breath Of The Fire Dragon",
@@ -2574,7 +2574,7 @@
             "Special (+1k0 to the bonus per 2 Raises)"
         ],
         "special": null,
-        "description": "This spell was originally a secret spell of the Agasha family, and has sometimes been credited as being invented by Agasha herself during her rescue from goblins by Mirumoto Hojatsu. In modern times, both the Phoenix Clan Agasha and the Dragon Clan Tamori know the spell, although the Tamori use it far more often. The spell calls on the Fire kami to form a link between the ferocity of a bushi and the intellect of a shugenja, allowing both to work in concert to greater effect. The caster traditionally targets himself and one friendly bushi (usually, though not always, a yojimbo), although it is also possible for the caster to bestow the spell\u2019s benefits on a different shugenja rather than himself. For the duration of the spell, both recipients receive a +2k0 bonus to all rolls involving the Fire Ring and Fire Traits (e.g. all rolls involving Agility and Intelligence). However, the links also makes each recipient vulnerable to effects on the other - if either recipient becomes Fatigued, Dazed, or Stunned, the other immediately shares the same Condition. Moreover, if either recipient is reduced to Down, Out, or Dead, the spell\u2019s effects immediately end."
+        "description": "This spell was originally a secret spell of the Agasha family, and has sometimes been credited as being invented by Agasha herself during her rescue from goblins by Mirumoto Hojatsu. In modern times, both the Phoenix Clan Agasha and the Dragon Clan Tamori know the spell, although the Tamori use it far more often. The spell calls on the Fire kami to form a link between the ferocity of a bushi and the intellect of a shugenja, allowing both to work in concert to greater effect. The caster traditionally targets himself and one friendly bushi (usually, though not always, a yojimbo), although it is also possible for the caster to bestow the spell's benefits on a different shugenja rather than himself. For the duration of the spell, both recipients receive a +2k0 bonus to all rolls involving the Fire Ring and Fire Traits (e.g. all rolls involving Agility and Intelligence). However, the links also makes each recipient vulnerable to effects on the other - if either recipient becomes Fatigued, Dazed, or Stunned, the other immediately shares the same Condition. Moreover, if either recipient is reduced to Down, Out, or Dead, the spell's effects immediately end."
     },
     "Ravenous Swarms": {
         "title": "Ravenous Swarms",
@@ -2615,13 +2615,13 @@
             "Battle",
             "Imperial"
         ],
-        "range": "30\u2019",
+        "range": "30'",
         "aoe": "One target person",
         "duration": "5 Rounds",
         "raises": [
             "Area of Effect (+1 target per 2 Raises)",
             "Duration (+1 Round per Raise)",
-            "Range (+10\u2019 per Raise)"
+            "Range (+10' per Raise)"
         ],
         "special": null,
         "description": "This prayer, variously credited to the Isawa, the Kitsu, or the Seppun, is the positive counterpoint to the notorious Haze of Battle prayer. Where Haze of Battle drives its target into a maddened frenzy of combat by exciting the Fire kami within him, The Breath of Battle invokes a positive and honorable ferocity by using Fire to call on the divine favor of the Sun. The target of this spell gains a +1k1 bonus to all Agility-based Skill Rolls and a +1k0 bonus to all Damage rolls so long as he remains under the direct light of the Sun. The spell cannot function underground, at night, or when the Sun is obscured by clouds (although the spell Gift of Amaterasu can circumvent this restraint), but it ignores minor obstructions to sunlight such as foliage or shoji screens."
@@ -2633,16 +2633,16 @@
         "keywords": [
             "Illusion"
         ],
-        "range": "50\u2019",
-        "aoe": "All persons within 10\u2019 radius",
+        "range": "50'",
+        "aoe": "All persons within 10' radius",
         "duration": "3 Rounds",
         "raises": [
-            "Range (+10\u2019 per Raise)",
-            "Area of Effect (+5\u2019radius per 2 Raises)",
+            "Range (+10' per Raise)",
+            "Area of Effect (+5'radius per 2 Raises)",
             "Duration (+1 Rounds per Raise)"
         ],
         "special": null,
-        "description": "The creation of this spell is credited to Asahina himself, who sought ways to use Fire magic peacefully after he joined the Crane Clan, but in modern times it is found in the ranks of many different families. The spell causes the Fire kami to gather and dance in a pleasing visual shape and with a soothing rhythmic light. Those who gaze upon the Fire kami see an entrancing and appealing vision that distracts them from taking violent actions. All persons within the Area of Effect find themselves entranced and are considered Dazed for the duration of the spell. However, the targets may attempt to shake off the spell\u2019s effects during the Reactions Stage of each Round with a Willpower roll against a TN of the caster\u2019s Fire x10. This spell\u2019s effects are most potent against Rokugani, since the Fire kami find it more difficult to create entrancing images for those they do not understand. The GM may award gaijin and nonhuman targets a bonus to their Willpower roll to resist the spell\u2019s effects. Animals, bestial creatures, and mindless creatures such as undead are completely immune to the spell."
+        "description": "The creation of this spell is credited to Asahina himself, who sought ways to use Fire magic peacefully after he joined the Crane Clan, but in modern times it is found in the ranks of many different families. The spell causes the Fire kami to gather and dance in a pleasing visual shape and with a soothing rhythmic light. Those who gaze upon the Fire kami see an entrancing and appealing vision that distracts them from taking violent actions. All persons within the Area of Effect find themselves entranced and are considered Dazed for the duration of the spell. However, the targets may attempt to shake off the spell's effects during the Reactions Stage of each Round with a Willpower roll against a TN of the caster's Fire x10. This spell's effects are most potent against Rokugani, since the Fire kami find it more difficult to create entrancing images for those they do not understand. The GM may award gaijin and nonhuman targets a bonus to their Willpower roll to resist the spell's effects. Animals, bestial creatures, and mindless creatures such as undead are completely immune to the spell."
     },
     "Blessing Of The Sun": {
         "title": "Blessing Of The Sun",
@@ -2653,11 +2653,11 @@
         "aoe": "One willing target person (may be caster)",
         "duration": "3 Rounds",
         "raises": [
-            "Range (may change to 10\u2019 with 2 Raises)",
+            "Range (may change to 10' with 2 Raises)",
             "Duration (+1 Round per Raise)"
         ],
         "special": null,
-        "description": "This spell infuses the target\u2019s limbs with a rush of aggressive Fire kami, allowing him to move and think more quickly and to ignore pain and weariness. However, there is a price to be paid for such Elemental vigor, since once the kami depart the body becomes even more weary than before.\nThe recipient of this blessing feels a rush of burning energy and a quickening of thought. He instantly recovers from the Dazed Condition if it is in effect. Moreover, for the duration of the spell, the target\u2019s Fire-related rolls (e.g. any roll using Agility or Intelligence and any Spell Casting Roll using the Fire Ring) may ignore both the effects of being Fatigued and the TN effects of Wound Penalties. However, once the spell expires, the target becomes Fatigued (this stacks with any pre-existing Fatigue effects) and cannot recover from this Fatigue in any way (rest, magic, or Techniques) for 24 hours."
+        "description": "This spell infuses the target's limbs with a rush of aggressive Fire kami, allowing him to move and think more quickly and to ignore pain and weariness. However, there is a price to be paid for such Elemental vigor, since once the kami depart the body becomes even more weary than before.\nThe recipient of this blessing feels a rush of burning energy and a quickening of thought. He instantly recovers from the Dazed Condition if it is in effect. Moreover, for the duration of the spell, the target's Fire-related rolls (e.g. any roll using Agility or Intelligence and any Spell Casting Roll using the Fire Ring) may ignore both the effects of being Fatigued and the TN effects of Wound Penalties. However, once the spell expires, the target becomes Fatigued (this stacks with any pre-existing Fatigue effects) and cannot recover from this Fatigue in any way (rest, magic, or Techniques) for 24 hours."
     },
     "Death Of Flame": {
         "title": "Death Of Flame",
@@ -2697,14 +2697,14 @@
             "Wards",
             "Imperial"
         ],
-        "range": "10\u2019",
+        "range": "10'",
         "aoe": "Two target duelists",
         "duration": "One iaijutsu duel",
         "raises": [
             "Special (see text)"
         ],
         "special": null,
-        "description": "This spell was originally developed by the Asahina to prevent magical tampering with iaijutsu duels. In the Crane view, iaijutsu is a test of the duelist\u2019s own inherent skills and talents, and using the kami to aid in a duel violates its proper nature as the sacred judge of right and wrong. (The Crane also suspected certain other clans, such as the Scorpion and Dragon, of \"cheating\" with magic during duels.) This spell ensures that no magical effects will dilute the duel\u2019s test of skill. In Crane lands it is traditional for shugenja to invoke this spell as a blessing on an iaijutsu duel, and the custom sometimes appears in other clans and families as well - particularly the Seppun. When this spell is cast, a flow of Fire kami race through the chosen targets and drive out any other active kami on them, immediately ending any ongoing spell effects they may have on their persons. The Fire kami remain until the end of the duel, protecting against further interference - any spell which targets either duelist before the duel concludes will suffer a -3k0 penalty to its Spell Casting Roll In modern times, a few shugenja have developed a more controversial variant of this spell which also uses the Fire kami to interfere with the targets\u2019 memories and suppress their knowledge of bushi Techniques. This tactic is especially popular with shugenja from clans which do not focus on dueling, since it makes a duel purely a test of raw skill with no advantage to those descended from Kakita or Mirumoto. Casting the spell with this additional effect requires 4 Raises."
+        "description": "This spell was originally developed by the Asahina to prevent magical tampering with iaijutsu duels. In the Crane view, iaijutsu is a test of the duelist's own inherent skills and talents, and using the kami to aid in a duel violates its proper nature as the sacred judge of right and wrong. (The Crane also suspected certain other clans, such as the Scorpion and Dragon, of \"cheating\" with magic during duels.) This spell ensures that no magical effects will dilute the duel's test of skill. In Crane lands it is traditional for shugenja to invoke this spell as a blessing on an iaijutsu duel, and the custom sometimes appears in other clans and families as well - particularly the Seppun. When this spell is cast, a flow of Fire kami race through the chosen targets and drive out any other active kami on them, immediately ending any ongoing spell effects they may have on their persons. The Fire kami remain until the end of the duel, protecting against further interference - any spell which targets either duelist before the duel concludes will suffer a -3k0 penalty to its Spell Casting Roll In modern times, a few shugenja have developed a more controversial variant of this spell which also uses the Fire kami to interfere with the targets' memories and suppress their knowledge of bushi Techniques. This tactic is especially popular with shugenja from clans which do not focus on dueling, since it makes a duel purely a test of raw skill with no advantage to those descended from Kakita or Mirumoto. Casting the spell with this additional effect requires 4 Raises."
     },
     "Eyes Of The Phoenix": {
         "title": "Eyes Of The Phoenix",
@@ -2713,15 +2713,15 @@
         "keywords": [
             "Illusion"
         ],
-        "range": "25\u2019",
+        "range": "25'",
         "aoe": "One target creature",
         "duration": "1 hour",
         "raises": [
-            "Range (+5\u2019 per Raise)",
+            "Range (+5' per Raise)",
             "Area of Effect (+1 creature per 2 Raises)"
         ],
         "special": null,
-        "description": "This spell\u2019s name is somewhat ironic, and has sometimes been credited to a Scorpion shugenja with a low opinion of the Isawa. Regardless of its origin, the spell\u2019s effect is to persuade a small cloud of strong Fire kami to float directly in front of the target\u2019s eyes. This makes it appear to others as though the target\u2019s eyes have caught on fire, an unsettling effect to say the least. When the spell is cast, any allies of the target suffer a Fear 3 effect (if they are vulnerable to Fear - undead are immune, and the GM may rule that other creatures are resistant or immune if it seems appropriate). More importantly, for the duration of the spell, the target is considered to be Blinded."
+        "description": "This spell's name is somewhat ironic, and has sometimes been credited to a Scorpion shugenja with a low opinion of the Isawa. Regardless of its origin, the spell's effect is to persuade a small cloud of strong Fire kami to float directly in front of the target's eyes. This makes it appear to others as though the target's eyes have caught on fire, an unsettling effect to say the least. When the spell is cast, any allies of the target suffer a Fear 3 effect (if they are vulnerable to Fear - undead are immune, and the GM may rule that other creatures are resistant or immune if it seems appropriate). More importantly, for the duration of the spell, the target is considered to be Blinded."
     },
     "The Mending Forge": {
         "title": "The Mending Forge",
@@ -2797,25 +2797,25 @@
             "Defense"
         ],
         "range": "Centered on caster",
-        "aoe": "Circle with a radius of 30\u2019 from caster",
+        "aoe": "Circle with a radius of 30' from caster",
         "duration": "10 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 to radius for 2 Raises)",
+            "Area of Effect (+5' to radius for 2 Raises)",
             "Duration (+2 Rounds per Raise)"
         ],
         "special": null,
-        "description": "Like the other Castle spells, Castle of Fire is a defensive prayer, in this case a more sophisticated version of Wall of Fire. It calls on the kami of Fire to erect a barrier surrounding the caster. The fiery barrier is 1\u2019 thick and 10\u2019 high; anyone who is standing on its location when it appears must roll Reflexes at TN 20 to leap away (either inside or outside the Castle) and avoid being burned. The Castle\u2019s barrier instantly incinerates any arrows or other missiles which try to pass through it. Creatures which pass through the Castle\u2019s barrier (or are caught by it when it appears) suffer 6k6 damage and are set afire."
+        "description": "Like the other Castle spells, Castle of Fire is a defensive prayer, in this case a more sophisticated version of Wall of Fire. It calls on the kami of Fire to erect a barrier surrounding the caster. The fiery barrier is 1' thick and 10' high; anyone who is standing on its location when it appears must roll Reflexes at TN 20 to leap away (either inside or outside the Castle) and avoid being burned. The Castle's barrier instantly incinerates any arrows or other missiles which try to pass through it. Creatures which pass through the Castle's barrier (or are caught by it when it appears) suffer 6k6 damage and are set afire."
     },
     "Consumed By Five Fires": {
         "title": "Consumed By Five Fires",
         "element": "Fire",
         "mastery_level": "5",
         "keywords": [],
-        "range": "100\u2019",
+        "range": "100'",
         "aoe": "One target creature (and caster)",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+50\u2019 per Raise)"
+            "Range (+50' per Raise)"
         ],
         "special": null,
         "description": "One of the most potent and deadly of Fire spells, but also one used only by those facing the most desperate need. The spell invokes an array of powerful Fire kami to strike down the target with incredibly powerful heat and flame - but in order to persuade so many kami to strike with such immense power, the shugenja must bestow them with a gift of his own life-force.\nThe target of this spell is instantly killed, reduced to Dead and then burned down to ashes in a matter of seconds. However, the caster immediately suffers the same number of Wounds as were inflicted on the target - an effect which is often, though not always, lethal. This damage cannot be reduced or mitigated in any way, and if it is lethal the caster cannot avert death. This spell will automatically fail if it targets a creature which is resistant to Fire, and it cannot kill divine entities such as Fortunes."
@@ -2834,22 +2834,22 @@
         "special": null,
         "description": "A highly potent offensive spell, originally devised by the Isawa Elemental Masters, this prayer summons up a great mass of Fire kami, which roll outward from the caster in a wave of searing flames. Every target within the area of effect, whether friendly or hostile, takes 7k7 Wounds, for the raging flames makes no distinction between ally and enemy. You alone do not take damage from the spell."
     },
-    "The Dragon\u2019S Talon (Kuro\u2019S Fire)": {
-        "title": "The Dragon\u2019S Talon (Kuro\u2019S Fire)",
+    "The Dragon's Talon (Kuro's Fire)": {
+        "title": "The Dragon's Talon (Kuro's Fire)",
         "element": "Fire",
         "mastery_level": "5",
         "keywords": [
             "Battle"
         ],
-        "range": "100\u2019",
+        "range": "100'",
         "aoe": "Up to 10 target creatures within range",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+25\u2019 per Raise)",
+            "Range (+25' per Raise)",
             "Area of Effect (+2 targets per Raise)"
         ],
         "special": null,
-        "description": "A potent battle spell favored by the Elemental Master of Fire and also used by high-ranking battle shugenja from several clans; in the twelfth century Naka Kuro, the Grand Master of the Elements, also used this spell and it came to be called Kuro\u2019s Fire in his honor. Regardless of its name, this spell calls on the unmatched power of the Dragon of Fire to strike down large numbers of lesser foes. When the prayer is completed, bolts of fire resembling the snarling heads of dragons streak out from the shugenja\u2019s hands, striking down the chosen targets. Each target suffers 8k6 damage. However, the nature of this spell is such that the Fire kami will only attack targets who they consider weak and unworthy; in game terms, the spell can only target foes of Insight Rank 1 or 2, or nonhumans of comparable power (GM\u2019s judgment)."
+        "description": "A potent battle spell favored by the Elemental Master of Fire and also used by high-ranking battle shugenja from several clans; in the twelfth century Naka Kuro, the Grand Master of the Elements, also used this spell and it came to be called Kuro's Fire in his honor. Regardless of its name, this spell calls on the unmatched power of the Dragon of Fire to strike down large numbers of lesser foes. When the prayer is completed, bolts of fire resembling the snarling heads of dragons streak out from the shugenja's hands, striking down the chosen targets. Each target suffers 8k6 damage. However, the nature of this spell is such that the Fire kami will only attack targets who they consider weak and unworthy; in game terms, the spell can only target foes of Insight Rank 1 or 2, or nonhumans of comparable power (GM's judgment)."
     },
     "Everburning Rage": {
         "title": "Everburning Rage",
@@ -2931,14 +2931,14 @@
         "element": "Fire",
         "mastery_level": "6",
         "keywords": [],
-        "range": "10\u2019",
+        "range": "10'",
         "aoe": "One target creature",
         "duration": "Infinite",
         "raises": [
-            "Range (+5\u2019 per Raise)"
+            "Range (+5' per Raise)"
         ],
         "special": null,
-        "description": "A truly powerful curse which has only been employed a few times in the Empire\u2019s history, the Curse of the Burning Hand binds a hostile Fire kami to the soul of the target, making it all but impossible to remove. The spell is difficult and requires a full minute to cast; also, the caster must succeed in a Contested Fire Roll against the target in order to inflict the Curse. Once it is in place, the target finds himself constantly wreathed in flames; these fires do not harm him, but harm any friends, allies, or innocents who touch him. The fire inflicts 3k3 damage on anyone who touches the cursed individual, and set alight any physical objects he touches which are flammable (e.g. wood, paper, clothing, etc). However, because the Fire kami is hostile, it will not help its victim against his enemies - the flame will suddenly recede any time he tries to use it as a weapon. Barring any outside interference, the spell\u2019s effects will last indefinitely. However, other spells which remove magical effects can potentially end the Curse of the Burning Hand if the GM judges them to be appropriate; likewise, other effects which drive out kami (such as Banishment) can remove the Curse."
+        "description": "A truly powerful curse which has only been employed a few times in the Empire's history, the Curse of the Burning Hand binds a hostile Fire kami to the soul of the target, making it all but impossible to remove. The spell is difficult and requires a full minute to cast; also, the caster must succeed in a Contested Fire Roll against the target in order to inflict the Curse. Once it is in place, the target finds himself constantly wreathed in flames; these fires do not harm him, but harm any friends, allies, or innocents who touch him. The fire inflicts 3k3 damage on anyone who touches the cursed individual, and set alight any physical objects he touches which are flammable (e.g. wood, paper, clothing, etc). However, because the Fire kami is hostile, it will not help its victim against his enemies - the flame will suddenly recede any time he tries to use it as a weapon. Barring any outside interference, the spell's effects will last indefinitely. However, other spells which remove magical effects can potentially end the Curse of the Burning Hand if the GM judges them to be appropriate; likewise, other effects which drive out kami (such as Banishment) can remove the Curse."
     },
     "Globe Of The Everlasting Sun": {
         "title": "Globe Of The Everlasting Sun",
@@ -2961,7 +2961,7 @@
         "element": "Fire",
         "mastery_level": "6",
         "keywords": [],
-        "range": "30\u2019",
+        "range": "30'",
         "aoe": "One summonedspirit",
         "duration": "Concentration",
         "raises": [
@@ -2970,8 +2970,8 @@
         "special": null,
         "description": "Fire itself arises and takes physical form to defend you. The ultimate realization of the Summon spell, this prayer summons a massive kami of pure Fire to serve you. It takes the form of a fiery humanoid shape, roughly ten feet in height, its outlines constantly shifting and changing in a perpetual dance of fiery energy. The huge Fire spirit can move up to 10 x your Fire per Round, and it ignites all easily flammable objects within ten feet of itself - paper, leaves, grass, silk, and so forth. The manifest kami is treated as if it has all physical Traits equal to your Fire Ring, and attacks with a Jiujutsu Skill equal to half your Fire Rank; the DR from these attacks is equal to your Fire Rank. Anyone struck by the Fire kami will catch on fire, suffering an additional 1k1 damage per Round until the flames are extinguished. (This effect does not stack.) For purposes of taking damage, the kami is considered to have Wounds as though its Earth is equal to your Fire Ring, but suffers no Wound penalties; it is Invulnerable. If it is successfully reduced to zero Wounds, it is dispelled."
     },
-    "The Elements\u2019 Fury": {
-        "title": "The Elements\u2019 Fury",
+    "The Elements' Fury": {
+        "title": "The Elements' Fury",
         "element": "Fire",
         "mastery_level": "6",
         "keywords": [],
@@ -2982,7 +2982,7 @@
             "Special (+1 additional spell per 3 Raises"
         ],
         "special": null,
-        "description": "A supremely advanced form of the lesser spell known as Hurried Steps, this spell has been used by only a few highly advanced masters of magic; its creation is credited to Naka Kaeteru, the first Grand Master of the Elements. When this prayer is completed, the caster\u2019s mind and body are infused with energetic Fire kami to such an extent that his thoughts, movements, and speech become all but superhuman. He may immediately cast a number of spells of Mastery Level 4 or less equal to his Fire Ring, casting each spell as a Free Action regardless of its normal casting time. Spell Casting Rolls must be made and spell slots are used as normal, but there is no need to Raise for a shorter casting time."
+        "description": "A supremely advanced form of the lesser spell known as Hurried Steps, this spell has been used by only a few highly advanced masters of magic; its creation is credited to Naka Kaeteru, the first Grand Master of the Elements. When this prayer is completed, the caster's mind and body are infused with energetic Fire kami to such an extent that his thoughts, movements, and speech become all but superhuman. He may immediately cast a number of spells of Mastery Level 4 or less equal to his Fire Ring, casting each spell as a Free Action regardless of its normal casting time. Spell Casting Rolls must be made and spell slots are used as normal, but there is no need to Raise for a shorter casting time."
     },
     "The Soul's Blade": {
         "title": "The Soul's Blade",
@@ -3094,7 +3094,7 @@
             "Area of Effect (+500 feet radius per Raise)"
         ],
         "special": null,
-        "description": "This prayer invokes the purity and cleansing strength of the Water kami to purge flth and contamination from a body of water such as a pond, a moat, or some of a stream or river. The caster touches the water as part of the casting ritual, and the purifcation ripples out from that point in waves of glowing light. This spell renders all the water within the area of effect wholly pure and safe to drink, removing all dirt, disease, and toxins. (However, it cannot purge the Taint.) The purifcation is a one-off event and cannot prevent dirt or poison from returning to the water later.\nThis spell can also be cast on water inside a single container (such as a bucket, barrel, or bottle). If the spell is cast on an alcoholic beverage (such as sake, shochu, or plum wine) it will purge the drink\u2019s favor and alcohol content, leaving it as pure water."
+        "description": "This prayer invokes the purity and cleansing strength of the Water kami to purge flth and contamination from a body of water such as a pond, a moat, or some of a stream or river. The caster touches the water as part of the casting ritual, and the purifcation ripples out from that point in waves of glowing light. This spell renders all the water within the area of effect wholly pure and safe to drink, removing all dirt, disease, and toxins. (However, it cannot purge the Taint.) The purifcation is a one-off event and cannot prevent dirt or poison from returning to the water later.\nThis spell can also be cast on water inside a single container (such as a bucket, barrel, or bottle). If the spell is cast on an alcoholic beverage (such as sake, shochu, or plum wine) it will purge the drink's favor and alcohol content, leaving it as pure water."
     },
     "Reversal Of Fortunes": {
         "title": "Reversal Of Fortunes",
@@ -3150,15 +3150,15 @@
         "element": "Water",
         "mastery_level": "1",
         "keywords": [],
-        "range": "20\u2019",
+        "range": "20'",
         "aoe": "One target creature",
         "duration": "10 Rounds",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Duration (+3 Rounds per Raise)"
         ],
         "special": null,
-        "description": "This prayer invokes Suitengu, the Fortune of the Sea, to drag down the target with the weight of his sullen wrath. The target feels a great weight on all his limbs, as though he is trying to swim in heavy seas. Mechanically, Suitengu\u2019s hostility lower\u2019s the target\u2019s Refexes Rank by 1 and causes him to move as though his Water is 1 Rank lower for the duration of the spell."
+        "description": "This prayer invokes Suitengu, the Fortune of the Sea, to drag down the target with the weight of his sullen wrath. The target feels a great weight on all his limbs, as though he is trying to swim in heavy seas. Mechanically, Suitengu's hostility lower's the target's Refexes Rank by 1 and causes him to move as though his Water is 1 Rank lower for the duration of the spell."
     },
     "Sympathetic Energies": {
         "title": "Sympathetic Energies",
@@ -3199,16 +3199,16 @@
         "keywords": [
             "Defense"
         ],
-        "range": "25\u2019",
+        "range": "25'",
         "aoe": "One target creature",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Area of Effect (+1 target per two Raises)",
             "Special (+1k0 on the Con- tested Roll per Raise)"
         ],
         "special": null,
-        "description": "This spell evokes a sudden blast of water that strikes with the heavy, irresistible power of the tide. The water is summoned into existence, fying out from the caster in a heavy mass and striking the target with gentle but nigh-irresistible power. The target must make a Contested Roll of his Strength against the caster\u2019s Water \u2013 failure means Knockdown (the target is knocked Prone). The spell will also extinguish any open fames the targets are carrying (torches, lanterns, candles, etc).\nThis spell can affect Huge creatures, although the GM may wish to award them a bonus on their Contested Roll to refect the greater diffculty of knocking down such large targets."
+        "description": "This spell evokes a sudden blast of water that strikes with the heavy, irresistible power of the tide. The water is summoned into existence, fying out from the caster in a heavy mass and striking the target with gentle but nigh-irresistible power. The target must make a Contested Roll of his Strength against the caster's Water \u2013 failure means Knockdown (the target is knocked Prone). The spell will also extinguish any open fames the targets are carrying (torches, lanterns, candles, etc).\nThis spell can affect Huge creatures, although the GM may wish to award them a bonus on their Contested Roll to refect the greater diffculty of knocking down such large targets."
     },
     "Cloak Of The Miya": {
         "title": "Cloak Of The Miya",
@@ -3226,23 +3226,23 @@
         "special": null,
         "description": "You wrap yourself in the protective embrace of the wave. Your Armor TN is increased by an amount equal to your Water Ring plus your School Rank for the duration of this spell."
     },
-    "Heaven\u2019S Tears": {
-        "title": "Heaven\u2019S Tears",
+    "Heaven's Tears": {
+        "title": "Heaven's Tears",
         "element": "Water",
         "mastery_level": "2",
         "keywords": [
             "Crystal"
         ],
         "range": "Centered on caster",
-        "aoe": "30\u2019 radius around caster",
+        "aoe": "30' radius around caster",
         "duration": "2 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 radius per Raise)",
+            "Area of Effect (+5' radius per Raise)",
             "Duration (+1 Round for two Raises",
             "may only be done once)"
         ],
         "special": null,
-        "description": "This prayer evokes the sorrow of the Heavens, unleashing a brief deluge of rain which is endowed with the spiritual purity of the Sun. The spell summons divine rain from the sky, and thus can only be used effectively outdoors \u2013 it cannot cause rain to fall indoors or underground. Those of pure soul (no Taint or Shadow corruption, Honor Rank 4.0 or better) who are bathed in Heaven\u2019s Tears are healed each Round by a number of Wounds equal to the caster\u2019s Water. Conversely, those with Taint or Shadow corruption suffer 1k1 Wounds for each Round they are exposed to the Tears."
+        "description": "This prayer evokes the sorrow of the Heavens, unleashing a brief deluge of rain which is endowed with the spiritual purity of the Sun. The spell summons divine rain from the sky, and thus can only be used effectively outdoors \u2013 it cannot cause rain to fall indoors or underground. Those of pure soul (no Taint or Shadow corruption, Honor Rank 4.0 or better) who are bathed in Heaven's Tears are healed each Round by a number of Wounds equal to the caster's Water. Conversely, those with Taint or Shadow corruption suffer 1k1 Wounds for each Round they are exposed to the Tears."
     },
     "Inari's Blessing": {
         "title": "Inari's Blessing",
@@ -3265,11 +3265,11 @@
         "element": "Water",
         "mastery_level": "2",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One individual",
         "duration": "Concentration (Special)",
         "raises": [
-            "Range (10\u2019)",
+            "Range (10')",
             "Targets (+1)"
         ],
         "special": null,
@@ -3335,7 +3335,7 @@
             "Duration (+1 Round per Raise)"
         ],
         "special": null,
-        "description": "This spell calls on Water\u2019s affnity to physical strength. The surge of Water kami through the body briefy enhances the muscles, allowing the targeted person to perform prodigious feats. For the duration of the spell, the target\u2019s Strength Rank is increased by an amount equal to half the caster\u2019s Water Ring (rounded down). This cannot raise the Strength Rank higher than 9."
+        "description": "This spell calls on Water's affnity to physical strength. The surge of Water kami through the body briefy enhances the muscles, allowing the targeted person to perform prodigious feats. For the duration of the spell, the target's Strength Rank is increased by an amount equal to half the caster's Water Ring (rounded down). This cannot raise the Strength Rank higher than 9."
     },
     "Surging Soul": {
         "title": "Surging Soul",
@@ -3344,15 +3344,15 @@
         "keywords": [
             "Battle"
         ],
-        "range": "10\u2019",
+        "range": "10'",
         "aoe": "One target person",
         "duration": "3 Rounds",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Duration (+1 Round per two Raises)"
         ],
         "special": null,
-        "description": "In contrast to the more peaceful and healing aspects of Water, this prayer evokes the power of Water on the attack, unleashing a surge of chi through the target\u2019s limbs to empower his strikes. However, the massive surge of Water kami through the body also makes it diffcult for the target to remain still. The recipient of this prayer enjoys a +1k1 bonus to all Attack rolls, but cannot enter or beneft from the Center Stance and must take at least one Move Action every Round for the duration of the spell. Surging Soul is greatly favored among war-shugenja such as the martial wing of the Kitsu, the Tamori, the Kuni, and the Iuchi, but fnds less acceptance in families like the Asahina and the Isawa."
+        "description": "In contrast to the more peaceful and healing aspects of Water, this prayer evokes the power of Water on the attack, unleashing a surge of chi through the target's limbs to empower his strikes. However, the massive surge of Water kami through the body also makes it diffcult for the target to remain still. The recipient of this prayer enjoys a +1k1 bonus to all Attack rolls, but cannot enter or beneft from the Center Stance and must take at least one Move Action every Round for the duration of the spell. Surging Soul is greatly favored among war-shugenja such as the martial wing of the Kitsu, the Tamori, the Kuni, and the Iuchi, but fnds less acceptance in families like the Asahina and the Isawa."
     },
     "The Ties That Bind": {
         "title": "The Ties That Bind",
@@ -3401,21 +3401,21 @@
         "special": null,
         "description": "By entreating the insight of the Water kami, a shugenja may dramatically increase his ability to perceive the world around him. For the duration of this spell, your reading speed doubles, and you will have perfect recall of everything read while under the influence of this spell. This spell does not enhance comprehension, however, so any language or cipher you are not familiar with is still completely indecipherable."
     },
-    "Yuki\u2019S Touch": {
-        "title": "Yuki\u2019S Touch",
+    "Yuki's Touch": {
+        "title": "Yuki's Touch",
         "element": "Water",
         "mastery_level": "2",
         "keywords": [
             "Travel"
         ],
         "range": "Touch",
-        "aoe": "Body of water 100\u2019 radius from caster",
+        "aoe": "Body of water 100' radius from caster",
         "duration": "Instantaneous",
         "raises": [
-            "Area of Effect (+50\u2019 radius per Raise)"
+            "Area of Effect (+50' radius per Raise)"
         ],
         "special": null,
-        "description": "This spell, named after the legendary spirit known as the Yuki no Onna, persuades the Water spirits in a stream, river, or lake to expel all Fire from their presence, causing the water to instantly freeze. A single natural body of water freezes solid out to a distance of 100\u2019 from the caster. Although this has uses in combat, the most frequent employment of the spell is to allow travelers or soldiers to cross water barriers. Any persons or creatures within the water will be trapped, and if they are under the surface they will suffocate (treat as Drowning). Breaking free of the ice will require a Contested Roll of Strength against the caster\u2019s Water. The ice will melt normally."
+        "description": "This spell, named after the legendary spirit known as the Yuki no Onna, persuades the Water spirits in a stream, river, or lake to expel all Fire from their presence, causing the water to instantly freeze. A single natural body of water freezes solid out to a distance of 100' from the caster. Although this has uses in combat, the most frequent employment of the spell is to allow travelers or soldiers to cross water barriers. Any persons or creatures within the water will be trapped, and if they are under the surface they will suffocate (treat as Drowning). Breaking free of the ice will require a Contested Roll of Strength against the caster's Water. The ice will melt normally."
     },
     "Endless Deluge": {
         "title": "Endless Deluge",
@@ -3430,7 +3430,7 @@
             "Duration (+6 hours per Raise)"
         ],
         "special": null,
-        "description": "This spell calls on the Water spirits in the sky to congregate and descend to the earth, unleashing a massive rainstorm. Casting this spell is a ritual requiring at least ten minutes; at the GM\u2019s option, casting this spell in an especially dry region, or during a drought, may require more casting time or require Raises to succeed. Rainclouds gather while the spell is being cast, and once it is completed the clouds open up and rain begins pouring down, continuing without cease for many hours.\nThe chief value of this spell is to extinguish fres (even large confagrations such as forest fres will be doused within a half hour or so) and to abate the effects of drought. However, the relentless pouring rain also obscures visibility and slickens objects, imposing a -1k0 penalty on all physical actions and a -2k0 penalty on ranged attacks. The rain also imposes a -1k1 penalty on Spell Casting Rolls for Fire spells within it, since the relentless water makes the Fire spirits reluctant to act. Finally, due to the large volume of rain over a short period of time, the spell can potentially cause\nfash-fooding (GM\u2019s option)."
+        "description": "This spell calls on the Water spirits in the sky to congregate and descend to the earth, unleashing a massive rainstorm. Casting this spell is a ritual requiring at least ten minutes; at the GM's option, casting this spell in an especially dry region, or during a drought, may require more casting time or require Raises to succeed. Rainclouds gather while the spell is being cast, and once it is completed the clouds open up and rain begins pouring down, continuing without cease for many hours.\nThe chief value of this spell is to extinguish fres (even large confagrations such as forest fres will be doused within a half hour or so) and to abate the effects of drought. However, the relentless pouring rain also obscures visibility and slickens objects, imposing a -1k0 penalty on all physical actions and a -2k0 penalty on ranged attacks. The rain also imposes a -1k1 penalty on Spell Casting Rolls for Fire spells within it, since the relentless water makes the Fire spirits reluctant to act. Finally, due to the large volume of rain over a short period of time, the spell can potentially cause\nfash-fooding (GM's option)."
     },
     "Near To Ice": {
         "title": "Near To Ice",
@@ -3468,7 +3468,7 @@
         "keywords": [
             "Defense"
         ],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target person",
         "duration": "10 Rounds",
         "raises": [
@@ -3476,7 +3476,7 @@
             "Area of Effect (+1 person per Raise)"
         ],
         "special": null,
-        "description": "\u201cThe sea is a thing of great destructive power, but also great mercy and salvation.\u201d - Asako Chukage\nThis spell calls on the power of Water to protect and hide the chosen targets (who must be willing, and can include the caster). The spell can only be cast within range of a large quantity of water in a natural environment \u2013 e.g. a pond, stream, or something larger. When the spell is cast, the water lunges out, scoops up the targets, and draws them into the water, concealing them beneath its surface. The targets have enough air to breathe for the duration of the spell, but no longer. The surrounding barrier of water completely protects the targets, but also completely blocks them from any sort of attack against those outside \u2013 indeed, they will not even be able to see what is happening above the water unless they can roll Perception at TN 20 to make out the blurry images.\nOnce the spell\u2019s duration expires, the water releases the targets where they are \u2013 they must swim to the surface on their own."
+        "description": "\u201cThe sea is a thing of great destructive power, but also great mercy and salvation.\u201d - Asako Chukage\nThis spell calls on the power of Water to protect and hide the chosen targets (who must be willing, and can include the caster). The spell can only be cast within range of a large quantity of water in a natural environment \u2013 e.g. a pond, stream, or something larger. When the spell is cast, the water lunges out, scoops up the targets, and draws them into the water, concealing them beneath its surface. The targets have enough air to breathe for the duration of the spell, but no longer. The surrounding barrier of water completely protects the targets, but also completely blocks them from any sort of attack against those outside \u2013 indeed, they will not even be able to see what is happening above the water unless they can roll Perception at TN 20 to make out the blurry images.\nOnce the spell's duration expires, the water releases the targets where they are \u2013 they must swim to the surface on their own."
     },
     "Silent Waters": {
         "title": "Silent Waters",
@@ -3517,30 +3517,30 @@
         "element": "Water",
         "mastery_level": "3",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One willing person",
         "duration": "5 minutes",
         "raises": [
-            "Range (+20\u2019 per Raise)",
+            "Range (+20' per Raise)",
             "Duration (+1 Minute per Raise)"
         ],
         "special": null,
-        "description": "This spell evokes the target\u2019s inner Water to the ultimate degree, strengthening it to the point where it completely\noverwhelms the target\u2019s other Elements. The target \u2013 who may be the caster \u2013 is physically transformed into pure\nclear water, along with anything he might be wearing or carrying at the moment the spell is cast. This state persists until the spell expires, and while the target is water he cannot speak, attack, cast spells, or directly manipulate physical objects. However, he can move more quickly (performing Move Actions as though he has +1 Rank in his\nWater Ring), can indirectly manipulate objects by pushing against them, and can fow his liquid body through narrow openings. (The target\u2019s physical mass does not change, so he cannot squeeze himself into a small box or otherwise evade the constraints of his size.) The target is effectively immune to most physical harm, but Fire spells can damage him, as can truly intense heat such as a burning castle or a lava fow. At the GM\u2019s option, certain types of physical events \u2013 such as being scattered or partially soaked up with towels \u2013 might also harm the transformed person.\nOnce the spell\u2019s duration ends, the target\u2019s Elements rebalance and he returns to normal."
+        "description": "This spell evokes the target's inner Water to the ultimate degree, strengthening it to the point where it completely\noverwhelms the target's other Elements. The target \u2013 who may be the caster \u2013 is physically transformed into pure\nclear water, along with anything he might be wearing or carrying at the moment the spell is cast. This state persists until the spell expires, and while the target is water he cannot speak, attack, cast spells, or directly manipulate physical objects. However, he can move more quickly (performing Move Actions as though he has +1 Rank in his\nWater Ring), can indirectly manipulate objects by pushing against them, and can fow his liquid body through narrow openings. (The target's physical mass does not change, so he cannot squeeze himself into a small box or otherwise evade the constraints of his size.) The target is effectively immune to most physical harm, but Fire spells can damage him, as can truly intense heat such as a burning castle or a lava fow. At the GM's option, certain types of physical events \u2013 such as being scattered or partially soaked up with towels \u2013 might also harm the transformed person.\nOnce the spell's duration ends, the target's Elements rebalance and he returns to normal."
     },
-    "Typhoon\u2019S Surge": {
-        "title": "Typhoon\u2019S Surge",
+    "Typhoon's Surge": {
+        "title": "Typhoon's Surge",
         "element": "Water",
         "mastery_level": "3",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One or more target allies",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+10\u2019 per Raise)",
-            "Area of Effect (+1 Target beyond caster\u2019s Water per two Raises)"
+            "Range (+10' per Raise)",
+            "Area of Effect (+1 Target beyond caster's Water per two Raises)"
         ],
         "special": null,
-        "description": "This spell, sometimes called by the more mundane name \u201cRenewed Energy,\u201d is a variation on the more commonly-\nused prayer Rejuvenating Vapors. The spell targets a number of allies within range up to the caster\u2019s Water Rank (additional targets beyond the caster\u2019s Water may be taken with Raises). All of the targets experience a sudden and powerful surge of energy as the spell foods them with invigorating chi. They are freed from the effects of the Fatigued and Dazed conditions, and each target heals a number of Wounds equal to the caster\u2019s Water Rank."
+        "description": "This spell, sometimes called by the more mundane name \u201cRenewed Energy,\u201d is a variation on the more commonly-\nused prayer Rejuvenating Vapors. The spell targets a number of allies within range up to the caster's Water Rank (additional targets beyond the caster's Water may be taken with Raises). All of the targets experience a sudden and powerful surge of energy as the spell foods them with invigorating chi. They are freed from the effects of the Fatigued and Dazed conditions, and each target heals a number of Wounds equal to the caster's Water Rank."
     },
     "Visions Of The Future": {
         "title": "Visions Of The Future",
@@ -3643,17 +3643,17 @@
         "keywords": [
             "Battle"
         ],
-        "range": "100\u2019",
+        "range": "100'",
         "aoe": "Up to 25 allies in one group",
         "duration": "5 minutes",
         "raises": [
-            "Range (+50\u2019 per Raise)",
+            "Range (+50' per Raise)",
             "Duration (+1 minute per Raise)",
             "Special (affect non-samurai",
             "see description)"
         ],
         "special": null,
-        "description": "This spell was originally devised by battle shugenja of the Kitsu and Iuchi families, and remains a favorite among\nthem. It infuses a military unit with the fowing speed and relentless strength of Water, allowing the soldiers to move more quickly and strike more powerfully on the battlefeld. The caster chooses one group of allies (up to roughly a squadron) to receive this blessing; all troops in that unit may move as though their Water is 1 Rank higher and are considered to have a Strength 1 Rank higher for the duration of the spell.\nThis spell normally only benefts samurai, but a skilled caster can extend to the blessing to cover other allies. Two\nRaises will allow the spell to affect non-samurai humans (e.g. ashigaru), while four Raises will allow it to affect non-human allies such as Naga or Ratlings.\nThis spell may also be used to affect Mass Battle scenarios. Each casting of the spell during a Mass Battle\nawards a bonus equal to the caster\u2019s Water Ring to the total of the commanding general\u2019s next Battle Skill roll to\ndetermine winning or losing."
+        "description": "This spell was originally devised by battle shugenja of the Kitsu and Iuchi families, and remains a favorite among\nthem. It infuses a military unit with the fowing speed and relentless strength of Water, allowing the soldiers to move more quickly and strike more powerfully on the battlefeld. The caster chooses one group of allies (up to roughly a squadron) to receive this blessing; all troops in that unit may move as though their Water is 1 Rank higher and are considered to have a Strength 1 Rank higher for the duration of the spell.\nThis spell normally only benefts samurai, but a skilled caster can extend to the blessing to cover other allies. Two\nRaises will allow the spell to affect non-samurai humans (e.g. ashigaru), while four Raises will allow it to affect non-human allies such as Naga or Ratlings.\nThis spell may also be used to affect Mass Battle scenarios. Each casting of the spell during a Mass Battle\nawards a bonus equal to the caster's Water Ring to the total of the commanding general's next Battle Skill roll to\ndetermine winning or losing."
     },
     "The Mirror's Smile": {
         "title": "The Mirror's Smile",
@@ -3666,11 +3666,11 @@
         "aoe": "Caster",
         "duration": "1 Day",
         "raises": [
-            "Special (cast after only seeing the target\u2019s face once",
+            "Special (cast after only seeing the target's face once",
             "4 Raises)"
         ],
         "special": null,
-        "description": "You call on the Water kami to make your face become that of another person. This is not an illusion but an actual change to the flesh and bone, re-molding your face to match that of the other person. This is a painful experience and it takes several minutes for the kami to complete the re-shaping. Normally, casting this spell requires you to be familiar with the face of the target (you must have studied it for at least 8 hours), although with enough Raises you can take on a face you have seen only once.\nYour face looks exactly like the target\u2019s face, to the point where even close friends and family members will believe you are the target. However, this spell only affects the face, not the rest of the body or the hair. Scars, birthmarks, and other identifying features elsewhere on the body must be replicated or hidden if the deception is to succeed. Also, this spell does not change your voice."
+        "description": "You call on the Water kami to make your face become that of another person. This is not an illusion but an actual change to the flesh and bone, re-molding your face to match that of the other person. This is a painful experience and it takes several minutes for the kami to complete the re-shaping. Normally, casting this spell requires you to be familiar with the face of the target (you must have studied it for at least 8 hours), although with enough Raises you can take on a face you have seen only once.\nYour face looks exactly like the target's face, to the point where even close friends and family members will believe you are the target. However, this spell only affects the face, not the rest of the body or the hair. Scars, birthmarks, and other identifying features elsewhere on the body must be replicated or hidden if the deception is to succeed. Also, this spell does not change your voice."
     },
     "Seed Of Qanan": {
         "title": "Seed Of Qanan",
@@ -3684,7 +3684,7 @@
             "Duration (+2 Rounds per Raise)"
         ],
         "special": null,
-        "description": "A Unicorn secret spell based on gaijin magic, this spell uses the Water kami\u2019s control over internal energy to briefy create a temporary connection between two people, merging their chi and allowing them to call on each others\u2019 knowledge and skill. The targets must be touched simultaneously by the caster to establish the initial link of Water kami, and must remain within 50\u2019 of each other for the link to continue functioning \u2013 if this distance is exceeded, the spell immediately ends.\nIn game terms, the linked people are able to use each others\u2019 Skills, employing whichever Skill Rank is higher\nfor a given task. However, they do not gain the benefts of Mastery Abilities."
+        "description": "A Unicorn secret spell based on gaijin magic, this spell uses the Water kami's control over internal energy to briefy create a temporary connection between two people, merging their chi and allowing them to call on each others' knowledge and skill. The targets must be touched simultaneously by the caster to establish the initial link of Water kami, and must remain within 50' of each other for the link to continue functioning \u2013 if this distance is exceeded, the spell immediately ends.\nIn game terms, the linked people are able to use each others' Skills, employing whichever Skill Rank is higher\nfor a given task. However, they do not gain the benefts of Mastery Abilities."
     },
     "Steed Of The Ebbing Tides": {
         "title": "Steed Of The Ebbing Tides",
@@ -3693,14 +3693,14 @@
         "keywords": [
             "Travel"
         ],
-        "range": "25\u2019",
+        "range": "25'",
         "aoe": "One summoned steed",
         "duration": "4 hours",
         "raises": [
             "Duration (+2 hours per Raise)"
         ],
         "special": null,
-        "description": "This prayer was originally developed by the Iuchi, although the Isawa have since devised a similar spell on their own. It summons forth a number of powerful kami, who take the physical form of a watery, translucent horse. The Steed will bear the caster (or one other person designated by the caster at the time the Steed is frst summoned) in the same manner of a normal horse, can be controlled with Horsemanship in the normal way, and will fght selfessly in its rider\u2019s defense; for game purposes, the Steed is considered to have the same mechanical statistics as an Utaku Warhorse, but also has Reduction 15. It is untiring for as long as it remains in existence. Once the spell expires, the Steed collapses into normal water \u2013 which can be an unpleasant surprise if someone is still mounted on it."
+        "description": "This prayer was originally developed by the Iuchi, although the Isawa have since devised a similar spell on their own. It summons forth a number of powerful kami, who take the physical form of a watery, translucent horse. The Steed will bear the caster (or one other person designated by the caster at the time the Steed is frst summoned) in the same manner of a normal horse, can be controlled with Horsemanship in the normal way, and will fght selfessly in its rider's defense; for game purposes, the Steed is considered to have the same mechanical statistics as an Utaku Warhorse, but also has Reduction 15. It is untiring for as long as it remains in existence. Once the spell expires, the Steed collapses into normal water \u2013 which can be an unpleasant surprise if someone is still mounted on it."
     },
     "Strike Of The Flowing Waters": {
         "title": "Strike Of The Flowing Waters",
@@ -3733,8 +3733,8 @@
         "special": null,
         "description": "Priests of the kami are capable of inscribing powerful wards that invoke the power of the elements against all who attempt to pass them. A symbol of water can be inscribed on a solid object, most often a door, window, gate, or any other passageway. Anyone attempting to pass through this passageway or otherwise pass through the area is affected by the protective ward, and must succeed at a Contested Roll using their Fire against the caster's Water. Those who fail are affected by a crippling terror, and must immediately roll against a Fear 7 effect. You may only have one Symbol of Water in existence at any time, and Symbol spells of different elements may never affect the same area. This spell may be dispelled by another casting of Symbol of Water from any shugenja, or by destroying the surface where the Symbol was etched."
     },
-    "The Emperor\u2019S Road": {
-        "title": "The Emperor\u2019S Road",
+    "The Emperor's Road": {
+        "title": "The Emperor's Road",
         "element": "Water",
         "mastery_level": "4",
         "keywords": [
@@ -3748,7 +3748,7 @@
             "Area of Effect (+1 mile per Raise)"
         ],
         "special": null,
-        "description": "This spell was originally devised by the Seppun for the purpose of easing and supporting the Emperor\u2019s journeys\nto and from the annual Imperial Winter Court. Since then the spell has been applied more widely, but is still quite rare outside of the Seppun family. The spell creates a powerful aura of friendly Water spirits along a specifc Imperial road, easing travel along its length. The road is cleared of all minor obstacles and irregularities (a major physical obstacle such as a fallen tree or a rockslide will not be affected), and the Water spirits cause honorable travelers who are loyal to the Emperor to move as though their Water is 2 Ranks higher so long as they remain on the road. Moreover, the blessing infuses these travelers and their mounts with the energy of Water, causing them not to become Fatigued due to travel so long as they remain on the road."
+        "description": "This spell was originally devised by the Seppun for the purpose of easing and supporting the Emperor's journeys\nto and from the annual Imperial Winter Court. Since then the spell has been applied more widely, but is still quite rare outside of the Seppun family. The spell creates a powerful aura of friendly Water spirits along a specifc Imperial road, easing travel along its length. The road is cleared of all minor obstacles and irregularities (a major physical obstacle such as a fallen tree or a rockslide will not be affected), and the Water spirits cause honorable travelers who are loyal to the Emperor to move as though their Water is 2 Ranks higher so long as they remain on the road. Moreover, the blessing infuses these travelers and their mounts with the energy of Water, causing them not to become Fatigued due to travel so long as they remain on the road."
     },
     "The Path Not Taken": {
         "title": "The Path Not Taken",
@@ -3772,30 +3772,30 @@
             "Travel"
         ],
         "range": "Self",
-        "aoe": "10\u2019 diameter sphere",
+        "aoe": "10' diameter sphere",
         "duration": "One hour",
         "raises": [
             "Duration (+1/2 hour per Raise)",
             "Special (add an additional person within the bubble for three Raises)"
         ],
         "special": null,
-        "description": "This spell was originally devised by Isawa shugenja trying to locate the legendary undersea kingdom which was supposedly the home of Shiba\u2019s wife. Although they never succeeded in that goal, the spell they created has seen considerable use in the centuries since. Within the Waves persuades the Water kami to hold themselves away from the caster in a spherical formation, thereby forming an air bubble around him. The caster can move the bubble by concentrating, allowing him to explore freely beneath the surface of a river, lake, or even the ocean. (Such movement is at the normal speed based on the caster\u2019s Water.) Other persons can enter and leave the bubble by swimming, and a skilled caster can carry a few passengers along within the bubble\u2019s center. When the spell\u2019s duration expires, the Water kami push the bubble to the surface."
+        "description": "This spell was originally devised by Isawa shugenja trying to locate the legendary undersea kingdom which was supposedly the home of Shiba's wife. Although they never succeeded in that goal, the spell they created has seen considerable use in the centuries since. Within the Waves persuades the Water kami to hold themselves away from the caster in a spherical formation, thereby forming an air bubble around him. The caster can move the bubble by concentrating, allowing him to explore freely beneath the surface of a river, lake, or even the ocean. (Such movement is at the normal speed based on the caster's Water.) Other persons can enter and leave the bubble by swimming, and a skilled caster can carry a few passengers along within the bubble's center. When the spell's duration expires, the Water kami push the bubble to the surface."
     },
     "Chi Reversal": {
         "title": "Chi Reversal",
         "element": "Water",
         "mastery_level": "5",
         "keywords": [],
-        "range": "20\u2019",
+        "range": "20'",
         "aoe": "One target person/creature",
         "duration": "1 hour",
         "raises": [
-            "Range (+20\u2019 per Raise)",
+            "Range (+20' per Raise)",
             "Duration (+1/2 hour per Raise)",
             "Special (one additional pair of Traits per two Raises)"
         ],
         "special": null,
-        "description": "This prayer invokes Water\u2019s connection to the fow of Chi through the body, taking control of that fow in order to alter the target\u2019s balance of energy. One \u201cpair\u201d of the target\u2019s mental and physical Traits from the same Element (chosen by the caster) have their Ranks fipped for the duration of the spell. Thus, if the caster chose to fip a target\u2019s Fire Traits, an Intelligence of 2 and Agility of 4 would become an Intelligence of 4 and an Agility of 2 for the duration of the spell. The caster may Raise to affect additional pairs of Traits."
+        "description": "This prayer invokes Water's connection to the fow of Chi through the body, taking control of that fow in order to alter the target's balance of energy. One \u201cpair\u201d of the target's mental and physical Traits from the same Element (chosen by the caster) have their Ranks fipped for the duration of the spell. Thus, if the caster chose to fip a target's Fire Traits, an Intelligence of 2 and Agility of 4 would become an Intelligence of 4 and an Agility of 2 for the duration of the spell. The caster may Raise to affect additional pairs of Traits."
     },
     "Ever-changing Waves": {
         "title": "Ever-changing Waves",
@@ -3854,15 +3854,15 @@
         "keywords": [
             "Battle"
         ],
-        "range": "300\u2019",
-        "aoe": "Trench up to 30\u2019 wide and deep and up to 300\u2019 long",
+        "range": "300'",
+        "aoe": "Trench up to 30' wide and deep and up to 300' long",
         "duration": "15 minutes",
         "raises": [
-            "Area of Effect (increase width or depth of trench by 5\u2019 per Raise)",
+            "Area of Effect (increase width or depth of trench by 5' per Raise)",
             "Duration (+5 minutes per Raise)"
         ],
         "special": null,
-        "description": "This spell calls on the Water kami to hold themselves apart, creating a \u201ctrench\u201d through a body of water to allow the passage of men, animals, or even wagons and war machines. The spell is employed primarily by martial shugenja who need to help their clan\u2019s armies to cross river obstacles, but has also been used for more benign purposes, such as helping peasants to escape foods. The spell\u2019s chief limitation is that it cannot always clear the water all the way to the bottom \u2013 there is only so much that can be asked of the kami."
+        "description": "This spell calls on the Water kami to hold themselves apart, creating a \u201ctrench\u201d through a body of water to allow the passage of men, animals, or even wagons and war machines. The spell is employed primarily by martial shugenja who need to help their clan's armies to cross river obstacles, but has also been used for more benign purposes, such as helping peasants to escape foods. The spell's chief limitation is that it cannot always clear the water all the way to the bottom \u2013 there is only so much that can be asked of the kami."
     },
     "Power Of The Ocean": {
         "title": "Power Of The Ocean",
@@ -3904,14 +3904,14 @@
             "Thunder"
         ],
         "range": "1 mile",
-        "aoe": "Whirlpool 200\u2019 in radius",
+        "aoe": "Whirlpool 200' in radius",
         "duration": "10 minutes",
         "raises": [
-            "Area of Effect (+25\u2019 radius per Raise)",
+            "Area of Effect (+25' radius per Raise)",
             "Duration (+2 minutes per Raise)"
         ],
         "special": null,
-        "description": "This prayer is a favorite among the Yoritomo, who are credited with frst creating it. It can only be cast near or on\na large body of open water \u2013 a lake or sea. The spell excites the Water kami into a tremendous rage, causing them to create a huge and powerful whirlpool that will suck down any ships or swimmers in the vicinity. Any swimmer caught within the area of effect will be in danger of being sucked under, requiring a roll of Athletics (Swimming) / Strength at TN 30 each Round to avoid this. A ship within the area of effect will likewise be in danger, and the ship\u2019s captain must roll Navigation / Intelligence at TN 30 every minute to keep the vessel from being sucked under.\nOnce under water, all victims will be subject to Drowning, and can only reach the surface again by rolling Athletics (Swimming) / Strength at TN 40."
+        "description": "This prayer is a favorite among the Yoritomo, who are credited with frst creating it. It can only be cast near or on\na large body of open water \u2013 a lake or sea. The spell excites the Water kami into a tremendous rage, causing them to create a huge and powerful whirlpool that will suck down any ships or swimmers in the vicinity. Any swimmer caught within the area of effect will be in danger of being sucked under, requiring a roll of Athletics (Swimming) / Strength at TN 30 each Round to avoid this. A ship within the area of effect will likewise be in danger, and the ship's captain must roll Navigation / Intelligence at TN 30 every minute to keep the vessel from being sucked under.\nOnce under water, all victims will be subject to Drowning, and can only reach the surface again by rolling Athletics (Swimming) / Strength at TN 40."
     },
     "Breath Of Mist": {
         "title": "Breath Of Mist",
@@ -3921,14 +3921,14 @@
             "Defense"
         ],
         "range": "\u00bd mile",
-        "aoe": "A circular area 200\u2019 in radius",
+        "aoe": "A circular area 200' in radius",
         "duration": "30 minutes",
         "raises": [
-            "Area of Effect (+25\u2019 radius per Raise)",
+            "Area of Effect (+25' radius per Raise)",
             "Duration (+10 minutes per Raise)"
         ],
         "special": null,
-        "description": "This spell is especially popular among the more pacifstic types of shugenja, since it provides a way to avert a battle without actual violence. The spell evokes the full power of hundreds of Water kami to reduce the ground to a half-liquid mire while, at the same time, flling the air with water vapor to obscure vision. Entire armies have been rendered effectively helpless by this spell, unable to move or to strike out at their foes.\nIn game terms, the spell turns all the ground within the area of effect into Diffcult terrain. The fog reduces normal visibility to 10\u2019. Between 10\u2019 and 30\u2019, characters can discern vague outlines \u2013 this imposes a +15\u00a0TN penalty on any ranged attacks. Beyond 30\u2019 all characters are effectively Blind."
+        "description": "This spell is especially popular among the more pacifstic types of shugenja, since it provides a way to avert a battle without actual violence. The spell evokes the full power of hundreds of Water kami to reduce the ground to a half-liquid mire while, at the same time, flling the air with water vapor to obscure vision. Entire armies have been rendered effectively helpless by this spell, unable to move or to strike out at their foes.\nIn game terms, the spell turns all the ground within the area of effect into Diffcult terrain. The fog reduces normal visibility to 10'. Between 10' and 30', characters can discern vague outlines \u2013 this imposes a +15\u00a0TN penalty on any ranged attacks. Beyond 30' all characters are effectively Blind."
     },
     "Opening The Veil": {
         "title": "Opening The Veil",
@@ -3937,7 +3937,7 @@
         "keywords": [
             "Travel"
         ],
-        "range": "10\u2019",
+        "range": "10'",
         "aoe": "One spirit portal",
         "duration": "1 hour",
         "raises": [
@@ -3947,7 +3947,7 @@
             "Yomi for four Raises)"
         ],
         "special": null,
-        "description": "This prayer, a spell known only to the Kitsu and Isawa, invokes the Travel aspect of Water to open a temporary portal into the Spirit Realms. The spell can normally only access the realms of Meido or Chikushudo, but extremely powerful casters can sometimes access Yomi, Sakkaku, Toshigoku, Yume-do, or Gaki-do. The portal lasts only a short time, so passage through it is fraught with risk.\nAlso, this spell cannot work in any area which has been warded against the infuences of the Spirit Realms (GM\u2019s discretion)."
+        "description": "This prayer, a spell known only to the Kitsu and Isawa, invokes the Travel aspect of Water to open a temporary portal into the Spirit Realms. The spell can normally only access the realms of Meido or Chikushudo, but extremely powerful casters can sometimes access Yomi, Sakkaku, Toshigoku, Yume-do, or Gaki-do. The portal lasts only a short time, so passage through it is fraught with risk.\nAlso, this spell cannot work in any area which has been warded against the infuences of the Spirit Realms (GM's discretion)."
     },
     "Peace Of The Kami": {
         "title": "Peace Of The Kami",
@@ -4171,10 +4171,10 @@
         "mastery_level": "2",
         "keywords": [],
         "range": "N/A",
-        "aoe": "20\u2019 radius from caster",
+        "aoe": "20' radius from caster",
         "duration": "5 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 radius per two Raises)",
+            "Area of Effect (+5' radius per two Raises)",
             "Duration (+1 Round per Raise)"
         ],
         "special": null,
@@ -4244,14 +4244,14 @@
         "mastery_level": "3",
         "keywords": [],
         "range": "N/A",
-        "aoe": "20\u2019 radius from caster",
+        "aoe": "20' radius from caster",
         "duration": "5 Rounds",
         "raises": [
-            "Area of Effect (+5\u2019 radius per two Raises)",
+            "Area of Effect (+5' radius per two Raises)",
             "Duration (+1 Round per Raise)"
         ],
         "special": null,
-        "description": "This spell is the exact counterpoint to Strengthen the Void; it thickens the veil between the Void and reality, making it more difficult to perceive the Void or to call on the inner harmony which the Void represents. This spell is normally used by ishiken to control the activities of their more powerful and dangerous apprentices, but is sometimes employed in more practical venues as well.\nWithin this spell\u2019s area of effect, casting other Void spells suffers a +10\u00a0TN penalty. Also, anyone wishing to spend Void Points within this area must spend two Void Points to gain the effects of one. If the character only has one Void Point, he cannot spend it within the area of effect.\nGM\u2019s Note: It is left to the GM\u2019s decision whether the effects of Strengthen the Void and Banish the Void also apply to \u201cVoid-like\u201d effects such as Naga Akasha or the ratling Name."
+        "description": "This spell is the exact counterpoint to Strengthen the Void; it thickens the veil between the Void and reality, making it more difficult to perceive the Void or to call on the inner harmony which the Void represents. This spell is normally used by ishiken to control the activities of their more powerful and dangerous apprentices, but is sometimes employed in more practical venues as well.\nWithin this spell's area of effect, casting other Void spells suffers a +10\u00a0TN penalty. Also, anyone wishing to spend Void Points within this area must spend two Void Points to gain the effects of one. If the character only has one Void Point, he cannot spend it within the area of effect.\nGM's Note: It is left to the GM's decision whether the effects of Strengthen the Void and Banish the Void also apply to \u201cVoid-like\u201d effects such as Naga Akasha or the ratling Name."
     },
     "Echoes In The Void": {
         "title": "Echoes In The Void",
@@ -4347,11 +4347,11 @@
         "element": "Void",
         "mastery_level": "4",
         "keywords": [],
-        "range": "100\u2019",
+        "range": "100'",
         "aoe": "One target creature",
         "duration": "Instantaneous",
         "raises": [
-            "Range (+100\u2019 per Raise)",
+            "Range (+100' per Raise)",
             "Targets (+1 target per two Raises",
             "maximum targets equal to your Void Ring)"
         ],
@@ -4378,15 +4378,15 @@
         "element": "Void",
         "mastery_level": "4",
         "keywords": [],
-        "range": "50\u2019",
+        "range": "50'",
         "aoe": "One target creature",
         "duration": "Concentration",
         "raises": [
-            "Range (+10\u2019 per Raise)",
+            "Range (+10' per Raise)",
             "Special (+1k0 to Contested Roll per Raise)"
         ],
         "special": null,
-        "description": "This spell allows the ishiken to suffuse another living creature with the pure essence of the Void, overwhelming\nthe creature\u2019s bodily functions and rendering that creature inert and unmoving so long as the spell remains in effect.\nThe caster must be able to see the target, and the spell requires a successful Contested Void Roll (creatures without a Void Ring may resist with Name, Akasha, or Willpower at the GM\u2019s discretion). If the target fails the Contested Roll, it is held immobile, unable to move, speak, or otherwise act of its own volition so long as the caster maintains concentration. On the second and subsequent Rounds of the spell, the target may make another Contested Roll during the Reactions Stage to throw off the spell\u2019s effects."
+        "description": "This spell allows the ishiken to suffuse another living creature with the pure essence of the Void, overwhelming\nthe creature's bodily functions and rendering that creature inert and unmoving so long as the spell remains in effect.\nThe caster must be able to see the target, and the spell requires a successful Contested Void Roll (creatures without a Void Ring may resist with Name, Akasha, or Willpower at the GM's discretion). If the target fails the Contested Roll, it is held immobile, unable to move, speak, or otherwise act of its own volition so long as the caster maintains concentration. On the second and subsequent Rounds of the spell, the target may make another Contested Roll during the Reactions Stage to throw off the spell's effects."
     },
     "Fill The Emptiness": {
         "title": "Fill The Emptiness",
