@@ -3,7 +3,7 @@
 		<td>
 
 			<div>
-				<select class="red_round_rectangle">
+				<select class="red_round_rectangle" id="diceroller_roll_select">
 					<option value="1">Roll 1</option>
 					<option value="2">Roll 2</option>
 					<option value="3">Roll 3</option>
@@ -16,7 +16,7 @@
 					<option value="10">Roll 10</option>
 				</select>
 
-				<select class="red_round_rectangle">
+				<select class="red_round_rectangle" id="diceroller_keep_select">
 					<option value="1">Keep 1</option>
 					<option value="2">Keep 2</option>
 					<option value="3">Keep 3</option>
@@ -31,7 +31,7 @@
 			</div>
 
 			<div>
-				<select class="red_round_rectangle">
+				<select class="red_round_rectangle" id="diceroller_explode_select">
 					<option value="0">Never Explode</option>
 					<option value="1">Explode on 1</option>
 					<option value="2">Explode on 2</option>
@@ -56,7 +56,7 @@
 			</div>
 
 			<div>
-				<select class="red_round_rectangle">
+				<select class="red_round_rectangle" id="diceroller_raise_select">
 					<option value="0">No Called Raises</option>
 					<option value="1">1 Called Raise</option>
 					<option value="2">2 Called Raises</option>
@@ -73,35 +73,31 @@
 
 			<div>
 				<label>Emphasis:</label>
-				<input type="checkbox">
-			</div>
-
-			<div>
-				<label>Use Void Point?</label>
-				<input type="checkbox">
+				<input type="checkbox" id="diceroller_emphasis_checkbox">
 			</div>
 
 			<div>
 				<label>Verbose Output:</label>
-				<input type="checkbox">
+				<input type="checkbox" id="diceroller_verbose_checkbox">
 			</div>
 
-			<input type="button" value="Roll">
+			<input type="button" value="Roll" id="diceroller_roll_button">
 
 		</td>
 
 		<td>
 			<div width=400 height=150>
-				<p class="dice_roll_output">OUTPUT</p>
+				<p id="diceroller_output" class="dice_roll_output">OUTPUT</p>
 			</div>
 		</td>
 
 		<td>
 			<div>
-				<p style="display: inline" id="roll_history_header">Roll History:</p>
-				<input type="button" value="Clear" style="float: right">
+				<p style="display: inline" id="diceroller_history_header">Roll History:</p>
+				<input id="diceroller_history_clear" type="button" value="Clear"
+					 style="float: right">
 			</div>
-			<p class="dice_roll_history">HISTORY</p>
+			<p id="diceroller_roll_history" class="dice_roll_history">HISTORY</p>
 		</td>
 	</tr>
 </table>
