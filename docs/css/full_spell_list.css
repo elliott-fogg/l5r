@@ -1,0 +1,104 @@
+.fsl_active {
+	font-weight: bold;
+	font-style: italic;
+}
+
+#fsl_element_nav > a {
+	margin:  0 5px 0 5px;
+	user-select: none;
+	cursor: pointer;
+}
+
+#fsl_rank_nav > a {
+	margin: 0 5px 0 5px;
+	user-select: none;
+	cursor: pointer;
+}
+
+#fsl_rank_nav > a.fsl_disabled {
+	font-style: italic;
+	color: grey;
+	cursor: default;
+}
+
+#fsl_element_nav {
+	width: 100% - 10px;
+	margin: 5px;
+	font-size: 1.2em;
+}
+
+#fsl_rank_nav {
+	width: 100% - 10px;
+	margin: 5px;
+	font-size: 1em;
+}
+
+#full_spell_list {
+	border: solid 1px black;
+/*	width: 30%;*/
+}
+
+#fsl_spell_list {
+	height: 300px;
+	overflow-y: scroll;
+	border: solid 1px black;
+	padding-left: 25px;
+	padding-top: 5px;
+}
+
+#fsl_saved_tab {
+	font-size: 1.2em;
+	margin: 5px;
+	margin-right: 10px;
+	margin-left: auto;
+}
+
+#fsl_element_nav_container {
+	display:  flex;
+	width: 100%;
+	border: solid black 1px;
+}
+
+.fsl_save_button {
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	margin-top: 1px;
+	align-self: center;
+	cursor: pointer;
+}
+
+.fsl_save_button.not_saved {
+	filter: invert(40%) sepia(28%) saturate(4427%) hue-rotate(94deg) brightness(98%) contrast(102%);
+}
+
+.fsl_save_button.saved {
+	filter: invert(12%) sepia(74%) saturate(4984%) hue-rotate(355deg) brightness(87%) contrast(115%);
+}
+
+.blackbox {
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	margin-top: 1px;
+	/*background-color: black;*/
+	align-self: center; 
+	cursor: pointer;
+}
+
+.blackbox.saved {
+	/*border-radius: 50%;*/
+}
+
+#spell_roller_topdiv {
+	display: flex;
+}
+
+#spell_roller_leftdiv {
+	width: 40%;
+	margin-right: 25px;
+}
+
+#spell_roller_rightdiv {
+	width: 40%;
+}
