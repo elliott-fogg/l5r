@@ -838,9 +838,7 @@
         "range": "Touch",
         "aoe": "Special",
         "duration": "Permanent",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Priests of the kami are capable of inscribing powerful wards that invoke the power of the elements against all who attempt to pass them. A Symbol of Air must be inscribed on a solid object, most often a door, window, gate, or other passageway. Anyone attempting to pass through this passageway or otherwise pass by the area protected by the Symbol is affected by the protective ward. Such persons must succeed at a Contested Roll using their Earth against the caster's Air. Those who fail are affected by a powerful drowsiness, and must succeed at a Willpower Roll against the total of the Spell Casting Roll used the create the ward or fall into a deep sleep for one hour. Those affected by the spell cannot be woken by normal means, but will awaken instantly if subjected to any attack or form of harm, as the kami will not be party to such humorless tricks. You may only have one Symbol of Air in existence at any time, and Symbol spells of different elements may never affect the same area. This spell may be dispelled by another casting of Symbol of Air from any shugenja, or y destroying the surface where the Symbol was etched."
     },
@@ -947,9 +945,7 @@
         "range": "Personal",
         "aoe": "One target individual",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "No destination is beyond the reach of the wind. With a simple prayer to the kami, you can send your words across the span of the Empire, whispering into the ear of anyone you need to send a message. The person must be someone you know, and the spell will establish a link between you two of you only as long as you concentrate. You may communicate with one another, although you only hear each other's voices as whispers. Both participants are instantly aware when the connection is forged, and either can end it at any point."
     },
@@ -1010,9 +1006,7 @@
         "range": "30'",
         "aoe": "One summoned spirit",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The wind itself will take form to defend you. The ultimate actualization of the Summon spell, this spell summons a massive kami of pure air to serve you. It takes the form of a vaguely humanoid shape, roughly ten feet in height, with an indistinct outline visible only because of small debris caught up in its body. The kami may move up to 10' x your Air per Round, and generates powerful winds in a twenty foot radius around it that hinder movement, preventing anyone from making Simple Move Actions within its area of effect. The manifest kami is treated as if it has all Physical Traits equal to your Air Ring, and attacks with a Jiujutsu Skill rank equal to half your Air Ring (for example, a spirit summoned by a shugenja with Air 6 would inflict 6k6 damage with its attacks). For purposes of taking damage, the spirit is considered to have Wounds as though it were a human with Earth equal to your Air Ring, but suffers no Wound Penalties. It is Invulnerable. If it is successfully reduced to zero Wounds, it is dispelled."
     },
@@ -1089,9 +1083,7 @@
         "range": "Personal",
         "aoe": "1 mile radius, centered on the caster",
         "duration": "Concentration (special)",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The wrath of the air kami, and the Fortune of the Wind, is truly dreadful to behold. In casting this spell, you unleash the full force of a hurricane upon your enemies. When the spell takes effect, you are standing in the eye of the storm, a zone radiating twenty feet in every direction from you, and in which no ill effects of the spell are suffered. Outside the eye, however, the brutal effects of the storm tear at everything in its path. Objects weighing less than five hundred pounds are lifted by the wind and tossed into the storm. Individuals in this area must hold on to something immobile or be cast into the winds to their certain death. Everyone within the affected region who does not have sturdy shelter suffers 1k1 Wounds each minute from the winds and minor debris. there is a one in ten chance each minute that an exposed individual will instead suffer 5k5 Wounds due to being struck by a wind-borne object. This spell lasts for a maximum of one hour, although it can last far shorter times if you are disrupted while maintaining the spell.\nThis spell may not be cast in a given area more than once per month, as it completely exhausts the favors of the air kami to perform it."
     },
@@ -2056,9 +2048,7 @@
         "range": "30'",
         "aoe": "1 summoned spirit",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The Earth itself arises and takes form to defend you. The ultimate realization of the Summon spell, this prayer summons a massive kami of pure Earth to serve you. It takes the form of a vaguely humanoid shape, roughly ten feet in height, with a broad body and thick limbs all formed of earth and stone. This mighty Earth kami may move up to 5 x your earth per round, and its footsteps shake the earth in a twenty foot radius around it, preventing anyone from making Simple Move Actions within its area of effect. This Earth spirit is treated as if it has all Physical Traits equal to your Earth Ring, and attacks with a Jiujutsu Skill rank equal to half your Earth Ring. The kami can carry up to 1,000 pounds of weight if so commanded, and its blows are strong enough to destroy any wooden structure and to shatter stone walls of one-foot thickness. For purposes of taking damage, the spirit is considered to have Wounds as though it were a human with Earth equal to your Earth Ring, but suffers no Wound penalties. It is Invulnerable. If it is successfully reduced to zero wounds, it is dispelled."
     },
@@ -2135,9 +2125,7 @@
         "range": "30'",
         "aoe": "1 target",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fire's most basic power is destruction, and summoned Fire spirits can easily be unleashed on one's enemies. This spell invokes a single Fire kami, which lances toward the target, hitting unerringly so long as the target is within range. The spell deals 2k2 wounds. The burns this spell inflicts are quite painful, and if the spell targets a shugenja who is casting a spell, his Willpower roll has a TN of 20 plus the damage dealt, instead of the normal 10 plus damage dealt."
     },
@@ -2291,9 +2279,7 @@
         "range": "Touch",
         "aoe": "1 weapon or armor",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fire is the element of creation as well as destruction, and a skilled shugenja can use this to great effect. This spell invokes the powers of the forge, mighty and merciless, to remake a material item, such as a weapon or suit of armor, into its perfect form. The target item loses all blemishes, including cracks and nicks. This spell cannot repair an item which has actually been broken or destroyed, however, it can only affect items that are of ordinary quality."
     },
@@ -2364,9 +2350,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "2 rounds (see below)",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fire is the element of thought, and thought is swift indeed. You draw upon the speed of Fire kami to aid you in the next spell you cast. The casting time of the next Fire spell you cast is reduced by 4 Rounds. If the next spell is Mastery Level 3 or lower, it casts instantaneously as a Simple Action. If you do not begin casting the new spell within the next 2 Rounds, however, the benefit of Hurried Steps elapses."
     },
@@ -2378,9 +2362,7 @@
         "range": "Touch",
         "aoe": "1 item",
         "duration": "10 minutes",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fire kami can be imbued into physical objects, allowing them to remain present for longer periods of time. Shugenja have devised many ways to use this technique to aid themselves and others. This spell, one of the most basic of this kind, imbues a material item with the cleverness and wit of fire. Anyone who carries that item has their Intelligence Trait increased by 3 for the duration of the spell."
     },
@@ -2441,9 +2423,7 @@
         "range": "Touch",
         "aoe": "15' radius from the object touched",
         "duration": "1 day",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Although Earth is the traditional method of opposing evil forces like the Shadowlands Taint, the spirits of Fire can also be invoked to purge and destroy such spiritual abominations. This spell binds a Fire kami into a specific location which it protects against the forces of evil. Casting the spell requires inscribing elaborate kanji on a flat surface in chalk or ink, and takes one minute of concentrated effort, after which the Spell Casting Roll must be made. Once the Ward of Purity is activated and the power of the kami is fully engaged, however, the kami within the inscription protects the area against the influence of the Shadowlands or the Lying Darkness.\nPersons or creatures with at least 1 Shadowlands Taint Rank, or who are under the control of the Lying Darkness, must make a successful Contested Willpower Roll against you in order to enter the Ward's area of effect; you gain a +5 bonus to this roll. In addition, those creatures who successfully enter the area suffer extreme pain, as the power of the ward burns their very essence. Their bodies ignite and they suffer Wounds equal to the total of your Fire Ring + Insight Rank each Round they remain within the area of effect.\nSpells and missiles are unaffected by Ward of Purity. the object upon which the ward is inscribed must remain immobile and the inscription must remain clearly visible at all times, or else the Ward is dispelled.\nIf overlapping Wards of Purity are present, their effects do not stack."
     },
@@ -2490,9 +2470,7 @@
         "range": "Personal",
         "aoe": "15' long, 5' wide blast",
         "duration": "4 rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This spell is a prayer to the Dragon of Fire, one of the mightiest of celestial beings, entreating him for a bit of his power. If the spell is successful, you gain the ability to breathe a bolt of flames from your open mouth once per Round as a Simple Action. The bolt has a DR equal to your Fire Ring and strikes every target in front of you within the area of effect. You may choose to take actions other than breathing fire while under the effects of this spell, but you cannot speak or cast spells. The spell expires after four Rounds, but you may choose to end this spell during the Reactions Stage of any earlier Round."
     },
@@ -2504,9 +2482,7 @@
         "range": "100'",
         "aoe": "One free-standing structure, or 50' x 50' area",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fiery Wrath was originally created to clear brush for farming and to demolish wooden structures with a minimum of work and no hazard; it is also used to start bonfires for rituals and celebrations. The spell allows you to destroy a building or other structure by appealing to the excitable Fire kami within the target's materials. All flammable materials within the area of effect immediately catch fire and burn until nothing but ash is left. The fire cannot be extinguished except by magical means; mundane water, sand, and other retardants will have no effect.\nOnly one structure may be targeted by the spell, and the fire will not spread out to the adjoining structures, as your prayers keep the Fire kami under tight control. Living beings and materials that are not flammable are not affected; in fact, while clothes worn by people caught within the area of effect will burn, their flesh will not so much as singe."
     },
@@ -2664,9 +2640,7 @@
         "range": "100'",
         "aoe": "1 target",
         "duration": "5 Rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This spell brings the anger of Fire on the target, suppressing his elemental Fire and lowering both his Agility and his Intelligence Ranks by an amount equal to your Fire Ring, to a minimum of 1. If you maintain Concentration for the duration of the spell's effect, the target cannot escape its effects. If you do not maintain Concentration, each Round at the start of his Turn the target may make a Contested Fire roll against you (using his original, unmodified Fire Ring) to end the spell's effect."
     },
@@ -2730,9 +2704,7 @@
         "range": "Touch",
         "aoe": "One target item",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This simple and powerful spell has only one function: to call on the creative power of Fire to bring back what has been destroyed. Any damaged or destroyed material item can be restored with this spell, provided all the pieces are gathered in front of the caster. (If someone pieces are missing, the spell will automatically fail.) The spell takes 1 minute to cast, and you must concentrate during that minute. If successful, the spell restores the item to a whole and undamaged state. It should be noted that the Fire kami must worker harder to repair items of unusual quality - if you use this spell to repair a nemuranai or an item of Fine quality or better, you must offer the Fire kami a gift (another item for them to burn and destroy) appropriate to the worth of the item."
     },
@@ -2746,9 +2718,7 @@
         "range": "100'",
         "aoe": "10' radius",
         "duration": "Permanent",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Priests of the kami are capable of inscribing powerful wards that invoke the power of the elements against all who attempt to pass them. A symbol of Fire can be inscribed on a solid object, most often a door, window, gate, or any other passageway. Anyone attempting to pass through this passageway or otherwise pass by the ward is affected by its power, and must succeed at a Contested Roll using their Water against the caster's Fire. Those who fail are Dazed, Blinded fir one Round, and take 3k3 Wounds. This spell may be dispelled by another casting of Symbol of Fire from any shugenja, or by destroying the surface where the Symbol was etched. You may only have one Symbol of Fire in existence at any time, and Symbol spells of different elements may never affect the same area."
     },
@@ -2779,9 +2749,7 @@
         "range": "Touch",
         "aoe": "15' radius from the armor",
         "duration": "1 hour",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Osano-Wo's protection can be temporarily invoked for a suit of armor by casting this spell and inscribing the kanji for thunder on the armor. Those within 15' of the armor are under Osano-Wo's care, and are completely protected from non-magical fire and thunder for the duration of the spell. Additionally, any Fire spell cast by a shugenja other than yourself which targets something within the area of effect has its Spell Casting TN increased by 20"
     },
@@ -2887,9 +2855,7 @@
         "range": "100'",
         "aoe": "30' radius",
         "duration": "10 rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This prayer invokes the power of the Sun, worshiped and venerated throughout Rokugan, and is an especial favorite among the Moshi family, although shugenja all across the Empire have learned it. The spell calls down a concentrated beam of pure sunlight to punish the unworthy. Everyone caught in the area of effect takes 2k2 Wounds per Round from the intense heat. Human targets (only) take an additional 2k1 Wounds for every Honor Rank they are below 4, and an additional 2k2 Wounds if they possess at least 1 Rank of the Shadowlands Taint or are controlled by the Lying Darkness. Human targets who have an Honor Rank of 0 are Blinded for a number of Rounds equal to your Fire Ring."
     },
@@ -2903,9 +2869,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "10 Rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The Phoenix is one of the most powerful symbols of Fire known to the Rokugani, and this spell calls on the essence of that being to grant its casters the power of flight. When this spell is cast, you summon clouds of Fire kami who take the form of giant wings sprouting from your back. You gain the ability to fly for the duration of the spell, moving at a speed of Water x 10 for a Free Action or Water x 20 for a Simple Action. If you are airborne when the spell expires, the Fire kami will bear you down to earth before departing."
     },
@@ -2917,9 +2881,7 @@
         "range": "200'",
         "aoe": "1 target",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This is perhaps the deadliest single spell available to shugenja, and one of the most fearsome spells ever developed in the Empire. The prayer invokes a tremendous blast of fire against the chosen target, who takes 10k10 Wounds. The spell puts all the Fire kami in the area into a state of agitation, and normal fires within range will burn hotter and more violently for many minutes after this spell is cast."
     },
@@ -2947,9 +2909,7 @@
         "range": "500'",
         "aoe": "1 mile",
         "duration": "1 day",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "This mighty prayer calls on all the Fire kami in the area to remain quiet and calm, soothing the agitation which so often afflicts them. It is often invoked during major festivals such as the crowning of a new Emperor. For the duration of the spell, all buildings within the area of effect are immune to the effects of magical fire, and all Fire spells cast within the area have the TN of their spell Casting Rolls increased by 15. Normal fires will still ignite and burn, but they do so sluggishly, and do not spread easily."
     },
@@ -2961,9 +2921,7 @@
         "range": "30'",
         "aoe": "One summonedspirit",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Fire itself arises and takes physical form to defend you. The ultimate realization of the Summon spell, this prayer summons a massive kami of pure Fire to serve you. It takes the form of a fiery humanoid shape, roughly ten feet in height, its outlines constantly shifting and changing in a perpetual dance of fiery energy. The huge Fire spirit can move up to 10 x your Fire per Round, and it ignites all easily flammable objects within ten feet of itself - paper, leaves, grass, silk, and so forth. The manifest kami is treated as if it has all physical Traits equal to your Fire Ring, and attacks with a Jiujutsu Skill equal to half your Fire Rank; the DR from these attacks is equal to your Fire Rank. Anyone struck by the Fire kami will catch on fire, suffering an additional 1k1 damage per Round until the flames are extinguished. (This effect does not stack.) For purposes of taking damage, the kami is considered to have Wounds as though its Earth is equal to your Fire Ring, but suffers no Wound penalties; it is Invulnerable. If it is successfully reduced to zero Wounds, it is dispelled."
     },
@@ -3057,9 +3015,7 @@
         "range": "Touch",
         "aoe": "1 target individual",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The water kami can influence the flow of water through the body, dramatically hastening the natural healing process. You can use this spell to heal Wounds that another individual has suffered. This spell restores a number of Wounds to the target equal to the amount by which the Spell Casting Roll exceeded the spell's TN to cast."
     },
@@ -3073,9 +3029,7 @@
         "range": "Touch",
         "aoe": "1 object",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Divining the abilities of an object is among the simplest lessons a student of water learns in the temple. If this spell is successfully cast on an object, you automatically learn all powers and abilities that object possesses. This is most frequently used to identify any supernatural qualities an item possesses, such as a nemuranai or a cursed weapon, but it can also identify the spell contained within a shugenja's prayer scroll. This spell will not allow a shugenja to read a scroll if it is written in a cipher he does not understand, but he can at least identify the spell in question. This spell will also grant the caster knowledge of the item's origin in very broad strokes, such as where it was forged, the Clan of the individual who has carried it the longest, or something similar at the GM's discretion."
     },
@@ -3377,9 +3331,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "2 Rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The speed of the river can be imparted by knowledgeable shugenja. Your Water Ring is increased by 2 for the purposes of determining how far you may move as part of any Move Actions made during the present Round or the following Round."
     },
@@ -3485,9 +3437,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "Variable",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The memory of the ocean is infinite, and its vast power can lay in wait for a very long time indeed. Upon completion of a successful casting of this spell, you may immediately cast a second spell of any element. This second spell must be a spell you can normally cast, and it must be of Mastery Level 3 or lower. If the second Spell Casting Roll is successful, the second spell is stored within you, and will not activate until a specific physical effect takes place, which you specify at the time of casting. The spell's trigger could be that you speak a certain word, draw a blade, or fall in battle, for example. Whatever the trigger, when it occurs, the second spell immediately takes effect as if you had just finished casting the spell. A character may never benefit from multiple uses of Silent Waters at one time. If the second use of the spell is cast on the same individual, the current \"stored\" spell is immediately dispelled and replaced with the new one."
     },
@@ -3549,9 +3499,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "1 minute",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Although not as reliable as the natural (if extremely rare) gift of foresight or the (equally rare) Void spells that enable divination, this spell still allows powerful visions of the future. It was first developed by the Tonbo family of the Dragonfly Clan, and is found infrequently outside their ranks. The spell requires use of a large pool of still water into which you must gaze. Upon completion of the spell, you enter a brief trance, and see images of things that have not yet come to pass. These images are rarely direct, and tend to by symbolic (violence is depicted as a scene of battle, for instance), but the events foreseen are completely accurate, and will come to pass unless prevented by your direct intervention. Only the shugenja casting this spell may see the events depicted in the vision. Many shugenja believe that use of this spell is a means of thwarting the natural order, and regard both it and those who make use of it negatively."
     },
@@ -3724,9 +3672,7 @@
         "range": "Touch",
         "aoe": "Special",
         "duration": "Permanent",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Priests of the kami are capable of inscribing powerful wards that invoke the power of the elements against all who attempt to pass them. A symbol of water can be inscribed on a solid object, most often a door, window, gate, or any other passageway. Anyone attempting to pass through this passageway or otherwise pass through the area is affected by the protective ward, and must succeed at a Contested Roll using their Fire against the caster's Water. Those who fail are affected by a crippling terror, and must immediately roll against a Fear 7 effect. You may only have one Symbol of Water in existence at any time, and Symbol spells of different elements may never affect the same area. This spell may be dispelled by another casting of Symbol of Water from any shugenja, or by destroying the surface where the Symbol was etched."
     },
@@ -3820,9 +3766,7 @@
         "range": "Special",
         "aoe": "1 target object or individual",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The greatest bonds can never be broken. This spell allows you to detect the location of one object or individual well known to you, regardless of their location. The object must be one you have spent tremendous amounts of time around, or have handled frequently in the past. If the target of the spell is an individual, it must be someone well known to you, such as a member of your immediate family or a close friend. You instantly known their approximate location, but sufficient to tremendously narrow any search (for example, \"the city of Ryoko Owari Toshi,\" or \"the northern reaches of the Shinomen Mori\"). If the target is outside the Empire of Rokugan, the spell automatically fails."
     },
@@ -3954,9 +3898,7 @@
         "range": "Touch",
         "aoe": "1 target individual",
         "duration": "Instantaneous",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The ultimate benevolence of the Water Dragon is without measure. The target is instantly cured of all diseases, his system purged of any and all poisons, and all Wounds are completely healed."
     },
@@ -3968,9 +3910,7 @@
         "range": "30'",
         "aoe": "1 summoned spirit",
         "duration": "Concentration",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The sea itself will take form to defend you. The ultimate actualization of the Summon spell, this spell summons a massive kami of pure water to serve you. It takes the form of a vaguely humanoid shape, roughly ten feet in height, with an outline that constantly shifts and changes due to its fluid construction. The kami may move up to 15' x your Water per round, and saturates the ground in a 20' radius around it, ensuring that all terrain in that area is at least Moderate Terrain (unless it is already Difficulty). The manifest kami is treated as if it has all Physical Traits equal to your Water Ring, and attacks with Jiujutsu Skill Rank equal to half your Water Rank. Damage from these attacks has a DR equal to your Water Ring. For purposes of taking damage, the spirit is considered to have Wounds as though it were a human with Earth equal to your Water Ring, but suffers no Wound penalties. It is Invulnerable. If it is successfully reduced to zero Wounds, it is dispelled."
     },
@@ -3984,9 +3924,7 @@
         "range": "Personal",
         "aoe": "Target body of water",
         "duration": "3 rounds",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "The greatest form of augury is one that speaks directly and allows others to witness it. By focusing your energy on a still body of water, you can invoke powerful visions of the future based upon your questions. You may ask one question, and the waters will reveal the answer. The answer takes the form of three separate images, which may be connected in any number of ways, including events occurring over time, or perhaps three facets of a single event. Unlike other forms of augury, others may witness these visions as well."
     },
@@ -4185,9 +4123,7 @@
         "range": "Personal",
         "aoe": "Self",
         "duration": "5 minutes",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Drawing on the essence of everything allow an ishiken to invoke the kami with far greater ease than normal. For the duration of this spell, you may cast spells of other elements without speaking your prayers aloud. This applies only to spells of equal or lower Mastery Level (any spell of Mastery Level 1 or 2)."
     },
@@ -4199,9 +4135,7 @@
         "range": "30'",
         "aoe": "1 target individual",
         "duration": "1 minute",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Mingling the Void of two beings, even for just a moment, can lead to one of the two being manipulated if he is not prepared for it. The target of this spell will repeat the next sentence you say, verbatim, without any foreknowledge of what his is doing. They speak the words in their own normal voice, regardless of how you speak it. This effect will not allow others to cast spells, even if you have them recite a portion of a spell. This spell only allows the effect once, the first time you speak a single sentence during the duration of the spell."
     },
@@ -4303,9 +4237,7 @@
         "range": "Personal",
         "aoe": "1 target object",
         "duration": "Instantaneous (but see below)",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "Even objects have resonance, and retain some memory of those who hold them, and events that take place involving them. By meditating upon an object, you can gain a vision of the individual who held it last, or of a major event that might have involved it in some manner. Using this spell on a calligraphy brush, for example, might show the last person who used it to write a letter. Using it on a weapon might instead show the last death it was used to inflict. The GM has ultimate authority over what vision the spell imparts. Extremely important objects, such as ancestral weapons or standards, may have powerful visions that grip the caster for longer periods of time, rather than imparting simple instantaneous visions."
     },
@@ -4436,9 +4368,7 @@
         "range": "Touch",
         "aoe": "1 object",
         "duration": "Permanent",
-        "raises": [
-            "None"
-        ],
+        "raises": [],
         "special": null,
         "description": "All is one and one is all. You may take any single object and transform it into any other object of comparable size. This will only work with an object that is uniform in construction, rather than assembled from multiple pieces. This spell will not affect living material. Although the effect of this spell is permanent, it can be reversed by a second casting on the same object, even by a different ishiken."
     },
