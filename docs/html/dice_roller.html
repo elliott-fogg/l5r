@@ -85,19 +85,15 @@
 
 		</td>
 
-		<td>
-			<div width=400 height=150>
-				<p id="diceroller_output" class="dice_roll_output">OUTPUT</p>
-			</div>
-		</td>
+		<td><p id="diceroller_output" class="dice_roll_output"></p></td>
 
-		<td>
-			<div>
-				<p style="display: inline" id="diceroller_history_header">Roll History:</p>
-				<input id="diceroller_history_clear" type="button" value="Clear"
-					 style="float: right">
-			</div>
-			<p id="diceroller_roll_history" class="dice_roll_history">HISTORY</p>
-		</td>
 	</tr>
 </table>
+
+<details class="disabled" onclick="return false">
+	<summary>Roll History</summary>
+	<div id="diceroller_roll_history_container">
+		<p id="diceroller_roll_history">HISTORY</p>
+		<input id="diceroller_history_clear" type="button" value="Clear">
+	</div>
+</details>
