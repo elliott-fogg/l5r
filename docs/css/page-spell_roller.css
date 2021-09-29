@@ -1,0 +1,58 @@
+table#spell_info_table {
+	border-collapse: collapse;
+	max-width: 500px;
+	width: 500px;
+}
+
+table#spell_info_table td {
+	border: 1px solid lightgrey;
+}
+
+table#spell_info_table td:first-child {
+	font-style: italic;
+	vertical-align: text-top;
+	padding-right: 5px;
+	width: 1px;
+	white-space: nowrap;
+}
+
+#current_spell-description {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+#current_spell-raises > ul {
+	margin: 0;
+	padding-left: 20px;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+#spellroller_subtitle_div {
+	margin-bottom: 10px;
+}
+
+#spellroller_subtitle_div > p {
+	display: inline;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+#spell_roller_topdiv {
+	display: flex;
+}
+
+#spell_roller_leftdiv {
+	/*width: 40%;*/
+	margin-right: 25px;
+}
+
+#spell_roller_rightdiv {
+	/*width: 40%;*/
+}

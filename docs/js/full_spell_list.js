@@ -14,8 +14,9 @@ class full_spell_list {
 		this.onclick_func = function() {console.log("No function assigned.")}
 
 		this.saved_spells = new Set();
+
 		this.showing_saved = false;
-		// this.check_saved_spells();
+		this.check_saved_spells();
 
 		this.bind_functions_to_element();
 		this.refresh_display();
@@ -26,8 +27,10 @@ class full_spell_list {
 		if (saved_spells_text == null) {
 			return;
 		}
-		this.saved_spells = JSON.parse(saved_spells_text);
-		this.showing_saved = true;
+		this.saved_spells = new Set(JSON.parse(saved_spells_text));
+		if (this.saved_spells.size > 0) {
+			this.showing_saved = true;
+		}
 	}
 
 	bind_functions_to_element() {
@@ -103,9 +106,14 @@ class full_spell_list {
 		ulist.innerHTML = "";
 
 		if (this.showing_saved) {
-			var spell_list = this.saved_spells;
+			var spell_list = []
 			for (let spell_name of this.saved_spells) {
-				let spell_div = this.make_spell_div(spell_name, true, true);
+				spell_list.push(window.DH.data.spells[spell_name]);
+			}
+			spell_list.sort(this.spell_sort)
+
+			for (let spell of spell_list) {
+				let spell_div = this.make_spell_div(spell["title"], true, true);
 				ulist.appendChild(spell_div);
 			}
 
@@ -116,7 +124,8 @@ class full_spell_list {
 			var rank = parseInt(this.ranks_dict[element]);
 			var all_spells = window.DH.get_all_spells();
 			var selected_spells = Object.keys(all_spells[element][rank]);
-			selected_spells.sort();
+			selected_spells.sort()
+
 			for (let spell_name of selected_spells) {
 				let spell_div = this.make_spell_div(spell_name, false, false);
 				ulist.appendChild(spell_div);
@@ -162,12 +171,13 @@ class full_spell_list {
 			spell_div.classList.add("current");
 		}
 
-		spell_text.onclick = function(event) {
-			console.log(event.target);
-			this.current_spell = event.target.dataset.spell_name;
-			this.onclick_func(event);
-			this.load_spells();
-		}.bind(this);
+		var self = this;
+
+		spell_text.onclick = function() {
+			self.current_spell = this.dataset.spell_name;
+			self.onclick_func(event);
+			self.load_spells()
+		};
 		
 		spell_text.classList.add("clickable_spell_name");
 
@@ -176,13 +186,18 @@ class full_spell_list {
 
 	save_spell(spell_name) {
 		this.saved_spells.add(spell_name);
-		// this.showing_saved = true;
+		this.update_saved_spells();
 		this.refresh_display();
 	}
 
 	unsave_spell(spell_name) {
 		this.saved_spells.delete(spell_name);
+		this.update_saved_spells();
 		this.refresh_display();
+	}
+
+	update_saved_spells() {
+		localStorage["saved_spells"] = JSON.stringify([...this.saved_spells]);
 	}
 
 	generate_spell_title(spell_name, include_keywords=false,
@@ -199,8 +214,6 @@ class full_spell_list {
 			spell_text += ` [${spell_info["element"]} ${spell_info["mastery_level"]}]`;
 			spell_text += "</i>";
 		}
-
-		console.log(this.current_spell, spell_name);
 
 		return spell_text;
 	}
@@ -225,4 +238,27 @@ class full_spell_list {
 		this.onclick_func = func;
 		this.load_spells();
 	}
+
+	spell_sort(s1, s2) {
+		if (s1["element"] < s2["element"]) {
+			return -1;
+		} else if (s1["element"] > s2["element"]) {
+			return 1;
+		} else {
+			// Spells of same element
+			if (s1["mastery_level"] < s2["mastery_level"]) {
+				return -1;
+			} else if (s1["mastery_level"] > s2["mastery_level"]) {
+				return 1;
+			} else {
+				// Spells of same rank
+				if (s1["title"] < s2["title"]) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		}
+	}
+
 }

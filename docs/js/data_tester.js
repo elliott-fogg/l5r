@@ -128,36 +128,10 @@ class DataTester extends DataHandler {
 		this.complete_function();
 	}
 
-	// //
-	// check_for_html_templates() {
-	// 	var elements_to_replace = document.querySelectorAll('[include-html]');
-
-	// 	console.log(elements_to_replace);
-
-	// 	for (let element of elements_to_replace) {
-	// 		let html_query_promise = new Promise((resolve, reject) => {
-	// 			let file_name = element.getAttribute("include-html");
-	// 			element.removeAttribute("include-html");
-
-	// 			this.queued_templates.push( [element, file_name, resolve] );
-	// 		});
-	// 		this.html_query_promises.push(html_query_promise);
-	// 	}
-
-	// 	this.ask_html_templates();
-	// }
-
 	handle_load_html(element, file_name, resolveFunc) {
 		this.queued_templates.push( [element, file_name, resolveFunc] );
 		this.ask_html_templates();
 	}
-
-	// debounce_ask_html_templates() {
-	// 	var t = `${this.debounce_ask}`;
-	// 	if (this.debounce_ask == false) {
-	// 		this.ask_html_templates();
-	// 	}
-	// }
 
 	async ask_html_templates() {
 		if (this.queued_templates.length == 0) {
@@ -197,6 +171,16 @@ class DataTester extends DataHandler {
 		var fr = new FileReader();
 		fr.addEventListener("load", e => {
 			element.innerHTML = fr.result;
+			console.log(local_file);
+			console.log(element);
+			console.log(element.firstChild);
+			console.log(element.firstChild.dataset.objectname);
+			console.log(element.firstChild.dataset.objectname);
+			var object_to_call = element.firstChild.dataset.objectname;
+			if (object_to_call) {
+				window.DH.execute_on_load(Function(`new ${object_to_call}()`));
+			}
+			
 			console.log(`${local_file} loaded`);
 			resolve();
 		})

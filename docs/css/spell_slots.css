@@ -1,0 +1,81 @@
+#spellslots_outerdiv {
+	margin-bottom: 10px;
+	border: solid grey 1px;
+	display: inline-block;
+	padding: 2px;
+}
+#spellslots_header {
+	display: inline-block;
+}
+#spellslots_content {
+	display: flex;
+}
+
+.spellslots_element {
+	margin-right: 20px;
+}
+.spellslots_element:last-child {
+	margin-right: 0;
+}
+
+.spellslots_title {
+	display: inline;
+	margin-bottom: 5px;
+}
+.spellslots_name {
+	cursor: pointer;
+	user-select: none;
+	display: inline;
+}
+.spellslots_cell {
+	display: inline;
+}
+
+
+.spellslot {
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	display: inline-block;
+	border: solid black 2px;
+	border-color: black;
+	background-color: #FFF;
+	
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 2px;
+}
+.spellslot.air {
+	border-color: #00bfff;
+}
+.spellslot.air.filled {
+	background-color: #30cbff;
+}
+
+.spellslot.earth {
+	border-color: #005e02;
+}
+.spellslot.earth.filled {
+	background-color: #038c06;
+}
+
+.spellslot.fire {
+	border-color: #960303;
+}
+.spellslot.fire.filled {
+	background-color: #e60505;
+}
+
+.spellslot.water {
+	border-color: #010e94;
+}
+.spellslot.water.filled {
+	background-color: #3343e8;
+}
+
+.spellslot.void {
+	border-color: black;
+}
+.spellslot.void.filled {
+	background-color: #49494a;
+}

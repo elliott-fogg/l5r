@@ -2,119 +2,72 @@
 <html>
 <head>
 	<title>Spell Caster</title>
-	<script type="text/javascript" src="js/spell_roller.js"></script>
+	<!-- <script type="text/javascript" src="js/spell_roller.js"></script> -->
+	<script type="text/javascript" src="js/spell_roller_controller.js"></script>
 	<script type="text/javascript" src="js/dice_roller.js"></script>
 	<script type="text/javascript" src="js/data_loader.js"></script>
 	<script type="text/javascript" src="js/data_handler.js"></script>
+	<!-- <script type="text/javascript" src="js/promise_tester.js"></script> -->
 	<script type="text/javascript" src="js/data_tester.js"></script>
 	<script type="text/javascript" src="js/modal.js"></script>
 	<script type="text/javascript" src="js/collapsible_divs.js"></script>
 	<script type="text/javascript" src="js/full_spell_list.js"></script>
+	<script type="text/javascript" src="js/spell_slots.js"></script>
 	<link rel="stylesheet" href="css/details.css">
 	<link rel="stylesheet" href="css/dice_roller.css">
 	<link rel="stylesheet" href="css/modal.css">
 	<link rel="stylesheet" href="css/all_spells.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/spell_slots.css">
+	<link rel="stylesheet" href="css/full_spell_list.css">
+	<link rel="stylesheet" href="css/page-spell_roller.css">
+
 </head>
 <body>
 
 	<h1>L5R Generic Spell Caster</h1>
 
-	<p><b>Temporary instructions for the site:</b> Click any spell to select it and see details. Right-click a spell to add it to "Learned Spells", and right-click it under the "Learned Spells" section to remove it.</p>
+	<div include-html="spell_slots.html">SPELL_SLOTS</div>
 
-	<p>
-		The Spellcasting roll for a spell, with no raises, is:<br>
-		<b>Roll</b> 'Ring of Spell Element + School Rank + Affinity - Deficiency'<br>
-		<b>Keep</b> 'Ring of Spell Element + Affinity - Deficiency'.<br>
-		<br>
-		The TN for a spell is the (Spell Level * 5) + 5. So a Spell of Level 1 is TN 10.
-	</p>
+	<!-- Flex Div -->
+	<div id="spell_roller_topdiv">
 
-	<details class="disabled" onclick="return false">
-		<summary>Stats</summary>
-		<div style="display: flex">
+		<!-- Left-side Div -->
+		<div id="spell_roller_leftdiv">
 
-			<div>
-				<table>
-					<tr>
-						<td>Affinity: </td>
-						<td>
-							<select>
-								<option value="None" selected>None</option>
-								<option value="Air">Air</option>
-								<option value="Earth">Earth</option>
-								<option value="Fire">Fire</option>
-								<option value="Water">Water</option>
-								<option value="Void">Void</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Deficiency: </td>
-						<td>
-							<select>
-								<option value="None" selected>None</option>
-								<option value="Air">Air</option>
-								<option value="Earth">Earth</option>
-								<option value="Fire">Fire</option>
-								<option value="Water">Water</option>
-								<option value="Void">Void</option>
-							</select>
-						</td>
-					</tr>
-				</table>
-				<p id="affinity_warning">WARNING</p>
+			<table id="spell_info_table">
+				<tr><td>Spell Name:</td>
+					<td id="current_spell-name" class="bold"></td></tr>
+				<tr><td>Keywords:</td>
+					<td id="current_spell-keywords" class="italic"></td></tr>
+				<tr><td>Base TN:</td>
+					<td id="current_spell-tn"></td></tr>
+				<tr><td>Element/Level:</td>
+					<td id="current_spell-element_level"></td></tr>
+				<tr><td>Duration:</td>
+					<td id="current_spell-duration"></td></tr>
+				<tr><td>Range:</td>
+					<td id="current_spell-range"></td></tr>
+				<tr><td>Area of Effect:</td>
+					<td id="current_spell-aoe"></td></tr>
+				<tr><td>Description:</td>
+					<td><div id="current_spell-description"></div></td></tr>
+				<tr><td>Raises:</td>
+					<td id="current_spell-raises"></td></tr>
+				<tr><td>Special:</td>
+					<td id="current_spell-special"></td></tr>
+			</table>
+
+			<br>
+
+			<div id="spellroller_subtitle_div">
+				<p>Spell Roller</p>
+				<input type="button" value="Reset to Spell" id="reset_dice_roller" disabled>
 			</div>
+			
+			<div include-html="dice_roller.html">DICE_ROLLER_HERE</div>
 
-			<div>
-				<label><b><u>Traits</u></b></label><br>
-				<table>
-					<tr>
-						<td>Air</td>
-						<td><input type="number" value=2 min=2 max=10></td>
-					</tr>
-					<tr>
-						<td>Earth</td>
-						<td><input type="number" value=2 min=2 max=10></td>
-					</tr>
-					<tr>
-						<td>Fire</td>
-						<td><input type="number" value=2 min=2 max=10></td>
-					</tr>
-					<tr>
-						<td>Water</td>
-						<td><input type="number" value=2 min=2 max=10></td>
-					</tr>
-					<tr>
-						<td>Void</td>
-						<td><input type="number" value=2 min=2 max=10></td>
-					</tr>
-				</table>
-			</div>
-
-		</div>
-	</details>
-
-	<br>
-
-	<h4 id="spell_info_placeholder" style="display: inline">Spell Info<br></h4>
-
-	<details id="spell_info" style="display: none">
-		<summary id="current_spell-name" style="font-size: 1.4em">Spell Info</summary>
-		<div>
-			<p id="current_spell-tn"></p>
-			<p id="current_spell-element_level"></p>
-			<p id="current_spell-description"></p>
-			<p id="current_spell-raises"></p>
-		</div>
-	</details>
-
-	<br>
-
-	<details class="disabled" onclick="return false">
-		<summary>Spell Roller</summary>
-		<div>
-			<details>
+			<details class="disabled" onclick="return false">
 				<summary>Additional Options</summary>
 				<ul>
 					<li>
@@ -126,29 +79,103 @@
 				</ul>
 			</details>
 
-			<div include-html="dice_roller.html">DICE_ROLLER_HERE</div>
-
 		</div>
-	</details>
 
-	<br>
+		<!-- Right-side Div -->
+		<div id="spell_roller_rightdiv">
+			<!-- <div include-html="spell_slots.html">SPELL_SLOTS</div> -->
+			<div include-html="full_spell_list.html">FULL_SPELL_LIST</div>
+		</div>
 
-	<details id="saved_spells_details">
-		<summary>Learned Spells</summary>
-		<div id="saved_spells_div"></div>
-	</details>
+		<div id="rightmore_div">
+			<details>
+				<summary><u>Stats</u></summary>
+				<div>
 
-	<br>
+					<div>
+						<label style="margin-right: 5px"><b>School Rank:</b></label>
+						<input type="number" id="school_rank" min=1 max=10 value=1>
+					</div>
 
-	<input type="text" id="spell_search_box" oninput="refresh_spell_search_results()"
+					<div>
+						<label><b>Traits</b></label><br>
+						<table>
+							<tr>
+								<td>Air:</td>
+								<td><input type="number" value=2 min=2 max=10
+									id="trait_air" onFocus="this.blur()"
+									onchange="update_spell_slot_numbers()"></td>
+							</tr>
+							<tr>
+								<td>Earth:</td>
+								<td><input type="number" value=2 min=2 max=10
+									id="trait_earth" onFocus="this.blur()"
+									onchange="update_spell_slot_numbers()"></td>
+							</tr>
+							<tr>
+								<td>Fire:</td>
+								<td><input type="number" value=2 min=2 max=10
+									id="trait_fire" onFocus="this.blur()"
+									onchange="update_spell_slot_numbers()"></td>
+							</tr>
+							<tr>
+								<td>Water:</td>
+								<td><input type="number" value=2 min=2 max=10
+									id="trait_water" onFocus="this.blur()"
+									onchange="update_spell_slot_numbers()"></td>
+							</tr>
+							<tr>
+								<td>Void:</td>
+								<td><input type="number" value=2 min=2 max=10
+									id="trait_void" onFocus="this.blur()"
+									onchange="update_spell_slot_numbers()"></td>
+							</tr>
+						</table>
+					</div>
+
+					<div>
+						<table>
+							<tr>
+								<td><b>Affinity:</b></td>
+								<td>
+									<select id="affinity_select">
+										<option value="" selected>None</option>
+										<option value="air">Air</option>
+										<option value="earth">Earth</option>
+										<option value="fire">Fire</option>
+										<option value="water">Water</option>
+										<option value="void">Void</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Deficiency:</b></td>
+								<td>
+									<select id="deficiency_select">
+										<option value="" selected>None</option>
+										<option value="air">Air</option>
+										<option value="earth">Earth</option>
+										<option value="fire">Fire</option>
+										<option value="water">Water</option>
+										<option value="void">Void</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<p id="affinity_warning">WARNING</p>
+					</div>
+
+				</div>
+			</details>
+		</div>
+
+<!-- 	<input type="text" id="spell_search_box" oninput="refresh_spell_search_results()"
 		placeholder="Search for a spell...">
-	<div id="spell_search_results"></div>
-
-	<div include-html="full_spell_list.html">FULL_SPELL_LIST</div>
+	<div id="spell_search_results"></div> -->
 
 	<script>
-		window.DH = new DataHandler();
-		window.DH.execute_on_load(spell_roller_main);
+		window.DH = new DataTester();
+		window.DH.execute_on_load(function() {window.SRC = new SpellRollerController()});
 	</script>
 
 </body>

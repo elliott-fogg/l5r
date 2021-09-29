@@ -61,6 +61,7 @@ class DataLoader {
 	load_data(url, data_name) {
 		// Required to make storing the data part of the Promise
 		var data_promise = new Promise((resolve, reject) => {
+
 			fetch(url).then(response => {
 				if (response.status != 200) {
 					console.log(`Fetch request for url ${url} failed. ` +
@@ -68,62 +69,43 @@ class DataLoader {
 					return;
 				}
 				return response.json();
+
 			}).then(json_data => {
 				this.data[data_name] = json_data;
-				resolve();
+				resolve(data_name);
+
 			})
 			.catch(err => {
 				console.log("Error with url " + url + "\nFetch Error :-S", err);
-				resolve();
+				resolve(data_name);
 			})
 		})
 
 		this.data_promises.push(data_promise);
 	}
 
-	// async load_data(url, data_name) {
-	// 	var promise = fetch(url);
-
-	// 	this.data_promises.push(promise);
-
-	// 	console.log(promise);
-	// 	console.log(this.data_promises);
-
-	// 	promise.then(response => {
-	// 		if (response.status != 200) {
-	// 			console.log(`Fetch request for url ${url} failed. ` +
-	// 			            `Status Code: ${response.status}.`);
-	// 			return;
-	// 		}
-	// 		return response.json();
-	// 	}).then(json_data => {
-	// 		this.data[data_name] = json_data;
-	// 	})
-	// 	.catch(err => {
-	// 		console.log("Error with url " + url + "\nFetch Error :-S", err);
-	// 	})
-	// }
-
 	// Load HTML Templates /////////////////////////////////////////////////////
 
 	check_for_html_templates() {
 		console.log("CHECKING FOR include-html");
+
 		var elements_to_replace = document.querySelectorAll('[include-html]');
+
 		for (let element of elements_to_replace) {
+
 			let html_promise = new Promise((resolveFunc, reject) => {
+
 				var file_name = element.getAttribute("include-html");
 				element.removeAttribute("include-html");
 				this.handle_load_html(element, file_name, resolveFunc)
+
 			});
+
 			this.html_promises.push(html_promise);
-			// var file_name = element.getAttribute("include-html");
-			// element.removeAttribute("include-html");
-			// this.load_html_template_from_website(element, file_name);
 		}
 	}
 
 	handle_load_html(element, file_name, resolveFunc) {
-		console.log("TRIGGER");
 		this.load_html_template_from_website(element, file_name, resolveFunc);
 	}
 
@@ -143,14 +125,25 @@ class DataLoader {
 		}).then(html => {
 			if (html) {
 				element.innerHTML = html;
+
+				var object_to_call = element.firstChild.dataset.objectname;
+				if (object_to_call) {
+					window.DH.execute_on_load(
+					    Function(`new ${object_to_call}()`)
+					);
+				}
+
+				console.log(element);
 				this.check_for_html_templates();
+				resolveFunc(file_name);
 			}
 		}).catch(err => {
 			console.warn("Could not load HTML template.", err);
 			this.element_failed_load(element, file_name);
+			resolveFunc(file_name);
 		});
 
-		resolveFunc();
+		
 
 		// var promise = fetch("https://elliott-fogg.github.io/l5r/html/" +
 		//                     file_name);
@@ -189,11 +182,14 @@ class DataLoader {
 	// Await all data to confirm loaded ////////////////////////////////////////
 
 	async await_data() {
-		await Promise.all([Promise.all(this.data_promises),
-		                  Promise.all(this.html_promises)]);
-		console.log(this.data_promises);
-		console.log(this.html_promises);
-		this.complete_function();
+		let promise_all_array = [Promise.all(this.data_promises),
+											Promise.all(this.html_promises)];
+		Promise.all(promise_all_array).then((values) => {
+			console.log(values);
+			console.log(this.data_promises);
+			console.log(this.html_promises);
+			this.complete_function();
+		});
 	}
 
 	complete_function() {
@@ -225,3 +221,26 @@ class DataLoader {
 
 // End Class
 }
+
+	// async load_data(url, data_name) {
+	// 	var promise = fetch(url);
+
+	// 	this.data_promises.push(promise);
+
+	// 	console.log(promise);
+	// 	console.log(this.data_promises);
+
+	// 	promise.then(response => {
+	// 		if (response.status != 200) {
+	// 			console.log(`Fetch request for url ${url} failed. ` +
+	// 			            `Status Code: ${response.status}.`);
+	// 			return;
+	// 		}
+	// 		return response.json();
+	// 	}).then(json_data => {
+	// 		this.data[data_name] = json_data;
+	// 	})
+	// 	.catch(err => {
+	// 		console.log("Error with url " + url + "\nFetch Error :-S", err);
+	// 	})
+	// }

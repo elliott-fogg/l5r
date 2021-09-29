@@ -6,27 +6,16 @@ function load_spell(title, keywords, element, level, description, range, aoe,
                     duration, special, raises) {
 	window.current_spell = title;
 
-	document.getElementById("spell_info_placeholder").style.display = "none";
-	document.getElementById("spell_info").style.display = "block";
-	document.getElementById("spell_info").open = true;
-
-	document.getElementById("current_spell-tn").innerHTML = 
-													construct_spell_tn(level);
-
-	document.getElementById("current_spell-name").innerHTML = 
-										construct_spell_title(title, keywords);
-	document.getElementById("current_spell-element_level").innerHTML = 
-										construct_element_level(element, level);
-	document.getElementById("current_spell-description").innerHTML = 
-		construct_spell_description(description, range, aoe, duration, special);
-
-	document.getElementById("current_spell-raises").innerHTML = "";
-	document.getElementById("current_spell-raises").appendChild(
-		construct_spell_raises_info(raises, level));
-
-	load_all_spell_names();
-	refresh_saved_spells();
-	refresh_spell_search_results();
+	document.getElementById("current_spell-name").innerHTML = title;
+	document.getElementById("current_spell-keywords").innerHTML = keywords.join(", ");
+	document.getElementById("current_spell-tn").innerHTML = 5 * level + 5;
+	document.getElementById("current_spell-element_level").innerHTML = `${element} ${level}`;
+	document.getElementById("current_spell-duration").innerHTML = duration;
+	document.getElementById("current_spell-range").innerHTML = range;
+	document.getElementById("current_spell-aoe").innerHTML = aoe;
+	document.getElementById("current_spell-description").innerHTML = description;
+	document.getElementById("current_spell-special").innerHTML = special;
+	document.getElementById("current_spell-raises").innerHTML = raises;
 }
 
 function load_spell_by_name(spell_name) {
@@ -37,6 +26,8 @@ function load_spell_by_name(spell_name) {
 }
 
 function construct_spell_tn(level) {
+
+
 	return `<b><u>Base Spell TN:</u></b> ${5 * level + 5}`;
 }
 
@@ -111,46 +102,47 @@ function construct_spell_raises(raises, level) {
 
 // Spell Selectors /////////////////////////////////////////////////////////////
 
-function load_all_spell_names() {
-    var spells = {
-        "Air": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
-        "Earth": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
-        "Fire": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
-        "Water": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
-        "Void": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]}
-    };
+// function load_all_spell_names() {
+//     var spells = {
+//         "Air": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+//         "Earth": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+//         "Fire": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+//         "Water": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]},
+//         "Void": {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]}
+//     };
 
-    for (let spell_name in window.DH.data.spells) {
-        let spell_info = window.DH.data.spells[spell_name];
-        spells[spell_info.element][spell_info.mastery_level].push(spell_name);
-    }
+//     for (let spell_name in window.DH.data.spells) {
+//         let spell_info = window.DH.data.spells[spell_name];
+//         spells[spell_info.element][spell_info.mastery_level].push(spell_name);
+//     }
 
-    // Sort spells within each element
-    for (let element in spells) {
+//     // Sort spells within each element
+//     for (let element in spells) {
 
-    	for (let level in spells[element]) {
-    		var content_div = document.getElementById(`${element}-${level}-spells-content`);
-    		content_div.innerHTML = "";
+//     	for (let level in spells[element]) {
+//     		var content_div = document.getElementById(`${element}-${level}-spells-content`);
+//     		content_div.innerHTML = "";
 
-    		for (let spell_name of spells[element][level]) {
-    			content_div.appendChild(make_spell_div(spell_name, false, false));
-    		}
-    	}
-    }
-}
+//     		for (let spell_name of spells[element][level]) {
+//     			content_div.appendChild(make_spell_div(spell_name, false, false));
+//     		}
+//     	}
+//     }
+// }
 
-function refresh_saved_spells() {
-	var saved_spells_div = document.getElementById("saved_spells_div");
-	saved_spells_div.innerHTML = "";
+// function refresh_saved_spells() {
+// 	var saved_spells_div = document.getElementById("saved_spells_div");
+// 	saved_spells_div.innerHTML = "";
 
-	document.getElementById("saved_spells_details").open = true;
+// 	document.getElementById("saved_spells_details").open = true;
 
-	for (let spell_name of window.saved_spells) {
-		saved_spells_div.appendChild(make_spell_div(spell_name, true, true));
-	}
-}
+// 	for (let spell_name of window.saved_spells) {
+		// saved_spells_div.appendChild(make_spell_div(spell_name, true, true));
+// 	}
+// }
 
 function refresh_spell_search_results() {
+	return;
 	var search_term_raw = document.getElementById("spell_search_box").value;
 	var search_term = search_term_raw.replace(/[\.'"\(\)’]/g, "").toLowerCase();
 
@@ -228,7 +220,7 @@ function save_spell(event) {
 
 	if (!(window.saved_spells.includes(spell_name))) {
 		window.saved_spells.push(spell_name);
-		refresh_saved_spells();
+		// refresh_saved_spells();
 	}
 
 	update_spells_localStorage();
@@ -239,7 +231,7 @@ function remove_saved_spell(event) {
 	let spell_name = this.dataset.spell_name;
 	console.log(`Removed Saved Spell: ${spell_name}`);
 	window.saved_spells = window.saved_spells.filter(spell => spell != spell_name);
-	refresh_saved_spells();
+	// refresh_saved_spells();
 	update_spells_localStorage();
 }
 
@@ -296,7 +288,8 @@ function generate_spell_title(spell_name, include_keywords=false,
 
 function spell_roller_main() {
 	console.log("Executing Spell Roller Main function");
-	load_all_spell_names();
-	window.saved_spells = load_spells_localStorage();
-	refresh_saved_spells();
+	// window.saved_spells = load_spells_localStorage();
+	window.fsl = new full_spell_list();
+	window.fsl.onclick_func = load_spell_by_name;
+	window.fsl.tempval = "End Value"
 }

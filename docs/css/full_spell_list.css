@@ -51,6 +51,7 @@
 	margin: 5px;
 	margin-right: 10px;
 	margin-left: auto;
+	cursor: pointer;
 }
 
 #fsl_element_nav_container {
@@ -74,31 +75,4 @@
 
 .fsl_save_button.saved {
 	filter: invert(12%) sepia(74%) saturate(4984%) hue-rotate(355deg) brightness(87%) contrast(115%);
-}
-
-.blackbox {
-	width: 10px;
-	height: 10px;
-	margin-left: 5px;
-	margin-top: 1px;
-	/*background-color: black;*/
-	align-self: center; 
-	cursor: pointer;
-}
-
-.blackbox.saved {
-	/*border-radius: 50%;*/
-}
-
-#spell_roller_topdiv {
-	display: flex;
-}
-
-#spell_roller_leftdiv {
-	width: 40%;
-	margin-right: 25px;
-}
-
-#spell_roller_rightdiv {
-	width: 40%;
 }
