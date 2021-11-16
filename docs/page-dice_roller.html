@@ -40,7 +40,7 @@
 				console.log("RECIEVED WORKER OUTPUT!");
 				console.log(e);
 			});
-			worker.postMessage({"roll": 5, "keep": 3, "emphasis": false})
+			worker.postMessage({"roll": 5, "keep": 3, "explode_range": [1, 2, 3], "emphasis": false})
 			console.log("Worker message sent!");
 		}
 	</script>
