@@ -3,19 +3,40 @@
 <head>
 	<title>L5R Roller</title>
 	<script type="text/javascript" src="js/dice_roller.js"></script>
+	<script type="text/javascript" src="js/dice_roller_with_plot.js"></script>
+	<script type="text/javascript" src="js/modal.js"></script>
 	<script type="text/javascript" src="js/data_loader.js"></script>
 	<script type="text/javascript" src="js/data_handler.js"></script>
+	<script type="text/javascript" src="js/data_tester.js"></script>
 	<link rel="stylesheet" href="css/dice_roller.css">
+	<link rel="stylesheet" href="css/modal.css">
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
 
 	<h1>L5R Dice Roller</h1>
 	<p>A Dice Roller for use in our L5R Campaign</p>
 
-	<div include-html="dice_roller.html">
+	<div include-html="dice_roller.html"></div>
+
+	<details>
+		<summary id="diceroller_plot_summary">
+			Probability Plot
+			<select id="plot_type_select">
+				<option value="normal">Normal</option>
+				<option value="cumulative">Cumulative</option>
+			</select>
+		</summary>
+
+		<div id="probabilityChart" class="chart"></div>
+		<div id="cumulativeChart" class="chart hidden"></div>
+	</details>
 
 	<script>
-		// create_dice_roller("dice_roller_content")
+		window.DH = new DataTester();
+		window.DH.execute_on_load(function() {
+			window.DR = new DiceRollerWithPlot();
+		});
 	</script>
 
 </body>
