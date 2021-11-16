@@ -24,7 +24,7 @@ class DiceRollerWithPlot extends DiceRollerController{
 
 	on_input_change(change_id) {
 		DiceRollerController.prototype.on_input_change.call(this, change_id);
-		this.create_plot();
+		this.initiate_worker();
 	}
 
 	minimal_roll(roll, keep, explode_range, emphasis) {
@@ -59,7 +59,35 @@ class DiceRollerWithPlot extends DiceRollerController{
 		return final_result
 	}
 
-	async create_plot() {
+	initiate_worker() {
+		var [roll, keep, x_range, _, emphasis, _] = this.get_roll_input();
+
+		var worker_input = {
+			"roll": roll,
+			"keep": keep,
+			"explode_range": x_range,
+			"emphasis": emphasis
+		}
+
+		var self = this;
+		this.worker = new Worker("js/dice_roller_worker.js");
+		this.worker.addEventListener("message", function(e) {
+			self.create_plots_from_worker_output(e.data);
+		})
+
+		this.worker.postMessage(worker_input);
+	}
+
+	create_plots_from_worker_output(data) {
+		this.generate_plot(data["normal"]["data"],
+		                   data["normal"]["chart_titles"],
+		                   probabilityChart);
+		this.generate_plot(data["cumulative"]["data"],
+		                   data["cumulative"]["chart_titles"],
+		                   probabilityChart);
+	}
+
+	create_plot() {
 		var [roll, keep, x_range, _, emphasis, _] = this.get_roll_input();
 
 		this.plot_input = {
