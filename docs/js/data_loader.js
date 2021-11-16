@@ -124,16 +124,16 @@ class DataLoader {
 			}
 		}).then(html => {
 			if (html) {
-				element.innerHTML = html;
 
-				var object_to_call = element.firstChild.dataset.objectname;
-				if (object_to_call) {
+				var new_element = this.replace_element(element, html);
+
+				if (new_element.hasAttribute("dataset.objectname")) {
+					var object_to_call = element.firstChild.dataset.objectname;
 					window.DH.execute_on_load(
 					    Function(`new ${object_to_call}()`)
 					);
+					console.log(element);
 				}
-
-				console.log(element);
 				this.check_for_html_templates();
 				resolveFunc(file_name);
 			}
@@ -142,34 +142,6 @@ class DataLoader {
 			this.element_failed_load(element, file_name);
 			resolveFunc(file_name);
 		});
-
-		
-
-		// var promise = fetch("https://elliott-fogg.github.io/l5r/html/" +
-		//                     file_name);
-
-		// this.html_promises.push(promise);
-
-		// promise.then(response => {
-		// 	console.groupCollapsed("Load HTML file: " + file_name);
-		// 	console.log("Response URL: " + response.url);
-		// 	console.log("Response Status: " + response.status);
-		// 	console.groupEnd();
-	 //    	if (response.status == 200) {
-	 //    		return response.text();
-	 //    	} else {
-	 //    		this.element_failed_load(element, file_name);
-	 //    		return null;
-	 //    	}
-		// }).then(html => {
-		// 	if (html) {
-		// 		element.innerHTML = html;
-		// 		this.check_for_html_templates();
-		// 	}
-	 //    }).catch(err => {
-	 //    	console.warn("Could not load HTML template.", err);
-	 //    	this.element_failed_load(element, file_name);
-		// });
 	}
 
 	element_failed_load(element, message=null) {
@@ -177,6 +149,16 @@ class DataLoader {
 		if (message) {
 			element.innerHTML += ` - ${message}`;
 		}
+	}
+
+	replace_element(element, html) {
+		console.log(element);
+		var template = document.createElement("template");
+		template.innerHTML = html;
+		var new_element = template.content.firstElementChild.cloneNode(true);
+		console.log(new_element);
+		element.replaceWith(new_element);
+		return new_element;
 	}
 
 	// Await all data to confirm loaded ////////////////////////////////////////
