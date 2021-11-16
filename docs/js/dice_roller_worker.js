@@ -6,7 +6,7 @@ class DiceRollerPlotFunctions extends DiceRollerBaseFunctions {
 		super();
 	}
 
-	process_data(roll, keep, explode_range, emphasis) {
+	process_data(roll, keep, x_range, emphasis) {
 		var raw_data = this.generate_roll_data(roll, keep, x_range, emphasis);
 		var roll_prob = this.determine_roll_probability(raw_data);
 		var roll_text = `${roll}k${keep}${emphasis ? " with Emphasis" : ""}`;
