@@ -34,9 +34,11 @@
 
 	<script>
 		function test_worker() {
+			console.log("Launching worker...");
 			var worker = new Worker("https://elliott-fogg.github.io/l5r/js/dice_roller_worker.js");
 			worker.addEventListener("message", function(e) {
-				console.log("RECIEVED WORK: " + e);
+				console.log("RECIEVED WORKER OUTPUT!");
+				console.log(e);
 			});
 		}
 	</script>

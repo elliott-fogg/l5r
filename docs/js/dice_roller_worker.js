@@ -1,5 +1,4 @@
 onmessage = function(e) {
-	console.log(e);
-	postMessage("WORKER STARTED: " + e);
+	postMessage("WORKER STARTED!");
 	self.close();
 }
