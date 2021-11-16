@@ -72,13 +72,22 @@ class DiceRollerWithPlot extends DiceRollerController{
 		var self = this;
 		this.worker = new Worker("js/dice_roller_worker.js");
 		this.worker.addEventListener("message", function(e) {
-			self.create_plots_from_worker_output(e.data);
+			self.process_worker_data(e.data);
 		})
 
 		this.worker.postMessage(worker_input);
 	}
 
+	process_worker_data(data) {
+		if (typeof data === "string") {
+			console.log(data);
+		} else {
+			this.create_plots_from_worker_output(data);
+		}
+	}
+
 	create_plots_from_worker_output(data) {
+		console.log(data);
 		this.generate_plot(data["normal"]["data"],
 		                   data["normal"]["chart_titles"],
 		                   probabilityChart);
