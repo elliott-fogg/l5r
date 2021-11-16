@@ -1,4 +1,4 @@
-importScripts("js/dice_roller.js");
+importScripts("dice_roller.js");
 
 class DiceRollerPlotFunctions extends DiceRollerBaseFunctions {
 
