@@ -23,7 +23,6 @@ class DiceRollerPlotFunctions extends DiceRollerBaseFunctions {
 
 		c_chart_titles["title"] = "Cumulative Roll Probability";
 		c_chart_titles["axisY"] = "Chance of rolling >= value";
-		this.generate_plot(c_formatted_data, c_chart_titles, "cumulativeChart", true);
 
 		// Probability Plot
 		var formatted_data = this.format_roll_data(roll_prob);
