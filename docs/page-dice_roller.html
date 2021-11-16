@@ -33,6 +33,17 @@
 	</details>
 
 	<script>
+		function test_worker() {
+			var worker = new Worker("https://elliott-fogg.github.io/l5r/js/dice_roller_worker.js");
+			worker.addEventListener("message", function(e) {
+				console.log("RECIEVED WORK: " + e);
+			});
+		}
+	</script>
+
+	<input type="button" value="TEST" onclick="test_worker()">
+
+	<script>
 		window.DH = new DataTester();
 		window.DH.execute_on_load(function() {
 			window.DR = new DiceRollerWithPlot();
