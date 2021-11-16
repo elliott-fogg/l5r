@@ -88,10 +88,10 @@ class DiceRollerWithPlot extends DiceRollerController{
 		console.log(data);
 		this.generate_plot(data["normal"]["data"],
 		                   data["normal"]["chart_titles"],
-		                   probabilityChart);
+		                   "probabilityChart");
 		this.generate_plot(data["cumulative"]["data"],
 		                   data["cumulative"]["chart_titles"],
-		                   probabilityChart);
+		                   "cumulativeChart", true);
 	}
 
 	create_plot() {
