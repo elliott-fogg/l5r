@@ -4,6 +4,7 @@ class DiceRollerPlotFunctions extends DiceRollerBaseFunctions {
 
 	constructor() {
 		super();
+		this.sample_size = 1000000;
 	}
 
 	process_data(roll, keep, x_range, emphasis) {

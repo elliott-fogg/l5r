@@ -7,8 +7,6 @@ class DiceRollerWithPlot extends DiceRollerController{
 
 		this.p_plot = null;
 		this.c_plot = null;
-
-		this.sample_size = 1000000;
 		this.chart_type = "normal";
 
 		var self = this;
