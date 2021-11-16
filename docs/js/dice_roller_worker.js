@@ -1,3 +1,5 @@
+importScripts("js/dice_roller.js");
+
 class DiceRollerPlotFunctions extends DiceRollerBaseFunctions {
 
 	constructor() {
