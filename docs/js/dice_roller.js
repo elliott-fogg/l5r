@@ -23,7 +23,7 @@ class DiceRollerBaseFunctions {
 			// Explode die roll continuously as long as new value is within explode_range
 			while (explode_range.includes(die_roll)) {
 				verbose_text += `Exploding (${die_roll}). `;
-				die_roll = roll_d10();
+				die_roll = this.roll_d10();
 				total += die_roll;
 				verbose_text += `New die adds ${die_roll} and becomes ${total}. `;
 			}
