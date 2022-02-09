@@ -1,5 +1,25 @@
 class DataHandler extends DataLoader {
 
+	constructor() {
+		super();
+		this.execute_on_load(function() {
+			console.log("DataHandler Working!");
+		});
+		this.execute_on_load(this.get_universal_spells.bind(this));
+	}
+
+	get_universal_spells() {
+		console.log("SEARCHING SPELLS");
+		var universal_spells = [];
+		console.log(this);
+		for (let spell_name in this.data.spells) {
+			if (this.data.spells[spell_name]["universal"]) {
+				universal_spells.push(spell_name);
+			}
+		}
+		this.data.universal_spells = universal_spells;
+	}
+
 	// Spells //////////////////////////////////////////////////////////////////
 	group_spells(spell_list) {
 		var all_elements = ["Air", "Earth", "Fire", "Water", "Void", "Other"];

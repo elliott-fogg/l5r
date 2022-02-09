@@ -7,7 +7,7 @@ class DataLoader {
 			"advantages": "/json/advantages.json",
 			"disadvantages": "/json/disadvantages.json",
 			"spells": "/json/spells.json",
-			"universal_spells": "/json/universal_spells.json",
+			// "universal_spells": "/json/universal_spells.json",
 			"kata": "/json/kata.json"
 		}
 		
