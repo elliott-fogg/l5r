@@ -46,6 +46,7 @@ table#spell_info_table td:first-child {
 
 #spell_roller_topdiv {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 #spell_roller_leftdiv {
@@ -55,4 +56,23 @@ table#spell_info_table td:first-child {
 
 #spell_roller_rightdiv {
 	/*width: 40%;*/
+}
+
+#spellslots_outerdiv {
+	flex-basis: 100%;
+}
+
+.flex_break {
+	flex-basis: 100%;
+	height: 0;
+}
+
+#affinity_warning {
+	display: none;
+	color: red;
+	white-space: wrap;
+}
+
+#affinity_warning.active {
+	display: block;
 }

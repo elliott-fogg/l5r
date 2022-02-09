@@ -42,8 +42,20 @@
 	height: 300px;
 	overflow-y: scroll;
 	border: solid 1px black;
-	padding-left: 25px;
+	padding-left: 20px;
 	padding-top: 5px;
+}
+
+#fsl_spell_list.saved {
+	padding-left: 5px;
+}
+
+#fsl_universal_tab {
+	font-size: 1.2em;
+	margin: 5px;
+	margin-right: 10px;
+	margin-left: 20px;
+	cursor: pointer;
 }
 
 #fsl_saved_tab {
@@ -65,6 +77,14 @@
 	height: 10px;
 	margin-left: 5px;
 	margin-top: 1px;
+	align-self: center;
+	cursor: pointer;
+}
+
+.fsl_mem_button {
+	width: 10px;
+	height: 10px;
+	margin-right: 5px;
 	align-self: center;
 	cursor: pointer;
 }

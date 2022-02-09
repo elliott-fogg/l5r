@@ -55,8 +55,12 @@ class SpellRollerController {
 
 	// Spell Display Functions /////////////////////////////////////////////////
 
+	get_spell_info(spell_name) {
+		return window.DH.data.spells[spell_name];
+	}
+
 	update_spell_display(spell_name) {
-		var spell_info = window.DH.data.spells[spell_name];
+		var spell_info = this.get_spell_info(spell_name);
 		this.dom_name.innerHTML = spell_info["title"];
 		this.dom_keywords.innerHTML = this.create_keywords_html(spell_info["keywords"]);
 		this.dom_tn.innerHTML = 5 * parseInt(spell_info["mastery_level"]) + 5;
@@ -109,6 +113,25 @@ class SpellRollerController {
 		this.reset_dice_roller();
 	}
 
+	get_element_rank(spell_element) {
+		var elements = spell_element.split(" ");
+		var max_element = 0;
+		for (let e of elements) {
+			let e_value = parseInt(document.getElementById(`trait_${e}`).value);
+			if (e == this.affinity.value) {
+				e_value += 1;
+			}
+			if (e == this.deficiency.value) {
+				e_value -= 1;
+			}
+
+			if (e_value > max_element) {
+				max_element = e_value;
+			}
+		}
+		return max_element;
+	}
+
 	dice_roller_changed() {
 		// TODO: Actually calculate what the values are, and check for them.
 		if (this.FSL.current_spell) {
@@ -117,11 +140,9 @@ class SpellRollerController {
 	}
 
 	reset_dice_roller() {
-		var spell_info = window.DH.data.spells[this.FSL.current_spell];
+		var spell_info = this.get_spell_info(this.FSL.current_spell);
 		var spell_element = spell_info["element"].toLowerCase();
-		var affinity = this.affinity.value;
-		var deficiency = this.deficiency.value;
-		var trait = parseInt(document.getElementById(`trait_${spell_element}`).value);
+		var element_rank = this.get_element_rank(spell_element);
 		var school_rank = parseInt(this.school_rank.value);
 		this.dice_roller_reset.disabled = true;
 
@@ -129,14 +150,10 @@ class SpellRollerController {
 
 		this.DR.base_tn = base_tn;
 
-		console.log(`'${spell_element}', '${affinity}', '${deficiency}', '${trait}', '${school_rank}'`)
+		console.log(`'${spell_element}', '${element_rank}', '${school_rank}'`)
 
-		var total_school_rank = school_rank;
-		if (affinity == spell_element) {total_school_rank += 1};
-		if (deficiency == spell_element) {total_school_rank -= 1};
-
-		var dice_to_roll = total_school_rank + trait;
-		var dice_to_keep = trait;
+		var dice_to_roll = school_rank + element_rank;
+		var dice_to_keep = element_rank;
 
 		this.DR.set_values(dice_to_roll, dice_to_keep);
 	}
@@ -144,8 +161,22 @@ class SpellRollerController {
 	attribute_changed() {
 		this.save_attributes();
 		this.update_spell_slots();
+		this.update_affinity_warning();
 		if (this.FSL.current_spell){
 			this.reset_dice_roller();
+		}
+	}
+
+	update_affinity_warning() {
+		var message = document.getElementById("affinity_warning");
+		console.log(this.affinity.value, this.deficiency.value);
+		console.log(message);
+		if (this.affinity.value == this.deficiency.value) {
+			console.log("Adding warning");
+			message.classList.add("active");
+		} else {
+			console.log("Removing warning");
+			message.classList.remove("active");
 		}
 	}
 
