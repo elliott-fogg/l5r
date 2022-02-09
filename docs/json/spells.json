@@ -251,7 +251,7 @@
         "aoe": "One created Weapon",
         "duration": "5 Minutes",
         "raises": [
-            "Damae (+1k0)",
+            "Damage (+1k0)",
             "Duration (+5 minutes)",
             "Range (+5 feet)"
         ],
@@ -283,7 +283,7 @@
         "aoe": "10 square feet around caster",
         "duration": "Concentration",
         "raises": [
-            "Area (5 square feet)."
+            "Area (5 square feet)"
         ],
         "special": null,
         "description": "While the Crane would go without an organized shugenja family or order until the Asahina would be founded centuries after the clan's founding, a few of Doji's followers had a talent for speaking with the kami. They focused on the arts of peace and meditation, and this spell was one of their first attempts to bring the harmony of the Elements to a samurai. While this spell is active, all rolls based on Void and Awareness gain a +1k0 bonus when made within the area of effect, and all hostile actions suffer a -1k0 penalty. Hostile actions based on Awareness (such as threatening someone with Intimidation) suffer a -2k0 penalty instead of the previous, self-negating, effects. The caster of this spell may use the Meditation Skill without breaking the concentration required to maintain it."
@@ -350,8 +350,7 @@
         "aoe": "1 house or other residential building",
         "duration": "hours equal to caster's Air",
         "raises": [
-            "Area of effect (3 Raises to affect a building as large as an inn",
-            "6 Raises to affect a castle)"
+            "Area of effect (3 Raises to affect a building as large as an inn, 6 Raises to affect a castle)"
         ],
         "special": null,
         "description": "A cleansing ritual used by shugenja when preparing a house or other building for an important even such as a wedding or a festival. The spell entreats the Air kami to raise a soft but carefully controlled wind which sweeps all the dirt, insects, and other filth out of the building. The spell also has a spiritually purifying effect, making evil or malignant spirits reluctant to remain within the dwelling - any kansen, ghosts, or other hostile disembodied spirits within the building will leave for a number of hours equal to the caster's Air. (Evil spirits which are exceptionally strong or which have an extremely strong attachment to the building cannot be banished by this basic spell, however - it is the GM's discretion whether a spirit is strong enough to resist Freedom of the Air.)\nThe spell was originally devised by the Seppun shugenja, but due to its great usefulness it later spread across the Empire. The Seppun Shugenja School technique may be applied to this spell."
@@ -770,7 +769,7 @@
         "range": "N/A",
         "aoe": "N/A",
         "duration": "5 minutes",
-        "raises": null,
+        "raises": [],
         "special": null,
         "description": "This ritual was originally devised by the Kitsu sodan-senzo, but due to its widespread applicability it quickly spread to other shugenja families and schools. The Kitsu wished all Rokugani to properly venerate the ancestors, and thus had no difficulty sharing their discovery with the Isawa and the other clans as well. For those who do not have Kitsu blood, this spell is one of the very few ways in which shugenja can actually communicate with the ancestors while in Ningen-Do.\nThe spell is actually an hour-long ritual prayer which can only be performed in the company of a recently deceased individual's relative within twenty four hours of the funeral (which both the shugenja and the relative must have participated in properly). Other shugenja may assist in the ritual if they also know the spell; they do not need to make Spellcasting rolls, but are still considered to use up a spell slot. Once the prayer is properly completed (a successful Spellcasting Roll by the lead shugenja), the caster and the relative may both converse for a few minutes with the spirit of the recently departed. (If extra shugenja assist in the ritual, each assisting shugenja adds +1 minutes to the duration of the spell.)\nTypically, this ritual is only used in situations where the living relatives want to make quite sure they are properly remembering and honoring their newly-departed ancestor. The exact results of communing with the departed relative are at the discretion of the GM, but could include learning important information, receiving advice and guidance, or taking up a task which the dead samurai left incomplete."
     },
@@ -932,9 +931,7 @@
         "duration": "1 minute",
         "raises": [
             "Duration (+1 minute per Raise)",
-            "Special (+1 additional Skill Rank",
-            "once",
-            "for 3 Raises)"
+            "Special (+1 additional Skill Rank once, for 3 Raises)"
         ],
         "special": null,
         "description": "This prayer invites the kami of the Air into the mind of the shugenja himself, enhancing the shugenja's mind and thoughts, causing him to be able to make better use of his skills and knowledge. For the duration of the spell, the caster gains 1 Rank in all Skills hie normally possesses, and may benefit from any Mastery Abilities that this would award. This can only grant ranks in Skills the shugenja already possesses - the Air kami cannot evoke knowledge the caster does not possess. When the duration of the spell expires all benefits are lost and any memories of the knowledge or insight which the shugenja gained during the spell's duration are at best fuzzy; no precise or detailed account can ever be given, and severe headaches are known to plague those who try too hard.\nThe benefits for this spell only apply to Skills which the caster actually knows - it cannot increase the Rank of Skills which the caster has temporarily acquired through magic, nor can it combine with Advantages such as Crafty."
@@ -1179,8 +1176,7 @@
         "raises": [
             "Duration (+2 rounds)",
             "Range (+10')",
-            "Targets (+1",
-            "to a maximum of 4 total targets)"
+            "Targets (+1, to a maximum of 4 total targets)"
         ],
         "special": null,
         "description": "This spell calls on the Earth in the target's body to weigh him down, impeding his movements. The target suffers a -2k0 penalty to all rolls using the Agility trait, and his Water Ring is considered 1 Rank lower for the purposes of how far he can move."
@@ -1197,8 +1193,7 @@
         "duration": "1 hour",
         "raises": [
             "Duration (+1/2 hour)",
-            "Targets (+1 per 2 raises",
-            "maximum of 3 total targets)"
+            "Targets (+1 per 2 raises, maximum of 3 total targets)"
         ],
         "special": null,
         "description": "With this spell, the shugenja calls forth the Earth of the target (which may be himself), invoking the kami to strengthen his health and mental fortitude. For the duration of the spell, one of the target's Earth Traits (chosen by the caster) is increased by 1. This does not increase the Ring itself, but it can enhance the target's ability to withstand temptation, resist poisons, or dominate others."
@@ -1249,8 +1244,7 @@
         "duration": "1 hour",
         "raises": [
             "Duration (+1/2 hour)",
-            "Targets (+1 per 2 Raises",
-            "maximum of 5 total targets)"
+            "Targets (+1 per 2 Raises, maximum of 5 total targets)"
         ],
         "special": null,
         "description": "This spell fills the target's body with the purity and vigor of Earth, driving out poisons and impurities. If the target suffers the effects of any poison or toxin within the duration of the spell, or is already under the effects of a poison when the spell targets him, he may re-roll any failed Stamina roll to resist the poison, with a bonus of +2k0 to the second roll. (However, if the second roll is also failed, the poison has full effect.) An interesting side-effect of this spell is that it also cures drunkenness and other such effects, and it is impossible to become intoxicated during the spell's duration."
@@ -1385,8 +1379,7 @@
         "aoe": "1 target",
         "duration": "2 rounds",
         "raises": [
-            "Duration (+1 round",
-            "maximum 4 Rounds duration)"
+            "Duration (+1 round, maximum 4 Rounds duration)"
         ],
         "special": null,
         "description": "This spell infuses the target with an intense resistance to pain and death, as the Earth kami bolster his will to live to supernatural levels. He is able to shrug off the pain and shock of his wounds, even continuing in the face of lethal injuries for a short time. For the duration of the spell, the target is immune to all Wound Rank penalties and effects - including the effect of being dead if the Out rank is completely filled. When the spell expires, however, the full effects of any Wounds apply immediately - thus, this spell typically affords either a brief chance to be healed before it is too late, or the chance to wage a final battle in the face of certain death."
@@ -1532,7 +1525,7 @@
         "aoe": "1 target spirit creature",
         "duration": "30 days",
         "raises": [
-            "Duration (+1 day_",
+            "Duration (+1 day)",
             "Range (+10')",
             "Targets (+1 per 2 Raises)"
         ],
@@ -1567,8 +1560,7 @@
         "aoe": "10' radius from caster",
         "duration": "Concentration",
         "raises": [
-            "Area (+5' radius per 2 Raises",
-            "to a maximum of 30' radius)",
+            "Area (+5' radius per 2 Raises, to a maximum of 30' radius)",
             "Special (Damage reduced by an additional +1k1 for 2 Raises)"
         ],
         "special": null,
@@ -1602,7 +1594,7 @@
         "raises": [
             "Area of Effect (+5' radius per two Raises)",
             "Duration (+2 Rounds per Raise)",
-            "Special (+5\u00a0TN to climb rocks per Raise)"
+            "Special (+5 TN to climb rocks per Raise)"
         ],
         "special": null,
         "description": "This spell is a specialized variation of the more commonprayer known as Wall of Earth. It entreats the Earth spirits to draw an array of huge stones up from the ground, erupting in an instant through most intervening physical obstacles (such as the floor of a house) to create a circular barrier around the caster. The stones are too strong to break through with anything short of a siege engine (against a siege engine they are considered to have 500 Wounds and Reduction 15), but can be clambered over with a Complex Action and a roll of Athletics / Strength against the caster's Earth x5.\nWhen the spell expires, the stones crumble away to loose earth and dust."
@@ -1798,8 +1790,7 @@
             "Duration (+1 round)",
             "Range (+5')",
             "Targets (+1 per 2 Raises)",
-            "Special (+1 Rank of Earth per 2 Raises",
-            "maximum increase 3 Ranks of Earth)"
+            "Special (+1 Rank of Earth per 2 Raises, maximum increase 3 Ranks of Earth)"
         ],
         "special": null,
         "description": "This spell infuses the target with the true strength of Earth, allowing him to shrug off blows which might otherwise take his life. For the duration of the spell, the target's Earth Ring is considered to be 1 Rank higher, and his Wounds are increased correspondingly. However, when the spell ends, the Earth spirits immediately depart and the target's Wounds return to normal - possibly resulting in death, if he has suffered sufficient injury."
@@ -1885,8 +1876,7 @@
         "duration": "Concentration",
         "raises": [
             "Range (+10')",
-            "Special (Contested Roll",
-            "+1k1 to caster for each Raise)"
+            "Special (Contested Roll, +1k1 to caster for each Raise)"
         ],
         "special": null,
         "description": "Considered by many shugenja to be the ultimate spell for opposing the creatures of the Shadowlands, this spell calls on the purest of Earth spirits, those of jade, to consume the very Taint within the target. The spell can only affect a target who has at least one full Rank of Shadowlands Taint, but if the spell fails, the caster will not automatically know that the target is Taint-free - there is always the possibility that the target was able to resist the spell.\nWhen Tomb of Jade is cast, the target is momentarily immobilized as the Earth spirits enter his body. Each round, starting with the first round, the caster must make a Contested Earth roll against the target. If the target wins, the spell ends. If the caster wins, the target takes 2k2 Wounds as the spirits begin to transform his body into jade. This continues each round until the target successfully resists, the caster stops concentrating, or the target dies. Those killed by this spell are transformed into statues of pure jade, which crumbles away into mundane dust in 24 hours."
@@ -2044,8 +2034,7 @@
         "raises": [
             "Duration (+1 round)",
             "Range (+5')",
-            "Targets (+1 target per 2 Raises",
-            "maximum of 3 total targets)"
+            "Targets (+1 target per 2 Raises, maximum of 3 total targets)"
         ],
         "special": null,
         "description": "This spell calls on the purity of jade to protect its targets against the power of Jigoku, whether manifested as Taint or as the dreaded magic known as maho. The target radiates the sacred green light of jade, and while the spell lasts, he cannot gain the Shadowlands Taint and is completely immune to the effects of all maho spells. This spell cannot be cast on anyone who possesses at least one full Rank of Taint, for the pure jade spirits will recoil from such a corrupt individual, immediately alerting the caster to this individual's Tainted nature."
@@ -2081,8 +2070,7 @@
         "duration": "Permanent",
         "raises": [
             "Range (+5')",
-            "Special (Contested Roll",
-            "+1k1 to the caster for each Raise)"
+            "Special (Contested Roll, +1k1 to the caster for each Raise)"
         ],
         "special": null,
         "description": "The most powerful of the binding spells which Earth shugenja use to deal with dangerous creatures, this spell can literally imprison the essence of such a creature for as long as the caster desires. Casting this spell requires that the caster possess a gem or pearl in which to imprison the creature (the GM may, discretionally, allow other rare or precious items to be used, such as a beautifully inlaid puzzle-box or a crystal pendant). The spell can target any creature native to the realms of Jigoku, Gaki-do, or Toshigoku, and any other non-human creature with at least 1 full Rank of Taint.\nAfter casting the spell, the caster must make a Contested Willpower roll against the target. If the caster wins, the creature's physical body vanishes and its essence is imprisoned within the item. It will remain there indefinitely unless the item is physically destroyed. If that happens, the released creature immediately resumes its physical form, and will most likely seek vengeance against the caster or his descendants."
@@ -2425,10 +2413,10 @@
         "duration": "Instantaneous",
         "raises": [
             "Range (+10' per Raise)",
-            "Area of Effect (+1"
+            "Area of Effect (+1 target per 2 Raises)"
         ],
         "special": null,
-        "description": "target per 2 Raises)\nThis spell was originally devised by the Isawa to deal with the threat of Yobanjin magic, and later spread to the rest of the Empire when other gaijin threats became more frequent. The spell calls on Shinsei's principles of Elemental unity and harmony to oppose unnatural foreign magic, using the energy of Fire as a focus. Purity of Shinsei ends the effects of a gaijin spell or spell-like effect. Typically this means targeting an individual who is being afflicted by an ongoing gaijin spell effect (such as a samurai laboring under a foreign curse), though it can also target an effect which is not afflicting a specific individual (such as a foreign curse on a castle, a village, or a physical item). The GM has final discretion on whether a particular gaijin magic effect can be countered with Purity of Shinsei. If the optional Counterspelling rules as in use, the GM may opt to let a shugenja who knows this spell attempt to Counterspell meishodo spells and gaijin magic."
+        "description": "This spell was originally devised by the Isawa to deal with the threat of Yobanjin magic, and later spread to the rest of the Empire when other gaijin threats became more frequent. The spell calls on Shinsei's principles of Elemental unity and harmony to oppose unnatural foreign magic, using the energy of Fire as a focus. Purity of Shinsei ends the effects of a gaijin spell or spell-like effect. Typically this means targeting an individual who is being afflicted by an ongoing gaijin spell effect (such as a samurai laboring under a foreign curse), though it can also target an effect which is not afflicting a specific individual (such as a foreign curse on a castle, a village, or a physical item). The GM has final discretion on whether a particular gaijin magic effect can be countered with Purity of Shinsei. If the optional Counterspelling rules as in use, the GM may opt to let a shugenja who knows this spell attempt to Counterspell meishodo spells and gaijin magic."
     },
     "Relentless Heat": {
         "title": "Relentless Heat",
@@ -2504,10 +2492,10 @@
         "duration": "6 Rounds",
         "raises": [
             "Area of Effect (+5' radius per Raise)",
-            ""
+            "Duration (+1 Round per Raise)"
         ],
         "special": null,
-        "description": "Duration (+1 Round per Raise)\nOriginally devised by Agasha shugenja who were working with hanabi (fireworks), in modern times this spell has been renamed Tamori's Curse by the Tamori family. The spell creates a zone of protection in which Fire kami friendly to the caster reject any intrusion by other Fire kami. Any hostile Fire spell cast within the Area of Effect suffers a -4k0 penalty to the Spell Casting Roll. Any hostile Fire spell cast from an outside location that attempts to project Fire effects into the Area of Effect (such as spells like Fires From Within) will suffer a -3k0 penalty to its DR as Agasha's Shield disperses and weakens the kami."
+        "description": "Originally devised by Agasha shugenja who were working with hanabi (fireworks), in modern times this spell has been renamed Tamori's Curse by the Tamori family. The spell creates a zone of protection in which Fire kami friendly to the caster reject any intrusion by other Fire kami. Any hostile Fire spell cast within the Area of Effect suffers a -4k0 penalty to the Spell Casting Roll. Any hostile Fire spell cast from an outside location that attempts to project Fire effects into the Area of Effect (such as spells like Fires From Within) will suffer a -3k0 penalty to its DR as Agasha's Shield disperses and weakens the kami."
     },
     "Breath Of The Fire Dragon": {
         "title": "Breath Of The Fire Dragon",
@@ -2778,8 +2766,7 @@
         "aoe": "Special",
         "duration": "1 hour",
         "raises": [
-            "Area of Effect (+1 increment",
-            "see below)"
+            "Area of Effect (+1 increment, see description)"
         ],
         "special": null,
         "description": "You invoke the Fire kami to spring up and form a wall of flames, barring passage to all. The wall is 10' tall, 1' wide, and 25' long, and causes 6k6 Wounds to anyone who touches it. This wall may be made shorter or thinner as desired, within the total specifications, but all the mass of the flames must be used somehow. The wall may be created in an area where people or creatures are standing, forcing them to make a Reflexes Trait Roll against a TN of 20 to avoid taking Wounds from the fire.\nYou may Raise to increase on of the specifications (height, width, or length) by its base increment (10', 1', or 25' respectively)."
@@ -2981,7 +2968,7 @@
         "aoe": "Caster",
         "duration": "Instantaneous",
         "raises": [
-            "Special (+1 additional spell per 3 Raises"
+            "Special (+1 additional spell per 3 Raises)"
         ],
         "special": null,
         "description": "A supremely advanced form of the lesser spell known as Hurried Steps, this spell has been used by only a few highly advanced masters of magic; its creation is credited to Naka Kaeteru, the first Grand Master of the Elements. When this prayer is completed, the caster's mind and body are infused with energetic Fire kami to such an extent that his thoughts, movements, and speech become all but superhuman. He may immediately cast a number of spells of Mastery Level 4 or less equal to his Fire Ring, casting each spell as a Free Action regardless of its normal casting time. Spell Casting Rolls must be made and spell slots are used as normal, but there is no need to Raise for a shorter casting time."
@@ -3168,7 +3155,7 @@
         "duration": "Instantaneous",
         "raises": [
             "Range (+5')",
-            "Special (see below)"
+            "Special (see Description)"
         ],
         "special": null,
         "description": "Energy flows between all living things as water flows through the earth. You may transfer any one existing spell effect from you to the willing target of this spell. With 3 Raises, you may transfer 1 spell effect from one living target to another willing target. You cannot transfer spells between unwilling targets."
@@ -3236,8 +3223,7 @@
         "duration": "2 Rounds",
         "raises": [
             "Area of Effect (+5' radius per Raise)",
-            "Duration (+1 Round for two Raises",
-            "may only be done once)"
+            "Duration (+1 Round for two Raises, may only be done once)"
         ],
         "special": null,
         "description": "This prayer evokes the sorrow of the Heavens, unleashing a brief deluge of rain which is endowed with the spiritual purity of the Sun. The spell summons divine rain from the sky, and thus can only be used effectively outdoors \u2013 it cannot cause rain to fall indoors or underground. Those of pure soul (no Taint or Shadow corruption, Honor Rank 4.0 or better) who are bathed in Heaven's Tears are healed each Round by a number of Wounds equal to the caster's Water. Conversely, those with Taint or Shadow corruption suffer 1k1 Wounds for each Round they are exposed to the Tears."
@@ -3472,7 +3458,7 @@
             "Area of Effect (+1 person per Raise)"
         ],
         "special": null,
-        "description": "\u201cThe sea is a thing of great destructive power, but also great mercy and salvation.\u201d - Asako Chukage\nThis spell calls on the power of Water to protect and hide the chosen targets (who must be willing, and can include the caster). The spell can only be cast within range of a large quantity of water in a natural environment \u2013 e.g. a pond, stream, or something larger. When the spell is cast, the water lunges out, scoops up the targets, and draws them into the water, concealing them beneath its surface. The targets have enough air to breathe for the duration of the spell, but no longer. The surrounding barrier of water completely protects the targets, but also completely blocks them from any sort of attack against those outside \u2013 indeed, they will not even be able to see what is happening above the water unless they can roll Perception at TN 20 to make out the blurry images.\nOnce the spell's duration expires, the water releases the targets where they are \u2013 they must swim to the surface on their own."
+        "description": "\u201cThe sea is a thing of great destructive power, but also great mercy and salvation.\u201d - Asako Chukage.\nThis spell calls on the power of Water to protect and hide the chosen targets (who must be willing, and can include the caster). The spell can only be cast within range of a large quantity of water in a natural environment \u2013 e.g. a pond, stream, or something larger. When the spell is cast, the water lunges out, scoops up the targets, and draws them into the water, concealing them beneath its surface. The targets have enough air to breathe for the duration of the spell, but no longer. The surrounding barrier of water completely protects the targets, but also completely blocks them from any sort of attack against those outside \u2013 indeed, they will not even be able to see what is happening above the water unless they can roll Perception at TN 20 to make out the blurry images.\nOnce the spell's duration expires, the water releases the targets where they are \u2013 they must swim to the surface on their own."
     },
     "Silent Waters": {
         "title": "Silent Waters",
@@ -3641,8 +3627,7 @@
         "raises": [
             "Range (+50' per Raise)",
             "Duration (+1 minute per Raise)",
-            "Special (affect non-samurai",
-            "see description)"
+            "Special (affect non-samurai, see description)"
         ],
         "special": null,
         "description": "This spell was originally devised by battle shugenja of the Kitsu and Iuchi families, and remains a favorite among\nthem. It infuses a military unit with the fowing speed and relentless strength of Water, allowing the soldiers to move more quickly and strike more powerfully on the battlefeld. The caster chooses one group of allies (up to roughly a squadron) to receive this blessing; all troops in that unit may move as though their Water is 1 Rank higher and are considered to have a Strength 1 Rank higher for the duration of the spell.\nThis spell normally only benefts samurai, but a skilled caster can extend to the blessing to cover other allies. Two\nRaises will allow the spell to affect non-samurai humans (e.g. ashigaru), while four Raises will allow it to affect non-human allies such as Naga or Ratlings.\nThis spell may also be used to affect Mass Battle scenarios. Each casting of the spell during a Mass Battle\nawards a bonus equal to the caster's Water Ring to the total of the commanding general's next Battle Skill roll to\ndetermine winning or losing."
@@ -3658,8 +3643,7 @@
         "aoe": "Caster",
         "duration": "1 Day",
         "raises": [
-            "Special (cast after only seeing the target's face once",
-            "4 Raises)"
+            "Special (cast after only seeing the target's face once, 4 Raises)"
         ],
         "special": null,
         "description": "You call on the Water kami to make your face become that of another person. This is not an illusion but an actual change to the flesh and bone, re-molding your face to match that of the other person. This is a painful experience and it takes several minutes for the kami to complete the re-shaping. Normally, casting this spell requires you to be familiar with the face of the target (you must have studied it for at least 8 hours), although with enough Raises you can take on a face you have seen only once.\nYour face looks exactly like the target's face, to the point where even close friends and family members will believe you are the target. However, this spell only affects the face, not the rest of the body or the hair. Scars, birthmarks, and other identifying features elsewhere on the body must be replicated or hidden if the deception is to succeed. Also, this spell does not change your voice."
@@ -3930,9 +3914,7 @@
         "duration": "1 hour",
         "raises": [
             "Duration (+10 minutes per Raise)",
-            "Special (reach Sakkaku or Yume-do for one Raise",
-            "Gaki-do or Toshigoku for two Raises",
-            "Yomi for four Raises)"
+            "Special (reach Sakkaku or Yume-do for one Raise, Gaki-do or Toshigoku for two Raises, Yomi for four Raises)"
         ],
         "special": null,
         "description": "This prayer, a spell known only to the Kitsu and Isawa, invokes the Travel aspect of Water to open a temporary portal into the Spirit Realms. The spell can normally only access the realms of Meido or Chikushudo, but extremely powerful casters can sometimes access Yomi, Sakkaku, Toshigoku, Yume-do, or Gaki-do. The portal lasts only a short time, so passage through it is fraught with risk.\nAlso, this spell cannot work in any area which has been warded against the infuences of the Spirit Realms (GM's discretion)."
@@ -4311,8 +4293,7 @@
         "aoe": "1 target individual (may be caster)",
         "duration": "5 rounds / 5 minutes (see below)",
         "raises": [
-            "Duration (+1 round / +1 minute",
-            "see below)",
+            "Duration (+1 round / +1 minute, see description)",
             "Special (+1k1 Wounds per 2 Raises)"
         ],
         "special": null,
@@ -4328,8 +4309,7 @@
         "duration": "Instantaneous",
         "raises": [
             "Range (+100' per Raise)",
-            "Targets (+1 target per two Raises",
-            "maximum targets equal to your Void Ring)"
+            "Targets (+1 target per two Raises, maximum targets equal to your Void Ring)"
         ],
         "special": null,
         "description": "The Dart of Void spell was created by the shugenja Ekuro in his famous battle. The spell has been preserved as a secret of the Order of Five Weapons, but it is believed the Phoenix may also have the spell in their libraries, and it is possible other shugenja families have copies as well. Casting this spell requires spending a Void Point; the spell summons forth a missile of pure Void which flies out and unerringly strikes any one target within range. The Dart inflicts damage with a DR equal to your Void. This damage ignores Invulnerability and Reduction from all sources."
@@ -4471,7 +4451,7 @@
         "aoe": "1 target creature, individual, or object",
         "duration": "Instantaneous",
         "raises": [
-            "(+10')"
+            "Range (+10')"
         ],
         "special": null,
         "description": "The most powerful and terrifying ability of those who command the Void is the ability to destroy the bonds that exist between the five elements. By eradicating the bonds between existing elements, you can effectively cause one object or creature to cease to exist. When you cast this spell on a living creature, you must succeed at a Contested Roll using your Void against the target's Earth. If you are successful, they are instantly killed, and their remains disappear into the Void. Success is automatic against a non-magical object, but attempting to destroy an awakened object, such as a nemuranai, may have dire ramifications at the GM's discretion (the kami contained within an awakened object frequently respond very poorly to this manner of attack, for instance)."
