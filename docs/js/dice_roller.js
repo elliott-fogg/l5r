@@ -137,10 +137,7 @@ class DiceRollerController extends DiceRollerBaseFunctions {
 	}
 
 	set_values(roll, keep) {
-		console.log(roll, keep);
-		console.log(this);
 		var [new_roll, new_keep, bonus] = this.check_overflow(roll, keep);
-		console.log(new_roll, new_keep, bonus);
 		this.roll_select.querySelector(`option[value='${new_roll}'`).selected = true;
 		this.keep_select.querySelector(`option[value='${new_keep}'`).selected = true;
 		this.bonus_input.value = bonus;
@@ -188,7 +185,7 @@ class DiceRollerController extends DiceRollerBaseFunctions {
 	on_input_change(change_id) {
 		var [roll, keep, x_range, _, emphasis, _] = this.get_roll_input();
 
-		if (roll < keep) {
+		if (parseInt(roll) < parseInt(keep)) {
 			if (change_id == "roll") {
 				this.keep_select.querySelector(`option[value='${roll}'`).selected = true;
 			} else if (change_id == "keep") {
